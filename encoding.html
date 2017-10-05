@@ -116,7 +116,15 @@
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-encoding.modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aggregate"><span class="hidden-section">Aggregate</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><span class="hidden-section">aggregate</span></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -184,11 +192,13 @@
             
   <div class="section" id="module-encoding">
 <span id="encoding"></span><h1>encoding<a class="headerlink" href="#module-encoding" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-encoding.modules">
-<span id="modules"></span><h2>Modules<a class="headerlink" href="#module-encoding.modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3><span class="hidden-section">Encoding</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="encoding.modules.Encoding">
-<em class="property">class </em><code class="descclassname">encoding.modules.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/modules.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.modules.Encoding" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.Encoding">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/modules/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Encoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encoding Layer: learnable residual encoders over 3d or 4d input that is seen as a mini-batch.</p>
 <div class="math">
 \[a_{ik} = \frac{exp(-\beta\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-\beta\|x_{i}-c_j\|^2)}\]</div>
@@ -207,11 +217,23 @@
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
-<li>Input: <span class="math">\(\mathcal{R}^{B\times N\times D}\)</span> or <span class="math">\(\mathcal{R}^{B\times D\times H\times W}\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features or <span class="math">\(H\times W\)</span>.)</li>
-<li>Output: :math: <cite>mathcal{R}^{Btimes Ktimes D}</cite></li>
+<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> or <span class="math">\(\mathcal{R}^{B\times D\times H\times W}\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features or <span class="math">\(H\times W\)</span>.)</li>
+<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
 </ul>
 </dd>
 </dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>codewords</strong> (<em>Tensor</em>) &#8211; the learnable codewords of shape (<span class="math">\(K\times D\)</span>)</li>
+<li><strong>scale</strong> (<em>Tensor</em>) &#8211; the learnable scale factor of visual centers</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">encoding</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
@@ -229,7 +251,49 @@
 </dl>
 </dd></dl>
 
-<span class="target" id="module-encoding.functions"></span><span class="target" id="module-encoding.syncbn"></span></div>
+</div>
+<div class="section" id="aggregate">
+<h3><span class="hidden-section">Aggregate</span><a class="headerlink" href="#aggregate" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.Aggregate">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Aggregate</code><a class="reference internal" href="_modules/encoding/modules/encoding.html#Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregate operation, aggregate the residuals (<span class="math">\(R\)</span>) with assignment weights (<span class="math">\(A\)</span>).</p>
+<div class="math">
+\[e_{k} = \sum_{i=1}^{N} a_{ik} (r_{ik})\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(A\in\mathcal{R}^{B\times N\times K}\)</span> <span class="math">\(R\in\mathcal{R}^{B\times N\times K\times D}\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><span class="hidden-section">aggregate</span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.aggregate">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">aggregate</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.aggregate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggregate operation, aggregate the residuals of inputs (<span class="math">\(X\)</span>) with repect to the codewords (<span class="math">\(C\)</span>) with assignment weights (<span class="math">\(A\)</span>).</p>
+<div class="math">
+\[e_{k} = \sum_{i=1}^{N} a_{ik} (x_i - d_k)\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(A\in\mathcal{R}^{B\times N\times K}\)</span> <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span>  (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
 </div>
 
 
