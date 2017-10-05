@@ -34,3 +34,15 @@ Functions
     :members:
 
 
+:hidden:`ScaledL2`
+~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: ScaledL2
+    :members:
+
+:hidden:`residual`
+~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: residual
+    :members:
+

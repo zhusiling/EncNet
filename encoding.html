@@ -123,6 +123,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scaledl2"><span class="hidden-section">ScaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#residual"><span class="hidden-section">residual</span></a></li>
 </ul>
 </li>
 </ul>
@@ -287,6 +289,53 @@
 <dd><ul class="first last simple">
 <li>Input: <span class="math">\(A\in\mathcal{R}^{B\times N\times K}\)</span> <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span>  (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
 <li>Output: <span class="math">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="scaledl2">
+<h3><span class="hidden-section">ScaledL2</span><a class="headerlink" href="#scaledl2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.ScaledL2">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">ScaledL2</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#ScaledL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.ScaledL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>ScaledL2 distance</p>
+<div class="math">
+\[sl_{ik} = s_k \|x_i-c_k\|^2\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span> <span class="math">\(S\in \mathcal{R}^K\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times N\times K}\)</span></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="residual">
+<h3><span class="hidden-section">residual</span><a class="headerlink" href="#residual" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.residual">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">residual</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#residual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.residual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate residuals over a mini-batch</p>
+<div class="math">
+\[r_{ik} = x_i - c_k\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(R\in\mathcal{R}^{B\times N\times K\times D}\)</span></li>
 </ul>
 </dd>
 </dl>
