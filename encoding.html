@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>encoding &mdash; Encoding master documentation</title>
+  <title>Encoding Layer &mdash; Encoding master documentation</title>
   
 
   
@@ -49,6 +49,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
+        <link rel="next" title="Synchronized BatchNorm" href="syncbn.html"/>
         <link rel="prev" title="Extending PyTorch-Encoding" href="notes/extending.html"/> 
 
   
@@ -73,7 +74,7 @@
 
           
             
-            <img src="_static/favicon.png" class="logo" />
+            <img src="_static/icon.png" class="logo" />
           
           </a>
 
@@ -81,7 +82,7 @@
             
             
               <div class="version">
-                0.0.1
+                master (0.0.1)
               </div>
             
           
@@ -115,16 +116,23 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Encoding Layer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#scaledl2"><span class="hidden-section">ScaledL2</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#residual"><span class="hidden-section">residual</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 </ul>
@@ -173,7 +181,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>encoding</li>
+      <li>Encoding Layer</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -193,11 +201,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-encoding">
-<span id="encoding"></span><h1>encoding<a class="headerlink" href="#module-encoding" title="Permalink to this headline">¶</a></h1>
+<span id="encoding-layer"></span><h1>Encoding Layer<a class="headerlink" href="#module-encoding" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3><span class="hidden-section">Encoding</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="encoding">
+<h3><span class="hidden-section">Encoding</span><a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.Encoding">
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/modules/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Encoding" title="Permalink to this definition">¶</a></dt>
@@ -249,7 +257,7 @@
 </div>
 <dl class="docutils">
 <dt>Reference:</dt>
-<dd>Zhang, Hang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
+<dd>Hang Zhang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
 </dl>
 </dd></dl>
 
@@ -276,8 +284,8 @@
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><span class="hidden-section">aggregate</span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3><span class="hidden-section">aggregate</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.aggregate">
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">aggregate</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.aggregate" title="Permalink to this definition">¶</a></dt>
@@ -354,6 +362,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="syncbn.html" class="btn btn-neutral float-right" title="Synchronized BatchNorm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="notes/extending.html" class="btn btn-neutral" title="Extending PyTorch-Encoding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

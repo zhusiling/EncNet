@@ -1,8 +1,8 @@
 .. role:: hidden
     :class: hidden-section
 
-encoding
-========
+Encoding Layer
+==============
 
 .. automodule:: encoding
 
@@ -45,4 +45,5 @@ Functions
 
 .. autoclass:: residual
     :members:
+
 

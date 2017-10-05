@@ -1,0 +1,29 @@
+.. role:: hidden
+    :class: hidden-section
+
+Synchronized BatchNorm
+======================
+
+.. currentmodule:: encoding
+
+Functions
+---------
+
+:hidden:`batchnormtrain`
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: batchnormtrain
+    :members:
+
+:hidden:`batchnormeval`
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: batchnormeval
+    :members:
+
+:hidden:`sum_square`
+~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: sum_square
+    :members:
+
