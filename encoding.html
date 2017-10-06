@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>encoding &mdash; Encoding master documentation</title>
+  <title>Encoding Layer &mdash; Encoding master documentation</title>
   
 
   
@@ -49,6 +49,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
+        <link rel="next" title="Synchronized BatchNorm" href="syncbn.html"/>
         <link rel="prev" title="Extending PyTorch-Encoding" href="notes/extending.html"/> 
 
   
@@ -73,7 +74,7 @@
 
           
             
-            <img src="_static/favicon.png" class="logo" />
+            <img src="_static/icon.png" class="logo" />
           
           </a>
 
@@ -81,7 +82,7 @@
             
             
               <div class="version">
-                0.0.1
+                master (0.0.1)
               </div>
             
           
@@ -115,14 +116,34 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Encoding Layer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#residual"><span class="hidden-section">residual</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assign"><span class="hidden-section">assign</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 </ul>
 </li>
 </ul>
@@ -171,7 +192,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>encoding</li>
+      <li>Encoding Layer</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -191,17 +212,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="module-encoding">
-<span id="encoding"></span><h1>encoding<a class="headerlink" href="#module-encoding" title="Permalink to this headline">¶</a></h1>
+<span id="encoding-layer"></span><h1>Encoding Layer<a class="headerlink" href="#module-encoding" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3><span class="hidden-section">Encoding</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="encoding">
+<h3><span class="hidden-section">Encoding</span><a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.Encoding">
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/modules/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Encoding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encoding Layer: learnable residual encoders over 3d or 4d input that is seen as a mini-batch.</p>
 <div class="math">
-\[a_{ik} = \frac{exp(-\beta\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-\beta\|x_{i}-c_j\|^2)}\]</div>
+\[e_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)} (x_i - c_k)\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -247,7 +268,7 @@
 </div>
 <dl class="docutils">
 <dt>Reference:</dt>
-<dd>Zhang, Hang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
+<dd>Hang Zhang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
 </dl>
 </dd></dl>
 
@@ -259,7 +280,7 @@
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Aggregate</code><a class="reference internal" href="_modules/encoding/modules/encoding.html#Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Aggregate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregate operation, aggregate the residuals (<span class="math">\(R\)</span>) with assignment weights (<span class="math">\(A\)</span>).</p>
 <div class="math">
-\[e_{k} = \sum_{i=1}^{N} a_{ik} (r_{ik})\]</div>
+\[e_{k} = \sum_{i=1}^{N} a_{ik} r_{ik}\]</div>
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
@@ -274,8 +295,8 @@
 </div>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><span class="hidden-section">aggregate</span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3><span class="hidden-section">aggregate</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.aggregate">
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">aggregate</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.aggregate" title="Permalink to this definition">¶</a></dt>
@@ -287,6 +308,72 @@
 <dd><ul class="first last simple">
 <li>Input: <span class="math">\(A\in\mathcal{R}^{B\times N\times K}\)</span> <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span>  (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
 <li>Output: <span class="math">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">aggregate</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="scaledl2">
+<h3><span class="hidden-section">scaledL2</span><a class="headerlink" href="#scaledl2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.scaledL2">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">scaledL2</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#scaledL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.scaledL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaledL2 distance</p>
+<div class="math">
+\[sl_{ik} = s_k \|x_i-c_k\|^2\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span> <span class="math">\(S\in \mathcal{R}^K\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times N\times K}\)</span></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="residual">
+<h3><span class="hidden-section">residual</span><a class="headerlink" href="#residual" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.residual">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">residual</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#residual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.residual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate residuals over a mini-batch</p>
+<div class="math">
+\[r_{ik} = x_i - c_k\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(R\in\mathcal{R}^{B\times N\times K\times D}\)</span></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="assign">
+<h3><span class="hidden-section">assign</span><a class="headerlink" href="#assign" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="encoding.assign">
+<code class="descclassname">encoding.</code><code class="descname">assign</code><span class="sig-paren">(</span><em>R</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/aggregate.html#assign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.assign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate assignment weights for given residuals (<span class="math">\(R\)</span>) and scale (<span class="math">\(S\)</span>)</p>
+<div class="math">
+\[a_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)}\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(R\in\mathcal{R}^{B\times N\times K\times D}\)</span> <span class="math">\(S\in \mathcal{R}^K\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output <span class="math">\(A\in\mathcal{R}^{B\times N\times K}\)</span></li>
 </ul>
 </dd>
 </dl>
@@ -305,6 +392,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="syncbn.html" class="btn btn-neutral float-right" title="Synchronized BatchNorm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="notes/extending.html" class="btn btn-neutral" title="Extending PyTorch-Encoding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

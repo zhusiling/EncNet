@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -20,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Encoding master documentation</title>
+  <title>Data Parallel &mdash; Encoding master documentation</title>
   
 
   
@@ -47,9 +46,10 @@
 
   
         <link rel="index" title="Index"
-              href="#"/>
+              href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Encoding master documentation" href="index.html"/> 
+    <link rel="top" title="Encoding master documentation" href="index.html"/>
+        <link rel="prev" title="Synchronized BatchNorm" href="syncbn.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -114,7 +114,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="encoding.html">Encoding Layer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
@@ -139,10 +139,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 </ul>
 </li>
 </ul>
@@ -191,12 +191,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Data Parallel</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/parallel.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -208,93 +210,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
- | <a href="#E"><strong>E</strong></a>
- | <a href="#M"><strong>M</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- 
+  <div class="section" id="data-parallel">
+<h1>Data Parallel<a class="headerlink" href="#data-parallel" title="Permalink to this headline">¶</a></h1>
+<p>Current PyTorch DataParallel Table is not supporting mutl-gpu loss calculation, which makes the gpu memory usage very in-efficient. We address this issue here by doing CriterionDataParallel.
+The DataParallel compatible with SyncBN will be released later.</p>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modeldataparallel">
+<h3><span class="hidden-section">ModelDataParallel</span><a class="headerlink" href="#modeldataparallel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.ModelDataParallel">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">ModelDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#ModelDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.ModelDataParallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements data parallelism at the module level.</p>
+<p>This container parallelizes the application of the given module by
+splitting the input across the specified devices by chunking in the
+batch dimension.
+In the forward pass, the module is replicated on each device,
+and each replica handles a portion of the input. During the backwards
+pass, gradients from each replica are summed into the original module.
+Note that the outputs are not gathered, please use compatible
+<a class="reference internal" href="#criteriondataparallel">CriterionDataParallel</a> .</p>
+<p>The batch size should be larger than the number of GPUs used. It should
+also be an integer multiple of the number of GPUs so that each chunk is
+the same size (so that each GPU processes the same number of samples).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> &#8211; module to be parallelized</li>
+<li><strong>device_ids</strong> &#8211; CUDA devices (default: all devices)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModelDataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">input_var</span><span class="p">)</span>
+</pre></div>
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.Aggregate">Aggregate (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.aggregate">aggregate (class in encoding)</a>
-</li>
-      <li><a href="encoding.html#encoding.assign">assign() (in module encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
+</dd></dl>
 
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.batchnormeval">batchnormeval (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.batchnormtrain">batchnormtrain (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
+</div>
+<div class="section" id="criteriondataparallel">
+<h3><span class="hidden-section">CriterionDataParallel</span><a class="headerlink" href="#criteriondataparallel" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.CriterionDataParallel">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">CriterionDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#CriterionDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.CriterionDataParallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate loss in multiple-GPUs, which balance the memory usage for
+Semantic Segmentation.</p>
+<p>The targets are splitted across the specified devices by chunking in
+the batch dimension. Please use together with <a class="reference internal" href="#modeldataparallel">ModelDataParallel</a></p>
+</dd></dl>
 
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="parallel.html#encoding.CriterionDataParallel">CriterionDataParallel (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.Encoding">Encoding (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#module-encoding">encoding (module)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="parallel.html#encoding.ModelDataParallel">ModelDataParallel (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.residual">residual (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.scaledL2">scaledL2 (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.sum_square">sum_square (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
+</div>
+</div>
+</div>
 
 
            </div>
@@ -303,6 +275,13 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="syncbn.html" class="btn btn-neutral" title="Synchronized BatchNorm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

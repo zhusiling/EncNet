@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -20,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Encoding master documentation</title>
+  <title>Synchronized BatchNorm &mdash; Encoding master documentation</title>
   
 
   
@@ -47,9 +46,11 @@
 
   
         <link rel="index" title="Index"
-              href="#"/>
+              href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Encoding master documentation" href="index.html"/> 
+    <link rel="top" title="Encoding master documentation" href="index.html"/>
+        <link rel="next" title="Data Parallel" href="parallel.html"/>
+        <link rel="prev" title="Encoding Layer" href="encoding.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -114,7 +115,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="encoding.html">Encoding Layer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
@@ -130,11 +131,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 </ul>
@@ -191,12 +192,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Synchronized BatchNorm</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/syncbn.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -208,93 +211,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
+  <div class="section" id="synchronized-batchnorm">
+<h1>Synchronized BatchNorm<a class="headerlink" href="#synchronized-batchnorm" title="Permalink to this headline">¶</a></h1>
+<p>The current BN is implementated insynchronized accross the gpus, which is a big problem for memory consuming tasks such as Semantic Segmenation, since the mini-batch is very small.
+To synchronize the batchnorm accross multiple gpus is not easy to implment within the current Dataparallel framework. We address this difficulty by making each layer &#8216;self-parallel&#8217;, that is accepting the inputs from multi-gpus. Therefore, we can handle different layers seperately for synchronizing it across gpus.
+We will release the whole SyncBN Module and compatible DataParallel later.</p>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="batchnormtrain">
+<h3><span class="hidden-section">batchnormtrain</span><a class="headerlink" href="#batchnormtrain" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.batchnormtrain">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">batchnormtrain</code><a class="reference internal" href="_modules/encoding/syncbn.html#batchnormtrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.batchnormtrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies Batch Normalization over a 3d input that is seen as a
+mini-batch.</p>
+<div class="math" id="bencoding-atchnormtrain">
+\[y = \frac{x - \mu[x]}{ \sqrt{var[x] + \epsilon}} * \gamma + \beta\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C)\)</span> or <span class="math">\((N, C, L)\)</span></li>
+<li>Output: <span class="math">\((N, C)\)</span> or <span class="math">\((N, C, L)\)</span> (same shape as input)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
- | <a href="#E"><strong>E</strong></a>
- | <a href="#M"><strong>M</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- 
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.Aggregate">Aggregate (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.aggregate">aggregate (class in encoding)</a>
-</li>
-      <li><a href="encoding.html#encoding.assign">assign() (in module encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
+<div class="section" id="batchnormeval">
+<h3><span class="hidden-section">batchnormeval</span><a class="headerlink" href="#batchnormeval" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.batchnormeval">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">batchnormeval</code><a class="reference internal" href="_modules/encoding/syncbn.html#batchnormeval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.batchnormeval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies Batch Normalization over a 3d input that is seen as a
+mini-batch.</p>
+<p>Please see <a class="reference internal" href="#encoding.batchnormtrain">encoding.batchnormtrain</a></p>
+</dd></dl>
 
-<h2 id="B">B</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.batchnormeval">batchnormeval (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.batchnormtrain">batchnormtrain (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
+</div>
+<div class="section" id="sum-square">
+<h3><span class="hidden-section">sum_square</span><a class="headerlink" href="#sum-square" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.sum_square">
+<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">sum_square</code><a class="reference internal" href="_modules/encoding/syncbn.html#sum_square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.sum_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate sum of elements and sum of squares for Batch Normalization.</p>
+</dd></dl>
 
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="parallel.html#encoding.CriterionDataParallel">CriterionDataParallel (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.Encoding">Encoding (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#module-encoding">encoding (module)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="parallel.html#encoding.ModelDataParallel">ModelDataParallel (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.residual">residual (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.scaledL2">scaledL2 (class in encoding)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.sum_square">sum_square (class in encoding)</a>
-</li>
-  </ul></td>
-</tr></table>
-
+</div>
+</div>
+</div>
 
 
            </div>
@@ -303,6 +268,15 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="parallel.html" class="btn btn-neutral float-right" title="Data Parallel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="encoding.html" class="btn btn-neutral" title="Encoding Layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

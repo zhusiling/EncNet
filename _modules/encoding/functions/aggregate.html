@@ -73,7 +73,7 @@
 
           
             
-            <img src="../../../_static/favicon.png" class="logo" />
+            <img src="../../../_static/icon.png" class="logo" />
           
           </a>
 
@@ -81,7 +81,7 @@
             
             
               <div class="version">
-                0.0.1
+                master (0.0.1)
               </div>
             
           
@@ -115,14 +115,34 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../encoding.html">encoding</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../encoding.html">Encoding Layer</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#id1"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#id2"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 </ul>
 </li>
 </ul>
@@ -221,6 +241,14 @@
 <span class="sd">        - Input: :math:`A\in\mathcal{R}^{B\times N\times K}` :math:`X\in\mathcal{R}^{B\times N\times D}` :math:`C\in\mathcal{R}^{K\times D}`  (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
 <span class="sd">        - Output: :math:`E\in\mathcal{R}^{B\times K\times D}`</span>
 
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; B,N,K,D = 2,3,4,5</span>
+<span class="sd">        &gt;&gt;&gt; A = Variable(torch.cuda.DoubleTensor(B,N,K).uniform_(-0.5,0.5), requires_grad=True)</span>
+<span class="sd">        &gt;&gt;&gt; X = Variable(torch.cuda.DoubleTensor(B,N,D).uniform_(-0.5,0.5), requires_grad=True)</span>
+<span class="sd">        &gt;&gt;&gt; C = Variable(torch.cuda.DoubleTensor(K,D).uniform_(-0.5,0.5), requires_grad=True)</span>
+<span class="sd">        &gt;&gt;&gt; func = encoding.aggregate()</span>
+<span class="sd">        &gt;&gt;&gt; E = func(A, X, C)</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
         <span class="c1"># A \in(BxNxK) R \in(BxNxKxD) =&gt; E \in(BxNxD)</span>
@@ -260,7 +288,18 @@
         <span class="k">return</span> <span class="n">gradA</span><span class="p">,</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span></div>
 
 
-<span class="k">class</span> <span class="nc">ScaledL2</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+<div class="viewcode-block" id="scaledL2"><a class="viewcode-back" href="../../../encoding.html#encoding.scaledL2">[docs]</a><span class="k">class</span> <span class="nc">scaledL2</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    scaledL2 distance</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        sl_{ik} = s_k \|x_i-c_k\|^2</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`X\in\mathcal{R}^{B\times N\times D}` :math:`C\in\mathcal{R}^{K\times D}` :math:`S\in \mathcal{R}^K` (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output: :math:`E\in\mathcal{R}^{B\times N\times K}`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
         <span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
         <span class="n">K</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -294,7 +333,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
         <span class="n">gradS</span><span class="o">.</span><span class="n">copy_</span><span class="p">((</span><span class="n">gradSL</span><span class="o">*</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="n">S</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span><span class="p">,</span> <span class="n">gradS</span>
+        <span class="k">return</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span><span class="p">,</span> <span class="n">gradS</span></div>
 
 
 <span class="k">class</span> <span class="nc">aggregateP</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -332,7 +371,18 @@
         <span class="k">return</span> <span class="n">gradA</span><span class="p">,</span> <span class="n">gradR</span>
 
 
-<span class="k">class</span> <span class="nc">residual</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+<div class="viewcode-block" id="residual"><a class="viewcode-back" href="../../../encoding.html#encoding.residual">[docs]</a><span class="k">class</span> <span class="nc">residual</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Calculate residuals over a mini-batch</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">        r_{ik} = x_i - c_k</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`X\in\mathcal{R}^{B\times N\times D}` :math:`C\in\mathcal{R}^{K\times D}` (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output: :math:`R\in\mathcal{R}^{B\times N\times K\times D}`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
         <span class="c1"># X \in(BxNxD) D \in(KxD) R \in(BxNxKxD) </span>
         <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
@@ -364,7 +414,7 @@
                     <span class="n">gradX</span><span class="p">,</span> <span class="n">gradD</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradD</span>
+        <span class="k">return</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradD</span></div>
 
 
 <span class="k">class</span> <span class="nc">square_squeeze</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -401,11 +451,22 @@
         <span class="k">return</span> <span class="n">gradR</span>
     
 
-<span class="k">def</span> <span class="nf">assign</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+<div class="viewcode-block" id="assign"><a class="viewcode-back" href="../../../encoding.html#encoding.assign">[docs]</a><span class="k">def</span> <span class="nf">assign</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Calculate assignment weights for given residuals (:math:`R`) and scale (:math:`S`)</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        a_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)}</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`R\in\mathcal{R}^{B\times N\times K\times D}` :math:`S\in \mathcal{R}^K` (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output :math:`A\in\mathcal{R}^{B\times N\times K}`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">L</span> <span class="o">=</span> <span class="n">square_squeeze</span><span class="p">()(</span><span class="n">R</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">SL</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">S</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
