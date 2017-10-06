@@ -123,7 +123,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#scaledl2"><span class="hidden-section">ScaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
 </ul>
 </li>
@@ -283,7 +283,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Encoding Layer unknown input dims!&#39;</span><span class="p">)</span>
         <span class="c1"># assignment weights</span>
-        <span class="n">A</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">ScaledL2</span><span class="p">()(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">codewords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">))</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scaledL2</span><span class="p">()(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">codewords</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">))</span>
         <span class="c1"># aggregate</span>
         <span class="n">E</span> <span class="o">=</span> <span class="n">aggregate</span><span class="p">()(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">codewords</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">E</span>

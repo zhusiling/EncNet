@@ -123,7 +123,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">ScaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
 </ul>
 </li>
@@ -203,6 +203,8 @@
             
   <div class="section" id="synchronized-batchnorm">
 <h1>Synchronized BatchNorm<a class="headerlink" href="#synchronized-batchnorm" title="Permalink to this headline">¶</a></h1>
+<p>The current BN is implementated insynchronized accross the gpus, which is a big problem for memory consuming tasks such as Semantic Segmenation, since the mini-batch is very small.
+To synchronize the batchnorm accross multiple gpus is not easy to implment within the current Dataparallel framework. We address this difficulty by making each layer &#8216;self-parallel&#8217;, that is accepting the inputs from multi-gpus. Therefore, we can handle different layers seperately for synchronizing it across gpus.</p>
 <div class="section" id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="batchnormtrain">
@@ -212,8 +214,8 @@
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">batchnormtrain</code><a class="reference internal" href="_modules/encoding/syncbn.html#batchnormtrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.batchnormtrain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies Batch Normalization over a 3d input that is seen as a
 mini-batch.</p>
-<div class="math" id="id1">
-\[y = \frac{x - \mu[x]}{ \sqrt{Var[x] + \epsilon}} * \gamma + \beta\]</div>
+<div class="math" id="bencoding-atchnormtrain">
+\[y = \frac{x - \mu[x]}{ \sqrt{var[x] + \epsilon}} * \gamma + \beta\]</div>
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
@@ -232,7 +234,7 @@ mini-batch.</p>
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">batchnormeval</code><a class="reference internal" href="_modules/encoding/syncbn.html#batchnormeval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.batchnormeval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies Batch Normalization over a 3d input that is seen as a
 mini-batch.</p>
-<p>Please see <a class="reference internal" href="#id1">batchnormtrain</a></p>
+<p>Please see <a class="reference internal" href="#encoding.batchnormtrain">encoding.batchnormtrain</a></p>
 </dd></dl>
 
 </div>

@@ -124,7 +124,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">ScaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
 </ul>
 </li>
@@ -132,6 +132,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../syncbn.html">Synchronized BatchNorm</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -207,6 +209,110 @@ which is extending <code class="xref py py-mod docutils literal"><span class="pr
 <code class="xref py py-mod docutils literal"><span class="pre">torch.autograd</span></code> with custom CUDA backend.</p>
 <div class="section" id="torch-c-and-cuda-backend">
 <h2>Torch C and CUDA Backend<a class="headerlink" href="#torch-c-and-cuda-backend" title="Permalink to this headline">¶</a></h2>
+<p>Given an example of the residual operation (in a mini-batch):</p>
+<div class="math">
+\[r_{ik} = x_i - c_k\]</div>
+<p>where the inputs are <span class="math">\(X=\{x_1, ...x_N\}\)</span> and <span class="math">\(C=\{c_1,...c_k\}\)</span> and the output is <span class="math">\(R=\{r_{ik}\}\)</span>.</p>
+<ul>
+<li><p class="first">Add CUDA kernel function and expose a C API to the generic file <code class="docutils literal"><span class="pre">encoding/kernel/generic/encoding_kernel.c</span></code> using Torch generic files:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">__global__</span> <span class="n">void</span> <span class="n">Encoding_</span><span class="p">(</span><span class="n">Residual_Forward_kernel</span><span class="p">)</span> <span class="p">(</span>
+    <span class="n">THCDeviceTensor</span><span class="o">&lt;</span><span class="n">real</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">R</span><span class="p">,</span>
+    <span class="n">THCDeviceTensor</span><span class="o">&lt;</span><span class="n">real</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">X</span><span class="p">,</span>
+    <span class="n">THCDeviceTensor</span><span class="o">&lt;</span><span class="n">real</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">D</span><span class="p">)</span>
+<span class="o">/*</span>
+ <span class="o">*</span> <span class="n">residual</span> <span class="n">forward</span> <span class="n">kernel</span> <span class="n">function</span>
+ <span class="o">*/</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="n">declarations</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variables</span> <span class="o">*/</span>
+    <span class="nb">int</span> <span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">K</span><span class="p">;</span>
+    <span class="o">/*</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">index</span> <span class="ow">and</span> <span class="n">channels</span> <span class="o">*/</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">z</span><span class="p">;</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">blockDim</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="o">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="o">/*</span> <span class="n">boundary</span> <span class="n">check</span> <span class="k">for</span> <span class="n">output</span> <span class="o">*/</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">d</span> <span class="o">&gt;=</span> <span class="n">X</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">X</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>    <span class="k">return</span><span class="p">;</span>
+    <span class="o">/*</span> <span class="n">main</span> <span class="n">operation</span> <span class="o">*/</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">K</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">R</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">ldg</span><span class="p">()</span> <span class="o">-</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">ldg</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">Encoding_</span><span class="p">(</span><span class="n">Residual_Forward</span><span class="p">)(</span>
+    <span class="n">THCState</span> <span class="o">*</span><span class="n">state</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">R_</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">X_</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">D_</span><span class="p">)</span>
+<span class="o">/*</span>
+ <span class="o">*</span> <span class="n">residual</span> <span class="n">forward</span>
+ <span class="o">*/</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="n">Check</span> <span class="n">the</span> <span class="n">GPU</span> <span class="n">index</span> <span class="ow">and</span> <span class="n">tensor</span> <span class="n">dims</span><span class="o">*/</span>
+    <span class="n">THCTensor_</span><span class="p">(</span><span class="n">checkGPU</span><span class="p">)(</span><span class="n">state</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">R_</span><span class="p">,</span> <span class="n">X_</span><span class="p">,</span> <span class="n">D_</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">THCTensor_</span><span class="p">(</span><span class="n">nDimension</span><span class="p">)(</span><span class="n">state</span><span class="p">,</span> <span class="n">R_</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span> <span class="o">||</span>
+        <span class="n">THCTensor_</span><span class="p">(</span><span class="n">nDimension</span><span class="p">)(</span><span class="n">state</span><span class="p">,</span> <span class="n">X_</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span> <span class="o">||</span>
+        <span class="n">THCTensor_</span><span class="p">(</span><span class="n">nDimension</span><span class="p">)(</span><span class="n">state</span><span class="p">,</span> <span class="n">D_</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">THError</span><span class="p">(</span><span class="s2">&quot;Encoding: incorrect input dims. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="o">/*</span> <span class="n">Device</span> <span class="n">tensors</span> <span class="o">*/</span>
+    <span class="n">THCDeviceTensor</span><span class="o">&lt;</span><span class="n">real</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">R</span> <span class="o">=</span> <span class="n">devicetensor</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">R_</span><span class="p">);</span>
+    <span class="n">THCDeviceTensor</span><span class="o">&lt;</span><span class="n">real</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">X</span> <span class="o">=</span> <span class="n">devicetensor</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">X_</span><span class="p">);</span>
+    <span class="n">THCDeviceTensor</span><span class="o">&lt;</span><span class="n">real</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">D</span> <span class="o">=</span> <span class="n">devicetensor</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">D_</span><span class="p">);</span>
+    <span class="o">/*</span> <span class="n">kernel</span> <span class="n">function</span> <span class="o">*/</span>
+    <span class="n">cudaStream_t</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">THCState_getCurrentStream</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
+    <span class="n">dim3</span> <span class="n">threads</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+    <span class="n">dim3</span> <span class="n">blocks</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">X</span><span class="o">.</span><span class="n">getSize</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="n">Encoding_</span><span class="p">(</span><span class="n">Residual_Forward_kernel</span><span class="p">)</span><span class="o">&lt;&lt;&lt;</span><span class="n">blocks</span><span class="p">,</span> <span class="n">threads</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">stream</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">D</span><span class="p">);</span>
+    <span class="n">THCudaCheck</span><span class="p">(</span><span class="n">cudaGetLastError</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add corresponding function header to <code class="docutils literal"><span class="pre">encoding/kernel/generic/encoding_kernel.h</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">Encoding_</span><span class="p">(</span><span class="n">Residual_Forward</span><span class="p">)(</span>
+    <span class="n">THCState</span> <span class="o">*</span><span class="n">state</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">R_</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">X_</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">D_</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add a CFFI function to <code class="docutils literal"><span class="pre">encoding/src/generic/encoding_generic.c</span></code>, which calls the C API we just write:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">Encoding_</span><span class="p">(</span><span class="n">residual_forward</span><span class="p">)(</span><span class="n">THCTensor</span> <span class="o">*</span><span class="n">R</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span> <span class="n">THCTensor</span> <span class="o">*</span><span class="n">D</span><span class="p">)</span>
+<span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Residual</span> <span class="n">operation</span>
+ <span class="o">*/</span>
+<span class="p">{</span>
+    <span class="n">Encoding_</span><span class="p">(</span><span class="n">Residual_Forward</span><span class="p">)(</span><span class="n">state</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">D</span><span class="p">);</span>
+    <span class="o">/*</span> <span class="n">C</span> <span class="n">function</span> <span class="k">return</span> <span class="n">number</span> <span class="n">of</span> <span class="n">the</span> <span class="n">outputs</span> <span class="o">*/</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add corresponding function header to <code class="docutils literal"><span class="pre">encoding/src/encoding_lib.h</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">Encoding_Float_residual_forward</span><span class="p">(</span><span class="n">THCudaTensor</span> <span class="o">*</span><span class="n">R</span><span class="p">,</span> <span class="n">THCudaTensor</span> <span class="o">*</span><span class="n">X</span><span class="p">,</span>
+    <span class="n">THCudaTensor</span> <span class="o">*</span><span class="n">D</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Finally, call this function using python:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">residual</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="c1"># X \in(BxNxD) D \in(KxD) R \in(BxNxKxD)</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">R</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_residual_forward</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_residual_forward</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">R</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Note this is just an example. You also need to implement backward function for <code class="docutils literal"><span class="pre">residual</span></code> operation.</p>
+</li>
+</ul>
 </div>
 </div>
 

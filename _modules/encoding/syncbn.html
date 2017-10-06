@@ -123,7 +123,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../encoding.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../encoding.html#scaledl2"><span class="hidden-section">ScaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
 </ul>
 </li>
@@ -263,11 +263,11 @@
     <span class="sd">r&quot;&quot;&quot;Applies Batch Normalization over a 3d input that is seen as a</span>
 <span class="sd">    mini-batch.</span>
 
-<span class="sd">    .. _batchnormtrain:</span>
+<span class="sd">    .. _bencoding.atchnormtrain:</span>
 
 <span class="sd">    .. math::</span>
 
-<span class="sd">        y = \frac{x - \mu[x]}{ \sqrt{Var[x] + \epsilon}} * \gamma + \beta</span>
+<span class="sd">        y = \frac{x - \mu[x]}{ \sqrt{var[x] + \epsilon}} * \gamma + \beta</span>
 
 <span class="sd">    Shape:</span>
 <span class="sd">        - Input: :math:`(N, C)` or :math:`(N, C, L)`</span>
@@ -323,7 +323,7 @@
     <span class="sd">r&quot;&quot;&quot;Applies Batch Normalization over a 3d input that is seen as a</span>
 <span class="sd">    mini-batch.</span>
 
-<span class="sd">    Please see batchnormtrain_</span>
+<span class="sd">    Please see encoding.batchnormtrain_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>

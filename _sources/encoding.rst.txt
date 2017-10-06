@@ -33,11 +33,10 @@ Functions
 .. autoclass:: aggregate
     :members:
 
-
-:hidden:`ScaledL2`
+:hidden:`scaledL2`
 ~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: ScaledL2
+.. autoclass:: scaledL2
     :members:
 
 :hidden:`residual`
