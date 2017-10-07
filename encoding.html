@@ -220,7 +220,8 @@
 <dl class="class">
 <dt id="encoding.Encoding">
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/modules/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Encoding" title="Permalink to this definition">¶</a></dt>
-<dd><p>Encoding Layer: learnable residual encoders over 3d or 4d input that is seen as a mini-batch.</p>
+<dd><p>Encoding Layer: learnable residual encoders over 3d or 4d input that
+is seen as a mini-batch.</p>
 <div class="math">
 \[e_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)} (x_i - c_k)\]</div>
 <table class="docutils field-list" frame="void" rules="none">
@@ -278,7 +279,8 @@
 <dl class="class">
 <dt id="encoding.Aggregate">
 <em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Aggregate</code><a class="reference internal" href="_modules/encoding/modules/encoding.html#Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Aggregate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aggregate operation, aggregate the residuals (<span class="math">\(R\)</span>) with assignment weights (<span class="math">\(A\)</span>).</p>
+<dd><p>Aggregate operation, aggregate the residuals (<span class="math">\(R\)</span>) with
+assignment weights (<span class="math">\(A\)</span>).</p>
 <div class="math">
 \[e_{k} = \sum_{i=1}^{N} a_{ik} r_{ik}\]</div>
 <dl class="docutils">
@@ -368,7 +370,7 @@
 <code class="descclassname">encoding.</code><code class="descname">assign</code><span class="sig-paren">(</span><em>R</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/aggregate.html#assign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.assign" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate assignment weights for given residuals (<span class="math">\(R\)</span>) and scale (<span class="math">\(S\)</span>)</p>
 <div class="math">
-\[a_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)}\]</div>
+\[a_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ik}\|^2)}\]</div>
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
