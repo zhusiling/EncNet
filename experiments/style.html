@@ -1,0 +1,497 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-54746507-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MSG-Net Style Transfer Example &mdash; Encoding master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/encoding.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Encoding master documentation" href="../index.html"/>
+        <link rel="next" title="Deep TEN: Deep Texture Encoding Network Example" href="texture.html"/>
+        <link rel="prev" title="My PyTorch Utils" href="../utils.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (1.0.1)
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/extending.html">Extending PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../encoding.html">My NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syncbn.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dilated.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dilated.html#densenet">DenseNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nn.html">Other NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#view"><span class="hidden-section">View</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#standard-layers">Standard Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#conv1d"><span class="hidden-section">Conv1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#conv2d"><span class="hidden-section">Conv2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#relu"><span class="hidden-section">ReLU</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#linear"><span class="hidden-section">Linear</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Experiments</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="texture.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Encoding</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>MSG-Net Style Transfer Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/experiments/style.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="msg-net-style-transfer-example">
+<h1>MSG-Net Style Transfer Example<a class="headerlink" href="#msg-net-style-transfer-example" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/zhanghang1989/MSG-Net/master/images/figure1.jpg"><img alt="https://raw.githubusercontent.com/zhanghang1989/MSG-Net/master/images/figure1.jpg" class="align-left" src="https://raw.githubusercontent.com/zhanghang1989/MSG-Net/master/images/figure1.jpg" style="width: 55%;" /></a>
+<p>We provide PyTorh Implementation of <a class="reference internal" href="#msg-net">MSG-Net</a> and <a class="reference internal" href="#neural-style">Neural Style</a> in the <a class="reference external" href="https://github.com/zhanghang1989/PyTorch-Style-Transfer">GitHub repo</a>.
+We also provide <a class="reference external" href="https://github.com/zhanghang1989/MSG-Net/">Torch</a> and
+<a class="reference external" href="https://github.com/zhanghang1989/MXNet-Gluon-Style-Transfer">MXNet</a> implementations.</p>
+<div class="section" id="tabe-of-content">
+<h2>Tabe of content<a class="headerlink" href="#tabe-of-content" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>Real-time Style Transfer using <a class="reference internal" href="#msg-net">MSG-Net</a></dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="#stylize-images-using-pre-trained-model">Stylize Images using Pre-trained Model</a></li>
+<li><a class="reference internal" href="#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><a class="reference internal" href="#neural-style">Neural Style</a></li>
+</ul>
+</div>
+<div class="section" id="msg-net">
+<h2>MSG-Net<a class="headerlink" href="#msg-net" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Hang Zhang, and Kristin Dana. &#8220;Multi-style Generative Network for Real-time Transfer.&#8221;:</p>
+<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">zhang2017multistyle</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Multi</span><span class="o">-</span><span class="n">style</span> <span class="n">Generative</span> <span class="n">Network</span> <span class="k">for</span> <span class="n">Real</span><span class="o">-</span><span class="n">time</span> <span class="n">Transfer</span><span class="p">},</span>
+    <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
+    <span class="n">journal</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span> <span class="n">preprint</span> <span class="n">arXiv</span><span class="p">:</span><span class="mf">1703.06953</span><span class="p">},</span>
+    <span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2017</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="stylize-images-using-pre-trained-model">
+<h2>Stylize Images Using Pre-trained Model<a class="headerlink" href="#stylize-images-using-pre-trained-model" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Clone the repo and download the pre-trained model:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Style</span><span class="o">-</span><span class="n">Transfer</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Style</span><span class="o">-</span><span class="n">Transfer</span><span class="o">/</span><span class="n">experiments</span>
+<span class="n">bash</span> <span class="n">models</span><span class="o">/</span><span class="n">download_model</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Camera Demo:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">camera_demo</span><span class="o">.</span><span class="n">py</span> <span class="n">demo</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<img alt="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/myimage.gif" src="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/myimage.gif" />
+<ul>
+<li><p class="first">Test the model:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="nb">eval</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">size</span> <span class="mi">1024</span>
+</pre></div>
+</div>
+<p>If you don&#8217;t have a GPU, simply set <code class="docutils literal"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
+<p>If you would to stylize your own photo, change the <code class="docutils literal"><span class="pre">--content-image</span> <span class="pre">path/to/your/photo</span></code>. More options:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">--content-image</span></code>: path to content image you want to stylize.</li>
+<li><code class="docutils literal"><span class="pre">--style-image</span></code>: path to style image (typically covered during the training).</li>
+<li><code class="docutils literal"><span class="pre">--model</span></code>: path to the pre-trained model to be used for stylizing the image.</li>
+<li><code class="docutils literal"><span class="pre">--output-image</span></code>: path for saving the output image.</li>
+<li><code class="docutils literal"><span class="pre">--content-size</span></code>: the content image size to test on.</li>
+<li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
+</ul>
+</li>
+</ul>
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/1.jpg" width="260px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/2.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/3.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/4.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/5.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/6.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/7.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/8.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/9.jpg" width="260px" /></div>
+<div class="section" id="train-your-own-msg-net-model">
+<h2>Train Your Own MSG-Net Model<a class="headerlink" href="#train-your-own-msg-net-model" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Download the dataset:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">dataset</span><span class="o">/</span><span class="n">download_dataset</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Train the model:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">train</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>If you would like to customize styles, set <code class="docutils literal"><span class="pre">--style-folder</span> <span class="pre">path/to/your/styles</span></code>. More options:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">--style-folder</span></code>: path to the folder style images.</li>
+<li><code class="docutils literal"><span class="pre">--vgg-model-dir</span></code>: path to folder where the vgg model will be downloaded.</li>
+<li><code class="docutils literal"><span class="pre">--save-model-dir</span></code>: path to folder where trained model will be saved.</li>
+<li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="neural-style">
+<h2>Neural Style<a class="headerlink" href="#neural-style" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf">Image Style Transfer Using Convolutional Neural Networks</a> by Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">optim</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">--content-image</span></code>: path to content image.</li>
+<li><code class="docutils literal"><span class="pre">--style-image</span></code>: path to style image.</li>
+<li><code class="docutils literal"><span class="pre">--output-image</span></code>: path for saving the output image.</li>
+<li><code class="docutils literal"><span class="pre">--content-size</span></code>: the content image size to test on.</li>
+<li><code class="docutils literal"><span class="pre">--style-size</span></code>: the style image size to test on.</li>
+<li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
+</ul>
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g1.jpg" width="260px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g2.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g3.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g4.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g5.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g6.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g7.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g8.jpg" width="260px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g9.jpg" width="260px" /></div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="texture.html" class="btn btn-neutral float-right" title="Deep TEN: Deep Texture Encoding Network Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../utils.html" class="btn btn-neutral" title="My PyTorch Utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Hang Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'master',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

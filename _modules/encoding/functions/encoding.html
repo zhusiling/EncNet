@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-54746507-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>encoding.functions.encoding &mdash; Encoding master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/encoding.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Encoding master documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (1.0.1)
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/extending.html">Extending PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../encoding.html">My NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#densenet">DenseNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn.html">Other NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#view"><span class="hidden-section">View</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#standard-layers">Standard Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#conv1d"><span class="hidden-section">Conv1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#conv2d"><span class="hidden-section">Conv2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#relu"><span class="hidden-section">ReLU</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#linear"><span class="hidden-section">Linear</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functions.html">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Encoding</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>encoding.functions.encoding</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for encoding.functions.encoding</h1><div class="highlight"><pre>
+<span></span><span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+<span class="c1">## Created by: Hang Zhang</span>
+<span class="c1">## ECE Department, Rutgers University</span>
+<span class="c1">## Email: zhang.hang@rutgers.edu</span>
+<span class="c1">## Copyright (c) 2017</span>
+<span class="c1">##</span>
+<span class="c1">## This source code is licensed under the MIT-style license found in the</span>
+<span class="c1">## LICENSE file in the root directory of this source tree </span>
+<span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Function</span><span class="p">,</span> <span class="n">Variable</span>
+<span class="kn">from</span> <span class="nn">.._ext</span> <span class="k">import</span> <span class="n">encoding_lib</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aggregate&#39;</span><span class="p">,</span> <span class="s1">&#39;scaledL2&#39;</span><span class="p">,</span> <span class="s1">&#39;aggregateP&#39;</span><span class="p">,</span> <span class="s1">&#39;residual&#39;</span><span class="p">,</span> <span class="s1">&#39;assign&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">_aggregate</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="c1"># A \in(BxNxK) R \in(BxNxKxD) =&gt; E \in(BxNxD)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">E</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_aggregateE_forward</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_aggregateE_forward</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">E</span>
+
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradE</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">saved_tensors</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">gradA</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+            <span class="n">gradX</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">gradC</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_aggregateE_backward</span><span class="p">(</span><span class="n">gradA</span><span class="p">,</span> 
+                    <span class="n">gradE</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_aggregateE_backward</span><span class="p">(</span><span class="n">gradA</span><span class="p">,</span> 
+                    <span class="n">gradE</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="n">gradX</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">gradE</span><span class="p">))</span>
+        <span class="n">gradC</span><span class="o">.</span><span class="n">copy_</span><span class="p">((</span><span class="o">-</span><span class="n">gradE</span><span class="o">*</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">gradA</span><span class="p">,</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span>
+
+<div class="viewcode-block" id="aggregate"><a class="viewcode-back" href="../../../encoding.html#encoding.functions.aggregate">[docs]</a><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Aggregate operation, aggregate the residuals of inputs (:math:`X`) with repect to the codewords (:math:`C`) with assignment weights (:math:`A`).</span>
+<span class="sd">    </span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        e_{k} = \sum_{i=1}^{N} a_{ik} (x_i - d_k)</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`A\in\mathcal{R}^{B\times N\times K}` :math:`X\in\mathcal{R}^{B\times N\times D}` :math:`C\in\mathcal{R}^{K\times D}`  (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output: :math:`E\in\mathcal{R}^{B\times K\times D}`</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; B,N,K,D = 2,3,4,5</span>
+<span class="sd">        &gt;&gt;&gt; A = Variable(torch.cuda.DoubleTensor(B,N,K).uniform_(-0.5,0.5), requires_grad=True)</span>
+<span class="sd">        &gt;&gt;&gt; X = Variable(torch.cuda.DoubleTensor(B,N,D).uniform_(-0.5,0.5), requires_grad=True)</span>
+<span class="sd">        &gt;&gt;&gt; C = Variable(torch.cuda.DoubleTensor(K,D).uniform_(-0.5,0.5), requires_grad=True)</span>
+<span class="sd">        &gt;&gt;&gt; func = encoding.aggregate()</span>
+<span class="sd">        &gt;&gt;&gt; E = func(A, X, C)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_aggregate</span><span class="p">()(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span></div>
+
+<span class="k">class</span> <span class="nc">_scaledL2</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">SL</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_scaledl2_forward</span><span class="p">(</span><span class="n">SL</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_scaledl2_forward</span><span class="p">(</span><span class="n">SL</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">SL</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SL</span>
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradSL</span><span class="p">):</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">SL</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">saved_tensors</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">gradX</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">gradC</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+            <span class="n">gradS</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_scaledl2_backward</span><span class="p">(</span><span class="n">gradSL</span><span class="p">,</span> 
+                    <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_scaledl2_backward</span><span class="p">(</span><span class="n">gradSL</span><span class="p">,</span> 
+                    <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="n">gradS</span><span class="o">.</span><span class="n">copy_</span><span class="p">((</span><span class="n">gradSL</span><span class="o">*</span><span class="p">(</span><span class="n">SL</span><span class="o">/</span><span class="n">S</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span><span class="p">,</span> <span class="n">gradS</span>
+
+
+<div class="viewcode-block" id="scaledL2"><a class="viewcode-back" href="../../../encoding.html#encoding.functions.scaledL2">[docs]</a><span class="k">def</span> <span class="nf">scaledL2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    scaledL2 distance</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        sl_{ik} = s_k \|x_i-c_k\|^2</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`X\in\mathcal{R}^{B\times N\times D}` :math:`C\in\mathcal{R}^{K\times D}` :math:`S\in \mathcal{R}^K` (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output: :math:`E\in\mathcal{R}^{B\times N\times K}`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_scaledL2</span><span class="p">()(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">_aggregateP</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+        <span class="c1"># A \in(BxNxK) R \in(BxNxKxD) =&gt; E \in(BxNxD)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">E</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_aggregate_forward</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_aggregate_forward</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">E</span>
+
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradE</span><span class="p">):</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">saved_tensors</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">gradA</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+            <span class="n">gradR</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_aggregate_backward</span><span class="p">(</span><span class="n">gradA</span><span class="p">,</span> 
+                    <span class="n">gradR</span><span class="p">,</span> <span class="n">gradE</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_aggregate_backward</span><span class="p">(</span><span class="n">gradA</span><span class="p">,</span> 
+                    <span class="n">gradR</span><span class="p">,</span> <span class="n">gradE</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gradA</span><span class="p">,</span> <span class="n">gradR</span>
+
+
+<span class="k">def</span> <span class="nf">aggregateP</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_aggregateP</span><span class="p">()(</span><span class="n">A</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_residual</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="c1"># X \in(BxNxD) D \in(KxD) R \in(BxNxKxD) </span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">R</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_residual_forward</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_residual_forward</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">R</span>
+
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradR</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">gradR</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">gradR</span><span class="p">):</span>
+            <span class="n">gradX</span> <span class="o">=</span> <span class="n">gradR</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+            <span class="n">gradD</span> <span class="o">=</span> <span class="n">gradR</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gradR</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">gradR</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_residual_backward</span><span class="p">(</span><span class="n">gradR</span><span class="p">,</span> 
+                    <span class="n">gradX</span><span class="p">,</span> <span class="n">gradD</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">gradR</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">gradR</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_residual_backward</span><span class="p">(</span><span class="n">gradR</span><span class="p">,</span> 
+                    <span class="n">gradX</span><span class="p">,</span> <span class="n">gradD</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradD</span>
+
+
+<div class="viewcode-block" id="residual"><a class="viewcode-back" href="../../../encoding.html#encoding.functions.residual">[docs]</a><span class="k">def</span> <span class="nf">residual</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Calculate residuals over a mini-batch</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">        r_{ik} = x_i - c_k</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`X\in\mathcal{R}^{B\times N\times D}` :math:`C\in\mathcal{R}^{K\times D}` (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output: :math:`R\in\mathcal{R}^{B\times N\times K\times D}`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_residual</span><span class="p">()(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">_square_squeeze</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_squaresqueeze_forward</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_squaresqueeze_forward</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">L</span>
+
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradL</span><span class="p">):</span>
+        <span class="n">L</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">saved_tensors</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+            <span class="n">gradR</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">gradL</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_squaresqueeze_backward</span><span class="p">(</span><span class="n">gradL</span><span class="p">,</span> 
+                    <span class="n">gradR</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">gradL</span><span class="p">):</span>
+                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_squaresqueeze_backward</span><span class="p">(</span><span class="n">gradL</span><span class="p">,</span> 
+                    <span class="n">gradR</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gradR</span>
+    
+
+<div class="viewcode-block" id="assign"><a class="viewcode-back" href="../../../encoding.html#encoding.functions.assign">[docs]</a><span class="k">def</span> <span class="nf">assign</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;</span>
+<span class="sd">    Calculate assignment weights for given residuals (:math:`R`) and scale (:math:`S`)</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        a_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ik}\|^2)}</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`R\in\mathcal{R}^{B\times N\times K\times D}` :math:`S\in \mathcal{R}^K` (where :math:`B` is batch, :math:`N` is total number of features, :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output :math:`A\in\mathcal{R}^{B\times N\times K}`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">_square_squeeze</span><span class="p">()(</span><span class="n">R</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">SL</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">S</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">SL</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Hang Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'master',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

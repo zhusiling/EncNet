@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Parallel &mdash; Encoding master documentation</title>
+  <title>Other Functions &mdash; Encoding master documentation</title>
   
 
   
@@ -51,8 +51,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
-        <link rel="next" title="Dilated Networks" href="dilated.html"/>
-        <link rel="prev" title="Synchronized BatchNorm" href="syncbn.html"/> 
+        <link rel="next" title="My PyTorch Utils" href="utils.html"/>
+        <link rel="prev" title="Other NN Layers" href="nn.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -156,12 +156,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#allreduce"><span class="hidden-section">AllReduce</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#broadcast"><span class="hidden-section">Broadcast</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
@@ -205,8 +205,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
@@ -278,13 +278,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Data Parallel</li>
+      <li>Other Functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/parallel.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/functions.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -297,87 +297,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-parallel">
-<h1>Data Parallel<a class="headerlink" href="#data-parallel" title="Permalink to this headline">¶</a></h1>
-<p>Current PyTorch DataParallel Table is not supporting mutl-gpu loss calculation, which makes the gpu memory usage very in-efficient. We address this issue here by doing CriterionDataParallel.
-The DataParallel compatible with SyncBN will be released later.</p>
-<span class="target" id="module-encoding.parallel"></span><div class="section" id="modeldataparallel">
-<h2><span class="hidden-section">ModelDataParallel</span><a class="headerlink" href="#modeldataparallel" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="encoding.parallel.ModelDataParallel">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">ModelDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#ModelDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.ModelDataParallel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implements data parallelism at the module level.</p>
-<p>This container parallelizes the application of the given module by
-splitting the input across the specified devices by chunking in the
-batch dimension.
-In the forward pass, the module is replicated on each device,
-and each replica handles a portion of the input. During the backwards
-pass, gradients from each replica are summed into the original module.
-Note that the outputs are not gathered, please use compatible
-<a class="reference internal" href="#encoding.parallel.CriterionDataParallel" title="encoding.parallel.CriterionDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.CriterionDataParallel</span></code></a>.</p>
-<p>The batch size should be larger than the number of GPUs used. It should
-also be an integer multiple of the number of GPUs so that each chunk is
-the same size (so that each GPU processes the same number of samples).</p>
+  <div class="section" id="module-encoding.functions">
+<span id="other-functions"></span><h1>Other Functions<a class="headerlink" href="#module-encoding.functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dilatedavgpool2d">
+<h2><span class="hidden-section">dilatedavgpool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.dilatedavgpool2d">
+<code class="descclassname">encoding.functions.</code><code class="descname">dilatedavgpool2d</code><span class="sig-paren">(</span><em>input</em>, <em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/customize.html#dilatedavgpool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.dilatedavgpool2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dilated Average Pool 2d, for dilation of DenseNet.</p>
+<p>Applies 2D average-pooling operation in kh x kw regions by step size
+dh x dw steps. The number of output features is equal to the number of
+input planes.</p>
+<p>See <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">DilatedAvgPool2d</span></code></a> for details and output shape.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> &#8211; module to be parallelized</li>
-<li><strong>device_ids</strong> &#8211; CUDA devices (default: all devices)</li>
+<li><strong>input</strong> &#8211; input tensor (minibatch x in_channels x iH x iW)</li>
+<li><strong>kernel_size</strong> &#8211; size of the pooling region, a single number or a
+tuple (kh x kw)</li>
+<li><strong>stride</strong> &#8211; stride of the pooling operation, a single number or a
+tuple (sh x sw). Default is equal to kernel size</li>
+<li><strong>padding</strong> &#8211; implicit zero padding on the input, a single number or
+a tuple (padh x padw), Default: 0</li>
+<li><strong>dilation</strong> &#8211; the dilation parameter similar to Conv2d</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModelDataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">input_var</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</div>
-<div class="section" id="criteriondataparallel">
-<h2><span class="hidden-section">CriterionDataParallel</span><a class="headerlink" href="#criteriondataparallel" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="encoding.parallel.CriterionDataParallel">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">CriterionDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#CriterionDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.CriterionDataParallel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate loss in multiple-GPUs, which balance the memory usage for
-Semantic Segmentation.</p>
-<p>The targets are splitted across the specified devices by chunking in
-the batch dimension. Please use together with <a class="reference internal" href="#encoding.parallel.ModelDataParallel" title="encoding.parallel.ModelDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.ModelDataParallel</span></code></a>.</p>
-</dd></dl>
-
-</div>
-<div class="section" id="selfdataparallel">
-<h2><span class="hidden-section">SelfDataParallel</span><a class="headerlink" href="#selfdataparallel" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="encoding.parallel.SelfDataParallel">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">SelfDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#SelfDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.SelfDataParallel" title="Permalink to this definition">¶</a></dt>
-<dd><p>SelfDataParallel, please make sure you understand it before using.</p>
-<p>Each module in the network should be in self-parallel mode,
-which allows list of inputs from multiple GPUs.
-Please see encoding.nn for detail, use with cautious</p>
-</dd></dl>
-
-</div>
-<div class="section" id="allreduce">
-<h2><span class="hidden-section">AllReduce</span><a class="headerlink" href="#allreduce" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="encoding.parallel.AllReduce">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">AllReduce</code><a class="reference internal" href="_modules/encoding/parallel.html#AllReduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.AllReduce" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cross GPU all reduce autograd operation for calculate mean and
-variance in SyncBN.</p>
-</dd></dl>
-
-</div>
-<div class="section" id="broadcast">
-<h2><span class="hidden-section">Broadcast</span><a class="headerlink" href="#broadcast" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="encoding.parallel.Broadcast">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">Broadcast</code><span class="sig-paren">(</span><em>target_gpus</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#Broadcast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.Broadcast" title="Permalink to this definition">¶</a></dt>
-<dd><p>Multi-GPU broadcast autograd function</p>
 </dd></dl>
 
 </div>
@@ -393,10 +342,10 @@ variance in SyncBN.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dilated.html" class="btn btn-neutral float-right" title="Dilated Networks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="My PyTorch Utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="syncbn.html" class="btn btn-neutral" title="Synchronized BatchNorm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nn.html" class="btn btn-neutral" title="Other NN Layers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

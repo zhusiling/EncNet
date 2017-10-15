@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-54746507-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Other NN Layers &mdash; Encoding master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Encoding master documentation" href="index.html"/>
+        <link rel="next" title="Other Functions" href="functions.html"/>
+        <link rel="prev" title="Dilated Networks" href="dilated.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (1.0.1)
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">My NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#assign"><span class="hidden-section">assign</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dilated.html#densenet">DenseNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Other NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#normalize"><span class="hidden-section">Normalize</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#view"><span class="hidden-section">View</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#standard-layers">Standard Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#conv1d"><span class="hidden-section">Conv1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conv2d"><span class="hidden-section">Conv2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relu"><span class="hidden-section">ReLU</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linear"><span class="hidden-section">Linear</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Experiments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Encoding</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Other NN Layers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nn.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-encoding.nn">
+<span id="other-nn-layers"></span><h1>Other NN Layers<a class="headerlink" href="#module-encoding.nn" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="customized-layers">
+<h2>Customized Layers<a class="headerlink" href="#customized-layers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="normalize">
+<h3><span class="hidden-section">Normalize</span><a class="headerlink" href="#normalize" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Normalize">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Normalize</code><span class="sig-paren">(</span><em>p=2</em>, <em>dim=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/customize.html#Normalize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs <span class="math">\(L_p\)</span> normalization of inputs over specified dimension.</p>
+<p>Does:</p>
+<div class="math">
+\[v = \frac{v}{\max(\lVert v \rVert_p, \epsilon)}\]</div>
+<p>for each subtensor v over dimension dim of input. Each subtensor is
+flattened into a vector, i.e. <span class="math">\(\lVert v \rVert_p\)</span> is not a matrix
+norm.</p>
+<p>With default arguments normalizes over the second dimension with Euclidean
+norm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; the exponent value in the norm formulation. Default: 2</li>
+<li><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the dimension to reduce. Default: 1</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="view">
+<h3><span class="hidden-section">View</span><a class="headerlink" href="#view" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.View">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">View</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/customize.html#View"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.View" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reshape the input into different size, an inplace operator, support
+SelfParallel mode.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="standard-layers">
+<h2>Standard Layers<a class="headerlink" href="#standard-layers" title="Permalink to this headline">¶</a></h2>
+<p>Standard Layers as in PyTorch but in <a class="reference internal" href="parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a> mode. Use together with SyncBN.</p>
+<div class="section" id="conv1d">
+<h3><span class="hidden-section">Conv1d</span><a class="headerlink" href="#conv1d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Conv1d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Conv1d</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>kernel_size</em>, <em>stride=1</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>groups=1</em>, <em>bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#Conv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Conv1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a 1D convolution over an input signal composed of several input
+planes.
+In the simplest case, the output value of the layer with input size
+<span class="math">\((N, C_{in}, L)\)</span> and output <span class="math">\((N, C_{out}, L_{out})\)</span> can be
+precisely described as:
+.. math:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>\<span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">ll</span><span class="p">}</span>
+<span class="n">out</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>  <span class="o">=</span> <span class="n">bias</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>
+               <span class="o">+</span> \<span class="n">sum_</span><span class="p">{{</span><span class="n">k</span><span class="p">}</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">^</span><span class="p">{</span><span class="n">C_</span><span class="p">{</span><span class="ow">in</span><span class="p">}</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="n">weight</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">},</span> <span class="n">k</span><span class="p">)</span>  \<span class="n">star</span> <span class="nb">input</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+\<span class="n">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>where <span class="math">\(\star\)</span> is the valid <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-correlation">cross-correlation</a> operator</p>
+<div class="line-block">
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">stride</span></code> controls the stride for the cross-correlation.</div>
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> controls the spacing between the kernel points; also
+known as the à trous algorithm. It is harder to describe, but this <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> does.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">groups</span></code> controls the connections between inputs and outputs. <cite>in_channels</cite> and <cite>out_channels</cite> must both be divisible by <cite>groups</cite>.</div>
+<div class="line-block">
+<div class="line">At groups=1, all inputs are convolved to all outputs.</div>
+<div class="line">At groups=2, the operation becomes equivalent to having two conv layers side by side, each seeing half the input channels, and producing half the output channels, and both subsequently concatenated.
+At groups=`in_channels`, each input channel is convolved with its own set of filters (of size <cite>out_channels // in_channels</cite>).</div>
+</div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of
+the input. Default: 0</li>
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel
+elements. Default: 1</li>
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input
+channels to output channels. Default: 1</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C_{in}, L_{in})\)</span></li>
+<li>Output: <span class="math">\((N, C_{out}, L_{out})\)</span> where
+<span class="math">\(L_{out} = floor((L_{in}  + 2 * padding - dilation * (kernel\_size - 1) - 1) / stride + 1)\)</span></li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+(out_channels, in_channels, kernel_size)</li>
+<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape
+(out_channels)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="conv2d">
+<h3><span class="hidden-section">Conv2d</span><a class="headerlink" href="#conv2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Conv2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Conv2d</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>kernel_size</em>, <em>stride=1</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>groups=1</em>, <em>bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#Conv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Conv2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a 2D convolution over an input signal composed of several input
+planes.
+In the simplest case, the output value of the layer with input size
+<span class="math">\((N, C_{in}, H, W)\)</span> and output <span class="math">\((N, C_{out}, H_{out}, W_{out})\)</span>
+can be precisely described as:
+.. math:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>\<span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">ll</span><span class="p">}</span>
+<span class="n">out</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>  <span class="o">=</span> <span class="n">bias</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>
+               <span class="o">+</span> \<span class="n">sum_</span><span class="p">{{</span><span class="n">k</span><span class="p">}</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">^</span><span class="p">{</span><span class="n">C_</span><span class="p">{</span><span class="ow">in</span><span class="p">}</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="n">weight</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">},</span> <span class="n">k</span><span class="p">)</span>  \<span class="n">star</span> <span class="nb">input</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+\<span class="n">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>where <span class="math">\(\star\)</span> is the valid 2D <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-correlation">cross-correlation</a> operator</p>
+<div class="line-block">
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">stride</span></code> controls the stride for the cross-correlation.</div>
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> controls the spacing between the kernel points; also
+known as the à trous algorithm. It is harder to describe, but this <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> does.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">groups</span></code> controls the connections between inputs and outputs. <cite>in_channels</cite> and <cite>out_channels</cite> must both be divisible by <cite>groups</cite>.</div>
+<div class="line-block">
+<div class="line">At groups=1, all inputs are convolved to all outputs.</div>
+<div class="line">At groups=2, the operation becomes equivalent to having two conv layers side by side, each seeing half the input channels, and producing half the output channels, and both subsequently concatenated.
+At groups=`in_channels`, each input channel is convolved with its own set of filters (of size <cite>out_channels // in_channels</cite>).</div>
+</div>
+</div>
+<dl class="docutils">
+<dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> can either be:</dt>
+<dd><ul class="first last simple">
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+and the second <cite>int</cite> for the width dimension</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of the input. Default: 0</li>
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel elements. Default: 1</li>
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input channels to output channels. Default: 1</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C_{in}, H_{in}, W_{in})\)</span></li>
+<li>Output: <span class="math">\((N, C_{out}, H_{out}, W_{out})\)</span> where
+<span class="math">\(H_{out} = floor((H_{in}  + 2 * padding[0] - dilation[0] * (kernel\_size[0] - 1) - 1) / stride[0] + 1)\)</span>
+<span class="math">\(W_{out} = floor((W_{in}  + 2 * padding[1] - dilation[1] * (kernel\_size[1] - 1) - 1) / stride[1] + 1)\)</span></li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+(out_channels, in_channels, kernel_size[0], kernel_size[1])</li>
+<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape (out_channels)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># With square kernels and equal stride</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># non-square kernels and unequal stride and with padding</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># non-square kernels and unequal stride and with padding and dilation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dilation</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="convtranspose2d">
+<h3><span class="hidden-section">ConvTranspose2d</span><a class="headerlink" href="#convtranspose2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.ConvTranspose2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">ConvTranspose2d</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>kernel_size</em>, <em>stride=1</em>, <em>padding=0</em>, <em>output_padding=0</em>, <em>groups=1</em>, <em>bias=True</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#ConvTranspose2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.ConvTranspose2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a 2D transposed convolution operator over an input image
+composed of several input planes.
+This module can be seen as the gradient of Conv2d with respect to its input.
+It is also known as a fractionally-strided convolution or
+a deconvolution (although it is not an actual deconvolution operation).</p>
+<div class="line-block">
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">stride</span></code> controls the stride for the cross-correlation.</div>
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points.</div>
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">output_padding</span></code> is non-zero, then the output is implicitly zero-padded on one side for <code class="xref py py-attr docutils literal"><span class="pre">output_padding</span></code> number of points.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> controls the spacing between the kernel points; also known as the à trous algorithm. It is harder to describe, but this <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> does.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">groups</span></code> controls the connections between inputs and outputs. <cite>in_channels</cite> and <cite>out_channels</cite> must both be divisible by <cite>groups</cite>.</div>
+<div class="line-block">
+<div class="line">At groups=1, all inputs are convolved to all outputs.</div>
+<div class="line">At groups=2, the operation becomes equivalent to having two conv layers side by side, each seeing half the input channels, and producing half the output channels, and both subsequently concatenated.
+At groups=`in_channels`, each input channel is convolved with its own set of filters (of size <cite>out_channels // in_channels</cite>).</div>
+</div>
+</div>
+<dl class="docutils">
+<dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">output_padding</span></code> can either be:</dt>
+<dd><ul class="first last simple">
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimensions</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+and the second <cite>int</cite> for the width dimension</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of the input. Default: 0</li>
+<li><strong>output_padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to one side of the output. Default: 0</li>
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input channels to output channels. Default: 1</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel elements. Default: 1</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C_{in}, H_{in}, W_{in})\)</span></li>
+<li>Output: <span class="math">\((N, C_{out}, H_{out}, W_{out})\)</span> where
+<span class="math">\(H_{out} = (H_{in} - 1) * stride[0] - 2 * padding[0] + kernel\_size[0] + output\_padding[0]\)</span>
+<span class="math">\(W_{out} = (W_{in} - 1) * stride[1] - 2 * padding[1] + kernel\_size[1] + output\_padding[1]\)</span></li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+(in_channels, out_channels, kernel_size[0], kernel_size[1])</li>
+<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape (out_channels)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># With square kernels and equal stride</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># non-square kernels and unequal stride and with padding</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># exact output size can be also specified as an argument</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">downsample</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">upsample</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">h</span> <span class="o">=</span> <span class="n">downsample</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">h</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="go">torch.Size([1, 16, 6, 6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">upsample</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="go">torch.Size([1, 16, 12, 12])</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="relu">
+<h3><span class="hidden-section">ReLU</span><a class="headerlink" href="#relu" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.ReLU">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">ReLU</code><span class="sig-paren">(</span><em>inplace=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#ReLU"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.ReLU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the rectified linear unit function element-wise
+<span class="math">\({ReLU}(x)= max(0, x)\)</span>
+:param inplace: can optionally do the operation in-place. Default: False</p>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, *)\)</span> where <cite>*</cite> means, any number of additional
+dimensions</li>
+<li>Output: <span class="math">\((N, *)\)</span>, same shape as the input</li>
+</ul>
+</dd>
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="sigmoid">
+<h3><span class="hidden-section">Sigmoid</span><a class="headerlink" href="#sigmoid" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Sigmoid">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Sigmoid</code><a class="reference internal" href="_modules/encoding/nn/basic.html#Sigmoid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Sigmoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the element-wise function <span class="math">\(f(x) = 1 / ( 1 + exp(-x))\)</span>
+Shape:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Input: <span class="math">\((N, *)\)</span> where <cite>*</cite> means, any number of additional
+dimensions</li>
+<li>Output: <span class="math">\((N, *)\)</span>, same shape as the input</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="maxpool2d">
+<h3><span class="hidden-section">MaxPool2d</span><a class="headerlink" href="#maxpool2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.MaxPool2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">MaxPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>return_indices=False</em>, <em>ceil_mode=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#MaxPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.MaxPool2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a 2D max pooling over an input signal composed of several input
+planes.
+In the simplest case, the output value of the layer with input size <span class="math">\((N, C, H, W)\)</span>,
+output <span class="math">\((N, C, H_{out}, W_{out})\)</span> and <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code> <span class="math">\((kH, kW)\)</span>
+can be precisely described as:</p>
+<div class="math">
+\[\begin{array}{ll}
+out(N_i, C_j, h, w)  = \max_{{m}=0}^{kH-1} \max_{{n}=0}^{kW-1}
+                       input(N_i, C_j, stride[0] * h + m, stride[1] * w + n)
+\end{array}\]</div>
+<div class="line-block">
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides
+for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> controls the spacing between the kernel points. It is harder to describe,
+but this <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> does.</div>
+</div>
+<dl class="docutils">
+<dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> can either be:</dt>
+<dd><ul class="first last simple">
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+and the second <cite>int</cite> for the width dimension</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>kernel_size</strong> &#8211; the size of the window to take a max over</li>
+<li><strong>stride</strong> &#8211; the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
+<li><strong>padding</strong> &#8211; implicit zero padding to be added on both sides</li>
+<li><strong>dilation</strong> &#8211; a parameter that controls the stride of elements in the window</li>
+<li><strong>return_indices</strong> &#8211; if True, will return the max indices along with the outputs.
+Useful when Unpooling later</li>
+<li><strong>ceil_mode</strong> &#8211; when True, will use <cite>ceil</cite> instead of <cite>floor</cite> to compute the output shape</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C, H_{in}, W_{in})\)</span></li>
+<li>Output: <span class="math">\((N, C, H_{out}, W_{out})\)</span> where
+<span class="math">\(H_{out} = floor((H_{in}  + 2 * padding[0] - dilation[0] * (kernel\_size[0] - 1) - 1) / stride[0] + 1)\)</span>
+<span class="math">\(W_{out} = floor((W_{in}  + 2 * padding[1] - dilation[1] * (kernel\_size[1] - 1) - 1) / stride[1] + 1)\)</span></li>
+</ul>
+</dd>
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># pool of square window of size=3, stride=2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pool of non-square window</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="avgpool2d">
+<h3><span class="hidden-section">AvgPool2d</span><a class="headerlink" href="#avgpool2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.AvgPool2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">AvgPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>ceil_mode=False</em>, <em>count_include_pad=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#AvgPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.AvgPool2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a 2D average pooling over an input signal composed of several input
+planes.
+In the simplest case, the output value of the layer with input size <span class="math">\((N, C, H, W)\)</span>,
+output <span class="math">\((N, C, H_{out}, W_{out})\)</span> and <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code> <span class="math">\((kH, kW)\)</span>
+can be precisely described as:</p>
+<div class="math">
+\[\begin{array}{ll}
+out(N_i, C_j, h, w)  = 1 / (kH * kW) * \sum_{{m}=0}^{kH-1} \sum_{{n}=0}^{kW-1}
+                       input(N_i, C_j, stride[0] * h + m, stride[1] * w + n)
+\end{array}\]</div>
+<div class="line-block">
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides
+for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points</div>
+</div>
+<dl class="docutils">
+<dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> can either be:</dt>
+<dd><ul class="first last simple">
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+and the second <cite>int</cite> for the width dimension</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>kernel_size</strong> &#8211; the size of the window</li>
+<li><strong>stride</strong> &#8211; the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
+<li><strong>padding</strong> &#8211; implicit zero padding to be added on both sides</li>
+<li><strong>ceil_mode</strong> &#8211; when True, will use <cite>ceil</cite> instead of <cite>floor</cite> to compute the output shape</li>
+<li><strong>count_include_pad</strong> &#8211; when True, will include the zero-padding in the averaging calculation</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C, H_{in}, W_{in})\)</span></li>
+<li>Output: <span class="math">\((N, C, H_{out}, W_{out})\)</span> where
+<span class="math">\(H_{out} = floor((H_{in}  + 2 * padding[0] - kernel\_size[0]) / stride[0] + 1)\)</span>
+<span class="math">\(W_{out} = floor((W_{in}  + 2 * padding[1] - kernel\_size[1]) / stride[1] + 1)\)</span></li>
+</ul>
+</dd>
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># pool of square window of size=3, stride=2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AvgPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pool of non-square window</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AvgPool2d</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="adaptiveavgpool2d">
+<h3><span class="hidden-section">AdaptiveAvgPool2d</span><a class="headerlink" href="#adaptiveavgpool2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.AdaptiveAvgPool2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">AdaptiveAvgPool2d</code><span class="sig-paren">(</span><em>output_size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#AdaptiveAvgPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.AdaptiveAvgPool2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a 2D adaptive average pooling over an input signal composed of several input planes.
+The output is of size H x W, for any input size.
+The number of output features is equal to the number of input planes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>output_size</strong> &#8211; the target output size of the image of the form H x W.
+Can be a tuple (H, W) or a single number H for a square image H x H</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># target output size of 5x7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># target output size of 7x7 (square)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="dropout2d">
+<h3><span class="hidden-section">Dropout2d</span><a class="headerlink" href="#dropout2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Dropout2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Dropout2d</code><span class="sig-paren">(</span><em>p=0.5</em>, <em>inplace=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#Dropout2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Dropout2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly zeroes whole channels of the input tensor.
+The channels to zero-out are randomized on every forward call.
+<em>Usually the input comes from Conv2d modules.</em>
+As described in the paper
+<a class="reference external" href="http://arxiv.org/abs/1411.4280">Efficient Object Localization Using Convolutional Networks</a> ,
+if adjacent pixels within feature maps are strongly correlated
+(as is normally the case in early convolution layers) then iid dropout
+will not regularize the activations and will otherwise just result
+in an effective learning rate decrease.
+In this case, <code class="xref py py-func docutils literal"><span class="pre">nn.Dropout2d()</span></code> will help promote independence between
+feature maps and should be used instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a><em>, </em><em>optional</em>) &#8211; probability of an element to be zeroed.</li>
+<li><strong>inplace</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If set to True, will do this operation
+in-place</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C, H, W)\)</span></li>
+<li>Output: <span class="math">\((N, C, H, W)\)</span> (same shape as input)</li>
+</ul>
+</dd>
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="linear">
+<h3><span class="hidden-section">Linear</span><a class="headerlink" href="#linear" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Linear">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Linear</code><span class="sig-paren">(</span><em>in_features</em>, <em>out_features</em>, <em>bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#Linear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Linear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies a linear transformation to the incoming data: <span class="math">\(y = Ax + b\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>in_features</strong> &#8211; size of each input sample</li>
+<li><strong>out_features</strong> &#8211; size of each output sample</li>
+<li><strong>bias</strong> &#8211; If set to False, the layer will not learn an additive bias.
+Default: True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, *, in\_features)\)</span> where <cite>*</cite> means any number of
+additional dimensions</li>
+<li>Output: <span class="math">\((N, *, out\_features)\)</span> where all but the last dimension
+are the same shape as the input.</li>
+</ul>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>weight</strong> &#8211; the learnable weights of the module of shape
+(out_features x in_features)</li>
+<li><strong>bias</strong> &#8211; the learnable bias of the module of shape (out_features)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Examples::</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="functions.html" class="btn btn-neutral float-right" title="Other Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dilated.html" class="btn btn-neutral" title="Dilated Networks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Hang Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'master',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

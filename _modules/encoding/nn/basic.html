@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-54746507-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>encoding.nn.basic &mdash; Encoding master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/encoding.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Encoding master documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/icon.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master (1.0.1)
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/extending.html">Extending PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../encoding.html">My NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel.html">Data Parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#densenet">DenseNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn.html">Other NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#view"><span class="hidden-section">View</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#standard-layers">Standard Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#conv1d"><span class="hidden-section">Conv1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#conv2d"><span class="hidden-section">Conv2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#relu"><span class="hidden-section">ReLU</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../nn.html#linear"><span class="hidden-section">Linear</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functions.html">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Encoding</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>encoding.nn.basic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for encoding.nn.basic</h1><div class="highlight"><pre>
+<span></span><span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+<span class="c1">## Created by: Hang Zhang</span>
+<span class="c1">## ECE Department, Rutgers University</span>
+<span class="c1">## Email: zhang.hang@rutgers.edu</span>
+<span class="c1">## Copyright (c) 2017</span>
+<span class="c1">##</span>
+<span class="c1">## This source code is licensed under the MIT-style license found in the</span>
+<span class="c1">## LICENSE file in the root directory of this source tree </span>
+<span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+<span class="kn">from</span> <span class="nn">torch.nn.parameter</span> <span class="k">import</span> <span class="n">Parameter</span>
+<span class="kn">from</span> <span class="nn">torch.nn.modules.utils</span> <span class="k">import</span> <span class="n">_single</span><span class="p">,</span> <span class="n">_pair</span><span class="p">,</span> <span class="n">_triple</span>
+
+<span class="kn">from</span> <span class="nn">..parallel</span> <span class="k">import</span> <span class="n">my_data_parallel</span>
+<span class="kn">from</span> <span class="nn">..functions</span> <span class="k">import</span> <span class="n">view_each</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Module&#39;</span><span class="p">,</span> <span class="s1">&#39;Sequential&#39;</span><span class="p">,</span> <span class="s1">&#39;Conv1d&#39;</span><span class="p">,</span> <span class="s1">&#39;Conv2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ConvTranspose2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ReLU&#39;</span><span class="p">,</span> <span class="s1">&#39;Sigmoid&#39;</span><span class="p">,</span> <span class="s1">&#39;MaxPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;AvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;AdaptiveAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Dropout2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear&#39;</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">_ConvNd</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span>
+                 <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span> <span class="n">transposed</span><span class="p">,</span> <span class="n">output_padding</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">bias</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_ConvNd</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">in_channels</span> <span class="o">%</span> <span class="n">groups</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;in_channels must be divisible by groups&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out_channels</span> <span class="o">%</span> <span class="n">groups</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;out_channels must be divisible by groups&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span> <span class="o">=</span> <span class="n">in_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">padding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span> <span class="o">=</span> <span class="n">dilation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transposed</span> <span class="o">=</span> <span class="n">transposed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_padding</span> <span class="o">=</span> <span class="n">output_padding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span>
+        <span class="k">if</span> <span class="n">transposed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+                <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span> <span class="o">//</span> <span class="n">groups</span><span class="p">,</span> <span class="o">*</span><span class="n">kernel_size</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span>
+                <span class="n">out_channels</span><span class="p">,</span> <span class="n">in_channels</span> <span class="o">//</span> <span class="n">groups</span><span class="p">,</span> <span class="o">*</span><span class="n">kernel_size</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">bias</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">out_channels</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;bias&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_parameters</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">reset_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_channels</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">*=</span> <span class="n">k</span>
+        <span class="n">stdv</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">stdv</span><span class="p">,</span> <span class="n">stdv</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">stdv</span><span class="p">,</span> <span class="n">stdv</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">(</span><span class="si">{in_channels}</span><span class="s1">, </span><span class="si">{out_channels}</span><span class="s1">, kernel_size=</span><span class="si">{kernel_size}</span><span class="s1">&#39;</span>
+             <span class="s1">&#39;, stride=</span><span class="si">{stride}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;, padding=</span><span class="si">{padding}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;, dilation=</span><span class="si">{dilation}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_padding</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_padding</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;, output_padding=</span><span class="si">{output_padding}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;, groups=</span><span class="si">{groups}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;, bias=False&#39;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s1">&#39;)&#39;</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Conv1d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Conv1d">[docs]</a><span class="k">class</span> <span class="nc">Conv1d</span><span class="p">(</span><span class="n">_ConvNd</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Applies a 1D convolution over an input signal composed of several input</span>
+<span class="sd">    planes.</span>
+<span class="sd">    In the simplest case, the output value of the layer with input size</span>
+<span class="sd">    :math:`(N, C_{in}, L)` and output :math:`(N, C_{out}, L_{out})` can be</span>
+<span class="sd">    precisely described as:</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \begin{array}{ll}</span>
+<span class="sd">        out(N_i, C_{out_j})  = bias(C_{out_j})</span>
+<span class="sd">                       + \sum_{{k}=0}^{C_{in}-1} weight(C_{out_j}, k)  \star input(N_i, k)</span>
+<span class="sd">        \end{array}</span>
+<span class="sd">    where :math:`\star` is the valid `cross-correlation`_ operator</span>
+
+<span class="sd">    | :attr:`stride` controls the stride for the cross-correlation.</span>
+<span class="sd">    | If :attr:`padding` is non-zero, then the input is implicitly zero-padded on both sides for :attr:`padding` number of points.</span>
+<span class="sd">    | :attr:`dilation` controls the spacing between the kernel points; also</span>
+<span class="sd">      known as the à trous algorithm. It is harder to describe, but this `link`_ has a nice visualization of what :attr:`dilation` does.</span>
+<span class="sd">    | :attr:`groups` controls the connections between inputs and outputs. `in_channels` and `out_channels` must both be divisible by `groups`.</span>
+<span class="sd">    |       At groups=1, all inputs are convolved to all outputs.</span>
+<span class="sd">    |       At groups=2, the operation becomes equivalent to having two conv layers side by side, each seeing half the input channels, and producing half the output channels, and both subsequently concatenated.</span>
+<span class="sd">            At groups=`in_channels`, each input channel is convolved with its own set of filters (of size `out_channels // in_channels`).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        in_channels (int): Number of channels in the input image</span>
+<span class="sd">        out_channels (int): Number of channels produced by the convolution</span>
+<span class="sd">        kernel_size (int or tuple): Size of the convolving kernel</span>
+<span class="sd">        stride (int or tuple, optional): Stride of the convolution. Default: 1</span>
+<span class="sd">        padding (int or tuple, optional): Zero-padding added to both sides of</span>
+<span class="sd">            the input. Default: 0</span>
+<span class="sd">        dilation (int or tuple, optional): Spacing between kernel</span>
+<span class="sd">            elements. Default: 1</span>
+<span class="sd">        groups (int, optional): Number of blocked connections from input</span>
+<span class="sd">            channels to output channels. Default: 1</span>
+<span class="sd">        bias (bool, optional): If True, adds a learnable bias to the output. Default: True</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, C_{in}, L_{in})`</span>
+<span class="sd">        - Output: :math:`(N, C_{out}, L_{out})` where</span>
+<span class="sd">          :math:`L_{out} = floor((L_{in}  + 2 * padding - dilation * (kernel\_size - 1) - 1) / stride + 1)`</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        weight (Tensor): the learnable weights of the module of shape</span>
+<span class="sd">            (out_channels, in_channels, kernel_size)</span>
+<span class="sd">        bias (Tensor):   the learnable bias of the module of shape</span>
+<span class="sd">            (out_channels)</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Conv1d(16, 33, 3, stride=2)</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(20, 16, 50))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+
+<span class="sd">    .. _cross-correlation:</span>
+<span class="sd">        https://en.wikipedia.org/wiki/Cross-correlation</span>
+<span class="sd">    .. _link:</span>
+<span class="sd">        https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">kernel_size</span> <span class="o">=</span> <span class="n">_single</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">)</span>
+        <span class="n">stride</span> <span class="o">=</span> <span class="n">_single</span><span class="p">(</span><span class="n">stride</span><span class="p">)</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="n">_single</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
+        <span class="n">dilation</span> <span class="o">=</span> <span class="n">_single</span><span class="p">(</span><span class="n">dilation</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Conv1d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span> <span class="n">_single</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">groups</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv1d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Conv2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Conv2d">[docs]</a><span class="k">class</span> <span class="nc">Conv2d</span><span class="p">(</span><span class="n">_ConvNd</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Applies a 2D convolution over an input signal composed of several input</span>
+<span class="sd">    planes.</span>
+<span class="sd">    In the simplest case, the output value of the layer with input size</span>
+<span class="sd">    :math:`(N, C_{in}, H, W)` and output :math:`(N, C_{out}, H_{out}, W_{out})`</span>
+<span class="sd">    can be precisely described as:</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \begin{array}{ll}</span>
+<span class="sd">        out(N_i, C_{out_j})  = bias(C_{out_j})</span>
+<span class="sd">                       + \sum_{{k}=0}^{C_{in}-1} weight(C_{out_j}, k)  \star input(N_i, k)</span>
+<span class="sd">        \end{array}</span>
+<span class="sd">    where :math:`\star` is the valid 2D `cross-correlation`_ operator</span>
+
+<span class="sd">    | :attr:`stride` controls the stride for the cross-correlation.</span>
+<span class="sd">    | If :attr:`padding` is non-zero, then the input is implicitly zero-padded on both sides for :attr:`padding` number of points.</span>
+<span class="sd">    | :attr:`dilation` controls the spacing between the kernel points; also</span>
+<span class="sd">      known as the à trous algorithm. It is harder to describe, but this `link`_ has a nice visualization of what :attr:`dilation` does.</span>
+<span class="sd">    | :attr:`groups` controls the connections between inputs and outputs. `in_channels` and `out_channels` must both be divisible by `groups`.</span>
+<span class="sd">    |       At groups=1, all inputs are convolved to all outputs.</span>
+<span class="sd">    |       At groups=2, the operation becomes equivalent to having two conv layers side by side, each seeing half the input channels, and producing half the output channels, and both subsequently concatenated.</span>
+<span class="sd">            At groups=`in_channels`, each input channel is convolved with its own set of filters (of size `out_channels // in_channels`).</span>
+
+<span class="sd">    The parameters :attr:`kernel_size`, :attr:`stride`, :attr:`padding`, :attr:`dilation` can either be:</span>
+<span class="sd">        - a single ``int`` -- in which case the same value is used for the height and width dimension</span>
+<span class="sd">        - a ``tuple`` of two ints -- in which case, the first `int` is used for the height dimension,</span>
+<span class="sd">          and the second `int` for the width dimension</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        in_channels (int): Number of channels in the input image</span>
+<span class="sd">        out_channels (int): Number of channels produced by the convolution</span>
+<span class="sd">        kernel_size (int or tuple): Size of the convolving kernel</span>
+<span class="sd">        stride (int or tuple, optional): Stride of the convolution. Default: 1</span>
+<span class="sd">        padding (int or tuple, optional): Zero-padding added to both sides of the input. Default: 0</span>
+<span class="sd">        dilation (int or tuple, optional): Spacing between kernel elements. Default: 1</span>
+<span class="sd">        groups (int, optional): Number of blocked connections from input channels to output channels. Default: 1</span>
+<span class="sd">        bias (bool, optional): If True, adds a learnable bias to the output. Default: True</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, C_{in}, H_{in}, W_{in})`</span>
+<span class="sd">        - Output: :math:`(N, C_{out}, H_{out}, W_{out})` where</span>
+<span class="sd">          :math:`H_{out} = floor((H_{in}  + 2 * padding[0] - dilation[0] * (kernel\_size[0] - 1) - 1) / stride[0] + 1)`</span>
+<span class="sd">          :math:`W_{out} = floor((W_{in}  + 2 * padding[1] - dilation[1] * (kernel\_size[1] - 1) - 1) / stride[1] + 1)`</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        weight (Tensor): the learnable weights of the module of shape</span>
+<span class="sd">                         (out_channels, in_channels, kernel_size[0], kernel_size[1])</span>
+<span class="sd">        bias (Tensor):   the learnable bias of the module of shape (out_channels)</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; # With square kernels and equal stride</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Conv2d(16, 33, 3, stride=2)</span>
+<span class="sd">        &gt;&gt;&gt; # non-square kernels and unequal stride and with padding</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))</span>
+<span class="sd">        &gt;&gt;&gt; # non-square kernels and unequal stride and with padding and dilation</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2), dilation=(3, 1))</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(20, 16, 50, 100))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+
+<span class="sd">    .. _cross-correlation:</span>
+<span class="sd">        https://en.wikipedia.org/wiki/Cross-correlation</span>
+<span class="sd">    .. _link:</span>
+<span class="sd">        https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">kernel_size</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">)</span>
+        <span class="n">stride</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">stride</span><span class="p">)</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
+        <span class="n">dilation</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">dilation</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Conv2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span> <span class="n">_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">groups</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">_ConvTransposeMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">output_padding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_padding</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">ConvNd</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transposed</span><span class="p">,</span>
+            <span class="n">output_padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_output_padding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">output_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_padding</span>
+
+        <span class="n">output_size</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">output_size</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">output_size</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">output_size</span> <span class="o">=</span> <span class="n">output_size</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">output_size</span><span class="p">)</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;output_size must have </span><span class="si">{}</span><span class="s2"> or </span><span class="si">{}</span><span class="s2"> elements (got </span><span class="si">{}</span><span class="s2">)&quot;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">output_size</span><span class="p">)))</span>
+
+        <span class="k">def</span> <span class="nf">dim_size</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">((</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">d</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">-</span>
+                    <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">[</span><span class="n">d</span><span class="p">])</span>
+
+        <span class="n">min_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">dim_size</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+        <span class="n">max_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">min_sizes</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">size</span><span class="p">,</span> <span class="n">min_size</span><span class="p">,</span> <span class="n">max_size</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">output_size</span><span class="p">,</span> <span class="n">min_sizes</span><span class="p">,</span> <span class="n">max_sizes</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="n">min_size</span> <span class="ow">or</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="n">max_size</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span>
+                    <span class="s2">&quot;requested an output size of </span><span class="si">{}</span><span class="s2">, but valid sizes range &quot;</span>
+                    <span class="s2">&quot;from </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2"> (for an input of </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">output_size</span><span class="p">,</span> <span class="n">min_sizes</span><span class="p">,</span> <span class="n">max_sizes</span><span class="p">,</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">2</span><span class="p">:]))</span>
+
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">output_size</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_sizes</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+
+
+<div class="viewcode-block" id="ConvTranspose2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.ConvTranspose2d">[docs]</a><span class="k">class</span> <span class="nc">ConvTranspose2d</span><span class="p">(</span><span class="n">_ConvTransposeMixin</span><span class="p">,</span> <span class="n">_ConvNd</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Applies a 2D transposed convolution operator over an input image</span>
+<span class="sd">    composed of several input planes.</span>
+<span class="sd">    This module can be seen as the gradient of Conv2d with respect to its input.</span>
+<span class="sd">    It is also known as a fractionally-strided convolution or</span>
+<span class="sd">    a deconvolution (although it is not an actual deconvolution operation).</span>
+
+<span class="sd">    | :attr:`stride` controls the stride for the cross-correlation.</span>
+<span class="sd">    | If :attr:`padding` is non-zero, then the input is implicitly zero-padded on both sides for :attr:`padding` number of points.</span>
+<span class="sd">    | If :attr:`output_padding` is non-zero, then the output is implicitly zero-padded on one side for :attr:`output_padding` number of points.</span>
+<span class="sd">    | :attr:`dilation` controls the spacing between the kernel points; also known as the à trous algorithm. It is harder to describe, but this `link`_ has a nice visualization of what :attr:`dilation` does.</span>
+<span class="sd">    | :attr:`groups` controls the connections between inputs and outputs. `in_channels` and `out_channels` must both be divisible by `groups`.</span>
+<span class="sd">    |       At groups=1, all inputs are convolved to all outputs.</span>
+<span class="sd">    |       At groups=2, the operation becomes equivalent to having two conv layers side by side, each seeing half the input channels, and producing half the output channels, and both subsequently concatenated.</span>
+<span class="sd">            At groups=`in_channels`, each input channel is convolved with its own set of filters (of size `out_channels // in_channels`).</span>
+
+<span class="sd">    The parameters :attr:`kernel_size`, :attr:`stride`, :attr:`padding`, :attr:`output_padding` can either be:</span>
+<span class="sd">        - a single ``int`` -- in which case the same value is used for the height and width dimensions</span>
+<span class="sd">        - a ``tuple`` of two ints -- in which case, the first `int` is used for the height dimension,</span>
+<span class="sd">          and the second `int` for the width dimension</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        in_channels (int): Number of channels in the input image</span>
+<span class="sd">        out_channels (int): Number of channels produced by the convolution</span>
+<span class="sd">        kernel_size (int or tuple): Size of the convolving kernel</span>
+<span class="sd">        stride (int or tuple, optional): Stride of the convolution. Default: 1</span>
+<span class="sd">        padding (int or tuple, optional): Zero-padding added to both sides of the input. Default: 0</span>
+<span class="sd">        output_padding (int or tuple, optional): Zero-padding added to one side of the output. Default: 0</span>
+<span class="sd">        groups (int, optional): Number of blocked connections from input channels to output channels. Default: 1</span>
+<span class="sd">        bias (bool, optional): If True, adds a learnable bias to the output. Default: True</span>
+<span class="sd">        dilation (int or tuple, optional): Spacing between kernel elements. Default: 1</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, C_{in}, H_{in}, W_{in})`</span>
+<span class="sd">        - Output: :math:`(N, C_{out}, H_{out}, W_{out})` where</span>
+<span class="sd">          :math:`H_{out} = (H_{in} - 1) * stride[0] - 2 * padding[0] + kernel\_size[0] + output\_padding[0]`</span>
+<span class="sd">          :math:`W_{out} = (W_{in} - 1) * stride[1] - 2 * padding[1] + kernel\_size[1] + output\_padding[1]`</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        weight (Tensor): the learnable weights of the module of shape</span>
+<span class="sd">                         (in_channels, out_channels, kernel_size[0], kernel_size[1])</span>
+<span class="sd">        bias (Tensor):   the learnable bias of the module of shape (out_channels)</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; # With square kernels and equal stride</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.ConvTranspose2d(16, 33, 3, stride=2)</span>
+<span class="sd">        &gt;&gt;&gt; # non-square kernels and unequal stride and with padding</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.ConvTranspose2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(20, 16, 50, 100))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+<span class="sd">        &gt;&gt;&gt; # exact output size can be also specified as an argument</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(1, 16, 12, 12))</span>
+<span class="sd">        &gt;&gt;&gt; downsample = nn.Conv2d(16, 16, 3, stride=2, padding=1)</span>
+<span class="sd">        &gt;&gt;&gt; upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)</span>
+<span class="sd">        &gt;&gt;&gt; h = downsample(input)</span>
+<span class="sd">        &gt;&gt;&gt; h.size()</span>
+<span class="sd">        torch.Size([1, 16, 6, 6])</span>
+<span class="sd">        &gt;&gt;&gt; output = upsample(h, output_size=input.size())</span>
+<span class="sd">        &gt;&gt;&gt; output.size()</span>
+<span class="sd">        torch.Size([1, 16, 12, 12])</span>
+
+<span class="sd">    .. _cross-correlation:</span>
+<span class="sd">        https://en.wikipedia.org/wiki/Cross-correlation</span>
+<span class="sd">    .. _link:</span>
+<span class="sd">        https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">output_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                 <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">kernel_size</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">)</span>
+        <span class="n">stride</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">stride</span><span class="p">)</span>
+        <span class="n">padding</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
+        <span class="n">dilation</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">dilation</span><span class="p">)</span>
+        <span class="n">output_padding</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">output_padding</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ConvTranspose2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span> <span class="n">output_padding</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">output_padding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_padding</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv_transpose2d</span><span class="p">(</span>
+                <span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
+                <span class="n">output_padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span></div>
+
+
+<span class="k">class</span> <span class="nc">Threshold</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Threshold</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="o">=</span> <span class="n">inplace</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> 
+                               <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inplace_str</span> <span class="o">=</span> <span class="s1">&#39;, inplace&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="n">inplace_str</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+
+
+<div class="viewcode-block" id="ReLU"><a class="viewcode-back" href="../../../nn.html#encoding.nn.ReLU">[docs]</a><span class="k">class</span> <span class="nc">ReLU</span><span class="p">(</span><span class="n">Threshold</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Applies the rectified linear unit function element-wise</span>
+<span class="sd">    :math:`{ReLU}(x)= max(0, x)`</span>
+<span class="sd">    Args:</span>
+<span class="sd">        inplace: can optionally do the operation in-place. Default: False</span>
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, *)` where `*` means, any number of additional</span>
+<span class="sd">          dimensions</span>
+<span class="sd">        - Output: :math:`(N, *)`, same shape as the input</span>
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.ReLU()</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(2))</span>
+<span class="sd">        &gt;&gt;&gt; print(input)</span>
+<span class="sd">        &gt;&gt;&gt; print(m(input))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ReLU</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inplace_str</span> <span class="o">=</span> <span class="s1">&#39;inplace&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+            <span class="o">+</span> <span class="n">inplace_str</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
+
+
+<div class="viewcode-block" id="Sigmoid"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Sigmoid">[docs]</a><span class="k">class</span> <span class="nc">Sigmoid</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Applies the element-wise function :math:`f(x) = 1 / ( 1 + exp(-x))`</span>
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, *)` where `*` means, any number of additional</span>
+<span class="sd">          dimensions</span>
+<span class="sd">        - Output: :math:`(N, *)`, same shape as the input</span>
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Sigmoid()</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(2))</span>
+<span class="sd">        &gt;&gt;&gt; print(input)</span>
+<span class="sd">        &gt;&gt;&gt; print(m(input))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; ()&#39;</span></div>
+
+
+<div class="viewcode-block" id="MaxPool2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.MaxPool2d">[docs]</a><span class="k">class</span> <span class="nc">MaxPool2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Applies a 2D max pooling over an input signal composed of several input</span>
+<span class="sd">    planes.</span>
+<span class="sd">    In the simplest case, the output value of the layer with input size :math:`(N, C, H, W)`,</span>
+<span class="sd">    output :math:`(N, C, H_{out}, W_{out})` and :attr:`kernel_size` :math:`(kH, kW)`</span>
+<span class="sd">    can be precisely described as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \begin{array}{ll}</span>
+<span class="sd">        out(N_i, C_j, h, w)  = \max_{{m}=0}^{kH-1} \max_{{n}=0}^{kW-1}</span>
+<span class="sd">                               input(N_i, C_j, stride[0] * h + m, stride[1] * w + n)</span>
+<span class="sd">        \end{array}</span>
+
+<span class="sd">    | If :attr:`padding` is non-zero, then the input is implicitly zero-padded on both sides</span>
+<span class="sd">      for :attr:`padding` number of points</span>
+<span class="sd">    | :attr:`dilation` controls the spacing between the kernel points. It is harder to describe,</span>
+<span class="sd">      but this `link`_ has a nice visualization of what :attr:`dilation` does.</span>
+<span class="sd">    The parameters :attr:`kernel_size`, :attr:`stride`, :attr:`padding`, :attr:`dilation` can either be:</span>
+<span class="sd">        - a single ``int`` -- in which case the same value is used for the height and width dimension</span>
+<span class="sd">        - a ``tuple`` of two ints -- in which case, the first `int` is used for the height dimension,</span>
+<span class="sd">          and the second `int` for the width dimension</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        kernel_size: the size of the window to take a max over</span>
+<span class="sd">        stride: the stride of the window. Default value is :attr:`kernel_size`</span>
+<span class="sd">        padding: implicit zero padding to be added on both sides</span>
+<span class="sd">        dilation: a parameter that controls the stride of elements in the window</span>
+<span class="sd">        return_indices: if True, will return the max indices along with the outputs.</span>
+<span class="sd">                        Useful when Unpooling later</span>
+<span class="sd">        ceil_mode: when True, will use `ceil` instead of `floor` to compute the output shape</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, C, H_{in}, W_{in})`</span>
+<span class="sd">        - Output: :math:`(N, C, H_{out}, W_{out})` where</span>
+<span class="sd">          :math:`H_{out} = floor((H_{in}  + 2 * padding[0] - dilation[0] * (kernel\_size[0] - 1) - 1) / stride[0] + 1)`</span>
+<span class="sd">          :math:`W_{out} = floor((W_{in}  + 2 * padding[1] - dilation[1] * (kernel\_size[1] - 1) - 1) / stride[1] + 1)`</span>
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; # pool of square window of size=3, stride=2</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.MaxPool2d(3, stride=2)</span>
+<span class="sd">        &gt;&gt;&gt; # pool of non-square window</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.MaxPool2d((3, 2), stride=(2, 1))</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(20, 16, 50, 32))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+
+<span class="sd">    .. _link:</span>
+<span class="sd">        https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">return_indices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MaxPool2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span> <span class="ow">or</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">padding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span> <span class="o">=</span> <span class="n">dilation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span> <span class="o">=</span> <span class="n">return_indices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ceil_mode</span> <span class="o">=</span> <span class="n">ceil_mode</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceil_mode</span><span class="p">,</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">kh</span><span class="p">,</span> <span class="n">kw</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">)</span>
+        <span class="n">dh</span><span class="p">,</span> <span class="n">dw</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">)</span>
+        <span class="n">padh</span><span class="p">,</span> <span class="n">padw</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">)</span>
+        <span class="n">dilh</span><span class="p">,</span> <span class="n">dilw</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">)</span>
+        <span class="n">padding_str</span> <span class="o">=</span> <span class="s1">&#39;, padding=(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">padh</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">padw</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> \
+            <span class="k">if</span> <span class="n">padh</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">padw</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">dilation_str</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;, dilation=(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dilh</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dilw</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+                        <span class="k">if</span> <span class="n">dilh</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">dilw</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+            <span class="o">+</span> <span class="s1">&#39;size=(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kh</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> \
+            <span class="o">+</span> <span class="s1">&#39;, stride=(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dh</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dw</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span> \
+            <span class="o">+</span> <span class="n">padding_str</span> <span class="o">+</span> <span class="n">dilation_str</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
+
+
+<div class="viewcode-block" id="AvgPool2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.AvgPool2d">[docs]</a><span class="k">class</span> <span class="nc">AvgPool2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Applies a 2D average pooling over an input signal composed of several input</span>
+<span class="sd">    planes.</span>
+<span class="sd">    In the simplest case, the output value of the layer with input size :math:`(N, C, H, W)`,</span>
+<span class="sd">    output :math:`(N, C, H_{out}, W_{out})` and :attr:`kernel_size` :math:`(kH, kW)`</span>
+<span class="sd">    can be precisely described as:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \begin{array}{ll}</span>
+<span class="sd">        out(N_i, C_j, h, w)  = 1 / (kH * kW) * \sum_{{m}=0}^{kH-1} \sum_{{n}=0}^{kW-1}</span>
+<span class="sd">                               input(N_i, C_j, stride[0] * h + m, stride[1] * w + n)</span>
+<span class="sd">        \end{array}</span>
+
+<span class="sd">    | If :attr:`padding` is non-zero, then the input is implicitly zero-padded on both sides</span>
+<span class="sd">      for :attr:`padding` number of points</span>
+<span class="sd">    The parameters :attr:`kernel_size`, :attr:`stride`, :attr:`padding` can either be:</span>
+<span class="sd">        - a single ``int`` -- in which case the same value is used for the height and width dimension</span>
+<span class="sd">        - a ``tuple`` of two ints -- in which case, the first `int` is used for the height dimension,</span>
+<span class="sd">          and the second `int` for the width dimension</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        kernel_size: the size of the window</span>
+<span class="sd">        stride: the stride of the window. Default value is :attr:`kernel_size`</span>
+<span class="sd">        padding: implicit zero padding to be added on both sides</span>
+<span class="sd">        ceil_mode: when True, will use `ceil` instead of `floor` to compute the output shape</span>
+<span class="sd">        count_include_pad: when True, will include the zero-padding in the averaging calculation</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, C, H_{in}, W_{in})`</span>
+<span class="sd">        - Output: :math:`(N, C, H_{out}, W_{out})` where</span>
+<span class="sd">          :math:`H_{out} = floor((H_{in}  + 2 * padding[0] - kernel\_size[0]) / stride[0] + 1)`</span>
+<span class="sd">          :math:`W_{out} = floor((W_{in}  + 2 * padding[1] - kernel\_size[1]) / stride[1] + 1)`</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; # pool of square window of size=3, stride=2</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.AvgPool2d(3, stride=2)</span>
+<span class="sd">        &gt;&gt;&gt; # pool of non-square window</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.AvgPool2d((3, 2), stride=(2, 1))</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(20, 16, 50, 32))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">count_include_pad</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AvgPool2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span> <span class="ow">or</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">padding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ceil_mode</span> <span class="o">=</span> <span class="n">ceil_mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count_include_pad</span> <span class="o">=</span> <span class="n">count_include_pad</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">avg_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceil_mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_include_pad</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AdaptiveAvgPool2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.AdaptiveAvgPool2d">[docs]</a><span class="k">class</span> <span class="nc">AdaptiveAvgPool2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Applies a 2D adaptive average pooling over an input signal composed of several input planes.</span>
+<span class="sd">    The output is of size H x W, for any input size.</span>
+<span class="sd">    The number of output features is equal to the number of input planes.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        output_size: the target output size of the image of the form H x W.</span>
+<span class="sd">                     Can be a tuple (H, W) or a single number H for a square image H x H</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; # target output size of 5x7</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.AdaptiveAvgPool2d((5,7))</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(1, 64, 8, 9))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+<span class="sd">        &gt;&gt;&gt; # target output size of 7x7 (square)</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.AdaptiveAvgPool2d(7)</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(1, 64, 10, 9))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveAvgPool2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_size</span> <span class="o">=</span> <span class="n">output_size</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">adaptive_avg_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_size</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+            <span class="o">+</span> <span class="s1">&#39;output_size=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_size</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
+
+
+<div class="viewcode-block" id="Dropout2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Dropout2d">[docs]</a><span class="k">class</span> <span class="nc">Dropout2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Randomly zeroes whole channels of the input tensor.</span>
+<span class="sd">    The channels to zero-out are randomized on every forward call.</span>
+<span class="sd">    *Usually the input comes from Conv2d modules.*</span>
+<span class="sd">    As described in the paper</span>
+<span class="sd">    `Efficient Object Localization Using Convolutional Networks`_ ,</span>
+<span class="sd">    if adjacent pixels within feature maps are strongly correlated</span>
+<span class="sd">    (as is normally the case in early convolution layers) then iid dropout</span>
+<span class="sd">    will not regularize the activations and will otherwise just result</span>
+<span class="sd">    in an effective learning rate decrease.</span>
+<span class="sd">    In this case, :func:`nn.Dropout2d` will help promote independence between</span>
+<span class="sd">    feature maps and should be used instead.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p (float, optional): probability of an element to be zeroed.</span>
+<span class="sd">        inplace (bool, optional): If set to True, will do this operation</span>
+<span class="sd">            in-place</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, C, H, W)`</span>
+<span class="sd">        - Output: :math:`(N, C, H, W)` (same shape as input)</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Dropout2d(p=0.2)</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(20, 16, 32, 32))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+
+<span class="sd">    .. _Efficient Object Localization Using Convolutional Networks:</span>
+<span class="sd">       http://arxiv.org/abs/1411.4280</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Dropout2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dropout probability has to be between 0 and 1, &quot;</span>
+                             <span class="s2">&quot;but got </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="o">=</span> <span class="n">inplace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">drop</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inplace_str</span> <span class="o">=</span> <span class="s1">&#39;, inplace&#39;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+            <span class="o">+</span> <span class="s1">&#39;p=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="n">inplace_str</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
+
+
+<div class="viewcode-block" id="Linear"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Linear">[docs]</a><span class="k">class</span> <span class="nc">Linear</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Applies a linear transformation to the incoming data: :math:`y = Ax + b`</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        in_features: size of each input sample</span>
+<span class="sd">        out_features: size of each output sample</span>
+<span class="sd">        bias: If set to False, the layer will not learn an additive bias.</span>
+<span class="sd">            Default: True</span>
+
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`(N, *, in\_features)` where `*` means any number of</span>
+<span class="sd">          additional dimensions</span>
+<span class="sd">        - Output: :math:`(N, *, out\_features)` where all but the last dimension</span>
+<span class="sd">          are the same shape as the input.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        weight: the learnable weights of the module of shape</span>
+<span class="sd">            (out_features x in_features)</span>
+<span class="sd">        bias:   the learnable bias of the module of shape (out_features)</span>
+
+<span class="sd">    Examples::</span>
+<span class="sd">        &gt;&gt;&gt; m = nn.Linear(20, 30)</span>
+<span class="sd">        &gt;&gt;&gt; input = autograd.Variable(torch.randn(128, 20))</span>
+<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
+<span class="sd">        &gt;&gt;&gt; print(output.size())</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_features</span><span class="p">,</span> <span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Linear</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_features</span> <span class="o">=</span> <span class="n">in_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_features</span> <span class="o">=</span> <span class="n">out_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">out_features</span><span class="p">,</span> <span class="n">in_features</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">bias</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">out_features</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;bias&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_parameters</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">reset_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stdv</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">stdv</span><span class="p">,</span> <span class="n">stdv</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="n">stdv</span><span class="p">,</span> <span class="n">stdv</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_features</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; -&gt; &#39;</span> \
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_features</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Hang Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'master',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

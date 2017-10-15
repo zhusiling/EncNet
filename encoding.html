@@ -8,7 +8,7 @@
   <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-90545585-1']);
+      _gaq.push(['_setAccount', 'UA-54746507-1']);
       _gaq.push(['_trackPageview']);
 
       (function() {
@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Encoding Layer &mdash; Encoding master documentation</title>
+  <title>My NN Layers &mdash; Encoding master documentation</title>
   
 
   
@@ -52,7 +52,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
         <link rel="next" title="Synchronized BatchNorm" href="syncbn.html"/>
-        <link rel="prev" title="Extending PyTorch-Encoding" href="notes/extending.html"/> 
+        <link rel="prev" title="Implementing Synchronized Multi-GPU Batch Normalization" href="notes/syncbn.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.0.1)
+                master (1.0.1)
               </div>
             
           
@@ -115,12 +115,21 @@
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Encoding Layer</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">My NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
@@ -134,6 +143,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
@@ -143,11 +157,81 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dilated.html#densenet">DenseNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">Other NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#view"><span class="hidden-section">View</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#standard-layers">Standard Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#conv1d"><span class="hidden-section">Conv1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#conv2d"><span class="hidden-section">Conv2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#relu"><span class="hidden-section">ReLU</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#linear"><span class="hidden-section">Linear</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Experiments</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -194,7 +278,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Encoding Layer</li>
+      <li>My NN Layers</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -213,19 +297,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-encoding">
-<span id="encoding-layer"></span><h1>Encoding Layer<a class="headerlink" href="#module-encoding" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="my-nn-layers">
+<h1>My NN Layers<a class="headerlink" href="#my-nn-layers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="encoding">
 <h3><span class="hidden-section">Encoding</span><a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="encoding.Encoding">
-<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/modules/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Encoding" title="Permalink to this definition">¶</a></dt>
-<dd><p>Encoding Layer: learnable residual encoders over 3d or 4d input that
+<dt id="encoding.nn.Encoding">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encoding Layer: a learnable residual encoder over 3d or 4d input that
 is seen as a mini-batch.</p>
+<a class="reference internal image-reference" href="http://hangzh.com/figure/cvpr17.svg"><div align="center" class="align-center"><img alt="http://hangzh.com/figure/cvpr17.svg" src="http://hangzh.com/figure/cvpr17.svg" width="50%" /></div>
+</a>
 <div class="math">
 \[e_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)} (x_i - c_k)\]</div>
+<p>Please see the <a class="reference external" href="./experiments/texture.html">example of training Deep TEN</a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -276,11 +363,107 @@ is seen as a mini-batch.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="inspiration">
+<h3><span class="hidden-section">Inspiration</span><a class="headerlink" href="#inspiration" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.Inspiration">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Inspiration</code><span class="sig-paren">(</span><em>C</em>, <em>B=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/encoding.html#Inspiration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Inspiration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inspiration Layer (for MSG-Net).
+Tuning the featuremap with target Gram Matrix</p>
+<div class="math">
+\[Y = \phi^{-1}[\phi(\mathcal{F}^T)W\mathcal{G}]\]</div>
+<p>Please see the <a class="reference external" href="./experiments/style.html">example of MSG-Net</a>
+training multi-style generative network for real-time transfer.</p>
+<dl class="docutils">
+<dt>Reference:</dt>
+<dd>Hang Zhang, and Kristin Dana. &#8220;Multi-style Generative Network for Real-time Transfer.&#8221;  <em>arXiv preprint arXiv:1703.06953 (2017)</em></dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="dilatedavgpool2d">
+<h3><span class="hidden-section">DilatedAvgPool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.DilatedAvgPool2d">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">DilatedAvgPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/customize.html#DilatedAvgPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.DilatedAvgPool2d" title="Permalink to this definition">¶</a></dt>
+<dd><p>We provide Dilated Average Pooling for the dilation of Densenet as
+in <a class="reference internal" href="dilated.html#encoding.dilated.DenseNet" title="encoding.dilated.DenseNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.DenseNet</span></code></a>.</p>
+<p>Applies a 2D average pooling over an input signal composed of several input planes.</p>
+<p>In the simplest case, the output value of the layer with input size <span class="math">\((N, C, H, W)\)</span>,
+output <span class="math">\((N, C, H_{out}, W_{out})\)</span> and <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code> <span class="math">\((kH, kW)\)</span>
+can be precisely described as:</p>
+<div class="math">
+\[\begin{array}{ll}
+out(b, c, h, w)  = 1 / (kH * kW) *
+\sum_{{m}=0}^{kH-1} \sum_{{n}=0}^{kW-1}
+input(b, c, dH * h + m, dW * w + n)
+\end{array}\]</div>
+<div class="line-block">
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides
+for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points</div>
+</div>
+<p>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> can either be:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+and the second <cite>int</cite> for the width dimension</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>kernel_size</strong> &#8211; the size of the window</li>
+<li><strong>stride</strong> &#8211; the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
+<li><strong>padding</strong> &#8211; implicit zero padding to be added on both sides</li>
+<li><strong>dilation</strong> &#8211; the dilation parameter similar to Conv2d</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C, H_{in}, W_{in})\)</span></li>
+<li>Output: <span class="math">\((N, C, H_{out}, W_{out})\)</span> where
+<span class="math">\(H_{out} = floor((H_{in}  + 2 * padding[0] - kernel\_size[0]) / stride[0] + 1)\)</span>
+<span class="math">\(W_{out} = floor((W_{in}  + 2 * padding[1] - kernel\_size[1]) / stride[1] + 1)\)</span></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># pool of square window of size=3, stride=2, dilation=2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DilatedAvgPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Reference::</dt>
+<dd>comming</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="grammatrix">
+<h3><span class="hidden-section">GramMatrix</span><a class="headerlink" href="#grammatrix" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.GramMatrix">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">GramMatrix</code><a class="reference internal" href="_modules/encoding/nn/encoding.html#GramMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.GramMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gram Matrix for a 4D convolutional featuremaps as a mini-batch</p>
+<div class="math">
+\[\mathcal{G} = \sum_{h=1}^{H_i}\sum_{w=1}^{W_i} \mathcal{F}_{h,w}\mathcal{F}_{h,w}^T\]</div>
+</dd></dl>
+
+</div>
 <div class="section" id="aggregate">
 <h3><span class="hidden-section">Aggregate</span><a class="headerlink" href="#aggregate" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="encoding.Aggregate">
-<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">Aggregate</code><a class="reference internal" href="_modules/encoding/modules/encoding.html#Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.Aggregate" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.nn.Aggregate">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Aggregate</code><a class="reference internal" href="_modules/encoding/nn/encoding.html#Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Aggregate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregate operation, aggregate the residuals (<span class="math">\(R\)</span>) with
 assignment weights (<span class="math">\(A\)</span>).</p>
 <div class="math">
@@ -301,9 +484,9 @@ assignment weights (<span class="math">\(A\)</span>).</p>
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3><span class="hidden-section">aggregate</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="encoding.aggregate">
-<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">aggregate</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.aggregate" title="Permalink to this definition">¶</a></dt>
+<dl class="function">
+<dt id="encoding.functions.aggregate">
+<code class="descclassname">encoding.functions.</code><code class="descname">aggregate</code><span class="sig-paren">(</span><em>A</em>, <em>X</em>, <em>C</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.aggregate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregate operation, aggregate the residuals of inputs (<span class="math">\(X\)</span>) with repect to the codewords (<span class="math">\(C\)</span>) with assignment weights (<span class="math">\(A\)</span>).</p>
 <div class="math">
 \[e_{k} = \sum_{i=1}^{N} a_{ik} (x_i - d_k)\]</div>
@@ -329,9 +512,9 @@ assignment weights (<span class="math">\(A\)</span>).</p>
 </div>
 <div class="section" id="scaledl2">
 <h3><span class="hidden-section">scaledL2</span><a class="headerlink" href="#scaledl2" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="encoding.scaledL2">
-<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">scaledL2</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#scaledL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.scaledL2" title="Permalink to this definition">¶</a></dt>
+<dl class="function">
+<dt id="encoding.functions.scaledL2">
+<code class="descclassname">encoding.functions.</code><code class="descname">scaledL2</code><span class="sig-paren">(</span><em>X</em>, <em>C</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#scaledL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.scaledL2" title="Permalink to this definition">¶</a></dt>
 <dd><p>scaledL2 distance</p>
 <div class="math">
 \[sl_{ik} = s_k \|x_i-c_k\|^2\]</div>
@@ -348,9 +531,9 @@ assignment weights (<span class="math">\(A\)</span>).</p>
 </div>
 <div class="section" id="residual">
 <h3><span class="hidden-section">residual</span><a class="headerlink" href="#residual" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="encoding.residual">
-<em class="property">class </em><code class="descclassname">encoding.</code><code class="descname">residual</code><a class="reference internal" href="_modules/encoding/functions/aggregate.html#residual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.residual" title="Permalink to this definition">¶</a></dt>
+<dl class="function">
+<dt id="encoding.functions.residual">
+<code class="descclassname">encoding.functions.</code><code class="descname">residual</code><span class="sig-paren">(</span><em>X</em>, <em>C</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#residual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.residual" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate residuals over a mini-batch</p>
 <div class="math">
 \[r_{ik} = x_i - c_k\]</div>
@@ -368,8 +551,8 @@ assignment weights (<span class="math">\(A\)</span>).</p>
 <div class="section" id="assign">
 <h3><span class="hidden-section">assign</span><a class="headerlink" href="#assign" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="encoding.assign">
-<code class="descclassname">encoding.</code><code class="descname">assign</code><span class="sig-paren">(</span><em>R</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/aggregate.html#assign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.assign" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.functions.assign">
+<code class="descclassname">encoding.functions.</code><code class="descname">assign</code><span class="sig-paren">(</span><em>R</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#assign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.assign" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate assignment weights for given residuals (<span class="math">\(R\)</span>) and scale (<span class="math">\(S\)</span>)</p>
 <div class="math">
 \[a_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ik}\|^2)}\]</div>
@@ -400,7 +583,7 @@ assignment weights (<span class="math">\(A\)</span>).</p>
         <a href="syncbn.html" class="btn btn-neutral float-right" title="Synchronized BatchNorm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="notes/extending.html" class="btn btn-neutral" title="Extending PyTorch-Encoding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="notes/syncbn.html" class="btn btn-neutral" title="Implementing Synchronized Multi-GPU Batch Normalization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

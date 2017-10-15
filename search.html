@@ -8,7 +8,7 @@
   <script type="text/javascript">
 
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-90545585-1']);
+      _gaq.push(['_setAccount', 'UA-54746507-1']);
       _gaq.push(['_trackPageview']);
 
       (function() {
@@ -82,7 +82,7 @@
             
             
               <div class="version">
-                master (0.0.1)
+                master (1.0.1)
               </div>
             
           
@@ -113,12 +113,21 @@
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">Encoding Layer</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">My NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
@@ -132,6 +141,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
@@ -141,11 +155,81 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dilated.html#densenet">DenseNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">Other NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#view"><span class="hidden-section">View</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#standard-layers">Standard Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#conv1d"><span class="hidden-section">Conv1d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#conv2d"><span class="hidden-section">Conv2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#relu"><span class="hidden-section">ReLU</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#linear"><span class="hidden-section">Linear</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>

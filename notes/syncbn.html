@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; Encoding master documentation</title>
+  <title>Implementing Synchronized Multi-GPU Batch Normalization &mdash; Encoding master documentation</title>
   
 
   
@@ -50,7 +50,9 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Encoding master documentation" href="../index.html"/> 
+    <link rel="top" title="Encoding master documentation" href="../index.html"/>
+        <link rel="next" title="My NN Layers" href="../encoding.html"/>
+        <link rel="prev" title="Extending PyTorch-Encoding" href="extending.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -107,16 +109,16 @@
             
             
               <p class="caption"><span class="caption-text">Notes</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Install PyTorch-Encoding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notes/extending.html">Extending PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparing-performance">Comparing Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -215,7 +217,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiment Systems</span></p>
+<p class="caption"><span class="caption-text">Experiments</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -276,12 +278,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+      <li>Implementing Synchronized Multi-GPU Batch Normalization</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="../_sources/notes/syncbn.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -293,19 +297,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="encoding/dilated/densenet.html">encoding.dilated.densenet</a></li>
-<li><a href="encoding/dilated/resnet.html">encoding.dilated.resnet</a></li>
-<li><a href="encoding/functions/customize.html">encoding.functions.customize</a></li>
-<li><a href="encoding/functions/encoding.html">encoding.functions.encoding</a></li>
-<li><a href="encoding/functions/syncbn.html">encoding.functions.syncbn</a></li>
-<li><a href="encoding/nn/basic.html">encoding.nn.basic</a></li>
-<li><a href="encoding/nn/customize.html">encoding.nn.customize</a></li>
-<li><a href="encoding/nn/encoding.html">encoding.nn.encoding</a></li>
-<li><a href="encoding/nn/syncbn.html">encoding.nn.syncbn</a></li>
-<li><a href="encoding/parallel.html">encoding.parallel</a></li>
-<li><a href="encoding/utils.html">encoding.utils</a></li>
+  <div class="section" id="implementing-synchronized-multi-gpu-batch-normalization">
+<h1>Implementing Synchronized Multi-GPU Batch Normalization<a class="headerlink" href="#implementing-synchronized-multi-gpu-batch-normalization" title="Permalink to this headline">¶</a></h1>
+<p>We will release the implementation detail of Multi-GPU Batch Normalization in later version.</p>
+<div class="section" id="why-synchronize">
+<h2>Why Synchronize?<a class="headerlink" href="#why-synchronize" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Standard Implementation</li>
 </ul>
+</div>
+<div class="section" id="how-to-synchronize">
+<h2>How to Synchronize?<a class="headerlink" href="#how-to-synchronize" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Forward and Backward Pass</li>
+<li>Synchronized DataParallel</li>
+<li>Cross GPU Autograd</li>
+</ul>
+</div>
+<div class="section" id="comparing-performance">
+<h2>Comparing Performance<a class="headerlink" href="#comparing-performance" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
 
            </div>
            <div class="articleComments">
@@ -313,6 +326,15 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../encoding.html" class="btn btn-neutral float-right" title="My NN Layers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="extending.html" class="btn btn-neutral" title="Extending PyTorch-Encoding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
