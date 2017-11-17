@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +135,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -207,6 +212,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#tabe-of-content">Tabe of content</a></li>
@@ -299,7 +311,7 @@
             
   <div class="section" id="msg-net-style-transfer-example">
 <h1>MSG-Net Style Transfer Example<a class="headerlink" href="#msg-net-style-transfer-example" title="Permalink to this headline">¶</a></h1>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/zhanghang1989/MSG-Net/master/images/figure1.jpg"><img alt="https://raw.githubusercontent.com/zhanghang1989/MSG-Net/master/images/figure1.jpg" class="align-left" src="https://raw.githubusercontent.com/zhanghang1989/MSG-Net/master/images/figure1.jpg" style="width: 55%;" /></a>
+<a class="reference internal image-reference" href="../_images/figure1.jpg"><img alt="../_images/figure1.jpg" class="align-left" src="../_images/figure1.jpg" style="width: 55%;" /></a>
 <p>We provide PyTorh Implementation of <a class="reference internal" href="#msg-net">MSG-Net</a> and <a class="reference internal" href="#neural-style">Neural Style</a> in the <a class="reference external" href="https://github.com/zhanghang1989/PyTorch-Style-Transfer">GitHub repo</a>.
 We also provide <a class="reference external" href="https://github.com/zhanghang1989/MSG-Net/">Torch</a> and
 <a class="reference external" href="https://github.com/zhanghang1989/MXNet-Gluon-Style-Transfer">MXNet</a> implementations.</p>
@@ -322,7 +334,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <h2>MSG-Net<a class="headerlink" href="#msg-net" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Hang Zhang, and Kristin Dana. &#8220;Multi-style Generative Network for Real-time Transfer.&#8221;:</p>
+<p>Hang Zhang, and Kristin Dana. “Multi-style Generative Network for Real-time Transfer.”:</p>
 <div class="last highlight-default"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">zhang2017multistyle</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Multi</span><span class="o">-</span><span class="n">style</span> <span class="n">Generative</span> <span class="n">Network</span> <span class="k">for</span> <span class="n">Real</span><span class="o">-</span><span class="n">time</span> <span class="n">Transfer</span><span class="p">},</span>
     <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
@@ -349,13 +361,13 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 </div>
 </li>
 </ul>
-<img alt="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/myimage.gif" src="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/myimage.gif" />
+<img alt="../_images/myimage.gif" src="../_images/myimage.gif" />
 <ul>
 <li><p class="first">Test the model:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="nb">eval</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">size</span> <span class="mi">1024</span>
 </pre></div>
 </div>
-<p>If you don&#8217;t have a GPU, simply set <code class="docutils literal"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
+<p>If you don’t have a GPU, simply set <code class="docutils literal"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
 <p>If you would to stylize your own photo, change the <code class="docutils literal"><span class="pre">--content-image</span> <span class="pre">path/to/your/photo</span></code>. More options:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">--content-image</span></code>: path to content image you want to stylize.</li>
@@ -367,14 +379,14 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 </ul>
 </li>
 </ul>
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/1.jpg" width="260px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/2.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/3.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/4.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/5.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/6.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/7.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/8.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/9.jpg" width="260px" /></div>
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/1.jpg" width="220px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/2.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/3.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/4.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/5.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/6.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/7.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/8.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/9.jpg" width="220px" /></div>
 <div class="section" id="train-your-own-msg-net-model">
 <h2>Train Your Own MSG-Net Model<a class="headerlink" href="#train-your-own-msg-net-model" title="Permalink to this headline">¶</a></h2>
 <ul>
@@ -411,14 +423,14 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <li><code class="docutils literal"><span class="pre">--style-size</span></code>: the style image size to test on.</li>
 <li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
 </ul>
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g1.jpg" width="260px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g2.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g3.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g4.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g5.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g6.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g7.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g8.jpg" width="260px" />
-<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g9.jpg" width="260px" /></div>
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g1.jpg" width="220px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g2.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g3.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g4.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g5.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g6.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g7.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g8.jpg" width="220px" />
+<img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g9.jpg" width="220px" /></div>
 </div>
 
 
@@ -466,6 +478,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -475,7 +488,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

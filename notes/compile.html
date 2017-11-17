@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install PyTorch-Encoding &mdash; Encoding master documentation</title>
+  <title>Installing PyTorch-Encoding &mdash; Encoding master documentation</title>
   
 
   
@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,21 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +134,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -186,6 +189,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../nn.html">Other NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../nn.html#view"><span class="hidden-section">View</span></a></li>
 </ul>
@@ -207,6 +211,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +228,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -278,7 +289,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Install PyTorch-Encoding</li>
+      <li>Installing PyTorch-Encoding</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -297,28 +308,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="install-pytorch-encoding">
-<h1>Install PyTorch-Encoding<a class="headerlink" href="#install-pytorch-encoding" title="Permalink to this headline">¶</a></h1>
-<ul>
-<li><dl class="first docutils">
-<dt>Install PyTorch from Source to the <code class="docutils literal"><span class="pre">$HOME</span></code> directory:</dt>
-<dd><ul class="first last">
-<li><p class="first">Please follow the <a class="reference external" href="https://github.com/pytorch/pytorch#from-source">PyTorch instructions</a> (recommended).</p>
-</li>
-<li><p class="first">Or you can simply clone a copy to <code class="docutils literal"><span class="pre">$HOME</span></code> directory:</p>
+  <div class="section" id="installing-pytorch-encoding">
+<h1>Installing PyTorch-Encoding<a class="headerlink" href="#installing-pytorch-encoding" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-from-source">
+<h2>Install from Source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">Please follow the <a class="reference external" href="https://github.com/pytorch/pytorch#from-source">PyTorch instructions</a> to install PyTorch from Source to the <code class="docutils literal"><span class="pre">$HOME</span></code> directory (recommended). Or you can simply clone a copy to <code class="docutils literal"><span class="pre">$HOME</span></code> directory:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>git clone https://github.com/pytorch/pytorch $HOME/pytorch
 </pre></div>
 </div>
 </li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>Install this package:</dt>
-<dd><ul class="first last">
+<li><p class="first">Install this package</p>
+<blockquote>
+<div><ul>
 <li><p class="first">Clone the repo:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">-</span><span class="n">Layer</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span>
 </pre></div>
 </div>
 </li>
@@ -333,16 +338,19 @@
 </div>
 </li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><p class="first">Reference:</p>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>If using the code in your research, please cite our paper.</p>
 <ul class="last">
-<li><p class="first">Hang Zhang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em>:</p>
+<li><p class="first">Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2017_CVPR</span><span class="p">,</span>
 <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Xue</span><span class="p">,</span> <span class="n">Jia</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
 <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Deep</span> <span class="n">TEN</span><span class="p">:</span> <span class="n">Texture</span> <span class="n">Encoding</span> <span class="n">Network</span><span class="p">},</span>
@@ -356,8 +364,7 @@
 </ul>
 </div>
 </div></blockquote>
-</li>
-</ul>
+</div>
 </div>
 
 
@@ -405,6 +412,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -414,7 +422,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

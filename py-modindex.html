@@ -85,7 +85,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -111,15 +111,21 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -129,16 +135,13 @@
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -187,6 +190,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nn.html">Other NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nn.html#view"><span class="hidden-section">View</span></a></li>
 </ul>
@@ -208,6 +212,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
@@ -283,8 +294,6 @@
     
     
       <li class="wy-breadcrumbs-aside">
-        
-            
         
       </li>
     
@@ -376,6 +385,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -385,7 +395,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

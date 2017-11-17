@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +135,14 @@
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -207,6 +212,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -299,14 +311,20 @@
             
   <div class="section" id="data-parallel">
 <h1>Data Parallel<a class="headerlink" href="#data-parallel" title="Permalink to this headline">¶</a></h1>
-<p>Current PyTorch DataParallel Table is not supporting mutl-gpu loss calculation, which makes the gpu memory usage very in-efficient. We address this issue here by doing CriterionDataParallel.
-The DataParallel compatible with SyncBN will be released later.</p>
+<ul class="simple">
+<li>Current PyTorch DataParallel Table is not supporting mutl-gpu loss calculation, which makes the gpu memory usage very in-efficient. We address this issue here by doing CriterionDataParallel.</li>
+<li><a class="reference internal" href="#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a> is compatible with Synchronized Batch Normalization <a class="reference internal" href="syncbn.html#encoding.nn.BatchNorm2d" title="encoding.nn.BatchNorm2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.BatchNorm2d</span></code></a>.</li>
+</ul>
 <span class="target" id="module-encoding.parallel"></span><div class="section" id="modeldataparallel">
 <h2><span class="hidden-section">ModelDataParallel</span><a class="headerlink" href="#modeldataparallel" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="encoding.parallel.ModelDataParallel">
 <em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">ModelDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#ModelDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.ModelDataParallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements data parallelism at the module level.</p>
+<dl class="docutils">
+<dt>Reference::</dt>
+<dd>We provide this code for a comming paper.</dd>
+</dl>
 <p>This container parallelizes the application of the given module by
 splitting the input across the specified devices by chunking in the
 batch dimension.
@@ -323,8 +341,8 @@ the same size (so that each GPU processes the same number of samples).</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>module</strong> &#8211; module to be parallelized</li>
-<li><strong>device_ids</strong> &#8211; CUDA devices (default: all devices)</li>
+<li><strong>module</strong> – module to be parallelized</li>
+<li><strong>device_ids</strong> – CUDA devices (default: all devices)</li>
 </ul>
 </td>
 </tr>
@@ -345,6 +363,10 @@ the same size (so that each GPU processes the same number of samples).</p>
 <em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">CriterionDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#CriterionDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.CriterionDataParallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate loss in multiple-GPUs, which balance the memory usage for
 Semantic Segmentation.</p>
+<dl class="docutils">
+<dt>Reference::</dt>
+<dd>We provide this code for a comming paper.</dd>
+</dl>
 <p>The targets are splitted across the specified devices by chunking in
 the batch dimension. Please use together with <a class="reference internal" href="#encoding.parallel.ModelDataParallel" title="encoding.parallel.ModelDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.ModelDataParallel</span></code></a>.</p>
 </dd></dl>
@@ -356,9 +378,13 @@ the batch dimension. Please use together with <a class="reference internal" href
 <dt id="encoding.parallel.SelfDataParallel">
 <em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">SelfDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#SelfDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.SelfDataParallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>SelfDataParallel, please make sure you understand it before using.</p>
+<dl class="docutils">
+<dt>Reference::</dt>
+<dd>We provide this code for a comming paper.</dd>
+</dl>
 <p>Each module in the network should be in self-parallel mode,
 which allows list of inputs from multiple GPUs.
-Please see encoding.nn for detail, use with cautious</p>
+Please see <a class="reference internal" href="nn.html#module-encoding.nn" title="encoding.nn"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn</span></code></a> for detail, use with cautious</p>
 </dd></dl>
 
 </div>
@@ -428,6 +454,7 @@ variance in SyncBN.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -437,7 +464,7 @@ variance in SyncBN.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

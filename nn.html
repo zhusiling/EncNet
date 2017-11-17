@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +135,13 @@
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -186,6 +190,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Other NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#normalize"><span class="hidden-section">Normalize</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#view"><span class="hidden-section">View</span></a></li>
 </ul>
@@ -207,6 +212,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -301,6 +313,17 @@
 <span id="other-nn-layers"></span><h1>Other NN Layers<a class="headerlink" href="#module-encoding.nn" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="customized-layers">
 <h2>Customized Layers<a class="headerlink" href="#customized-layers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grammatrix">
+<h3><span class="hidden-section">GramMatrix</span><a class="headerlink" href="#grammatrix" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="encoding.nn.GramMatrix">
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">GramMatrix</code><a class="reference internal" href="_modules/encoding/nn/encoding.html#GramMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.GramMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gram Matrix for a 4D convolutional featuremaps as a mini-batch</p>
+<div class="math">
+\[\mathcal{G} = \sum_{h=1}^{H_i}\sum_{w=1}^{W_i} \mathcal{F}_{h,w}\mathcal{F}_{h,w}^T\]</div>
+</dd></dl>
+
+</div>
 <div class="section" id="normalize">
 <h3><span class="hidden-section">Normalize</span><a class="headerlink" href="#normalize" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
@@ -320,8 +343,8 @@ norm.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; the exponent value in the norm formulation. Default: 2</li>
-<li><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the dimension to reduce. Default: 1</li>
+<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) – the exponent value in the norm formulation. Default: 2</li>
+<li><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – the dimension to reduce. Default: 1</li>
 </ul>
 </td>
 </tr>
@@ -349,18 +372,17 @@ SelfParallel mode.</p>
 <dl class="class">
 <dt id="encoding.nn.Conv1d">
 <em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Conv1d</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>kernel_size</em>, <em>stride=1</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>groups=1</em>, <em>bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#Conv1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Conv1d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies a 1D convolution over an input signal composed of several input
-planes.
+<dd><p>Applies a 1D convolution over an input signal composed of several
+input planes.
 In the simplest case, the output value of the layer with input size
 <span class="math">\((N, C_{in}, L)\)</span> and output <span class="math">\((N, C_{out}, L_{out})\)</span> can be
-precisely described as:
-.. math:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>\<span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">ll</span><span class="p">}</span>
-<span class="n">out</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>  <span class="o">=</span> <span class="n">bias</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>
-               <span class="o">+</span> \<span class="n">sum_</span><span class="p">{{</span><span class="n">k</span><span class="p">}</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">^</span><span class="p">{</span><span class="n">C_</span><span class="p">{</span><span class="ow">in</span><span class="p">}</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="n">weight</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">},</span> <span class="n">k</span><span class="p">)</span>  \<span class="n">star</span> <span class="nb">input</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-\<span class="n">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span>
-</pre></div>
-</div>
+precisely described as:</p>
+<div class="math">
+\[\begin{array}{ll}
+out(N_i, C_{out_j})  = bias(C_{out_j})
+               + \sum_{{k}=0}^{C_{in}-1} weight(C_{out_j}, k)
+               \star input(N_i, k)
+\end{array}\]</div>
 <p>where <span class="math">\(\star\)</span> is the valid <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-correlation">cross-correlation</a> operator</p>
 <div class="line-block">
 <div class="line"><code class="xref py py-attr docutils literal"><span class="pre">stride</span></code> controls the stride for the cross-correlation.</div>
@@ -379,17 +401,17 @@ At groups=`in_channels`, each input channel is convolved with its own set of fil
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
-<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
-<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
-<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
-<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) – Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to both sides of
 the input. Default: 0</li>
-<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Spacing between kernel
 elements. Default: 1</li>
-<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) – Number of blocked connections from input
 channels to output channels. Default: 1</li>
-<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, adds a learnable bias to the output. Default: True</li>
 </ul>
 </td>
 </tr>
@@ -409,9 +431,9 @@ channels to output channels. Default: 1</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+<li><strong>weight</strong> (<em>Tensor</em>) – the learnable weights of the module of shape
 (out_channels, in_channels, kernel_size)</li>
-<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape
+<li><strong>bias</strong> (<em>Tensor</em>) – the learnable bias of the module of shape
 (out_channels)</li>
 </ul>
 </td>
@@ -439,14 +461,12 @@ channels to output channels. Default: 1</li>
 planes.
 In the simplest case, the output value of the layer with input size
 <span class="math">\((N, C_{in}, H, W)\)</span> and output <span class="math">\((N, C_{out}, H_{out}, W_{out})\)</span>
-can be precisely described as:
-.. math:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>\<span class="n">begin</span><span class="p">{</span><span class="n">array</span><span class="p">}{</span><span class="n">ll</span><span class="p">}</span>
-<span class="n">out</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>  <span class="o">=</span> <span class="n">bias</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">})</span>
-               <span class="o">+</span> \<span class="n">sum_</span><span class="p">{{</span><span class="n">k</span><span class="p">}</span><span class="o">=</span><span class="mi">0</span><span class="p">}</span><span class="o">^</span><span class="p">{</span><span class="n">C_</span><span class="p">{</span><span class="ow">in</span><span class="p">}</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="n">weight</span><span class="p">(</span><span class="n">C_</span><span class="p">{</span><span class="n">out_j</span><span class="p">},</span> <span class="n">k</span><span class="p">)</span>  \<span class="n">star</span> <span class="nb">input</span><span class="p">(</span><span class="n">N_i</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-\<span class="n">end</span><span class="p">{</span><span class="n">array</span><span class="p">}</span>
-</pre></div>
-</div>
+can be precisely described as:</p>
+<div class="math">
+\[\begin{array}{ll}
+out(N_i, C_{out_j})  = bias(C_{out_j})
+               + \sum_{{k}=0}^{C_{in}-1} weight(C_{out_j}, k)  \star input(N_i, k)
+\end{array}\]</div>
 <p>where <span class="math">\(\star\)</span> is the valid 2D <a class="reference external" href="https://en.wikipedia.org/wiki/Cross-correlation">cross-correlation</a> operator</p>
 <div class="line-block">
 <div class="line"><code class="xref py py-attr docutils literal"><span class="pre">stride</span></code> controls the stride for the cross-correlation.</div>
@@ -463,8 +483,8 @@ At groups=`in_channels`, each input channel is convolved with its own set of fil
 <dl class="docutils">
 <dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> can either be:</dt>
 <dd><ul class="first last simple">
-<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
-<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> – in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints – in which case, the first <cite>int</cite> is used for the height dimension,
 and the second <cite>int</cite> for the width dimension</li>
 </ul>
 </dd>
@@ -474,14 +494,14 @@ and the second <cite>int</cite> for the width dimension</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
-<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
-<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
-<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
-<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of the input. Default: 0</li>
-<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel elements. Default: 1</li>
-<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input channels to output channels. Default: 1</li>
-<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) – Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</li>
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Spacing between kernel elements. Default: 1</li>
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) – Number of blocked connections from input channels to output channels. Default: 1</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, adds a learnable bias to the output. Default: True</li>
 </ul>
 </td>
 </tr>
@@ -502,9 +522,9 @@ and the second <cite>int</cite> for the width dimension</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+<li><strong>weight</strong> (<em>Tensor</em>) – the learnable weights of the module of shape
 (out_channels, in_channels, kernel_size[0], kernel_size[1])</li>
-<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape (out_channels)</li>
+<li><strong>bias</strong> (<em>Tensor</em>) – the learnable bias of the module of shape (out_channels)</li>
 </ul>
 </td>
 </tr>
@@ -552,8 +572,8 @@ At groups=`in_channels`, each input channel is convolved with its own set of fil
 <dl class="docutils">
 <dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">output_padding</span></code> can either be:</dt>
 <dd><ul class="first last simple">
-<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimensions</li>
-<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> – in which case the same value is used for the height and width dimensions</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints – in which case, the first <cite>int</cite> is used for the height dimension,
 and the second <cite>int</cite> for the width dimension</li>
 </ul>
 </dd>
@@ -563,15 +583,15 @@ and the second <cite>int</cite> for the width dimension</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
-<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
-<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
-<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
-<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of the input. Default: 0</li>
-<li><strong>output_padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to one side of the output. Default: 0</li>
-<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input channels to output channels. Default: 1</li>
-<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
-<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel elements. Default: 1</li>
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) – Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</li>
+<li><strong>output_padding</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to one side of the output. Default: 0</li>
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) – Number of blocked connections from input channels to output channels. Default: 1</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, adds a learnable bias to the output. Default: True</li>
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a><em>, </em><em>optional</em>) – Spacing between kernel elements. Default: 1</li>
 </ul>
 </td>
 </tr>
@@ -592,9 +612,9 @@ and the second <cite>int</cite> for the width dimension</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+<li><strong>weight</strong> (<em>Tensor</em>) – the learnable weights of the module of shape
 (in_channels, out_channels, kernel_size[0], kernel_size[1])</li>
-<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape (out_channels)</li>
+<li><strong>bias</strong> (<em>Tensor</em>) – the learnable bias of the module of shape (out_channels)</li>
 </ul>
 </td>
 </tr>
@@ -667,16 +687,13 @@ dimensions</li>
 <li>Output: <span class="math">\((N, *)\)</span>, same shape as the input</li>
 </ul>
 </div></blockquote>
-<dl class="docutils">
-<dt>Examples::</dt>
-<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">autograd</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
 </pre></div>
 </div>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -685,10 +702,11 @@ dimensions</li>
 <dl class="class">
 <dt id="encoding.nn.MaxPool2d">
 <em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">MaxPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>return_indices=False</em>, <em>ceil_mode=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/basic.html#MaxPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.MaxPool2d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies a 2D max pooling over an input signal composed of several input
-planes.
-In the simplest case, the output value of the layer with input size <span class="math">\((N, C, H, W)\)</span>,
-output <span class="math">\((N, C, H_{out}, W_{out})\)</span> and <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code> <span class="math">\((kH, kW)\)</span>
+<dd><p>Applies a 2D max pooling over an input signal composed of several
+input planes.
+In the simplest case, the output value of the layer with input size
+<span class="math">\((N, C, H, W)\)</span>, output <span class="math">\((N, C, H_{out}, W_{out})\)</span> and
+<code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code> <span class="math">\((kH, kW)\)</span>
 can be precisely described as:</p>
 <div class="math">
 \[\begin{array}{ll}
@@ -698,14 +716,13 @@ out(N_i, C_j, h, w)  = \max_{{m}=0}^{kH-1} \max_{{n}=0}^{kW-1}
 <div class="line-block">
 <div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides
 for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points</div>
-<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> controls the spacing between the kernel points. It is harder to describe,
-but this <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> does.</div>
+<div class="line"><code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> controls the spacing between the kernel points. It is harder to describe, but this <a class="reference external" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">link</a> has a nice visualization of what <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> does.</div>
 </div>
 <dl class="docutils">
 <dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> can either be:</dt>
 <dd><ul class="first last simple">
-<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
-<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> – in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints – in which case, the first <cite>int</cite> is used for the height dimension,
 and the second <cite>int</cite> for the width dimension</li>
 </ul>
 </dd>
@@ -715,13 +732,13 @@ and the second <cite>int</cite> for the width dimension</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>kernel_size</strong> &#8211; the size of the window to take a max over</li>
-<li><strong>stride</strong> &#8211; the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
-<li><strong>padding</strong> &#8211; implicit zero padding to be added on both sides</li>
-<li><strong>dilation</strong> &#8211; a parameter that controls the stride of elements in the window</li>
-<li><strong>return_indices</strong> &#8211; if True, will return the max indices along with the outputs.
+<li><strong>kernel_size</strong> – the size of the window to take a max over</li>
+<li><strong>stride</strong> – the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
+<li><strong>padding</strong> – implicit zero padding to be added on both sides</li>
+<li><strong>dilation</strong> – a parameter that controls the stride of elements in the window</li>
+<li><strong>return_indices</strong> – if True, will return the max indices along with the outputs.
 Useful when Unpooling later</li>
-<li><strong>ceil_mode</strong> &#8211; when True, will use <cite>ceil</cite> instead of <cite>floor</cite> to compute the output shape</li>
+<li><strong>ceil_mode</strong> – when True, will use <cite>ceil</cite> instead of <cite>floor</cite> to compute the output shape</li>
 </ul>
 </td>
 </tr>
@@ -766,14 +783,13 @@ out(N_i, C_j, h, w)  = 1 / (kH * kW) * \sum_{{m}=0}^{kH-1} \sum_{{n}=0}^{kW-1}
                        input(N_i, C_j, stride[0] * h + m, stride[1] * w + n)
 \end{array}\]</div>
 <div class="line-block">
-<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides
-for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points</div>
+<div class="line">If <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> is non-zero, then the input is implicitly zero-padded on both sides for <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> number of points</div>
 </div>
 <dl class="docutils">
 <dt>The parameters <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">padding</span></code> can either be:</dt>
 <dd><ul class="first last simple">
-<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height and width dimension</li>
-<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for the height dimension,
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> – in which case the same value is used for the height and width dimension</li>
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints – in which case, the first <cite>int</cite> is used for the height dimension,
 and the second <cite>int</cite> for the width dimension</li>
 </ul>
 </dd>
@@ -783,11 +799,11 @@ and the second <cite>int</cite> for the width dimension</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>kernel_size</strong> &#8211; the size of the window</li>
-<li><strong>stride</strong> &#8211; the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
-<li><strong>padding</strong> &#8211; implicit zero padding to be added on both sides</li>
-<li><strong>ceil_mode</strong> &#8211; when True, will use <cite>ceil</cite> instead of <cite>floor</cite> to compute the output shape</li>
-<li><strong>count_include_pad</strong> &#8211; when True, will include the zero-padding in the averaging calculation</li>
+<li><strong>kernel_size</strong> – the size of the window</li>
+<li><strong>stride</strong> – the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
+<li><strong>padding</strong> – implicit zero padding to be added on both sides</li>
+<li><strong>ceil_mode</strong> – when True, will use <cite>ceil</cite> instead of <cite>floor</cite> to compute the output shape</li>
+<li><strong>count_include_pad</strong> – when True, will include the zero-padding in the averaging calculation</li>
 </ul>
 </td>
 </tr>
@@ -828,7 +844,7 @@ The number of output features is equal to the number of input planes.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>output_size</strong> &#8211; the target output size of the image of the form H x W.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>output_size</strong> – the target output size of the image of the form H x W.
 Can be a tuple (H, W) or a single number H for a square image H x H</td>
 </tr>
 </tbody>
@@ -868,8 +884,8 @@ feature maps and should be used instead.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a><em>, </em><em>optional</em>) &#8211; probability of an element to be zeroed.</li>
-<li><strong>inplace</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If set to True, will do this operation
+<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a><em>, </em><em>optional</em>) – probability of an element to be zeroed.</li>
+<li><strong>inplace</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If set to True, will do this operation
 in-place</li>
 </ul>
 </td>
@@ -905,9 +921,9 @@ in-place</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>in_features</strong> &#8211; size of each input sample</li>
-<li><strong>out_features</strong> &#8211; size of each output sample</li>
-<li><strong>bias</strong> &#8211; If set to False, the layer will not learn an additive bias.
+<li><strong>in_features</strong> – size of each input sample</li>
+<li><strong>out_features</strong> – size of each output sample</li>
+<li><strong>bias</strong> – If set to False, the layer will not learn an additive bias.
 Default: True</li>
 </ul>
 </td>
@@ -929,9 +945,9 @@ are the same shape as the input.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>weight</strong> &#8211; the learnable weights of the module of shape
+<li><strong>weight</strong> – the learnable weights of the module of shape
 (out_features x in_features)</li>
-<li><strong>bias</strong> &#8211; the learnable bias of the module of shape (out_features)</li>
+<li><strong>bias</strong> – the learnable bias of the module of shape (out_features)</li>
 </ul>
 </td>
 </tr>
@@ -998,6 +1014,7 @@ are the same shape as the input.</li>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1007,7 +1024,7 @@ are the same shape as the input.</li>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

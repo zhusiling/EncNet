@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +135,14 @@
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -207,6 +212,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -300,8 +312,7 @@
   <div class="section" id="synchronized-batchnorm">
 <h1>Synchronized BatchNorm<a class="headerlink" href="#synchronized-batchnorm" title="Permalink to this headline">¶</a></h1>
 <p>The current BN is implementated insynchronized accross the gpus, which is a big problem for memory consuming tasks such as Semantic Segmenation, since the mini-batch is very small.
-To synchronize the batchnorm accross multiple gpus is not easy to implment within the current Dataparallel framework. We address this difficulty by making each layer &#8216;self-parallel&#8217;, that is accepting the inputs from multi-gpus. Therefore, we can handle different layers seperately for synchronizing it across gpus.
-We will release the whole SyncBN Module and compatible DataParallel later.</p>
+To synchronize the batchnorm accross multiple gpus is not easy to implment within the current Dataparallel framework. We address this difficulty by making each layer ‘self-parallel’ <a class="reference internal" href="parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a>, that is accepting the inputs from multi-gpus. Therefore, we can handle the synchronizing across gpus.</p>
 <div class="section" id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="batchnorm1d">
@@ -311,6 +322,10 @@ We will release the whole SyncBN Module and compatible DataParallel later.</p>
 <em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">BatchNorm1d</code><span class="sig-paren">(</span><em>num_features</em>, <em>eps=1e-05</em>, <em>momentum=0.1</em>, <em>affine=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/syncbn.html#BatchNorm1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.BatchNorm1d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Synchronized Batch Normalization 1d
 Please use compatible <a class="reference internal" href="parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a> and <a class="reference internal" href="nn.html#module-encoding.nn" title="encoding.nn"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn</span></code></a></p>
+<dl class="docutils">
+<dt>Reference::</dt>
+<dd>We provide this code for a comming paper.</dd>
+</dl>
 <p>Applies Batch Normalization over a 2d or 3d input that is seen as a
 mini-batch.</p>
 <div class="math">
@@ -326,13 +341,13 @@ and variance. The running sum is kept with a default momentum of 0.1.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>num_features</strong> &#8211; num_features from an expected input of size
+<li><strong>num_features</strong> – num_features from an expected input of size
 <cite>batch_size x num_features [x width]</cite></li>
-<li><strong>eps</strong> &#8211; a value added to the denominator for numerical stability.
+<li><strong>eps</strong> – a value added to the denominator for numerical stability.
 Default: 1e-5</li>
-<li><strong>momentum</strong> &#8211; the value used for the running_mean and running_var
+<li><strong>momentum</strong> – the value used for the running_mean and running_var
 computation. Default: 0.1</li>
-<li><strong>affine</strong> &#8211; a boolean value that when set to true, gives the layer
+<li><strong>affine</strong> – a boolean value that when set to true, gives the layer
 learnable affine parameters. Default: True</li>
 </ul>
 </td>
@@ -363,6 +378,10 @@ learnable affine parameters. Default: True</li>
 <em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">BatchNorm2d</code><span class="sig-paren">(</span><em>num_features</em>, <em>eps=1e-05</em>, <em>momentum=0.1</em>, <em>affine=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/syncbn.html#BatchNorm2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.BatchNorm2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Synchronized Batch Normalization 2d
 Please use compatible <a class="reference internal" href="parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a> and <a class="reference internal" href="nn.html#module-encoding.nn" title="encoding.nn"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn</span></code></a></p>
+<dl class="docutils">
+<dt>Reference::</dt>
+<dd>We provide this code for a comming paper.</dd>
+</dl>
 <p>Applies Batch Normalization over a 4d input that is seen as a mini-batch
 of 3d inputs</p>
 <div class="math">
@@ -378,13 +397,13 @@ and variance. The running sum is kept with a default momentum of 0.1.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>num_features</strong> &#8211; num_features from an expected input of
+<li><strong>num_features</strong> – num_features from an expected input of
 size batch_size x num_features x height x width</li>
-<li><strong>eps</strong> &#8211; a value added to the denominator for numerical stability.
+<li><strong>eps</strong> – a value added to the denominator for numerical stability.
 Default: 1e-5</li>
-<li><strong>momentum</strong> &#8211; the value used for the running_mean and running_var
+<li><strong>momentum</strong> – the value used for the running_mean and running_var
 computation. Default: 0.1</li>
-<li><strong>affine</strong> &#8211; a boolean value that when set to true, gives the layer learnable
+<li><strong>affine</strong> – a boolean value that when set to true, gives the layer learnable
 affine parameters. Default: True</li>
 </ul>
 </td>
@@ -499,6 +518,7 @@ mini-batch.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -508,7 +528,7 @@ mini-batch.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

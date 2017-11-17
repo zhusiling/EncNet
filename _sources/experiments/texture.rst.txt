@@ -1,7 +1,7 @@
 Deep TEN: Deep Texture Encoding Network Example
 ===============================================
 
-.. image:: http://hangzh.com/figure/cvpr17.svg
+.. image:: ../_static/img/cvpr17.svg
         :width: 100%
         :align: left
 
@@ -19,7 +19,7 @@ Test Pre-trained Model
 
     git clone git@github.com:zhanghang1989/PyTorch-Encoding.git
 
-- Download the `MINC-2500 <http://opensurfaces.cs.cornell.edu/publications/minc/>`_ dataset to ``$HOME/data/minc`` folder. Download pre-trained model (training curve as shown `curve`_ pre-trained on train-1 split using single training size of 224, with an error rate of :math:`19.98\%` using single crop on test-1 set)::
+- Download the `MINC-2500 <http://opensurfaces.cs.cornell.edu/publications/minc/>`_ dataset to ``$HOME/data/minc`` folder. Download pre-trained model (training `curve`_ as bellow, pre-trained on train-1 split using single training size of 224, with an error rate of :math:`19.98\%` using single crop on test-1 set)::
 
     cd PyTorch-Encoding/experiments
     bash model/download_models.sh
@@ -39,7 +39,7 @@ Test Pre-trained Model
 Train Your Own Model
 --------------------
 
-- Example training command::
+- Example training command for training above model::
 
     python main.py --dataset minc --model encodingnet --batch-size 64 --lr 0.01 --epochs 60 
 

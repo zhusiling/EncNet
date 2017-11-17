@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +135,14 @@
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -207,6 +212,13 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -314,19 +326,178 @@ input planes.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>input</strong> &#8211; input tensor (minibatch x in_channels x iH x iW)</li>
-<li><strong>kernel_size</strong> &#8211; size of the pooling region, a single number or a
+<li><strong>input</strong> – input tensor (minibatch x in_channels x iH x iW)</li>
+<li><strong>kernel_size</strong> – size of the pooling region, a single number or a
 tuple (kh x kw)</li>
-<li><strong>stride</strong> &#8211; stride of the pooling operation, a single number or a
+<li><strong>stride</strong> – stride of the pooling operation, a single number or a
 tuple (sh x sw). Default is equal to kernel size</li>
-<li><strong>padding</strong> &#8211; implicit zero padding on the input, a single number or
+<li><strong>padding</strong> – implicit zero padding on the input, a single number or
 a tuple (padh x padw), Default: 0</li>
-<li><strong>dilation</strong> &#8211; the dilation parameter similar to Conv2d</li>
+<li><strong>dilation</strong> – the dilation parameter similar to Conv2d</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+</div>
+<div class="section" id="upsample">
+<h2><span class="hidden-section">upsample</span><a class="headerlink" href="#upsample" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.upsample">
+<code class="descclassname">encoding.functions.</code><code class="descname">upsample</code><span class="sig-paren">(</span><em>input</em>, <em>size=None</em>, <em>scale_factor=None</em>, <em>mode='nearest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#upsample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.upsample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version torch.nn.functional.upsample</p>
+<p>Upsamples the input to either the given <code class="xref py py-attr docutils literal"><span class="pre">size</span></code> or the given
+<code class="xref py py-attr docutils literal"><span class="pre">scale_factor</span></code></p>
+<p>The algorithm used for upsampling is determined by <code class="xref py py-attr docutils literal"><span class="pre">mode</span></code>.</p>
+<p>Currently temporal, spatial and volumetric upsampling are supported, i.e.
+expected inputs are 3-D, 4-D or 5-D in shape.</p>
+<p>The input dimensions are interpreted in the form:
+<cite>mini-batch x channels x [depth] x [height] x width</cite></p>
+<p>The modes available for upsampling are: <cite>nearest</cite>, <cite>linear</cite> (3D-only),
+<cite>bilinear</cite> (4D-only), <cite>trilinear</cite> (5D-only)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input</strong> (<em>Variable</em>) – input</li>
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>] or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>] or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>]</em>) – output spatial size.</li>
+<li><strong>scale_factor</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – multiplier for spatial size. Has to be an integer.</li>
+<li><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – algorithm used for upsampling:
+‘nearest’ | ‘linear’ | ‘bilinear’ | ‘trilinear’. Default: ‘nearest’</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="dropout">
+<h2><span class="hidden-section">dropout</span><a class="headerlink" href="#dropout" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.dropout">
+<code class="descclassname">encoding.functions.</code><code class="descname">dropout</code><span class="sig-paren">(</span><em>input</em>, <em>p=0.5</em>, <em>training=False</em>, <em>inplace=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#dropout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.dropout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version torch.nn.functional.droupout</p>
+<p>The channels to zero-out are randomized on every forward call.</p>
+<p><em>Usually the input comes from Conv2d modules.</em></p>
+<p>As described in the paper
+<cite>Efficient Object Localization Using Convolutional Networks</cite>,
+if adjacent pixels within feature maps are strongly correlated
+(as is normally the case in early convolution layers) then iid dropout
+will not regularize the activations and will otherwise just result
+in an effective learning rate decrease.</p>
+<p>In this case, <code class="xref py py-func docutils literal"><span class="pre">nn.Dropout2d()</span></code> will help promote independence between
+feature maps and should be used instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a><em>, </em><em>optional</em>) – probability of an element to be zeroed.</li>
+<li><strong>inplace</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If set to True, will do this operation
+in-place</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C, H, W)\)</span></li>
+<li>Output: <span class="math">\((N, C, H, W)\)</span> (same shape as input)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="relu">
+<h2><span class="hidden-section">relu</span><a class="headerlink" href="#relu" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.relu">
+<code class="descclassname">encoding.functions.</code><code class="descname">relu</code><span class="sig-paren">(</span><em>input</em>, <em>inplace=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#relu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.relu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version torch.nn.functional.relu</p>
+<p>Applies the rectified linear unit function element-wise
+<span class="math">\({ReLU}(x)= max(0, x)\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>inplace</strong> – can optionally do the operation in-place. Default: False</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, *)\)</span> where <cite>*</cite> means, any number of additional
+dimensions</li>
+<li>Output: <span class="math">\((N, *)\)</span>, same shape as the input</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="view-each">
+<h2><span class="hidden-section">view_each</span><a class="headerlink" href="#view-each" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.view_each">
+<code class="descclassname">encoding.functions.</code><code class="descname">view_each</code><span class="sig-paren">(</span><em>x</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#view_each"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.view_each" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version torch.view</p>
+<p>Returns a new tensor with the same data but different size.
+The returned tensor shares the same data and must have the same number
+of elements, but may have a different size. A tensor must be
+<code class="xref py py-attr docutils literal"><span class="pre">contiguous</span></code> to be viewed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input</strong> – list of multi-gpu tensors</li>
+<li><strong>size</strong> (<em>torch.Size</em><em> or </em><em>int...</em>) – Desired size</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="multi-each">
+<h2><span class="hidden-section">multi_each</span><a class="headerlink" href="#multi-each" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.multi_each">
+<code class="descclassname">encoding.functions.</code><code class="descname">multi_each</code><span class="sig-paren">(</span><em>a</em>, <em>b</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#multi_each"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.multi_each" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version multiplication</p>
+<div class="math">
+\[y[i] = a[i] * b[i]\]</div>
+</dd></dl>
+
+</div>
+<div class="section" id="sum-each">
+<h2><span class="hidden-section">sum_each</span><a class="headerlink" href="#sum-each" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.sum_each">
+<code class="descclassname">encoding.functions.</code><code class="descname">sum_each</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#sum_each"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.sum_each" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version torch.add</p>
+<div class="math">
+\[y[i] = a[i] + b[i]\]</div>
+</dd></dl>
+
+</div>
+<div class="section" id="cat-each">
+<h2><span class="hidden-section">cat_each</span><a class="headerlink" href="#cat-each" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.cat_each">
+<code class="descclassname">encoding.functions.</code><code class="descname">cat_each</code><span class="sig-paren">(</span><em>x1</em>, <em>x2</em>, <em>dim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/basic.html#cat_each"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.cat_each" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-GPU version torch.cat</p>
+<div class="math">
+\[y[i] = torch.cat(a[i], b[i], dim)\]</div>
 </dd></dl>
 
 </div>
@@ -377,6 +548,7 @@ a tuple (padh x padw), Default: 0</li>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -386,7 +558,7 @@ a tuple (padh x padw), Default: 0</li>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

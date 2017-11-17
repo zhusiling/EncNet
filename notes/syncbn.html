@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -110,15 +110,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -128,16 +135,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -207,6 +212,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">My PyTorch Utils</a><ul>
@@ -217,7 +229,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Experiments</span></p>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/style.html#tabe-of-content">Tabe of content</a></li>
@@ -299,23 +311,96 @@
             
   <div class="section" id="implementing-synchronized-multi-gpu-batch-normalization">
 <h1>Implementing Synchronized Multi-GPU Batch Normalization<a class="headerlink" href="#implementing-synchronized-multi-gpu-batch-normalization" title="Permalink to this headline">¶</a></h1>
-<p>We will release the implementation detail of Multi-GPU Batch Normalization in later version.</p>
-<div class="section" id="why-synchronize">
-<h2>Why Synchronize?<a class="headerlink" href="#why-synchronize" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we discuss the implementation detail of Multi-GPU Batch Normalization (BN) <a class="reference internal" href="../syncbn.html#encoding.nn.BatchNorm2d" title="encoding.nn.BatchNorm2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.BatchNorm2d</span></code></a> and compatible <a class="reference internal" href="../parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a>. We will provide the training example in a later version.</p>
+<div class="section" id="how-bn-works">
+<h2>How BN works?<a class="headerlink" href="#how-bn-works" title="Permalink to this headline">¶</a></h2>
+<p>BN layer was introduced in the paper <a class="reference external" href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a>, which dramatically speed up the training process of the network (enables larger learning rate) and makes the network less sensitive to the weight initialization.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Forward Pass:</dt>
+<dd><p class="first">For the input data <span class="math">\(X={x_1, ...x_N}\)</span>, the data are normalized to be zero-mean and unit-variance, then scale and shit:</p>
+<div class="math">
+\[y_i = \gamma\cdot\frac{x_i-\mu}{\sigma} + \beta ,\]</div>
+<p class="last">where <span class="math">\(\mu=\frac{\sum_i^N x_i}{N} , \sigma = \sqrt{\frac{\sum_i^N (x_i-\mu)^2}{N}+\epsilon}\)</span> and <span class="math">\(\gamma, \beta\)</span> are the learnable parameters.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Backward Pass:</dt>
+<dd><p class="first">For calculating the gradient <span class="math">\(\frac{d_\ell}{d_{x_i}}\)</span>, we need to consider the gradient from <span class="math">\(\frac{d_\ell}{d_y}\)</span> and the gradients from <span class="math">\(\frac{d_\ell}{d_\mu}\)</span> and <span class="math">\(\frac{d_\ell}{d_\sigma}\)</span>, since the <span class="math">\(\mu \text{ and } \sigma\)</span> are the function of the input <span class="math">\(x_i\)</span>. We use patial direvative in the notations:</p>
+<div class="math">
+\[\frac{d_\ell}{d_{x_i}} = \frac{d_\ell}{d_{y_i}}\cdot\frac{d_{y_i}}{d_{x_i}} + \frac{d_\ell}{d_\mu}\cdot\frac{d_\mu}{d_{x_i}} + \frac{d_\ell}{d_\sigma}\cdot\frac{d_\sigma}{d_{x_i}}\]</div>
+<p class="last">where <span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{\gamma}{\sigma}, \frac{d_\ell}{d_\mu}=-\frac{\gamma}{\sigma}\sum_i^N\frac{d_\ell}{d_{y_i}}
+\text{ and } \frac{d_\sigma}{d_{x_i}}=-\frac{1}{\sigma}(\frac{x_i-\mu}{N})\)</span>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="why-synchronize-bn">
+<h2>Why Synchronize BN?<a class="headerlink" href="#why-synchronize-bn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Standard Implementation</li>
+<li>Standard Implementations of BN in public frameworks (suck as Caffe, MXNet, Torch, TF, PyTorch) are unsynchronized, which means that the data are normalized within each GPU. Therefore the <cite>working batch-size</cite> of the BN layer is <cite>BatchSize/nGPU</cite> (batch-size in each GPU).</li>
+<li>Since the <cite>working batch-size</cite> is typically large enough for standard vision tasks, such as classification and detection, there is no need to synchronize BN layer during the training. The synchronization will slow down the training.</li>
+<li>However, for the Semantic Segmentation task, the state-of-the-art approaches typically adopt dilated convoluton, which is very memory consuming. The <cite>working bath-size</cite> can be too small for BN layers (2 or 4 in each GPU) when using larger/deeper pre-trained networks, such as <a class="reference internal" href="../dilated.html#encoding.dilated.ResNet" title="encoding.dilated.ResNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.ResNet</span></code></a> or <a class="reference internal" href="../dilated.html#encoding.dilated.DenseNet" title="encoding.dilated.DenseNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.DenseNet</span></code></a>.</li>
 </ul>
 </div>
 <div class="section" id="how-to-synchronize">
 <h2>How to Synchronize?<a class="headerlink" href="#how-to-synchronize" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Forward and Backward Pass</li>
-<li>Synchronized DataParallel</li>
-<li>Cross GPU Autograd</li>
+<p>Suppose we have <span class="math">\(K\)</span> number of GPUs, <span class="math">\(sum(x)_k\)</span> and <span class="math">\(sum(x^2)_k\)</span> denotes the sum of elements and sum of element squares in <span class="math">\(k^{th}\)</span> GPU.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Forward Pass:</dt>
+<dd><p class="first last">We can calculate the sum of elements <span class="math">\(sum(x)=\sum x_i \text{ and sum of squares } sum(x^2)=\sum x_i^2\)</span> in each GPU, then apply <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a> operation to sum accross GPUs. Then calculate the global mean <span class="math">\(\mu=\frac{sum(x)}{N} \text{ and global variance } \sigma=\sqrt{\frac{sum(x^2)}{N}-\mu^2+\epsilon}\)</span>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Backward Pass:</dt>
+<dd><ul class="first last simple">
+<li><span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
+<li>Calculate the gradient of <span class="math">\(sum(x)\)</span> and <span class="math">\(sum(x^2)\)</span> individually in each GPU <span class="math">\(\frac{d_\ell}{d_{sum(x)_k}}\)</span> and <span class="math">\(\frac{d_\ell}{d_{sum(x^2)_k}}\)</span>.</li>
+<li>Then Sync the gradient (automatically handled by <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a>) and continue the backward.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Synchronized DataParallel:</dt>
+<dd><p class="first">Standard DataParallel pipeline of public frameworks (MXNet, PyTorch…) in each training iters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>duplicate the network (weights) to all the GPUs,</li>
+<li>split the training batch to each GPU,</li>
+<li>forward and backward to calculate gradient,</li>
+<li>update network parameters (weights) then go to next iter.</li>
+</ul>
+</div></blockquote>
+<p class="last">Therefore, communicattion accross different GPUs are not supported. To address this problem, we introduce a <a class="reference internal" href="../parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a> mode, which enables each layer to accept mutli-GPU inputs directly. Those self-parallel layers are provide in <a class="reference internal" href="../nn.html#module-encoding.nn" title="encoding.nn"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Cross GPU Autograd:</dt>
+<dd><p class="first last">Due to the BN layers are frequently used in the networks, the PyTorch autograd engine will be messed up by such a complicated backward graph. To address this problem, we provide an aotograd function <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a> to handle the cross GPU gradient calculation.</p>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 <div class="section" id="comparing-performance">
 <h2>Comparing Performance<a class="headerlink" href="#comparing-performance" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Training Time:</li>
+<li>Segmentation Performance:</li>
+</ul>
+</div>
+<div class="section" id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This code is provided together with the paper (coming soon), please cite our work.</p>
+</div>
 </div>
 </div>
 
@@ -364,6 +449,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -373,7 +459,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

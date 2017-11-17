@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (1.0.1)
+                master (0.1.0+aca8289)
               </div>
             
           
@@ -109,15 +109,22 @@
             
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Install PyTorch-Encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Installing PyTorch-Encoding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#reference">Reference</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/extending.html">Extending PyTorch-Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize">Why Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-bn-works">How BN works?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -127,16 +134,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#modules">Modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">Aggregate</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">aggregate</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#residual"><span class="hidden-section">residual</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#assign"><span class="hidden-section">assign</span></a></li>
 </ul>
 </li>
 </ul>
@@ -206,6 +211,13 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">Other Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#relu"><span class="hidden-section">relu</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">My PyTorch Utils</a><ul>
@@ -298,7 +310,7 @@
             
   <div class="section" id="deep-ten-deep-texture-encoding-network-example">
 <h1>Deep TEN: Deep Texture Encoding Network Example<a class="headerlink" href="#deep-ten-deep-texture-encoding-network-example" title="Permalink to this headline">¶</a></h1>
-<a class="reference internal image-reference" href="http://hangzh.com/figure/cvpr17.svg"><div align="left" class="align-left"><img alt="http://hangzh.com/figure/cvpr17.svg" src="http://hangzh.com/figure/cvpr17.svg" width="100%" /></div>
+<a class="reference internal image-reference" href="../_images/cvpr171.svg"><div align="left" class="align-left"><img alt="../_images/cvpr171.svg" src="../_images/cvpr171.svg" width="100%" /></div>
 </a>
 <p>In this section, we show an example of training/testing Encoding-Net for texture recognition on MINC-2500 dataset. Comparing to original Torch implementation, we use <em>different learning rate</em> for pre-trained base network and encoding layer (10x), disable color jittering after reducing lr and adopt much <em>smaller training image size</em> (224 instead of 352).</p>
 <div class="admonition note">
@@ -313,7 +325,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Download the <a class="reference external" href="http://opensurfaces.cs.cornell.edu/publications/minc/">MINC-2500</a> dataset to <code class="docutils literal"><span class="pre">$HOME/data/minc</span></code> folder. Download pre-trained model (training curve as shown <a class="reference internal" href="#curve">curve</a> pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math">\(19.98\%\)</span> using single crop on test-1 set):</p>
+<li><p class="first">Download the <a class="reference external" href="http://opensurfaces.cs.cornell.edu/publications/minc/">MINC-2500</a> dataset to <code class="docutils literal"><span class="pre">$HOME/data/minc</span></code> folder. Download pre-trained model (training <a class="reference internal" href="#curve">curve</a> as bellow, pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math">\(19.98\%\)</span> using single crop on test-1 set):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">/</span><span class="n">experiments</span>
 <span class="n">bash</span> <span class="n">model</span><span class="o">/</span><span class="n">download_models</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -334,7 +346,7 @@
 <div class="section" id="train-your-own-model">
 <h2>Train Your Own Model<a class="headerlink" href="#train-your-own-model" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Example training command:</p>
+<li><p class="first">Example training command for training above model:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">encodingnet</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">64</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.01</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">60</span>
 </pre></div>
 </div>
@@ -350,7 +362,7 @@
 <span class="o">--</span><span class="n">start_epoch</span> <span class="n">N</span>       <span class="n">the</span> <span class="n">epoch</span> <span class="n">number</span> <span class="n">to</span> <span class="n">start</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 <span class="o">--</span><span class="n">lr</span> <span class="n">LR</span>               <span class="n">learning</span> <span class="n">rate</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="o">--</span><span class="n">momentum</span> <span class="n">M</span>          <span class="n">SGD</span> <span class="n">momentum</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">)</span>
-<span class="o">--</span><span class="n">weight</span><span class="o">-</span><span class="n">decay</span> <span class="n">M</span>      <span class="n">SGD</span> <span class="n">weight</span> <span class="n">decay</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">--</span><span class="n">weight</span><span class="o">-</span><span class="n">decay</span> <span class="n">M</span>      <span class="n">SGD</span> <span class="n">weight</span> <span class="n">decay</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mf">1e-4</span><span class="p">)</span>
 <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cuda</span>             <span class="n">disables</span> <span class="n">CUDA</span> <span class="n">training</span>
 <span class="o">--</span><span class="n">plot</span>                <span class="n">matplotlib</span>
 <span class="o">--</span><span class="n">seed</span> <span class="n">S</span>              <span class="n">random</span> <span class="n">seed</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
@@ -386,7 +398,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
-<li><p class="first">Hang Zhang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em>:</p>
+<li><p class="first">Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2017_CVPR</span><span class="p">,</span>
 <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Xue</span><span class="p">,</span> <span class="n">Jia</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
 <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Deep</span> <span class="n">TEN</span><span class="p">:</span> <span class="n">Texture</span> <span class="n">Encoding</span> <span class="n">Network</span><span class="p">},</span>
@@ -445,6 +457,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -454,7 +467,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
