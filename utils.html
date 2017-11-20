@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.1.0+aca8289)
+                master (0.1.0+6347d89)
               </div>
             
           
@@ -111,8 +111,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
 </ul>
 </li>
@@ -137,7 +136,6 @@
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
@@ -191,6 +189,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nn.html">Other NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nn.html#view"><span class="hidden-section">View</span></a></li>
 </ul>
@@ -222,7 +221,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
@@ -312,20 +311,21 @@
   <div class="section" id="my-pytorch-utils">
 <h1>My PyTorch Utils<a class="headerlink" href="#my-pytorch-utils" title="Permalink to this headline">¶</a></h1>
 <p>Useful util functions.</p>
-<span class="target" id="module-encoding.utils"></span><div class="section" id="coslr-scheduler">
-<h2><span class="hidden-section">CosLR_Scheduler</span><a class="headerlink" href="#coslr-scheduler" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-encoding.utils"></span><div class="section" id="lr-scheduler">
+<h2><span class="hidden-section">LR_Scheduler</span><a class="headerlink" href="#lr-scheduler" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="encoding.utils.CosLR_Scheduler">
-<em class="property">class </em><code class="descclassname">encoding.utils.</code><code class="descname">CosLR_Scheduler</code><span class="sig-paren">(</span><em>args</em>, <em>niters</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils.html#CosLR_Scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.CosLR_Scheduler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cosine Learning Rate Scheduler</p>
-<div class="math">
-\[lr = baselr * 0.5 * (1 + cos(iter/maxiter))\]</div>
+<dt id="encoding.utils.LR_Scheduler">
+<em class="property">class </em><code class="descclassname">encoding.utils.</code><code class="descname">LR_Scheduler</code><span class="sig-paren">(</span><em>args</em>, <em>niters=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils.html#LR_Scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.LR_Scheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Learning Rate Scheduler</p>
+<p>Step mode: <code class="docutils literal"><span class="pre">lr</span> <span class="pre">=</span> <span class="pre">baselr</span> <span class="pre">*</span> <span class="pre">0.1</span> <span class="pre">^</span> <span class="pre">{floor(epoch-1</span> <span class="pre">/</span> <span class="pre">lr_step)}</span></code></p>
+<p>Cosine mode: <code class="docutils literal"><span class="pre">lr</span> <span class="pre">=</span> <span class="pre">baselr</span> <span class="pre">*</span> <span class="pre">0.5</span> <span class="pre">*</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">cos(iter/maxiter))</span></code></p>
+<p>Poly mode: <code class="docutils literal"><span class="pre">lr</span> <span class="pre">=</span> <span class="pre">baselr</span> <span class="pre">*</span> <span class="pre">(1</span> <span class="pre">-</span> <span class="pre">iter/maxiter)</span> <span class="pre">^</span> <span class="pre">0.9</span></code></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>args</strong> – base learning rate <code class="xref py py-attr docutils literal"><span class="pre">args.lr</span></code>, number of epochs <code class="xref py py-attr docutils literal"><span class="pre">args.epochs</span></code></li>
+<li><strong>args</strong> – <code class="xref py py-attr docutils literal"><span class="pre">args.lr_scheduler</span></code> lr scheduler mode (<cite>cos</cite>, <cite>poly</cite>), <code class="xref py py-attr docutils literal"><span class="pre">args.lr</span></code> base learning rate, <code class="xref py py-attr docutils literal"><span class="pre">args.epochs</span></code> number of epochs, <code class="xref py py-attr docutils literal"><span class="pre">args.lr_step</span></code></li>
 <li><strong>niters</strong> – number of iterations per epoch</li>
 </ul>
 </td>

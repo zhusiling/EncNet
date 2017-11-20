@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.1.0+aca8289)
+                master (0.1.0+6347d89)
               </div>
             
           
@@ -111,8 +111,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
 </ul>
 </li>
@@ -137,7 +136,6 @@
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
@@ -191,6 +189,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nn.html">Other NN Layers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#customized-layers">Customized Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nn.html#view"><span class="hidden-section">View</span></a></li>
 </ul>
@@ -222,7 +221,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
@@ -311,10 +310,13 @@
             
   <div class="section" id="dilated-networks">
 <h1>Dilated Networks<a class="headerlink" href="#dilated-networks" title="Permalink to this headline">¶</a></h1>
-<p>We provide correct dilated pre-trained ResNet and DenseNet for semantic segmentation.
-For dilation of ResNet, we replace the stride of 2 Conv3x3 at begining of certain stage and update the dilation of the conv layers afterwards.
-For dilation of DenseNet, we provide <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a> that handles the dilation of the transition layers, then update the dilation of the conv layers afterwards.
+<p>We provide correct dilated pre-trained ResNet and DenseNet (stride of 8) for semantic segmentation.
+For dilation of DenseNet, we provide <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.
 All provided models have been verified.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This code is provided together with the paper (coming soon), please cite our work.</p>
+</div>
 <span class="target" id="module-encoding.dilated"></span><div class="section" id="resnet">
 <h2>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">

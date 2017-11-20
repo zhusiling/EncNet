@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.1.0+aca8289)
+                master (0.1.0+6347d89)
               </div>
             
           
@@ -220,7 +220,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
@@ -335,7 +335,8 @@
 
 <div class="viewcode-block" id="BatchNorm1d"><a class="viewcode-back" href="../../../syncbn.html#encoding.nn.BatchNorm1d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Synchronized Batch Normalization 1d</span>
-<span class="sd">    Please use compatible :class:`encoding.parallel.SelfDataParallel` and :class:`encoding.nn`</span>
+
+<span class="sd">    `Implementation ideas &lt;./notes/syncbn.html&gt;`_. Please use compatible :class:`encoding.parallel.SelfDataParallel` and :class:`encoding.nn`</span>
 
 <span class="sd">    Reference::</span>
 <span class="sd">        We provide this code for a comming paper.</span>
@@ -529,7 +530,8 @@
 
 <div class="viewcode-block" id="BatchNorm2d"><a class="viewcode-back" href="../../../syncbn.html#encoding.nn.BatchNorm2d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Synchronized Batch Normalization 2d</span>
-<span class="sd">    Please use compatible :class:`encoding.parallel.SelfDataParallel` and :class:`encoding.nn`    </span>
+
+<span class="sd">    `Implementation ideas &lt;./notes/syncbn.html&gt;`_. Please use compatible :class:`encoding.parallel.SelfDataParallel` and :class:`encoding.nn`. </span>
 
 <span class="sd">    Reference::</span>
 <span class="sd">        We provide this code for a comming paper.</span>

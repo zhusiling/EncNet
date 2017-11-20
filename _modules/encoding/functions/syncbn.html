@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.1.0+aca8289)
+                master (0.1.0+6347d89)
               </div>
             
           
@@ -220,7 +220,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
@@ -369,7 +369,11 @@
     <span class="k">return</span> <span class="n">_sum_square</span><span class="p">()(</span><span class="nb">input</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">_batchnormtrain</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_batchnorm</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_batchnorm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="o">=</span> <span class="n">training</span>
+
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
         <span class="k">assert</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
@@ -403,13 +407,13 @@
                 <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_batchnorm_Backward</span><span class="p">(</span>
                     <span class="n">gradOutput</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span><span class="p">,</span> 
                     <span class="n">mean</span><span class="p">,</span> <span class="n">invstd</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span><span class="p">,</span>
-                    <span class="kc">True</span><span class="p">)</span> 
+                    <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span> 
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
             <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
                 <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_batchnorm_Backward</span><span class="p">(</span>
                     <span class="n">gradOutput</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span><span class="p">,</span> 
                     <span class="n">mean</span><span class="p">,</span> <span class="n">invstd</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span><span class="p">,</span>
-                    <span class="kc">True</span><span class="p">)</span> 
+                    <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">)</span> 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span>
@@ -430,52 +434,7 @@
 <span class="sd">        - Output: :math:`(N, C)` or :math:`(N, C, L)` (same shape as input)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_batchnormtrain</span><span class="p">()(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span></div>
-
-
-<span class="k">class</span> <span class="nc">_batchnormeval</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
-        <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
-        <span class="k">assert</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-            <span class="n">invstd</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">std</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
-            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_batchnorm_Forward</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> 
-                    <span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">invstd</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
-            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_batchnorm_Forward</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> 
-                    <span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">invstd</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">output</span> 
-
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">gradOutput</span><span class="p">):</span>
-        <span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">saved_tensors</span>
-        <span class="n">invstd</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">std</span>
-        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-            <span class="n">gradInput</span> <span class="o">=</span> <span class="n">gradOutput</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-            <span class="n">gradGamma</span> <span class="o">=</span> <span class="n">gradOutput</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-            <span class="n">gradBeta</span>  <span class="o">=</span> <span class="n">gradOutput</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-            <span class="n">gradMean</span>  <span class="o">=</span> <span class="n">gradOutput</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-            <span class="n">gradStd</span>   <span class="o">=</span> <span class="n">gradOutput</span><span class="o">.</span><span class="n">new</span><span class="p">()</span><span class="o">.</span><span class="n">resize_as_</span><span class="p">(</span><span class="n">std</span><span class="p">)</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">):</span>
-            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Float_batchnorm_Backward</span><span class="p">(</span>
-                    <span class="n">gradOutput</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span><span class="p">,</span> 
-                    <span class="n">mean</span><span class="p">,</span> <span class="n">invstd</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span><span class="p">,</span>
-                    <span class="kc">False</span><span class="p">)</span> 
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">):</span>
-            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-                <span class="n">encoding_lib</span><span class="o">.</span><span class="n">Encoding_Double_batchnorm_Backward</span><span class="p">(</span>
-                    <span class="n">gradOutput</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span><span class="p">,</span> 
-                    <span class="n">mean</span><span class="p">,</span> <span class="n">invstd</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span><span class="p">,</span>
-                    <span class="kc">False</span><span class="p">)</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unimplemented data type!&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span>
+    <span class="k">return</span> <span class="n">_batchnorm</span><span class="p">(</span><span class="kc">True</span><span class="p">)(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="batchnormeval"><a class="viewcode-back" href="../../../syncbn.html#encoding.functions.batchnormeval">[docs]</a><span class="k">def</span> <span class="nf">batchnormeval</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">):</span>
@@ -484,7 +443,7 @@
 
 <span class="sd">    Please see encoding.batchnormtrain_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_batchnormeval</span><span class="p">()(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">_batchnorm</span><span class="p">(</span><span class="kc">False</span><span class="p">)(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

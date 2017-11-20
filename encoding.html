@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.1.0+aca8289)
+                master (0.1.0+6347d89)
               </div>
             
           
@@ -111,8 +111,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Installing PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#pip-install-coming">Pip Install (coming)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source-recommended">Install from Source (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#reference">Reference</a></li>
 </ul>
 </li>
@@ -222,7 +221,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#coslr-scheduler"><span class="hidden-section">CosLR_Scheduler</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
@@ -325,6 +324,10 @@ is seen as a mini-batch.</p>
 <div class="math">
 \[e_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)} (x_i - c_k)\]</div>
 <p>Please see the <a class="reference external" href="./experiments/texture.html">example of training Deep TEN</a>.</p>
+<dl class="docutils">
+<dt>Reference:</dt>
+<dd>Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
+</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -361,17 +364,13 @@ is seen as a mini-batch.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">encoding</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span><span class="p">,</span> <span class="n">gradcheck</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">W</span><span class="p">,</span><span class="n">K</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">W</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">layer</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">Encoding</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">double</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">E</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>Reference:</dt>
-<dd>Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -397,7 +396,7 @@ training multi-style generative network for real-time transfer.</p>
 <h3><span class="hidden-section">UpsampleConv2d</span><a class="headerlink" href="#upsampleconv2d" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.nn.UpsampleConv2d">
-<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">UpsampleConv2d</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>kernel_size</em>, <em>stride=1</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>groups=1</em>, <em>scale_factor=1</em>, <em>bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/customize.html#UpsampleConv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.UpsampleConv2d" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">UpsampleConv2d</code><span class="sig-paren">(</span><em>in_channels</em>, <em>out_channels</em>, <em>kernel_size</em>, <em>stride=1</em>, <em>padding=0</em>, <em>dilation=1</em>, <em>groups=1</em>, <em>scale_factor=1</em>, <em>bias=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/encoding.html#UpsampleConv2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.UpsampleConv2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>To avoid the checkerboard artifacts of standard Fractionally-strided Convolution, we adapt an integer stride convolution but producing a <span class="math">\(2\times 2\)</span> outputs for each convolutional window.</p>
 <a class="reference internal image-reference" href="_images/upconv.png"><img alt="_images/upconv.png" class="align-center" src="_images/upconv.png" style="width: 50%;" /></a>
 <dl class="docutils">
@@ -476,7 +475,7 @@ training multi-style generative network for real-time transfer.</p>
 <h3><span class="hidden-section">DilatedAvgPool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.nn.DilatedAvgPool2d">
-<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">DilatedAvgPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/customize.html#DilatedAvgPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.DilatedAvgPool2d" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">DilatedAvgPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/encoding.html#DilatedAvgPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.DilatedAvgPool2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>We provide Dilated Average Pooling for the dilation of Densenet as
 in <a class="reference internal" href="dilated.html#encoding.dilated.DenseNet" title="encoding.dilated.DenseNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.DenseNet</span></code></a>.</p>
 <dl class="docutils">
