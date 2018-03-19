@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -121,7 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#citation">Citation</a></li>
 </ul>
@@ -229,6 +232,12 @@
 </ul>
 <p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#tabe-of-content">Tabe of content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/style.html#msg-net">MSG-Net</a></li>
@@ -428,7 +437,9 @@
 
 
 <div class="viewcode-block" id="DenseNet"><a class="viewcode-back" href="../../../dilated.html#encoding.dilated.DenseNet">[docs]</a><span class="k">class</span> <span class="nc">DenseNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dilated Densenet-BC model class</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dilated DenseNet.</span>
+
+<span class="sd">    For correctly dilation of transition layer fo DenseNet, we implement the :class:`encoding.nn.DilatedAvgPool2d`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        growth_rate (int) - how many filters to add each layer (`k` in paper)</span>

@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -122,7 +122,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#citation">Citation</a></li>
 </ul>
@@ -310,7 +313,7 @@
             
   <div class="section" id="implementing-synchronized-multi-gpu-batch-normalization">
 <h1>Implementing Synchronized Multi-GPU Batch Normalization<a class="headerlink" href="#implementing-synchronized-multi-gpu-batch-normalization" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial, we discuss the implementation detail of Multi-GPU Batch Normalization (BN) <a class="reference internal" href="../syncbn.html#encoding.nn.BatchNorm2d" title="encoding.nn.BatchNorm2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.BatchNorm2d</span></code></a> and compatible <a class="reference internal" href="../parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a>. We will provide the training example in a later version.</p>
+<p>In this tutorial, we discuss the implementation detail of Multi-GPU Batch Normalization (BN) (classic implementation: <a class="reference internal" href="../syncbn.html#encoding.nn.BatchNorm2d" title="encoding.nn.BatchNorm2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.BatchNorm2d</span></code></a> and compatible <a class="reference internal" href="../parallel.html#encoding.parallel.SelfDataParallel" title="encoding.parallel.SelfDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.SelfDataParallel</span></code></a>). We will provide the training example in a later version.</p>
 <div class="section" id="how-bn-works">
 <h2>How BN works?<a class="headerlink" href="#how-bn-works" title="Permalink to this headline">¶</a></h2>
 <p>BN layer was introduced in the paper <a class="reference external" href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a>, which dramatically speed up the training process of the network (enables larger learning rate) and makes the network less sensitive to the weight initialization.</p>
@@ -329,7 +332,7 @@
 <dd><p class="first">For calculating the gradient <span class="math">\(\frac{d_\ell}{d_{x_i}}\)</span>, we need to consider the gradient from <span class="math">\(\frac{d_\ell}{d_y}\)</span> and the gradients from <span class="math">\(\frac{d_\ell}{d_\mu}\)</span> and <span class="math">\(\frac{d_\ell}{d_\sigma}\)</span>, since the <span class="math">\(\mu \text{ and } \sigma\)</span> are the function of the input <span class="math">\(x_i\)</span>. We use patial direvative in the notations:</p>
 <div class="math">
 \[\frac{d_\ell}{d_{x_i}} = \frac{d_\ell}{d_{y_i}}\cdot\frac{d_{y_i}}{d_{x_i}} + \frac{d_\ell}{d_\mu}\cdot\frac{d_\mu}{d_{x_i}} + \frac{d_\ell}{d_\sigma}\cdot\frac{d_\sigma}{d_{x_i}}\]</div>
-<p class="last">where <span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{\gamma}{\sigma}, \frac{d_\ell}{d_\mu}=-\frac{\gamma}{\sigma}\sum_i^N\frac{d_\ell}{d_{y_i}}
+<p class="last">where <span class="math">\(\frac{d_{y_i}}{d_{x_i}}=\frac{\gamma}{\sigma}, \frac{d_\ell}{d_\mu}=-\frac{\gamma}{\sigma}\sum_i^N\frac{d_\ell}{d_{y_i}}
 \text{ and } \frac{d_\sigma}{d_{x_i}}=-\frac{1}{\sigma}(\frac{x_i-\mu}{N})\)</span>.</p>
 </dd>
 </dl>
@@ -347,16 +350,15 @@
 <div class="section" id="how-to-synchronize">
 <h2>How to Synchronize?<a class="headerlink" href="#how-to-synchronize" title="Permalink to this headline">¶</a></h2>
 <p>Suppose we have <span class="math">\(K\)</span> number of GPUs, <span class="math">\(sum(x)_k\)</span> and <span class="math">\(sum(x^2)_k\)</span> denotes the sum of elements and sum of element squares in <span class="math">\(k^{th}\)</span> GPU.</p>
-<ul>
+<ul class="simple">
 <li><dl class="first docutils">
 <dt>Forward Pass:</dt>
-<dd><p class="first last">We can calculate the sum of elements <span class="math">\(sum(x)=\sum x_i \text{ and sum of squares } sum(x^2)=\sum x_i^2\)</span> in each GPU, then apply <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a> operation to sum accross GPUs. Then calculate the global mean <span class="math">\(\mu=\frac{sum(x)}{N} \text{ and global variance } \sigma=\sqrt{\frac{sum(x^2)}{N}-\mu^2+\epsilon}\)</span>.</p>
-</dd>
+<dd>We can calculate the sum of elements <span class="math">\(sum(x)=\sum x_i \text{ and sum of squares } sum(x^2)=\sum x_i^2\)</span> in each GPU, then apply <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a> operation to sum accross GPUs. Then calculate the global mean <span class="math">\(\mu=\frac{sum(x)}{N} \text{ and global variance } \sigma=\sqrt{\frac{sum(x^2)}{N}-\mu^2+\epsilon}\)</span>.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Backward Pass:</dt>
-<dd><ul class="first last simple">
+<dd><ul class="first last">
 <li><span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
 <li>Calculate the gradient of <span class="math">\(sum(x)\)</span> and <span class="math">\(sum(x^2)\)</span> individually in each GPU <span class="math">\(\frac{d_\ell}{d_{sum(x)_k}}\)</span> and <span class="math">\(\frac{d_\ell}{d_{sum(x^2)_k}}\)</span>.</li>
 <li>Then Sync the gradient (automatically handled by <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a>) and continue the backward.</li>
@@ -364,6 +366,10 @@
 </dd>
 </dl>
 </li>
+</ul>
+<div class="section" id="classic-implementation">
+<h3>Classic Implementation<a class="headerlink" href="#classic-implementation" title="Permalink to this headline">¶</a></h3>
+<ul>
 <li><dl class="first docutils">
 <dt>Synchronized DataParallel:</dt>
 <dd><p class="first">Standard DataParallel pipeline of public frameworks (MXNet, PyTorch…) in each training iters:</p>
@@ -386,6 +392,7 @@
 </dl>
 </li>
 </ul>
+</div>
 </div>
 <div class="section" id="comparing-performance">
 <h2>Comparing Performance<a class="headerlink" href="#comparing-performance" title="Permalink to this headline">¶</a></h2>

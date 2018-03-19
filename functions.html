@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -122,7 +122,10 @@
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
@@ -362,9 +365,9 @@ expected inputs are 3-D, 4-D or 5-D in shape.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>input</strong> (<em>Variable</em>) – input</li>
-<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em> or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>] or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>] or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>]</em>) – output spatial size.</li>
-<li><strong>scale_factor</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – multiplier for spatial size. Has to be an integer.</li>
-<li><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – algorithm used for upsampling:
+<li><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>] or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>] or </em><em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>]</em>) – output spatial size.</li>
+<li><strong>scale_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – multiplier for spatial size. Has to be an integer.</li>
+<li><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a>) – algorithm used for upsampling:
 ‘nearest’ | ‘linear’ | ‘bilinear’ | ‘trilinear’. Default: ‘nearest’</li>
 </ul>
 </td>
@@ -395,8 +398,8 @@ feature maps and should be used instead.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a><em>, </em><em>optional</em>) – probability of an element to be zeroed.</li>
-<li><strong>inplace</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If set to True, will do this operation
+<li><strong>p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – probability of an element to be zeroed.</li>
+<li><strong>inplace</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – If set to True, will do this operation
 in-place</li>
 </ul>
 </td>

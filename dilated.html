@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -122,7 +122,10 @@
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/syncbn.html#citation">Citation</a></li>
 </ul>
@@ -345,7 +348,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -362,7 +365,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -379,7 +382,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -396,7 +399,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -413,7 +416,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -428,7 +431,8 @@ All provided models have been verified.</p>
 <dl class="class">
 <dt id="encoding.dilated.DenseNet">
 <em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">DenseNet</code><span class="sig-paren">(</span><em>growth_rate=32</em>, <em>block_config=(6</em>, <em>12</em>, <em>24</em>, <em>16)</em>, <em>num_init_features=64</em>, <em>bn_size=4</em>, <em>drop_rate=0</em>, <em>num_classes=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#DenseNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.DenseNet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dilated Densenet-BC model class</p>
+<dd><p>Dilated DenseNet.</p>
+<p>For correctly dilation of transition layer fo DenseNet, we implement the <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -436,10 +440,10 @@ All provided models have been verified.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>growth_rate</strong> (int) - how many filters to add each layer (<cite>k</cite> in paper) – </li>
 <li><strong>block_config</strong> (<em>list of 4 python:ints</em>) – </li>
-<li><strong>num_init_features</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – </li>
-<li><strong>bn_size</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – (i.e. bn_size * k features in the bottleneck layer)</li>
-<li><strong>drop_rate</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) – </li>
-<li><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – </li>
+<li><strong>num_init_features</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – </li>
+<li><strong>bn_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – (i.e. bn_size * k features in the bottleneck layer)</li>
+<li><strong>drop_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – </li>
+<li><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -463,7 +467,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -481,7 +485,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -499,7 +503,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -517,7 +521,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>

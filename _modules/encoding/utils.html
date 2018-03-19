@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -121,7 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#citation">Citation</a></li>
 </ul>
@@ -229,6 +232,12 @@
 </ul>
 <p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/style.html#tabe-of-content">Tabe of content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/style.html#msg-net">MSG-Net</a></li>
@@ -376,7 +385,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">epochs</span> <span class="o">*</span> <span class="n">niters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">best_pred</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;cos&#39;</span><span class="p">:</span>
             <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">niters</span> <span class="o">+</span> <span class="n">i</span>
             <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">T</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
@@ -388,8 +397,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unknown LR scheduler!&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">epoch</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=&gt;Epoches </span><span class="si">%i</span><span class="s1">, learning rate = </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
-                <span class="n">epoch</span><span class="p">,</span> <span class="n">lr</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=&gt;Epoches </span><span class="si">%i</span><span class="s1">, learning rate = </span><span class="si">%.4f</span><span class="s1">, </span><span class="se">\</span>
+<span class="s1">                previous best = </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">epoch</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">best_pred</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_adjust_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">lr</span><span class="p">)</span>
 

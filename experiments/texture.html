@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -121,7 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#citation">Citation</a></li>
 </ul>
@@ -229,6 +232,12 @@
 </ul>
 <p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cifar.html">EncNet on CIFAR-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cifar.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cifar.html#extending-the-software">Extending the Software</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="style.html#tabe-of-content">Tabe of content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="style.html#msg-net">MSG-Net</a></li>
@@ -312,20 +321,18 @@
 <a class="reference internal image-reference" href="../_images/cvpr171.svg"><div align="left" class="align-left"><img alt="../_images/cvpr171.svg" src="../_images/cvpr171.svg" width="100%" /></div>
 </a>
 <p>In this section, we show an example of training/testing Encoding-Net for texture recognition on MINC-2500 dataset. Comparing to original Torch implementation, we use <em>different learning rate</em> for pre-trained base network and encoding layer (10x), disable color jittering after reducing lr and adopt much <em>smaller training image size</em> (224 instead of 352).</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><strong>Make Sure</strong> to <a class="reference external" href="../notes/compile.html">Install PyTorch Encoding</a> First.</p>
-</div>
 <div class="section" id="test-pre-trained-model">
 <h2>Test Pre-trained Model<a class="headerlink" href="#test-pre-trained-model" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Clone the GitHub repo (I am sure you did during the installation):</p>
+<li><p class="first">Clone the GitHub repo:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Download the <a class="reference external" href="http://opensurfaces.cs.cornell.edu/publications/minc/">MINC-2500</a> dataset to <code class="docutils literal"><span class="pre">$HOME/data/minc</span></code> folder. Download pre-trained model (training <a class="reference internal" href="#curve">curve</a> as bellow, pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math">\(19.98\%\)</span> using single crop on test-1 set):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">/</span><span class="n">experiments</span>
+<li><p class="first">Install PyTorch Encoding (if not yet). Please follow the installation guide <a class="reference external" href="../notes/compile.html">Installing PyTorch Encoding</a>.</p>
+</li>
+<li><p class="first">Download the <a class="reference external" href="http://opensurfaces.cs.cornell.edu/publications/minc/">MINC-2500</a> dataset to <code class="docutils literal"><span class="pre">$HOME/data/minc-2500/</span></code> folder. Download pre-trained model (training <a class="reference internal" href="#curve">curve</a> as bellow, pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math">\(19.98\%\)</span> using single crop on test-1 set):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">/</span><span class="n">experiments</span><span class="o">/</span><span class="n">recognition</span>
 <span class="n">bash</span> <span class="n">model</span><span class="o">/</span><span class="n">download_models</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
@@ -334,7 +341,7 @@
 <a class="reference internal image-reference" href="../_images/deep_ten_curve.svg" id="curve"><img alt="../_images/deep_ten_curve.svg" id="curve" src="../_images/deep_ten_curve.svg" width="70%" /></a>
 <ul>
 <li><p class="first">Test pre-trained model on MINC-2500:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">encodingnet</span> <span class="o">--</span><span class="n">resume</span> <span class="n">model</span><span class="o">/</span><span class="n">minc</span><span class="o">.</span><span class="n">pth</span><span class="o">.</span><span class="n">tar</span> <span class="o">--</span><span class="nb">eval</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">resume</span> <span class="n">model</span><span class="o">/</span><span class="n">minc</span><span class="o">.</span><span class="n">pth</span><span class="o">.</span><span class="n">tar</span> <span class="o">--</span><span class="nb">eval</span>
 <span class="go"># Teriminal Output:</span>
 <span class="go">#[======================================== 23/23 ===================================&gt;...]    Step: 104ms | Tot: 3s256ms | Loss: 0.719 | Err: 19.983% (1149/5750)</span>
 </pre></div>
@@ -346,15 +353,15 @@
 <h2>Train Your Own Model<a class="headerlink" href="#train-your-own-model" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Example training command for training above model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">encodingnet</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">64</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.01</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">60</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">64</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.01</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">60</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Training options:</p>
+<li><p class="first">Detail training options:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
 <span class="o">--</span><span class="n">dataset</span> <span class="n">DATASET</span>     <span class="n">training</span> <span class="n">dataset</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">cifar10</span><span class="p">)</span>
 <span class="o">--</span><span class="n">model</span> <span class="n">MODEL</span>         <span class="n">network</span> <span class="n">model</span> <span class="nb">type</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">densenet</span><span class="p">)</span>
-<span class="o">--</span><span class="n">widen</span> <span class="n">N</span>             <span class="n">widen</span> <span class="n">factor</span> <span class="n">of</span> <span class="n">the</span> <span class="n">network</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>
+<span class="o">--</span><span class="n">backbone</span> <span class="n">BACKBONE</span>   <span class="n">backbone</span> <span class="n">name</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="n">resnet50</span><span class="p">)</span>
 <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="n">N</span>        <span class="n">batch</span> <span class="n">size</span> <span class="k">for</span> <span class="n">training</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">128</span><span class="p">)</span>
 <span class="o">--</span><span class="n">test</span><span class="o">-</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="n">N</span>   <span class="n">batch</span> <span class="n">size</span> <span class="k">for</span> <span class="n">testing</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="o">--</span><span class="n">epochs</span> <span class="n">N</span>            <span class="n">number</span> <span class="n">of</span> <span class="n">epochs</span> <span class="n">to</span> <span class="n">train</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span>
@@ -379,7 +386,7 @@
 </div>
 <div class="section" id="extending-the-software">
 <h2>Extending the Software<a class="headerlink" href="#extending-the-software" title="Permalink to this headline">¶</a></h2>
-<p>This code includes an integrated pipeline and some visualization tools (progress bar, real-time training curve plots). It is easy to use and extend for your own model or dataset:</p>
+<p>This code is well written, easy to use and extendable for your own models or datasets:</p>
 <ul>
 <li><p class="first">Write your own Dataloader <code class="docutils literal"><span class="pre">mydataset.py</span></code> to <code class="docutils literal"><span class="pre">dataset/</span></code> folder</p>
 </li>

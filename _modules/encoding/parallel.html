@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.1.0+6347d89)
+                master (0.1.0+efb1a05)
               </div>
             
           
@@ -121,7 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/syncbn.html#citation">Citation</a></li>
 </ul>
@@ -229,6 +232,12 @@
 </ul>
 <p class="caption"><span class="caption-text">Experiment Systems</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/style.html#tabe-of-content">Tabe of content</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/style.html#msg-net">MSG-Net</a></li>
@@ -327,7 +336,7 @@
 <span class="kn">from</span> <span class="nn">torch.nn.parallel.replicate</span> <span class="k">import</span> <span class="n">replicate</span>
 <span class="kn">from</span> <span class="nn">torch.nn.parallel.parallel_apply</span> <span class="k">import</span> <span class="n">parallel_apply</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AllReduce&#39;</span><span class="p">,</span> <span class="s1">&#39;Broadcast&#39;</span><span class="p">,</span> <span class="s1">&#39;ModelDataParallel&#39;</span><span class="p">,</span> 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Reduce&#39;</span><span class="p">,</span> <span class="s1">&#39;AllReduce&#39;</span><span class="p">,</span> <span class="s1">&#39;Broadcast&#39;</span><span class="p">,</span> <span class="s1">&#39;ModelDataParallel&#39;</span><span class="p">,</span> 
     <span class="s1">&#39;CriterionDataParallel&#39;</span><span class="p">,</span> <span class="s1">&#39;SelfDataParallel&#39;</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">nccl_all_reduce</span><span class="p">(</span><span class="n">inputs</span><span class="p">):</span>
@@ -353,6 +362,22 @@
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">results</span>
 
+<span class="k">class</span> <span class="nc">Reduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">comm</span><span class="o">.</span><span class="n">reduce_add</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">gradOutput</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">saved_tensors</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">gradOutput</span>
+        <span class="n">gradInputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)):</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                <span class="n">gradInputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gradOutput</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">gradInputs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="AllReduce"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.AllReduce">[docs]</a><span class="k">class</span> <span class="nc">AllReduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Cross GPU all reduce autograd operation for calculate mean and</span>
