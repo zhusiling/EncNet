@@ -21,7 +21,7 @@ Test Pre-trained Model
 .. image:: ../_static/img/EncNet32k128d.svg
     :width: 70%
 
-- Test EncNet-32k128d pre-trained model (training `curve`_ of this model is shown above, with a final error rate of :math:`3.35%`)::
+- Test EncNet-32k128d pre-trained model (training `curve`_ of this model is shown above, with a final error rate of :math:`3.35\%`)::
 
     >>> python main.py --dataset cifar10 --model encnetdrop --widen 8 --ncodes 32 --resume model/encnet_cifar.pth.tar --eval
     # Teriminal Output:

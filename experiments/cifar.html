@@ -338,7 +338,7 @@
 </ul>
 <a class="reference internal image-reference" href="../_images/EncNet32k128d.svg" id="curve"><img alt="../_images/EncNet32k128d.svg" id="curve" src="../_images/EncNet32k128d.svg" width="70%" /></a>
 <ul>
-<li><p class="first">Test EncNet-32k128d pre-trained model (training <a class="reference internal" href="#curve">curve</a> of this model is shown above, with a final error rate of <span class="math">\(3.35%\)</span>):</p>
+<li><p class="first">Test EncNet-32k128d pre-trained model (training <a class="reference internal" href="#curve">curve</a> of this model is shown above, with a final error rate of <span class="math">\(3.35\%\)</span>):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">cifar10</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnetdrop</span> <span class="o">--</span><span class="n">widen</span> <span class="mi">8</span> <span class="o">--</span><span class="n">ncodes</span> <span class="mi">32</span> <span class="o">--</span><span class="n">resume</span> <span class="n">model</span><span class="o">/</span><span class="n">encnet_cifar</span><span class="o">.</span><span class="n">pth</span><span class="o">.</span><span class="n">tar</span> <span class="o">--</span><span class="nb">eval</span>
 <span class="go"># Teriminal Output:</span>
 <span class="go">#Loss: 0.129 | Err: 3.350% (335/10000): 100%|█████████████████████████████████████████████| 79/79 [00:49&lt;00:00,  1.58it/s]</span>
