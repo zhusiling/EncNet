@@ -56,9 +56,6 @@ Train Your Own Model
   --checkname           set the checkpoint name
   --eval                evaluating
 
-.. todo::
-    Provide example code for extracting features.
-
 
 Extending the Software
 ----------------------
