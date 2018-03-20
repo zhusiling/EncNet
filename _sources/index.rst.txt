@@ -20,6 +20,13 @@ An optimized PyTorch package with CUDA backend.
    notes/*
 
 .. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: Experiment Systems
+
+   experiments/*
+
+.. toctree::
    :maxdepth: 1
    :caption: Package Reference
 
@@ -30,13 +37,6 @@ An optimized PyTorch package with CUDA backend.
    nn
    functions
    utils
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :caption: Experiment Systems
-
-   experiments/*
 
 Indices and tables
 ==================

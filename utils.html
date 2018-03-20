@@ -51,7 +51,6 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
-        <link rel="next" title="EncNet on CIFAR-10" href="experiments/cifar.html"/>
         <link rel="prev" title="Other Functions" href="functions.html"/> 
 
   
@@ -84,7 +83,7 @@
             
             
               <div class="version">
-                master (0.2.0+f861587)
+                master (0.2.0+a203a1e)
               </div>
             
           
@@ -131,6 +130,31 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/cifar.html">EncNet on CIFAR-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="encoding.html">My NN Layers</a><ul>
@@ -143,7 +167,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 </ul>
 </li>
 </ul>
@@ -213,7 +237,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Other Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#relu"><span class="hidden-section">relu</span></a></li>
@@ -228,31 +252,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
-</ul>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">Experiment Systems</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="experiments/cifar.html">EncNet on CIFAR-10</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#extending-the-software">Extending the Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#citation">Citation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -395,8 +394,6 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="experiments/cifar.html" class="btn btn-neutral float-right" title="EncNet on CIFAR-10" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="functions.html" class="btn btn-neutral" title="Other Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

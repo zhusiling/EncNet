@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+f861587)
+                master (0.2.0+a203a1e)
               </div>
             
           
@@ -131,6 +131,31 @@
 </ul>
 </li>
 </ul>
+<p class="caption"><span class="caption-text">Experiment Systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiments/cifar.html">EncNet on CIFAR-10</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="encoding.html">My NN Layers</a><ul>
@@ -143,7 +168,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="encoding.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="encoding.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="encoding.html#id1"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 </ul>
 </li>
 </ul>
@@ -213,7 +238,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Other Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#upsample"><span class="hidden-section">upsample</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dropout"><span class="hidden-section">dropout</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#relu"><span class="hidden-section">relu</span></a></li>
@@ -228,31 +253,6 @@
 <li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
-</ul>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">Experiment Systems</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="experiments/cifar.html">EncNet on CIFAR-10</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#extending-the-software">Extending the Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#citation">Citation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#tabe-of-content">Tabe of content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#msg-net">MSG-Net</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#stylize-images-using-pre-trained-model">Stylize Images Using Pre-trained Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#train-your-own-msg-net-model">Train Your Own MSG-Net Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/style.html#neural-style">Neural Style</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
 </ul>
@@ -320,37 +320,22 @@
             
   <div class="section" id="module-encoding.functions">
 <span id="other-functions"></span><h1>Other Functions<a class="headerlink" href="#module-encoding.functions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="dilatedavgpool2d">
-<h2><span class="hidden-section">dilatedavgpool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scaledl2">
+<h2><span class="hidden-section">scaledL2</span><a class="headerlink" href="#scaledl2" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="encoding.functions.dilatedavgpool2d">
-<code class="descclassname">encoding.functions.</code><code class="descname">dilatedavgpool2d</code><span class="sig-paren">(</span><em>input</em>, <em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/customize.html#dilatedavgpool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.dilatedavgpool2d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dilated Average Pool 2d, for dilation of DenseNet.</p>
-<p>Reference:</p>
-<blockquote>
-<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
-<p>Applies 2D average-pooling operation in kh x kw regions by step size
-dh x dw steps. The number of output features is equal to the number of
-input planes.</p>
-<p>See <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">DilatedAvgPool2d</span></code></a> for details and output shape.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>input</strong> – input tensor (minibatch x in_channels x iH x iW)</li>
-<li><strong>kernel_size</strong> – size of the pooling region, a single number or a
-tuple (kh x kw)</li>
-<li><strong>stride</strong> – stride of the pooling operation, a single number or a
-tuple (sh x sw). Default is equal to kernel size</li>
-<li><strong>padding</strong> – implicit zero padding on the input, a single number or
-a tuple (padh x padw), Default: 0</li>
-<li><strong>dilation</strong> – the dilation parameter similar to Conv2d</li>
+<dt id="encoding.functions.scaledL2">
+<code class="descclassname">encoding.functions.</code><code class="descname">scaledL2</code><span class="sig-paren">(</span><em>X</em>, <em>C</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#scaledL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.scaledL2" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaledL2 distance</p>
+<div class="math">
+\[sl_{ik} = s_k \|x_i-c_k\|^2\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span> <span class="math">\(S\in \mathcal{R}^K\)</span> (where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features, <span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times N\times K}\)</span></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
