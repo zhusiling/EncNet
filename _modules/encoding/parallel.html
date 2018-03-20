@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.2.0+e71957d)
+                master (0.2.0+f861587)
               </div>
             
           
@@ -419,8 +419,9 @@
 <div class="viewcode-block" id="ModelDataParallel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.ModelDataParallel">[docs]</a><span class="k">class</span> <span class="nc">ModelDataParallel</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implements data parallelism at the module level.</span>
 
-<span class="sd">    Reference::</span>
-<span class="sd">        We provide this code for a comming paper.</span>
+<span class="sd">    Reference:</span>
+
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
 
 <span class="sd">    This container parallelizes the application of the given module by</span>
 <span class="sd">    splitting the input across the specified devices by chunking in the </span>
@@ -489,8 +490,9 @@
 <span class="sd">    Calculate loss in multiple-GPUs, which balance the memory usage for </span>
 <span class="sd">    Semantic Segmentation.</span>
 
-<span class="sd">    Reference::</span>
-<span class="sd">        We provide this code for a comming paper.</span>
+<span class="sd">    Reference:</span>
+<span class="sd"> </span>
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
 
 <span class="sd">    The targets are splitted across the specified devices by chunking in</span>
 <span class="sd">    the batch dimension. Please use together with :class:`encoding.parallel.ModelDataParallel`.</span>
@@ -534,8 +536,9 @@
 <div class="viewcode-block" id="SelfDataParallel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.SelfDataParallel">[docs]</a><span class="k">class</span> <span class="nc">SelfDataParallel</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;SelfDataParallel, please make sure you understand it before using.</span>
 
-<span class="sd">    Reference::</span>
-<span class="sd">        We provide this code for a comming paper.</span>
+<span class="sd">    Reference:</span>
+
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
 
 <span class="sd">    Each module in the network should be in self-parallel mode, </span>
 <span class="sd">    which allows list of inputs from multiple GPUs.</span>

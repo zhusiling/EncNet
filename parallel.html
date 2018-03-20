@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+e71957d)
+                master (0.2.0+f861587)
               </div>
             
           
@@ -330,10 +330,9 @@
 <dt id="encoding.parallel.ModelDataParallel">
 <em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">ModelDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#ModelDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.ModelDataParallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements data parallelism at the module level.</p>
-<dl class="docutils">
-<dt>Reference::</dt>
-<dd>We provide this code for a comming paper.</dd>
-</dl>
+<p>Reference:</p>
+<blockquote>
+<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
 <p>This container parallelizes the application of the given module by
 splitting the input across the specified devices by chunking in the
 batch dimension.
@@ -372,10 +371,9 @@ the same size (so that each GPU processes the same number of samples).</p>
 <em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">CriterionDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#CriterionDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.CriterionDataParallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate loss in multiple-GPUs, which balance the memory usage for
 Semantic Segmentation.</p>
-<dl class="docutils">
-<dt>Reference::</dt>
-<dd>We provide this code for a comming paper.</dd>
-</dl>
+<p>Reference:</p>
+<blockquote>
+<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
 <p>The targets are splitted across the specified devices by chunking in
 the batch dimension. Please use together with <a class="reference internal" href="#encoding.parallel.ModelDataParallel" title="encoding.parallel.ModelDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.ModelDataParallel</span></code></a>.</p>
 </dd></dl>
@@ -387,10 +385,9 @@ the batch dimension. Please use together with <a class="reference internal" href
 <dt id="encoding.parallel.SelfDataParallel">
 <em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">SelfDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#SelfDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.SelfDataParallel" title="Permalink to this definition">¶</a></dt>
 <dd><p>SelfDataParallel, please make sure you understand it before using.</p>
-<dl class="docutils">
-<dt>Reference::</dt>
-<dd>We provide this code for a comming paper.</dd>
-</dl>
+<p>Reference:</p>
+<blockquote>
+<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
 <p>Each module in the network should be in self-parallel mode,
 which allows list of inputs from multiple GPUs.
 Please see <a class="reference internal" href="nn.html#module-encoding.nn" title="encoding.nn"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn</span></code></a> for detail, use with cautious</p>

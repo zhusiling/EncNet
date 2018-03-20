@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+e71957d)
+                master (0.2.0+f861587)
               </div>
             
           
@@ -326,6 +326,9 @@
 <dt id="encoding.functions.dilatedavgpool2d">
 <code class="descclassname">encoding.functions.</code><code class="descname">dilatedavgpool2d</code><span class="sig-paren">(</span><em>input</em>, <em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/customize.html#dilatedavgpool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.dilatedavgpool2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dilated Average Pool 2d, for dilation of DenseNet.</p>
+<p>Reference:</p>
+<blockquote>
+<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
 <p>Applies 2D average-pooling operation in kh x kw regions by step size
 dh x dw steps. The number of output features is equal to the number of
 input planes.</p>

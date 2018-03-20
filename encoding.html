@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+e71957d)
+                master (0.2.0+f861587)
               </div>
             
           
@@ -485,10 +485,9 @@ training multi-style generative network for real-time transfer.</p>
 <em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">DilatedAvgPool2d</code><span class="sig-paren">(</span><em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/encoding.html#DilatedAvgPool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.DilatedAvgPool2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>We provide Dilated Average Pooling for the dilation of Densenet as
 in <a class="reference internal" href="dilated.html#encoding.dilated.DenseNet" title="encoding.dilated.DenseNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.DenseNet</span></code></a>.</p>
-<dl class="docutils">
-<dt>Reference:</dt>
-<dd>We provide this code for a comming paper.</dd>
-</dl>
+<p>Reference:</p>
+<blockquote>
+<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
 <p>Applies a 2D average pooling over an input signal composed of several input planes.</p>
 <p>In the simplest case, the output value of the layer with input size <span class="math">\((N, C, H, W)\)</span>,
 output <span class="math">\((B, C, H_{out}, W_{out})\)</span>, <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code> <span class="math">\((k_H,k_W)\)</span>, <code class="xref py py-attr docutils literal"><span class="pre">stride</span></code> <span class="math">\((s_H,s_W)\)</span> <code class="xref py py-attr docutils literal"><span class="pre">dilation</span></code> <span class="math">\((d_H,d_W)\)</span>
