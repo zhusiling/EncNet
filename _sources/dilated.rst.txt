@@ -10,7 +10,9 @@ All provided models have been verified.
 
 .. note::
 
-    This code is provided together with the paper (coming soon), please cite our work.
+    This code is provided together with the paper:
+
+        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018
 
 .. automodule:: encoding.dilated
 .. currentmodule:: encoding.dilated
