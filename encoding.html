@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+b224e1b)
+                master (0.2.0+cdd727c)
               </div>
             
           
@@ -191,6 +191,7 @@
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#reduce"><span class="hidden-section">Reduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
@@ -327,17 +328,19 @@
 <dl class="class">
 <dt id="encoding.nn.Encoding">
 <em class="property">class </em><code class="descclassname">encoding.nn.</code><code class="descname">Encoding</code><span class="sig-paren">(</span><em>D</em>, <em>K</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/nn/encoding.html#Encoding"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.nn.Encoding" title="Permalink to this definition">¶</a></dt>
-<dd><p>Encoding Layer: a learnable residual encoder over 3d or 4d input that
-is seen as a mini-batch.</p>
+<dd><p>Encoding Layer: a learnable residual encoder.</p>
 <a class="reference internal image-reference" href="_images/cvpr17.svg"><div align="center" class="align-center"><img alt="_images/cvpr17.svg" src="_images/cvpr17.svg" width="50%" /></div>
 </a>
+<p>Encoding Layer accpets 3D or 4D inputs.
+It considers an input featuremaps with the shape of <span class="math">\(C\times H\times W\)</span>
+as a set of C-dimentional input features <span class="math">\(X=\{x_1, ...x_N\}\)</span>, where N is total number
+of features given by <span class="math">\(H\times W\)</span>, which learns an inherent codebook
+<span class="math">\(D=\{d_1,...d_K\}\)</span> and a set of smoothing factor of visual centers
+<span class="math">\(S=\{s_1,...s_K\}\)</span>. Encoding Layer outputs the residuals with soft-assignment weights
+<span class="math">\(e_k=\sum_{i=1}^Ne_{ik}\)</span>, where</p>
 <div class="math">
-\[e_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)} (x_i - c_k)\]</div>
-<p>Please see the <a class="reference external" href="./experiments/texture.html">example of training Deep TEN</a>.</p>
-<dl class="docutils">
-<dt>Reference:</dt>
-<dd>Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
-</dl>
+\[e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}\]</div>
+<p>and the residuals are given by <span class="math">\(r_{ik} = x_i - d_k\)</span>. The output encoders are <span class="math">\(E=\{e_1,...e_K\}\)</span></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -370,6 +373,11 @@ is seen as a mini-batch.</p>
 </tr>
 </tbody>
 </table>
+<dl class="docutils">
+<dt>Reference:</dt>
+<dd>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018
+Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">encoding</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>

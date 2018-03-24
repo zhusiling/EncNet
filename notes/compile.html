@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+b224e1b)
+                master (0.2.0+cdd727c)
               </div>
             
           
@@ -191,6 +191,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#reduce"><span class="hidden-section">Reduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
@@ -335,12 +336,14 @@
 </div>
 </li>
 <li><p class="first">On Linux:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">On Mac OSX:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MACOSX_DEPLOYMENT_TARGET</span><span class="o">=</span><span class="mf">10.9</span> <span class="n">CC</span><span class="o">=</span><span class="n">clang</span> <span class="n">CXX</span><span class="o">=</span><span class="n">clang</span><span class="o">++</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MACOSX_DEPLOYMENT_TARGET</span><span class="o">=</span><span class="mf">10.9</span> <span class="n">CC</span><span class="o">=</span><span class="n">clang</span> <span class="n">CXX</span><span class="o">=</span><span class="n">clang</span><span class="o">++</span> <span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 </li>

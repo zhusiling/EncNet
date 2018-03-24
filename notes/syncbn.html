@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+b224e1b)
+                master (0.2.0+cdd727c)
               </div>
             
           
@@ -191,6 +191,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#reduce"><span class="hidden-section">Reduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
@@ -366,7 +367,7 @@
 <li><dl class="first docutils">
 <dt>Backward Pass:</dt>
 <dd><ul class="first last">
-<li><span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
+<li><span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{d_\ell}{d_{y_i}}\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
 <li>Calculate the gradient of <span class="math">\(sum(x)\)</span> and <span class="math">\(sum(x^2)\)</span> individually in each GPU <span class="math">\(\frac{d_\ell}{d_{sum(x)_k}}\)</span> and <span class="math">\(\frac{d_\ell}{d_{sum(x^2)_k}}\)</span>.</li>
 <li>Then Sync the gradient (automatically handled by <a class="reference internal" href="../parallel.html#encoding.parallel.AllReduce" title="encoding.parallel.AllReduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code></a>) and continue the backward.</li>
 </ul>

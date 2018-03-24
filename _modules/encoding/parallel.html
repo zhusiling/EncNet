@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.2.0+b224e1b)
+                master (0.2.0+cdd727c)
               </div>
             
           
@@ -190,6 +190,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../parallel.html#reduce"><span class="hidden-section">Reduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
@@ -363,7 +364,9 @@
         <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">results</span>
 
-<span class="k">class</span> <span class="nc">Reduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+<div class="viewcode-block" id="Reduce"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.Reduce">[docs]</a><span class="k">class</span> <span class="nc">Reduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cross GPU reduce sum operation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -378,7 +381,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)):</span>
             <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
                 <span class="n">gradInputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gradOutput</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">gradInputs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">gradInputs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AllReduce"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.AllReduce">[docs]</a><span class="k">class</span> <span class="nc">AllReduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Cross GPU all reduce autograd operation for calculate mean and</span>
@@ -419,10 +422,6 @@
 <div class="viewcode-block" id="ModelDataParallel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.ModelDataParallel">[docs]</a><span class="k">class</span> <span class="nc">ModelDataParallel</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implements data parallelism at the module level.</span>
 
-<span class="sd">    Reference:</span>
-
-<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
-
 <span class="sd">    This container parallelizes the application of the given module by</span>
 <span class="sd">    splitting the input across the specified devices by chunking in the </span>
 <span class="sd">    batch dimension. </span>
@@ -439,6 +438,9 @@
 <span class="sd">    Args:</span>
 <span class="sd">        module: module to be parallelized</span>
 <span class="sd">        device_ids: CUDA devices (default: all devices)</span>
+
+<span class="sd">    Reference:</span>
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
 
 <span class="sd">    Example::</span>
 
@@ -490,12 +492,11 @@
 <span class="sd">    Calculate loss in multiple-GPUs, which balance the memory usage for </span>
 <span class="sd">    Semantic Segmentation.</span>
 
-<span class="sd">    Reference:</span>
-<span class="sd"> </span>
-<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
-
 <span class="sd">    The targets are splitted across the specified devices by chunking in</span>
 <span class="sd">    the batch dimension. Please use together with :class:`encoding.parallel.ModelDataParallel`.</span>
+
+<span class="sd">    Reference:</span>
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CriterionDataParallel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -518,7 +519,8 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">replicas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)])</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallel_apply</span><span class="p">(</span><span class="n">replicas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_device</span><span class="p">)</span>
+        <span class="c1">#return self.gather(outputs, self.output_device)</span>
+        <span class="k">return</span> <span class="n">Reduce</span><span class="p">()(</span><span class="o">*</span><span class="n">outputs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">replicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">)</span>
@@ -536,13 +538,12 @@
 <div class="viewcode-block" id="SelfDataParallel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.SelfDataParallel">[docs]</a><span class="k">class</span> <span class="nc">SelfDataParallel</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;SelfDataParallel, please make sure you understand it before using.</span>
 
-<span class="sd">    Reference:</span>
-
-<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
-
 <span class="sd">    Each module in the network should be in self-parallel mode, </span>
 <span class="sd">    which allows list of inputs from multiple GPUs.</span>
 <span class="sd">    Please see :class:`encoding.nn` for detail, use with cautious</span>
+
+<span class="sd">    Reference:</span>
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SelfDataParallel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -565,7 +566,6 @@
             <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">outputs</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># TODO check faster?</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">replicas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> \

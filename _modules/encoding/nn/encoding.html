@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.2.0+b224e1b)
+                master (0.2.0+cdd727c)
               </div>
             
           
@@ -190,6 +190,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#reduce"><span class="hidden-section">Reduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
 </ul>
@@ -342,21 +343,25 @@
 
 <div class="viewcode-block" id="Encoding"><a class="viewcode-back" href="../../../encoding.html#encoding.nn.Encoding">[docs]</a><span class="k">class</span> <span class="nc">Encoding</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Encoding Layer: a learnable residual encoder over 3d or 4d input that </span>
-<span class="sd">    is seen as a mini-batch.</span>
+<span class="sd">    Encoding Layer: a learnable residual encoder.</span>
 
 <span class="sd">    .. image:: _static/img/cvpr17.svg</span>
 <span class="sd">        :width: 50%</span>
 <span class="sd">        :align: center</span>
 
+<span class="sd">    Encoding Layer accpets 3D or 4D inputs. </span>
+<span class="sd">    It considers an input featuremaps with the shape of :math:`C\times H\times W`</span>
+<span class="sd">    as a set of C-dimentional input features :math:`X=\{x_1, ...x_N\}`, where N is total number</span>
+<span class="sd">    of features given by :math:`H\times W`, which learns an inherent codebook </span>
+<span class="sd">    :math:`D=\{d_1,...d_K\}` and a set of smoothing factor of visual centers</span>
+<span class="sd">    :math:`S=\{s_1,...s_K\}`. Encoding Layer outputs the residuals with soft-assignment weights</span>
+<span class="sd">    :math:`e_k=\sum_{i=1}^Ne_{ik}`, where</span>
+
 <span class="sd">    .. math::</span>
 
-<span class="sd">        e_{ik} = \frac{exp(-s_k\|x_{i}-c_k\|^2)}{\sum_{j=1}^K exp(-s_j\|x_{i}-c_j\|^2)} (x_i - c_k)</span>
+<span class="sd">        e_{ik} = \frac{exp(-s_k\|r_{ik}\|^2)}{\sum_{j=1}^K exp(-s_j\|r_{ij}\|^2)} r_{ik}</span>
 
-<span class="sd">    Please see the `example of training Deep TEN &lt;./experiments/texture.html&gt;`_.</span>
-
-<span class="sd">    Reference:</span>
-<span class="sd">        Hang Zhang, Jia Xue, and Kristin Dana. &quot;Deep TEN: Texture Encoding Network.&quot; *The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017*</span>
+<span class="sd">    and the residuals are given by :math:`r_{ik} = x_i - d_k`. The output encoders are :math:`E=\{e_1,...e_K\}`</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        D: dimention of the features or feature channels</span>
@@ -369,6 +374,10 @@
 <span class="sd">    Attributes:</span>
 <span class="sd">        codewords (Tensor): the learnable codewords of shape (:math:`K\times D`)</span>
 <span class="sd">        scale (Tensor): the learnable scale factor of visual centers</span>
+
+<span class="sd">    Reference:</span>
+<span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</span>
+<span class="sd">        Hang Zhang, Jia Xue, and Kristin Dana. &quot;Deep TEN: Texture Encoding Network.&quot; *The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017*</span>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; import encoding</span>
@@ -692,7 +701,6 @@
             <span class="k">return</span> <span class="n">my_data_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unknown input type&#39;</span><span class="p">)</span></div>
-
 </pre></div>
 
            </div>
