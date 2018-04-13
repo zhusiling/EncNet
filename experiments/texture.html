@@ -51,7 +51,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Encoding master documentation" href="../index.html"/>
-        <link rel="next" title="My NN Layers" href="../encoding.html"/>
+        <link rel="next" title="NN Layers" href="../encoding.html"/>
         <link rel="prev" title="MSG-Net Style Transfer Example" href="style.html"/> 
 
   
@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.2.0+cdd727c)
+                master (0.3.0+25985c3)
               </div>
             
           
@@ -122,11 +122,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../notes/syncbn.html#classic-implementation">Classic Implementation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#comparing-performance">Comparing Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#how-to-synchronize">How to Synchronize?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/syncbn.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -158,19 +154,12 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../encoding.html">My NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../encoding.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../encoding.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../encoding.html#id1"><span class="hidden-section">dilatedavgpool2d</span></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../encoding.html">NN Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../syncbn.html">Synchronized BatchNorm</a><ul>
@@ -182,7 +171,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../syncbn.html#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../syncbn.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 </ul>
@@ -190,10 +178,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../parallel.html">Data Parallel</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../parallel.html#selfdataparallel"><span class="hidden-section">SelfDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../parallel.html#reduce"><span class="hidden-section">Reduce</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">AllReduce</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../parallel.html#broadcast"><span class="hidden-section">Broadcast</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dilated.html">Dilated Networks</a><ul>
@@ -216,44 +201,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../nn.html">Other NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#customized-layers">Customized Layers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#normalize"><span class="hidden-section">Normalize</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#view"><span class="hidden-section">View</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#standard-layers">Standard Layers</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#conv1d"><span class="hidden-section">Conv1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#conv2d"><span class="hidden-section">Conv2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#convtranspose2d"><span class="hidden-section">ConvTranspose2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#relu"><span class="hidden-section">ReLU</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#sigmoid"><span class="hidden-section">Sigmoid</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#maxpool2d"><span class="hidden-section">MaxPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#avgpool2d"><span class="hidden-section">AvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#adaptiveavgpool2d"><span class="hidden-section">AdaptiveAvgPool2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#dropout2d"><span class="hidden-section">Dropout2d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../nn.html#linear"><span class="hidden-section">Linear</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../functions.html">Other Functions</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#upsample"><span class="hidden-section">upsample</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#dropout"><span class="hidden-section">dropout</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#relu"><span class="hidden-section">relu</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#view-each"><span class="hidden-section">view_each</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#multi-each"><span class="hidden-section">multi_each</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-each"><span class="hidden-section">sum_each</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#cat-each"><span class="hidden-section">cat_each</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">My PyTorch Utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../utils.html#progress-bar"><span class="hidden-section">progress_bar</span></a></li>
 </ul>
 </li>
 </ul>
@@ -371,7 +329,7 @@
 <span class="o">--</span><span class="n">start_epoch</span> <span class="n">N</span>       <span class="n">the</span> <span class="n">epoch</span> <span class="n">number</span> <span class="n">to</span> <span class="n">start</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 <span class="o">--</span><span class="n">lr</span> <span class="n">LR</span>               <span class="n">learning</span> <span class="n">rate</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="o">--</span><span class="n">momentum</span> <span class="n">M</span>          <span class="n">SGD</span> <span class="n">momentum</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">)</span>
-<span class="o">--</span><span class="n">weight</span><span class="o">-</span><span class="n">decay</span> <span class="n">M</span>      <span class="n">SGD</span> <span class="n">weight</span> <span class="n">decay</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mf">1e-4</span><span class="p">)</span>
+<span class="o">--</span><span class="n">weight</span><span class="o">-</span><span class="n">decay</span> <span class="n">M</span>      <span class="n">SGD</span> <span class="n">weight</span> <span class="n">decay</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
 <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cuda</span>             <span class="n">disables</span> <span class="n">CUDA</span> <span class="n">training</span>
 <span class="o">--</span><span class="n">plot</span>                <span class="n">matplotlib</span>
 <span class="o">--</span><span class="n">seed</span> <span class="n">S</span>              <span class="n">random</span> <span class="n">seed</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
@@ -407,7 +365,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last">
-<li><p class="first">Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.” <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em>:</p>
+<li><p class="first">Hang Zhang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221; <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2017_CVPR</span><span class="p">,</span>
 <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Xue</span><span class="p">,</span> <span class="n">Jia</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
 <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Deep</span> <span class="n">TEN</span><span class="p">:</span> <span class="n">Texture</span> <span class="n">Encoding</span> <span class="n">Network</span><span class="p">},</span>
@@ -433,7 +391,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../encoding.html" class="btn btn-neutral float-right" title="My NN Layers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../encoding.html" class="btn btn-neutral float-right" title="NN Layers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="style.html" class="btn btn-neutral" title="MSG-Net Style Transfer Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -445,7 +403,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang.
 
     </p>
   </div>
@@ -468,7 +426,6 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
-            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -478,7 +435,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
