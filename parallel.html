@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+25985c3)
+                master (0.3.0+c3b44eb)
               </div>
             
           
@@ -134,6 +134,12 @@
 <li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -361,7 +367,7 @@ Amit Agrawal. “Context Encoding for Semantic Segmentation.
 <h2><span class="hidden-section">allreduce</span><a class="headerlink" href="#allreduce" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="encoding.parallel.allreduce">
-<code class="descclassname">encoding.parallel.</code><code class="descname">allreduce</code><span class="sig-paren">(</span><em>*inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#allreduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.allreduce" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">encoding.parallel.</code><code class="descname">allreduce</code><span class="sig-paren">(</span><em>num_inputs</em>, <em>*inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#allreduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.allreduce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cross GPU all reduce autograd operation for calculate mean and
 variance in SyncBN.</p>
 </dd></dl>

@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.3.0+25985c3)
+                master (0.3.0+c3b44eb)
               </div>
             
           
@@ -133,6 +133,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -292,136 +298,72 @@
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Conv1d</span><span class="p">,</span> <span class="n">Conv2d</span><span class="p">,</span> <span class="n">ConvTranspose2d</span><span class="p">,</span> \
     <span class="n">ReLU</span><span class="p">,</span> <span class="n">Sigmoid</span><span class="p">,</span> <span class="n">MaxPool2d</span><span class="p">,</span> <span class="n">AvgPool2d</span><span class="p">,</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">,</span> <span class="n">Dropout2d</span><span class="p">,</span> <span class="n">Linear</span>
+<span class="kn">from</span> <span class="nn">torch.nn.modules.batchnorm</span> <span class="k">import</span> <span class="n">_BatchNorm</span>
 <span class="kn">from</span> <span class="nn">torch.nn.parameter</span> <span class="k">import</span> <span class="n">Parameter</span>
 
 <span class="kn">from</span> <span class="nn">..functions</span> <span class="k">import</span> <span class="n">batchnormtrain</span><span class="p">,</span> <span class="n">batchnormeval</span><span class="p">,</span> <span class="n">sum_square</span>
 <span class="kn">from</span> <span class="nn">..parallel</span> <span class="k">import</span> <span class="n">allreduce</span>
 
-<span class="c1"># import standard layers for convinent use</span>
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BatchNorm1d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Module&#39;</span><span class="p">,</span> <span class="s1">&#39;Sequential&#39;</span><span class="p">,</span> <span class="s1">&#39;Conv1d&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;Conv2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ConvTranspose2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ReLU&#39;</span><span class="p">,</span> <span class="s1">&#39;Sigmoid&#39;</span><span class="p">,</span> <span class="s1">&#39;MaxPool2d&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;AvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;AdaptiveAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Dropout2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear&#39;</span><span class="p">]</span>
+<span class="c1">#__all__ = [&#39;BatchNorm1d&#39;, &#39;BatchNorm2d&#39;, &#39;BatchNorm3d&#39;]</span>
 
-<div class="viewcode-block" id="BatchNorm1d"><a class="viewcode-back" href="../../../syncbn.html#encoding.nn.BatchNorm1d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Cross-GPU Synchronized Batch normalization (SyncBN)</span>
-
-<span class="sd">    Standard BN [1]_ implementation only normalize the data within each device.</span>
-<span class="sd">    SyncBN normalizes the input within the whole mini-batch.</span>
-<span class="sd">    We follow the sync-onece implmentation described in the paper [2]_ .</span>
-
-<span class="sd">    .. math::</span>
-
-<span class="sd">        y = \frac{x - mean[x]}{ \sqrt{Var[x] + \epsilon}} * gamma + beta</span>
-
-<span class="sd">    The mean and standard-deviation are calculated per-dimension over</span>
-<span class="sd">    the mini-batches and gamma and beta are learnable parameter vectors</span>
-<span class="sd">    of size C (where C is the input size).</span>
-
-<span class="sd">    During training, this layer keeps a running estimate of its computed mean</span>
-<span class="sd">    and variance. The running sum is kept with a default momentum of 0.1.</span>
-
-<span class="sd">    During evaluation, this running mean/variance is used for normalization.</span>
-
-<span class="sd">    Because the BatchNorm is done over the `C` dimension, computing statistics</span>
-<span class="sd">    on `(N, L)` slices, it&#39;s common terminology to call this Temporal BatchNorm</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        num_features: num_features from an expected input of size</span>
-<span class="sd">            `batch_size x num_features [x width]`</span>
-<span class="sd">        eps: a value added to the denominator for numerical stability.</span>
-<span class="sd">            Default: 1e-5</span>
-<span class="sd">        momentum: the value used for the running_mean and running_var</span>
-<span class="sd">            computation. Default: 0.1</span>
-<span class="sd">        affine: a boolean value that when set to ``True``, gives the layer learnable</span>
-<span class="sd">            affine parameters. Default: ``True``</span>
-
-<span class="sd">    Shape:</span>
-<span class="sd">        - Input: :math:`(N, C)` or :math:`(N, C, L)`</span>
-<span class="sd">        - Output: :math:`(N, C)` or :math:`(N, C, L)` (same shape as input)</span>
-
-<span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; # Use exactly the same as standard BatchNrom1d</span>
-<span class="sd">        &gt;&gt;&gt; m = nn.BatchNorm1d(100)</span>
-<span class="sd">        &gt;&gt;&gt; output = m(input)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm1d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span> <span class="o">=</span> <span class="n">num_features</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">affine</span> <span class="o">=</span> <span class="n">affine</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">momentum</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">affine</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;bias&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;running_mean&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;running_var&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset_parameters</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">_SyncBatchNorm</span><span class="p">(</span><span class="n">_BatchNorm</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm1d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># syncBN</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">writelock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="n">nGPUs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span> <span class="o">=</span> <span class="n">SharedTensor</span><span class="p">(</span><span class="n">nGPUs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span> <span class="o">=</span> <span class="n">SharedTensor</span><span class="p">(</span><span class="n">nGPUs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">reset_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">affine</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">(</span><span class="si">{num_features}</span><span class="s1">, eps=</span><span class="si">{eps}</span><span class="s1">, momentum=</span><span class="si">{momentum}</span><span class="s1">,&#39;</span>
-                <span class="s1">&#39; affine=</span><span class="si">{affine}</span><span class="s1">)&#39;</span>
-                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">))</span>
-
     <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 4D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
-                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_input_dim</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
-            <span class="c1"># push the value</span>
-            <span class="n">isum</span><span class="p">,</span> <span class="n">isquare</span> <span class="o">=</span> <span class="n">sum_square</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-            <span class="n">idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">isum</span><span class="p">)</span>
-            <span class="n">idxq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">isquare</span><span class="p">)</span>
-            <span class="n">xsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
-            <span class="n">xsquare</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span><span class="p">[</span><span class="n">idxq</span><span class="p">]</span>
-            <span class="c1"># calculate N</span>
-            <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">mean</span> <span class="o">=</span> <span class="n">xsum</span> <span class="o">/</span> <span class="n">N</span>
-            <span class="n">sumvar</span> <span class="o">=</span> <span class="n">xsquare</span> <span class="o">-</span> <span class="n">xsum</span> <span class="o">*</span> <span class="n">xsum</span> <span class="o">/</span> <span class="n">N</span>
-            <span class="n">unbias_var</span> <span class="o">=</span> <span class="n">sumvar</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">std</span> <span class="o">=</span> <span class="p">(</span><span class="n">sumvar</span> <span class="o">/</span> <span class="n">N</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-            <span class="c1"># update running_mean and var</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> \
-                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">mean</span><span class="o">.</span><span class="n">data</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> \
-                <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">unbias_var</span><span class="o">.</span><span class="n">data</span>
-            <span class="c1"># forward</span>
-            <span class="k">return</span> <span class="n">batchnormtrain</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="n">input_shape</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
             <span class="n">std</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">batchnormeval</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span>
-                                 <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span></div>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">batchnormeval</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="c1"># get global sum(x) and sum(x^2)</span>
+        <span class="n">isum</span><span class="p">,</span> <span class="n">isquare</span> <span class="o">=</span> <span class="n">sum_square</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="n">xsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">(</span><span class="n">isum</span><span class="p">)</span>
+        <span class="n">xsquare</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span><span class="p">(</span><span class="n">isquare</span><span class="p">)</span>
+        <span class="c1"># calculate mean, var</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="n">xsum</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="n">sumvar</span> <span class="o">=</span> <span class="n">xsquare</span> <span class="o">-</span> <span class="n">xsum</span> <span class="o">*</span> <span class="n">xsum</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="n">unbias_var</span> <span class="o">=</span> <span class="n">sumvar</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">bias_var</span> <span class="o">=</span> <span class="n">sumvar</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="n">std</span> <span class="o">=</span> <span class="n">bias_var</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
+        <span class="c1"># update running_mean and var</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">mean</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">unbias_var</span><span class="o">.</span><span class="n">data</span>
+        <span class="c1"># forward</span>
+        <span class="k">return</span> <span class="n">batchnormtrain</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="BatchNorm2d"><a class="viewcode-back" href="../../../syncbn.html#encoding.nn.BatchNorm2d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="BatchNorm1d"><a class="viewcode-back" href="../../../syncbn.html#encoding.nn.BatchNorm1d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 2D or 3D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span></div>
+
+<div class="viewcode-block" id="BatchNorm2d"><a class="viewcode-back" href="../../../syncbn.html#encoding.nn.BatchNorm2d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
     <span class="sd">r&quot;&quot;&quot;Cross-GPU Synchronized Batch normalization (SyncBN)</span>
 
 <span class="sd">    Standard BN [1]_ implementation only normalize the data within each device.</span>
 <span class="sd">    SyncBN normalizes the input within the whole mini-batch.</span>
 <span class="sd">    We follow the sync-onece implmentation described in the paper [2]_ .</span>
+<span class="sd">    Please see the design idea in the `notes &lt;./notes/syncbn.html&gt;`_.</span>
 
 <span class="sd">    .. math::</span>
 
 <span class="sd">        y = \frac{x - mean[x]}{ \sqrt{Var[x] + \epsilon}} * gamma + beta</span>
 
-<span class="sd">    The mean and standard-deviation are calculated per-dimension over</span>
+<span class="sd">    The mean and standard-deviation are calculated per-channel over</span>
 <span class="sd">    the mini-batches and gamma and beta are learnable parameter vectors</span>
 <span class="sd">    of size C (where C is the input size).</span>
 
@@ -456,78 +398,20 @@
 <span class="sd">        &gt;&gt;&gt; m = nn.BatchNorm2d(100)</span>
 <span class="sd">        &gt;&gt;&gt; output = m(input)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span> <span class="o">=</span> <span class="n">num_features</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">affine</span> <span class="o">=</span> <span class="n">affine</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">=</span> <span class="n">momentum</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">affine</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">register_parameter</span><span class="p">(</span><span class="s1">&#39;bias&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;running_mean&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">register_buffer</span><span class="p">(</span><span class="s1">&#39;running_var&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_features</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reset_parameters</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">writelock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-        <span class="n">nGPUs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span> <span class="o">=</span> <span class="n">SharedTensor</span><span class="p">(</span><span class="n">nGPUs</span><span class="p">),</span> <span class="n">SharedTensor</span><span class="p">(</span><span class="n">nGPUs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">reset_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">affine</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">uniform_</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">(</span><span class="si">{num_features}</span><span class="s1">, eps=</span><span class="si">{eps}</span><span class="s1">, momentum=</span><span class="si">{momentum}</span><span class="s1">,&#39;</span>
-                <span class="s1">&#39; affine=</span><span class="si">{affine}</span><span class="s1">)&#39;</span>
-                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">))</span>
-
     <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 4D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
+                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span></div>
+
+<span class="k">class</span> <span class="nc">BatchNorm3d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
+    <span class="sd">r&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 5D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span>
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_input_dim</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
-            <span class="c1"># push the value</span>
-            <span class="n">isum</span><span class="p">,</span> <span class="n">isquare</span> <span class="o">=</span> <span class="n">sum_square</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-            <span class="n">idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">isum</span><span class="p">)</span>
-            <span class="n">idxq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">isquare</span><span class="p">)</span>
-            <span class="n">xsum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
-            <span class="n">xsquare</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xsquare</span><span class="p">[</span><span class="n">idxq</span><span class="p">]</span>
-            <span class="c1"># calculate N</span>
-            <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xsum</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-            <span class="n">mean</span> <span class="o">=</span> <span class="n">xsum</span> <span class="o">/</span> <span class="n">N</span>
-            <span class="n">sumvar</span> <span class="o">=</span> <span class="n">xsquare</span> <span class="o">-</span> <span class="n">xsum</span> <span class="o">*</span> <span class="n">xsum</span> <span class="o">/</span> <span class="n">N</span>
-            <span class="n">unbias_var</span> <span class="o">=</span> <span class="n">sumvar</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">std</span> <span class="o">=</span> <span class="p">(</span><span class="n">sumvar</span> <span class="o">/</span> <span class="n">N</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-            <span class="c1"># update running_mean and var</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> \
-                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">mean</span><span class="o">.</span><span class="n">data</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> \
-                <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">unbias_var</span><span class="o">.</span><span class="n">data</span>
-            <span class="c1"># forward</span>
-            <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="n">batchnormtrain</span><span class="p">(</span>
-                <span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span>
-                <span class="n">std</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">std</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-            <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">batchnormeval</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span>
-                                 <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span></div>
-
-
 <span class="k">class</span> <span class="nc">SharedTensor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Shared Tensor</span>
+    <span class="sd">&quot;&quot;&quot;Shared Tensor for cross GPU communication</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nGPUs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
@@ -540,44 +424,37 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span>
 
-    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;push a Tensor</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+        <span class="c1"># push from device</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-            <span class="n">idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">-=</span> <span class="mi">1</span>
-
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>
             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">idx</span>
-
-    <span class="k">def</span> <span class="nf">_reduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># pull from device</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span><span class="p">:</span>
                 <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">outlist</span> <span class="o">=</span> <span class="n">allreduce</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="n">allreduce</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">-=</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">-=</span> <span class="mi">1</span>
-
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>
             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_reduce</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">outlist</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="c1"># all reduce done</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">idx</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;SharedTensor&#39;</span><span class="p">)</span>

@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+25985c3)
+                master (0.3.0+c3b44eb)
               </div>
             
           
@@ -134,6 +134,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -283,6 +289,7 @@
 <div class="section" id="how-bn-works">
 <h2>How BN works?<a class="headerlink" href="#how-bn-works" title="Permalink to this headline">¶</a></h2>
 <p>BN layer was introduced in the paper <a class="reference external" href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a>, which dramatically speed up the training process of the network (enables larger learning rate) and makes the network less sensitive to the weight initialization.</p>
+<img alt="http://hangzh.com/blog/images/bn1.png" class="align-center" src="http://hangzh.com/blog/images/bn1.png" />
 <ul>
 <li><dl class="first docutils">
 <dt>Forward Pass:</dt>
@@ -309,6 +316,9 @@
 <h2>Why Synchronize BN?<a class="headerlink" href="#why-synchronize-bn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Standard Implementations of BN in public frameworks (suck as Caffe, MXNet, Torch, TF, PyTorch) are unsynchronized, which means that the data are normalized within each GPU. Therefore the <cite>working batch-size</cite> of the BN layer is <cite>BatchSize/nGPU</cite> (batch-size in each GPU).</li>
+</ul>
+<img alt="http://hangzh.com/blog/images/bn2.png" class="align-center" src="http://hangzh.com/blog/images/bn2.png" />
+<ul class="simple">
 <li>Since the <cite>working batch-size</cite> is typically large enough for standard vision tasks, such as classification and detection, there is no need to synchronize BN layer during the training. The synchronization will slow down the training.</li>
 <li>However, for the Semantic Segmentation task, the state-of-the-art approaches typically adopt dilated convoluton, which is very memory consuming. The <cite>working bath-size</cite> can be too small for BN layers (2 or 4 in each GPU) when using larger/deeper pre-trained networks, such as <a class="reference internal" href="../dilated.html#encoding.dilated.ResNet" title="encoding.dilated.ResNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.ResNet</span></code></a> or <a class="reference internal" href="../dilated.html#encoding.dilated.DenseNet" title="encoding.dilated.DenseNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.DenseNet</span></code></a>.</li>
 </ul>
@@ -327,12 +337,13 @@
 <dd><ul class="first last">
 <li><span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{d_\ell}{d_{y_i}}\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
 <li>Calculate the gradient of <span class="math">\(sum(x)\)</span> and <span class="math">\(sum(x^2)\)</span> individually in each GPU <span class="math">\(\frac{d_\ell}{d_{sum(x)_k}}\)</span> and <span class="math">\(\frac{d_\ell}{d_{sum(x^2)_k}}\)</span>.</li>
-<li>Then Sync the gradient (automatically handled by <a class="reference internal" href="../parallel.html#encoding.parallel.allreduce" title="encoding.parallel.allreduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.allreduce</span></code></a>) and continue the backward.</li>
+<li>Then Sync the gradient (automatically handled by <code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.AllReduce</span></code>) and continue the backward.</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
+<img alt="http://hangzh.com/blog/images/bn3.png" class="align-center" src="http://hangzh.com/blog/images/bn3.png" />
 </div>
 <div class="section" id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
