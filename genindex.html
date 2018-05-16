@@ -159,34 +159,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -207,16 +197,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -286,13 +280,11 @@
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
- | <a href="#M"><strong>M</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#U"><strong>U</strong></a>
@@ -313,23 +305,21 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.nn.BatchNorm1d">BatchNorm1d (class in encoding.nn)</a>
+      <li><a href="utils.html#encoding.utils.batch_intersection_union">batch_intersection_union() (in module encoding.utils)</a>
 </li>
-      <li><a href="syncbn.html#encoding.nn.BatchNorm2d">BatchNorm2d (class in encoding.nn)</a>
+      <li><a href="utils.html#encoding.utils.batch_pix_accuracy">batch_pix_accuracy() (in module encoding.utils)</a>
+</li>
+      <li><a href="nn.html#encoding.nn.BatchNorm1d">BatchNorm1d (class in encoding.nn)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="syncbn.html#encoding.functions.batchnormeval">batchnormeval() (in module encoding.functions)</a>
+      <li><a href="nn.html#encoding.nn.BatchNorm2d">BatchNorm2d (class in encoding.nn)</a>
 </li>
-      <li><a href="syncbn.html#encoding.functions.batchnormtrain">batchnormtrain() (in module encoding.functions)</a>
+      <li><a href="nn.html#encoding.nn.BatchNorm3d">BatchNorm3d (class in encoding.nn)</a>
 </li>
-  </ul></td>
-</tr></table>
-
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="parallel.html#encoding.parallel.CriterionDataParallel">CriterionDataParallel (class in encoding.parallel)</a>
+      <li><a href="functions.html#encoding.functions.batchnormeval">batchnormeval() (in module encoding.functions)</a>, <a href="functions.html#encoding.functions.batchnormeval">[1]</a>
+</li>
+      <li><a href="functions.html#encoding.functions.batchnormtrain">batchnormtrain() (in module encoding.functions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -337,19 +327,23 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="parallel.html#encoding.parallel.DataParallelCriterion">DataParallelCriterion (class in encoding.parallel)</a>
+</li>
+      <li><a href="parallel.html#encoding.parallel.DataParallelModel">DataParallelModel (class in encoding.parallel)</a>
+</li>
       <li><a href="dilated.html#encoding.dilated.DenseNet">DenseNet (class in encoding.dilated)</a>
 </li>
       <li><a href="dilated.html#encoding.dilated.densenet121">densenet121() (in module encoding.dilated)</a>
 </li>
-      <li><a href="dilated.html#encoding.dilated.densenet161">densenet161() (in module encoding.dilated)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dilated.html#encoding.dilated.densenet161">densenet161() (in module encoding.dilated)</a>
+</li>
       <li><a href="dilated.html#encoding.dilated.densenet169">densenet169() (in module encoding.dilated)</a>
 </li>
       <li><a href="dilated.html#encoding.dilated.densenet201">densenet201() (in module encoding.dilated)</a>
 </li>
-      <li><a href="encoding.html#encoding.nn.DilatedAvgPool2d">DilatedAvgPool2d (class in encoding.nn)</a>
+      <li><a href="nn.html#encoding.nn.DilatedAvgPool2d">DilatedAvgPool2d (class in encoding.nn)</a>
 </li>
       <li><a href="functions.html#encoding.functions.dilatedavgpool2d">dilatedavgpool2d() (in module encoding.functions)</a>
 </li>
@@ -359,7 +353,7 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.nn.Encoding">Encoding (class in encoding.nn)</a>
+      <li><a href="nn.html#encoding.nn.Encoding">Encoding (class in encoding.nn)</a>
 </li>
       <li><a href="dilated.html#module-encoding.dilated">encoding.dilated (module)</a>
 </li>
@@ -377,11 +371,7 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="utils.html#encoding.utils.get_optimizer">get_optimizer() (in module encoding.utils)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.nn.GramMatrix">GramMatrix (class in encoding.nn)</a>
+      <li><a href="nn.html#encoding.nn.GramMatrix">GramMatrix (class in encoding.nn)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -389,7 +379,7 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.nn.Inspiration">Inspiration (class in encoding.nn)</a>
+      <li><a href="nn.html#encoding.nn.Inspiration">Inspiration (class in encoding.nn)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -398,14 +388,6 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="utils.html#encoding.utils.LR_Scheduler">LR_Scheduler (class in encoding.utils)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="M">M</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="parallel.html#encoding.parallel.ModelDataParallel">ModelDataParallel (class in encoding.parallel)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -447,7 +429,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="encoding.html#encoding.nn.UpsampleConv2d">UpsampleConv2d (class in encoding.nn)</a>
+      <li><a href="nn.html#encoding.nn.UpsampleConv2d">UpsampleConv2d (class in encoding.nn)</a>
 </li>
   </ul></td>
 </tr></table>

@@ -51,8 +51,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
-        <link rel="next" title="My PyTorch Utils" href="utils.html"/>
-        <link rel="prev" title="Dilated Networks" href="dilated.html"/> 
+        <link rel="next" title="encoding.utils" href="utils.html"/>
+        <link rel="prev" title="encoding.dilated" href="dilated.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -160,34 +160,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -208,16 +198,20 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -286,6 +280,48 @@
   <div class="section" id="module-encoding.functions">
 <span id="encoding-functions"></span><h1>encoding.functions<a class="headerlink" href="#module-encoding.functions" title="Permalink to this headline">¶</a></h1>
 <p>Encoding Autograd Fuctions</p>
+<div class="section" id="batchnormtrain">
+<h2><span class="hidden-section">batchnormtrain</span><a class="headerlink" href="#batchnormtrain" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.batchnormtrain">
+<code class="descclassname">encoding.functions.</code><code class="descname">batchnormtrain</code><span class="sig-paren">(</span><em>input</em>, <em>gamma</em>, <em>beta</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormtrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.batchnormtrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies Batch Normalization over a 3d input that is seen as a
+mini-batch.</p>
+<div class="math" id="encoding-batchnormtrain">
+\[y = \frac{x - \mu[x]}{ \sqrt{var[x] + \epsilon}} * \gamma + \beta\]</div>
+<dl class="docutils">
+<dt>Shape:</dt>
+<dd><ul class="first last simple">
+<li>Input: <span class="math">\((N, C)\)</span> or <span class="math">\((N, C, L)\)</span></li>
+<li>Output: <span class="math">\((N, C)\)</span> or <span class="math">\((N, C, L)\)</span> (same shape as input)</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="batchnormeval">
+<h2><span class="hidden-section">batchnormeval</span><a class="headerlink" href="#batchnormeval" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.functions.batchnormeval">
+<code class="descclassname">encoding.functions.</code><code class="descname">batchnormeval</code><span class="sig-paren">(</span><em>input</em>, <em>gamma</em>, <em>beta</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormeval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.batchnormeval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies Batch Normalization over a 3d input that is seen as a
+mini-batch.</p>
+<p>Please see <a class="reference internal" href="#encoding-batchnormtrain">encoding.batchnormtrain</a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="id1">
+<h2><span class="hidden-section">batchnormeval</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt>
+<code class="descclassname">encoding.functions.</code><code class="descname">batchnormeval</code><span class="sig-paren">(</span><em>input</em>, <em>gamma</em>, <em>beta</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormeval"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Applies Batch Normalization over a 3d input that is seen as a
+mini-batch.</p>
+<p>Please see <a class="reference internal" href="#encoding-batchnormtrain">encoding.batchnormtrain</a></p>
+</dd></dl>
+
+</div>
 <div class="section" id="dilatedavgpool2d">
 <h2><span class="hidden-section">dilatedavgpool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -299,7 +335,7 @@ Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR
 <p>Applies 2D average-pooling operation in kh x kw regions by step size
 dh x dw steps. The number of output features is equal to the number of
 input planes.</p>
-<p>See <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">DilatedAvgPool2d</span></code></a> for details and output shape.</p>
+<p>See <a class="reference internal" href="nn.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">DilatedAvgPool2d</span></code></a> for details and output shape.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -380,7 +416,7 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
 <dl class="function">
 <dt id="encoding.functions.sum_square">
 <code class="descclassname">encoding.functions.</code><code class="descname">sum_square</code><span class="sig-paren">(</span><em>input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#sum_square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.sum_square" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate sum of elements and sum of squares for Batch Normalization.</p>
+<dd><p>Calculate sum of elements and sum of squares for Batch Normalization</p>
 </dd></dl>
 
 </div>
@@ -396,10 +432,10 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="utils.html" class="btn btn-neutral float-right" title="My PyTorch Utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="encoding.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dilated.html" class="btn btn-neutral" title="Dilated Networks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dilated.html" class="btn btn-neutral" title="encoding.dilated" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

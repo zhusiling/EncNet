@@ -159,34 +159,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel.html">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dilated.html">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -207,16 +197,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -295,15 +289,17 @@
 
 <span class="sd">&quot;&quot;&quot;Encoding Custermized NN Module&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Conv2d</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">AdaptiveAvgPool2d</span>
+<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Conv2d</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">,</span> \
+    <span class="n">NLLLoss</span><span class="p">,</span> <span class="n">BCELoss</span><span class="p">,</span> <span class="n">CrossEntropyLoss</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
 
 <span class="kn">from</span> <span class="nn">.syncbn</span> <span class="k">import</span> <span class="n">BatchNorm2d</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GramMatrix&#39;</span><span class="p">,</span> <span class="s1">&#39;View&#39;</span><span class="p">,</span> <span class="s1">&#39;Sum&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalize&#39;</span><span class="p">,</span> <span class="s1">&#39;PyramidPooling&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GramMatrix&#39;</span><span class="p">,</span> <span class="s1">&#39;SegmentationLosses&#39;</span><span class="p">,</span> <span class="s1">&#39;View&#39;</span><span class="p">,</span> <span class="s1">&#39;Sum&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;Normalize&#39;</span><span class="p">,</span> <span class="s1">&#39;PyramidPooling&#39;</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="GramMatrix"><a class="viewcode-back" href="../../../encoding.html#encoding.nn.GramMatrix">[docs]</a><span class="k">class</span> <span class="nc">GramMatrix</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="GramMatrix"><a class="viewcode-back" href="../../../nn.html#encoding.nn.GramMatrix">[docs]</a><span class="k">class</span> <span class="nc">GramMatrix</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">r&quot;&quot;&quot; Gram Matrix for a 4D convolutional featuremaps as a mini-batch</span>
 
 <span class="sd">    .. math::</span>
@@ -315,6 +311,46 @@
         <span class="n">features_t</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">gram</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">features_t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ch</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">gram</span></div>
+
+<span class="k">def</span> <span class="nf">softmax_crossentropy</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">nll_loss</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span>
+                      <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">,</span> <span class="n">reduce</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">SegmentationLosses</span><span class="p">(</span><span class="n">CrossEntropyLoss</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;2D Cross Entropy Loss with Auxilary Loss&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aux</span><span class="p">,</span> <span class="n">aux_weight</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">size_average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aux_weight</span> <span class="o">=</span> <span class="n">aux_weight</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">pred1</span><span class="p">,</span> <span class="n">pred2</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">loss1</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="n">loss2</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred2</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux_weight</span> <span class="o">*</span> <span class="n">loss2</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">class SegmentationLosses(Module):</span>
+<span class="sd">    def __init__(self, aux, aux_weight=0.2, weight=None, size_average=True, ignore_index=-1):</span>
+<span class="sd">        super(SegmentationLosses, self).__init__()</span>
+<span class="sd">        self.aux = aux</span>
+<span class="sd">        self.aux_weight = aux_weight</span>
+<span class="sd">        # Somehow the size averge is not handled correctly on multi-gpu, so we average by ourself.</span>
+<span class="sd">        self.nll_loss = NLLLoss(weight, ignore_index=ignore_index, reduce=True)</span>
+
+<span class="sd">    def _forward_each(self, inputs, targets):</span>
+<span class="sd">        return self.nll_loss(F.log_softmax(inputs, dim=1), targets)</span>
+
+<span class="sd">    def forward(self, *inputs):</span>
+<span class="sd">        if not self.aux:</span>
+<span class="sd">            return self._forward_each(*inputs)</span>
+<span class="sd">        pred1, pred2, target = tuple(inputs)</span>
+<span class="sd">        loss1 = self._forward_each(pred1, target)</span>
+<span class="sd">        loss2 = self._forward_each(pred2, target)</span>
+<span class="sd">        return loss1 + self.aux_weight * loss2</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>

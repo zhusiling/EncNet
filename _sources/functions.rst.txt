@@ -8,6 +8,21 @@ encoding.functions
 
 .. currentmodule:: encoding.functions
 
+
+:hidden:`batchnormtrain`
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: batchnormtrain
+
+:hidden:`batchnormeval`
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: batchnormeval
+
+:hidden:`batchnormeval`
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: batchnormeval
 :hidden:`dilatedavgpool2d`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

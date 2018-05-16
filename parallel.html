@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Parallel &mdash; Encoding master documentation</title>
+  <title>encoding.parallel &mdash; Encoding master documentation</title>
   
 
   
@@ -51,8 +51,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
-        <link rel="next" title="Dilated Networks" href="dilated.html"/>
-        <link rel="prev" title="Synchronized BatchNorm" href="syncbn.html"/> 
+        <link rel="next" title="encoding.dilated" href="dilated.html"/>
+        <link rel="prev" title="encoding.nn" href="nn.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -160,34 +160,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -208,16 +198,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnorm"><span class="hidden-section">batchnorm</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -264,7 +257,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Data Parallel</li>
+      <li>encoding.parallel</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -283,10 +276,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-parallel">
-<h1>Data Parallel<a class="headerlink" href="#data-parallel" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="encoding-parallel">
+<h1>encoding.parallel<a class="headerlink" href="#encoding-parallel" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>Current PyTorch DataParallel Table is not supporting mutl-gpu loss calculation, which makes the gpu memory usage very in-balance. We address this issue here by doing Model &amp; CriterionDataParallel.</li>
+<li>Current PyTorch DataParallel Table is not supporting mutl-gpu loss calculation, which makes the gpu memory usage very in-balance. We address this issue here by doing DataParallel for Model &amp; Criterion.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -296,11 +289,11 @@
 </ul>
 </div>
 <span class="target" id="module-encoding.parallel"></span><p>Encoding Data Parallel</p>
-<div class="section" id="modeldataparallel">
-<h2><span class="hidden-section">ModelDataParallel</span><a class="headerlink" href="#modeldataparallel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dataparallelmodel">
+<h2><span class="hidden-section">DataParallelModel</span><a class="headerlink" href="#dataparallelmodel" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="encoding.parallel.ModelDataParallel">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">ModelDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#ModelDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.ModelDataParallel" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.parallel.DataParallelModel">
+<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">DataParallelModel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#DataParallelModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.DataParallelModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements data parallelism at the module level.</p>
 <p>This container parallelizes the application of the given module by
 splitting the input across the specified devices by chunking in the
@@ -308,7 +301,7 @@ batch dimension.
 In the forward pass, the module is replicated on each device,
 and each replica handles a portion of the input. During the backwards pass, gradients from each replica are summed into the original module.
 Note that the outputs are not gathered, please use compatible
-<a class="reference internal" href="#encoding.parallel.CriterionDataParallel" title="encoding.parallel.CriterionDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.CriterionDataParallel</span></code></a>.</p>
+<a class="reference internal" href="#encoding.parallel.DataParallelCriterion" title="encoding.parallel.DataParallelCriterion"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.DataParallelCriterion</span></code></a>.</p>
 <p>The batch size should be larger than the number of GPUs used. It should
 also be an integer multiple of the number of GPUs so that each chunk is
 the same size (so that each GPU processes the same number of samples).</p>
@@ -331,22 +324,22 @@ Amit Agrawal. “Context Encoding for Semantic Segmentation.
 <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em></dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModelDataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallelModel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
 </div>
-<div class="section" id="criteriondataparallel">
-<h2><span class="hidden-section">CriterionDataParallel</span><a class="headerlink" href="#criteriondataparallel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dataparallelcriterion">
+<h2><span class="hidden-section">DataParallelCriterion</span><a class="headerlink" href="#dataparallelcriterion" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="encoding.parallel.CriterionDataParallel">
-<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">CriterionDataParallel</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#CriterionDataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.CriterionDataParallel" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.parallel.DataParallelCriterion">
+<em class="property">class </em><code class="descclassname">encoding.parallel.</code><code class="descname">DataParallelCriterion</code><span class="sig-paren">(</span><em>module</em>, <em>device_ids=None</em>, <em>output_device=None</em>, <em>dim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#DataParallelCriterion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.DataParallelCriterion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate loss in multiple-GPUs, which balance the memory usage for
 Semantic Segmentation.</p>
 <p>The targets are splitted across the specified devices by chunking in
-the batch dimension. Please use together with <a class="reference internal" href="#encoding.parallel.ModelDataParallel" title="encoding.parallel.ModelDataParallel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.ModelDataParallel</span></code></a>.</p>
+the batch dimension. Please use together with <a class="reference internal" href="#encoding.parallel.DataParallelModel" title="encoding.parallel.DataParallelModel"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.DataParallelModel</span></code></a>.</p>
 <dl class="docutils">
 <dt>Reference:</dt>
 <dd>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi,
@@ -354,8 +347,8 @@ Amit Agrawal. “Context Encoding for Semantic Segmentation.
 <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em></dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModelDataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">criterion</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">CriterionDataParallel</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallelModel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">criterion</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallelCriterion</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 </pre></div>
@@ -367,7 +360,7 @@ Amit Agrawal. “Context Encoding for Semantic Segmentation.
 <h2><span class="hidden-section">allreduce</span><a class="headerlink" href="#allreduce" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="encoding.parallel.allreduce">
-<code class="descclassname">encoding.parallel.</code><code class="descname">allreduce</code><span class="sig-paren">(</span><em>num_inputs</em>, <em>*inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#allreduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.allreduce" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">encoding.parallel.</code><code class="descname">allreduce</code><span class="sig-paren">(</span><em>*inputs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/parallel.html#allreduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.parallel.allreduce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cross GPU all reduce autograd operation for calculate mean and
 variance in SyncBN.</p>
 </dd></dl>
@@ -385,10 +378,10 @@ variance in SyncBN.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dilated.html" class="btn btn-neutral float-right" title="Dilated Networks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dilated.html" class="btn btn-neutral float-right" title="encoding.dilated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="syncbn.html" class="btn btn-neutral" title="Synchronized BatchNorm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nn.html" class="btn btn-neutral" title="encoding.nn" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

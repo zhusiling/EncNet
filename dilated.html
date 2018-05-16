@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dilated Networks &mdash; Encoding master documentation</title>
+  <title>encoding.dilated &mdash; Encoding master documentation</title>
   
 
   
@@ -52,7 +52,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Encoding master documentation" href="index.html"/>
         <link rel="next" title="encoding.functions" href="functions.html"/>
-        <link rel="prev" title="Data Parallel" href="parallel.html"/> 
+        <link rel="prev" title="encoding.parallel" href="parallel.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -160,34 +160,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Dilated Networks</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -208,16 +198,19 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnorm"><span class="hidden-section">batchnorm</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">My PyTorch Utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -264,7 +257,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Dilated Networks</li>
+      <li>encoding.dilated</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -283,10 +276,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="dilated-networks">
-<h1>Dilated Networks<a class="headerlink" href="#dilated-networks" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="encoding-dilated">
+<h1>encoding.dilated<a class="headerlink" href="#encoding-dilated" title="Permalink to this headline">¶</a></h1>
 <p>We provide correct dilated pre-trained ResNet and DenseNet (stride of 8) for semantic segmentation.
-For dilation of DenseNet, we provide <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.
+For dilation of DenseNet, we provide <a class="reference internal" href="nn.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.
 All provided models have been verified.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -302,7 +295,7 @@ All provided models have been verified.</p>
 <h3><span class="hidden-section">ResNet</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.dilated.ResNet">
-<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>norm_layer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dilated Pre-trained ResNet Model, which preduces the stride of 8 featuremaps at conv5.</p>
 <p>Reference:</p>
 <blockquote>
@@ -408,7 +401,7 @@ All provided models have been verified.</p>
 <dt id="encoding.dilated.DenseNet">
 <em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">DenseNet</code><span class="sig-paren">(</span><em>growth_rate=32</em>, <em>block_config=(6</em>, <em>12</em>, <em>24</em>, <em>16)</em>, <em>num_init_features=64</em>, <em>bn_size=4</em>, <em>drop_rate=0</em>, <em>num_classes=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#DenseNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.DenseNet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dilated DenseNet.</p>
-<p>For correctly dilation of transition layer fo DenseNet, we implement the <a class="reference internal" href="encoding.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.</p>
+<p>For correctly dilation of transition layer fo DenseNet, we implement the <a class="reference internal" href="nn.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -520,7 +513,7 @@ All provided models have been verified.</p>
         <a href="functions.html" class="btn btn-neutral float-right" title="encoding.functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="parallel.html" class="btn btn-neutral" title="Data Parallel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="parallel.html" class="btn btn-neutral" title="encoding.parallel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

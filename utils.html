@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>My PyTorch Utils &mdash; Encoding master documentation</title>
+  <title>encoding.utils &mdash; Encoding master documentation</title>
   
 
   
@@ -159,34 +159,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel.html#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="dilated.html">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dilated.html#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -207,16 +197,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">My PyTorch Utils</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -263,7 +257,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>My PyTorch Utils</li>
+      <li>encoding.utils</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -282,8 +276,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="my-pytorch-utils">
-<h1>My PyTorch Utils<a class="headerlink" href="#my-pytorch-utils" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="encoding-utils">
+<h1>encoding.utils<a class="headerlink" href="#encoding-utils" title="Permalink to this headline">¶</a></h1>
 <p>Useful util functions.</p>
 <span class="target" id="module-encoding.utils"></span><p>Encoding Util Tools</p>
 <div class="section" id="lr-scheduler">
@@ -312,33 +306,35 @@
 </dd></dl>
 
 </div>
-<div class="section" id="get-optimizer">
-<h2><span class="hidden-section">get_optimizer</span><a class="headerlink" href="#get-optimizer" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="encoding.utils.get_optimizer">
-<code class="descclassname">encoding.utils.</code><code class="descname">get_optimizer</code><span class="sig-paren">(</span><em>args</em>, <em>model</em>, <em>diff_LR=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils.html#get_optimizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.get_optimizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns an optimizer for given model,</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>args</strong> &#8211; <code class="xref py py-attr docutils literal"><span class="pre">args.lr</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">args.momentum</span></code>, <code class="xref py py-attr docutils literal"><span class="pre">args.weight_decay</span></code></li>
-<li><strong>model</strong> &#8211; if using different lr, define <cite>model.pretrained</cite> and <cite>model.head</cite>.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
 <div class="section" id="save-checkpoint">
 <h2><span class="hidden-section">save_checkpoint</span><a class="headerlink" href="#save-checkpoint" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="encoding.utils.save_checkpoint">
 <code class="descclassname">encoding.utils.</code><code class="descname">save_checkpoint</code><span class="sig-paren">(</span><em>state</em>, <em>args</em>, <em>is_best</em>, <em>filename='checkpoint.pth.tar'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils.html#save_checkpoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.save_checkpoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Saves checkpoint to disk</p>
+</dd></dl>
+
+</div>
+<div class="section" id="batch-pix-accuracy">
+<h2><span class="hidden-section">batch_pix_accuracy</span><a class="headerlink" href="#batch-pix-accuracy" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.utils.batch_pix_accuracy">
+<code class="descclassname">encoding.utils.</code><code class="descname">batch_pix_accuracy</code><span class="sig-paren">(</span><em>predict</em>, <em>target</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils.html#batch_pix_accuracy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.batch_pix_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Batch Pixel Accuracy
+:param predict: input 4D tensor
+:param target: label 3D tensor</p>
+</dd></dl>
+
+</div>
+<div class="section" id="batch-intersection-union">
+<h2><span class="hidden-section">batch_intersection_union</span><a class="headerlink" href="#batch-intersection-union" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="encoding.utils.batch_intersection_union">
+<code class="descclassname">encoding.utils.</code><code class="descname">batch_intersection_union</code><span class="sig-paren">(</span><em>predict</em>, <em>target</em>, <em>nclass</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils.html#batch_intersection_union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.batch_intersection_union" title="Permalink to this definition">¶</a></dt>
+<dd><p>Batch Intersection of Union
+:param predict: input 4D tensor
+:param target: label 3D tensor
+:param nclass: number of categories (int)</p>
 </dd></dl>
 
 </div>

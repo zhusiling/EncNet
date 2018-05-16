@@ -159,34 +159,24 @@
 </ul>
 <p class="caption"><span class="caption-text">Package Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../encoding.html">NN Layers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../encoding.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../encoding.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../encoding.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../encoding.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../encoding.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn.html">encoding.nn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../syncbn.html">Synchronized BatchNorm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../syncbn.html#modules">Modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../syncbn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../syncbn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../syncbn.html#functions">Functions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../syncbn.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../syncbn.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../parallel.html">Data Parallel</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../parallel.html#modeldataparallel"><span class="hidden-section">ModelDataParallel</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../parallel.html#criteriondataparallel"><span class="hidden-section">CriterionDataParallel</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parallel.html">encoding.parallel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../parallel.html#dataparallelmodel"><span class="hidden-section">DataParallelModel</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../parallel.html#dataparallelcriterion"><span class="hidden-section">DataParallelCriterion</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../dilated.html">Dilated Networks</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dilated.html">encoding.dilated</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../dilated.html#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -207,16 +197,20 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../functions.html">encoding.functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../utils.html">My PyTorch Utils</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">encoding.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
 </ul>
 </li>
 </ul>
@@ -295,34 +289,53 @@
 
 <span class="sd">&quot;&quot;&quot;Encoding Data Parallel&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Function</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span><span class="p">,</span> <span class="n">Function</span>
 <span class="kn">import</span> <span class="nn">torch.cuda.comm</span> <span class="k">as</span> <span class="nn">comm</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
-<span class="kn">from</span> <span class="nn">torch.nn.modules</span> <span class="k">import</span> <span class="n">Module</span>
-<span class="kn">from</span> <span class="nn">torch.nn.parallel.scatter_gather</span> <span class="k">import</span> <span class="n">scatter_kwargs</span>
-<span class="kn">from</span> <span class="nn">torch.nn.parallel.replicate</span> <span class="k">import</span> <span class="n">replicate</span>
-<span class="kn">from</span> <span class="nn">torch.nn.parallel.parallel_apply</span> <span class="k">import</span> <span class="n">parallel_apply</span>
+<span class="kn">from</span> <span class="nn">torch.nn.parallel.data_parallel</span> <span class="k">import</span> <span class="n">DataParallel</span>
+<span class="kn">from</span> <span class="nn">torch.nn.parallel.parallel_apply</span> <span class="k">import</span> <span class="n">get_a_var</span>
 <span class="kn">from</span> <span class="nn">torch.nn.parallel._functions</span> <span class="k">import</span> <span class="n">ReduceAddCoalesced</span><span class="p">,</span> <span class="n">Broadcast</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;allreduce&#39;</span><span class="p">,</span> <span class="s1">&#39;ModelDataParallel&#39;</span><span class="p">,</span> <span class="s1">&#39;CriterionDataParallel&#39;</span><span class="p">]</span>
+<span class="n">torch_ver</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;allreduce&#39;</span><span class="p">,</span> <span class="s1">&#39;DataParallelModel&#39;</span><span class="p">,</span> <span class="s1">&#39;DataParallelCriterion&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;patch_replication_callback&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="allreduce"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.allreduce">[docs]</a><span class="k">def</span> <span class="nf">allreduce</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+<div class="viewcode-block" id="allreduce"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.allreduce">[docs]</a><span class="k">def</span> <span class="nf">allreduce</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Cross GPU all reduce autograd operation for calculate mean and</span>
 <span class="sd">    variance in SyncBN.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">target_gpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">num_inputs</span><span class="p">)]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">ReduceAddCoalesced</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">target_gpus</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
-    <span class="n">outputs</span> <span class="o">=</span> <span class="n">Broadcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">target_gpus</span><span class="p">,</span> <span class="o">*</span><span class="n">result</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">outputs</span></div>
+    <span class="k">return</span> <span class="n">AllReduce</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span></div>
+
+<span class="k">class</span> <span class="nc">AllReduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">num_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">num_inputs</span> <span class="o">=</span> <span class="n">num_inputs</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">num_inputs</span><span class="p">)]</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">num_inputs</span><span class="p">]</span>
+                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">num_inputs</span><span class="p">)]</span>
+        <span class="c1"># sort before reduce sum</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_device</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">reduce_add_coalesced</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">broadcast_coalesced</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">t</span> <span class="k">for</span> <span class="n">tensors</span> <span class="ow">in</span> <span class="n">outputs</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tensors</span><span class="p">])</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">ctx</span><span class="o">.</span><span class="n">num_inputs</span><span class="p">]</span>
+                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">ctx</span><span class="o">.</span><span class="n">num_inputs</span><span class="p">)]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">reduce_add_coalesced</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">broadcast_coalesced</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">Variable</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">tensors</span> <span class="ow">in</span> <span class="n">outputs</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tensors</span><span class="p">])</span>
 
 
 <span class="k">class</span> <span class="nc">Reduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">))]</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">.</span><span class="n">get_device</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">comm</span><span class="o">.</span><span class="n">reduce_add</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
@@ -330,7 +343,7 @@
         <span class="k">return</span> <span class="n">Broadcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span><span class="p">,</span> <span class="n">gradOutput</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ModelDataParallel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.ModelDataParallel">[docs]</a><span class="k">class</span> <span class="nc">ModelDataParallel</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="DataParallelModel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.DataParallelModel">[docs]</a><span class="k">class</span> <span class="nc">DataParallelModel</span><span class="p">(</span><span class="n">DataParallel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implements data parallelism at the module level.</span>
 
 <span class="sd">    This container parallelizes the application of the given module by</span>
@@ -339,7 +352,7 @@
 <span class="sd">    In the forward pass, the module is replicated on each device,</span>
 <span class="sd">    and each replica handles a portion of the input. During the backwards pass, gradients from each replica are summed into the original module.</span>
 <span class="sd">    Note that the outputs are not gathered, please use compatible</span>
-<span class="sd">    :class:`encoding.parallel.CriterionDataParallel`.</span>
+<span class="sd">    :class:`encoding.parallel.DataParallelCriterion`.</span>
 
 <span class="sd">    The batch size should be larger than the number of GPUs used. It should</span>
 <span class="sd">    also be an integer multiple of the number of GPUs so that each chunk is</span>
@@ -356,43 +369,25 @@
 
 <span class="sd">    Example::</span>
 
-<span class="sd">        &gt;&gt;&gt; net = encoding.nn.ModelDataParallel(model, device_ids=[0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; net = encoding.nn.DataParallelModel(model, device_ids=[0, 1, 2])</span>
 <span class="sd">        &gt;&gt;&gt; y = net(x)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ModelDataParallel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">device_ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">device_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()))</span>
-        <span class="k">if</span> <span class="n">output_device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">output_device</span> <span class="o">=</span> <span class="n">device_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">module</span> <span class="o">=</span> <span class="n">module</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span> <span class="o">=</span> <span class="n">device_ids</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">output_device</span> <span class="o">=</span> <span class="n">output_device</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">master_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_var</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">device_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">replicas</span> <span class="o">=</span> <span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> \
-            <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)])</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">parallel_apply</span><span class="p">(</span><span class="n">replicas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">gather</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">output_device</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">outputs</span>
 
-    <span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">scatter_kwargs</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">replicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
+        <span class="n">modules</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DataParallelModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">)</span>
+        <span class="n">execute_replication_callbacks</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">modules</span></div>
 
 
-<div class="viewcode-block" id="CriterionDataParallel"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.CriterionDataParallel">[docs]</a><span class="k">class</span> <span class="nc">CriterionDataParallel</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<div class="viewcode-block" id="DataParallelCriterion"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.DataParallelCriterion">[docs]</a><span class="k">class</span> <span class="nc">DataParallelCriterion</span><span class="p">(</span><span class="n">DataParallel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculate loss in multiple-GPUs, which balance the memory usage for</span>
 <span class="sd">    Semantic Segmentation.</span>
 
 <span class="sd">    The targets are splitted across the specified devices by chunking in</span>
-<span class="sd">    the batch dimension. Please use together with :class:`encoding.parallel.ModelDataParallel`.</span>
+<span class="sd">    the batch dimension. Please use together with :class:`encoding.parallel.DataParallelModel`.</span>
 
 <span class="sd">    Reference:</span>
 <span class="sd">        Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi,</span>
@@ -401,73 +396,70 @@
 
 <span class="sd">    Example::</span>
 
-<span class="sd">        &gt;&gt;&gt; net = encoding.nn.ModelDataParallel(model, device_ids=[0, 1, 2])</span>
-<span class="sd">        &gt;&gt;&gt; criterion = encoding.nn.CriterionDataParallel(criterion, device_ids=[0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; net = encoding.nn.DataParallelModel(model, device_ids=[0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; criterion = encoding.nn.DataParallelCriterion(criterion, device_ids=[0, 1, 2])</span>
 <span class="sd">        &gt;&gt;&gt; y = net(x)</span>
 <span class="sd">        &gt;&gt;&gt; loss = criterion(y, target)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CriterionDataParallel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">device_ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">device_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()))</span>
-        <span class="k">if</span> <span class="n">output_device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">output_device</span> <span class="o">=</span> <span class="n">device_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">module</span> <span class="o">=</span> <span class="n">module</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span> <span class="o">=</span> <span class="n">device_ids</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">output_device</span> <span class="o">=</span> <span class="n">output_device</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">cuda</span><span class="p">(</span><span class="n">device_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># input should be already scatterd</span>
         <span class="c1"># scattering the targets instead</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">replicas</span> <span class="o">=</span> <span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)])</span>
+        <span class="n">replicas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)])</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">_criterion_parallel_apply</span><span class="p">(</span><span class="n">replicas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Reduce</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">outputs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">scatter_kwargs</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Reduce</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">outputs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span></div>
+        <span class="c1">#return self.gather(outputs, self.output_device).mean()</span>
 
 
-<span class="k">def</span> <span class="nf">_criterion_parallel_apply</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs_tup</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_criterion_parallel_apply</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs_tup</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">kwargs_tup</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">kwargs_tup</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">kwargs_tup</span> <span class="o">=</span> <span class="p">({},)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
-    <span class="c1"># Fast track</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">modules</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="o">*</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs_tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">devices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">devices</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
 
     <span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">torch_ver</span> <span class="o">!=</span> <span class="s2">&quot;0.3&quot;</span><span class="p">:</span>
+        <span class="n">grad_enabled</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_grad_enabled</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_worker</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">lock</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_worker</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">torch_ver</span> <span class="o">!=</span> <span class="s2">&quot;0.3&quot;</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="n">grad_enabled</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="n">get_a_var</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">var_input</span> <span class="o">=</span> <span class="n">_get_a_var</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_of</span><span class="p">(</span><span class="n">var_input</span><span class="p">):</span>
-                <span class="n">output</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="o">*</span><span class="n">target</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+                <span class="n">output</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">input</span> <span class="o">+</span> <span class="n">target</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
                 <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
                 <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
 
-    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">_worker</span><span class="p">,</span>
-                                <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span>
-                                      <span class="n">kwargs</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">lock</span><span class="p">),)</span>
-               <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span> <span class="ow">in</span>
-               <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs_tup</span><span class="p">))]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">_worker</span><span class="p">,</span>
+                                    <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span>
+                                          <span class="n">kwargs</span><span class="p">,</span> <span class="n">device</span><span class="p">),)</span>
+                   <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span> <span class="ow">in</span>
+                   <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs_tup</span><span class="p">,</span> <span class="n">devices</span><span class="p">))]</span>
 
-    <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
-        <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
-        <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_worker</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">modules</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kwargs_tup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
     <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)):</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -476,22 +468,63 @@
         <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">outputs</span>
 
+<span class="c1">###########################################################################</span>
+<span class="c1"># Adapted from Synchronized-BatchNorm-PyTorch.</span>
+<span class="c1"># https://github.com/vacancy/Synchronized-BatchNorm-PyTorch</span>
 
-<span class="k">def</span> <span class="nf">_get_a_var</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">obj</span>
+<span class="k">class</span> <span class="nc">CallbackContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span>
 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_get_a_var</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">result</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-        <span class="n">results</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_get_a_var</span><span class="p">,</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
-        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">Variable</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">result</span>
-    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">execute_replication_callbacks</span><span class="p">(</span><span class="n">modules</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute an replication callback `__data_parallel_replicate__` on each module created</span>
+<span class="sd">    by original replication.</span>
+
+<span class="sd">    The callback will be invoked with arguments `__data_parallel_replicate__(ctx, copy_id)`</span>
+
+<span class="sd">    Note that, as all modules are isomorphism, we assign each sub-module with a context</span>
+<span class="sd">    (shared among multiple copies of this module on different devices).</span>
+<span class="sd">    Through this context, different copies can share some information.</span>
+
+<span class="sd">    We guarantee that the callback on the master copy (the first copy) will be called ahead</span>
+<span class="sd">    of calling the callback of any slave copies.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">master_copy</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nr_modules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">master_copy</span><span class="o">.</span><span class="n">modules</span><span class="p">()))</span>
+    <span class="n">ctxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">CallbackContext</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr_modules</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">modules</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">modules</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;__data_parallel_replicate__&#39;</span><span class="p">):</span>
+                <span class="n">m</span><span class="o">.</span><span class="n">__data_parallel_replicate__</span><span class="p">(</span><span class="n">ctxs</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">patch_replication_callback</span><span class="p">(</span><span class="n">data_parallel</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Monkey-patch an existing `DataParallel` object. Add the replication callback.</span>
+<span class="sd">    Useful when you have customized `DataParallel` implementation.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt; sync_bn = SynchronizedBatchNorm1d(10, eps=1e-5, affine=False)</span>
+<span class="sd">        &gt; sync_bn = DataParallel(sync_bn, device_ids=[0, 1])</span>
+<span class="sd">        &gt; patch_replication_callback(sync_bn)</span>
+<span class="sd">        # this is equivalent to</span>
+<span class="sd">        &gt; sync_bn = SynchronizedBatchNorm1d(10, eps=1e-5, affine=False)</span>
+<span class="sd">        &gt; sync_bn = DataParallelWithCallback(sync_bn, device_ids=[0, 1])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_parallel</span><span class="p">,</span> <span class="n">DataParallel</span><span class="p">)</span>
+
+    <span class="n">old_replicate</span> <span class="o">=</span> <span class="n">data_parallel</span><span class="o">.</span><span class="n">replicate</span>
+
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">old_replicate</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">new_replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
+        <span class="n">modules</span> <span class="o">=</span> <span class="n">old_replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">)</span>
+        <span class="n">execute_replication_callbacks</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">modules</span>
+
+    <span class="n">data_parallel</span><span class="o">.</span><span class="n">replicate</span> <span class="o">=</span> <span class="n">new_replicate</span>
 </pre></div>
 
            </div>

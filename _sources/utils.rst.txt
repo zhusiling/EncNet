@@ -1,8 +1,8 @@
 .. role:: hidden
     :class: hidden-section
 
-My PyTorch Utils
-================
+encoding.utils
+==============
 
 Useful util functions.
 
@@ -10,17 +10,22 @@ Useful util functions.
 .. currentmodule:: encoding.utils
 
 :hidden:`LR_Scheduler`
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. autoclass:: LR_Scheduler
     :members:
-
-:hidden:`get_optimizer`
-~~~~~~~~~~~~~~~~~~~~~~~
-
-.. autofunction:: get_optimizer
 
 :hidden:`save_checkpoint`
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autofunction:: save_checkpoint
+
+:hidden:`batch_pix_accuracy`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: batch_pix_accuracy
+
+:hidden:`batch_intersection_union`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: batch_intersection_union
