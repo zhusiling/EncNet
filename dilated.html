@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -162,9 +162,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
@@ -198,8 +198,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnorm"><span class="hidden-section">batchnorm</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -207,7 +208,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
@@ -285,7 +286,7 @@ All provided models have been verified.</p>
 <p class="first admonition-title">Note</p>
 <p>This code is provided together with the paper</p>
 <ul class="last simple">
-<li>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. &#8220;Context Encoding for Semantic Segmentation&#8221;  <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em></li>
+<li>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation”  <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em></li>
 </ul>
 </div>
 <span class="target" id="module-encoding.dilated"></span><p>Dilated ResNet and DenseNet</p>
@@ -300,8 +301,8 @@ All provided models have been verified.</p>
 <p>Reference:</p>
 <blockquote>
 <div><ul class="simple">
-<li>He, Kaiming, et al. &#8220;Deep residual learning for image recognition.&#8221; Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.</li>
-<li>Yu, Fisher, and Vladlen Koltun. &#8220;Multi-scale context aggregation by dilated convolutions.&#8221;</li>
+<li>He, Kaiming, et al. “Deep residual learning for image recognition.” Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.</li>
+<li>Yu, Fisher, and Vladlen Koltun. “Multi-scale context aggregation by dilated convolutions.”</li>
 </ul>
 </div></blockquote>
 </dd></dl>
@@ -317,7 +318,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -334,7 +335,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -351,7 +352,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -368,7 +369,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -385,7 +386,7 @@ All provided models have been verified.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -407,12 +408,12 @@ All provided models have been verified.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>growth_rate</strong> (int) - how many filters to add each layer (<cite>k</cite> in paper) &#8211; </li>
-<li><strong>block_config</strong> (<em>list of 4 python:ints</em>) &#8211; </li>
-<li><strong>num_init_features</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; </li>
-<li><strong>bn_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; (i.e. bn_size * k features in the bottleneck layer)</li>
-<li><strong>drop_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) &#8211; </li>
-<li><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; </li>
+<li><strong>growth_rate</strong> (int) - how many filters to add each layer (<cite>k</cite> in paper) – </li>
+<li><strong>block_config</strong> (<em>list of 4 python:ints</em>) – </li>
+<li><strong>num_init_features</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – </li>
+<li><strong>bn_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – (i.e. bn_size * k features in the bottleneck layer)</li>
+<li><strong>drop_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – </li>
+<li><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – </li>
 </ul>
 </td>
 </tr>
@@ -420,7 +421,7 @@ All provided models have been verified.</p>
 </table>
 <dl class="docutils">
 <dt>Reference:</dt>
-<dd>Huang, Gao, et al. &#8220;Densely Connected Convolutional Networks&#8221; <em>CVPR 2017</em></dd>
+<dd>Huang, Gao, et al. “Densely Connected Convolutional Networks” <em>CVPR 2017</em></dd>
 </dl>
 </dd></dl>
 
@@ -431,12 +432,12 @@ All provided models have been verified.</p>
 <dt id="encoding.dilated.densenet161">
 <code class="descclassname">encoding.dilated.</code><code class="descname">densenet161</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet161"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet161" title="Permalink to this definition">¶</a></dt>
 <dd><p>Densenet-161 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">&#8220;Densely Connected Convolutional Networks&#8221;</a></p>
+<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -449,12 +450,12 @@ All provided models have been verified.</p>
 <dt id="encoding.dilated.densenet121">
 <code class="descclassname">encoding.dilated.</code><code class="descname">densenet121</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet121"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet121" title="Permalink to this definition">¶</a></dt>
 <dd><p>Densenet-121 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">&#8220;Densely Connected Convolutional Networks&#8221;</a></p>
+<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -467,12 +468,12 @@ All provided models have been verified.</p>
 <dt id="encoding.dilated.densenet169">
 <code class="descclassname">encoding.dilated.</code><code class="descname">densenet169</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet169"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet169" title="Permalink to this definition">¶</a></dt>
 <dd><p>Densenet-169 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">&#8220;Densely Connected Convolutional Networks&#8221;</a></p>
+<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -485,12 +486,12 @@ All provided models have been verified.</p>
 <dt id="encoding.dilated.densenet201">
 <code class="descclassname">encoding.dilated.</code><code class="descname">densenet201</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet201" title="Permalink to this definition">¶</a></dt>
 <dd><p>Densenet-201 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">&#8220;Densely Connected Convolutional Networks&#8221;</a></p>
+<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) &#8211; If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -545,6 +546,7 @@ All provided models have been verified.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -554,7 +556,7 @@ All provided models have been verified.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

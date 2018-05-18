@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -264,8 +263,6 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
-        
       </li>
     
   </ul>
@@ -298,7 +295,7 @@
 
 
 <div class="viewcode-block" id="densenet121"><a class="viewcode-back" href="../../../dilated.html#encoding.dilated.densenet121">[docs]</a><span class="k">def</span> <span class="nf">densenet121</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Densenet-121 model from</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Densenet-121 model from</span>
 <span class="sd">    `&quot;Densely Connected Convolutional Networks&quot; &lt;https://arxiv.org/pdf/1608.06993.pdf&gt;`_</span>
 
 <span class="sd">    Args:</span>
@@ -312,7 +309,7 @@
 
 
 <div class="viewcode-block" id="densenet169"><a class="viewcode-back" href="../../../dilated.html#encoding.dilated.densenet169">[docs]</a><span class="k">def</span> <span class="nf">densenet169</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Densenet-169 model from</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Densenet-169 model from</span>
 <span class="sd">    `&quot;Densely Connected Convolutional Networks&quot; &lt;https://arxiv.org/pdf/1608.06993.pdf&gt;`_</span>
 
 <span class="sd">    Args:</span>
@@ -326,7 +323,7 @@
 
 
 <div class="viewcode-block" id="densenet201"><a class="viewcode-back" href="../../../dilated.html#encoding.dilated.densenet201">[docs]</a><span class="k">def</span> <span class="nf">densenet201</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Densenet-201 model from</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Densenet-201 model from</span>
 <span class="sd">    `&quot;Densely Connected Convolutional Networks&quot; &lt;https://arxiv.org/pdf/1608.06993.pdf&gt;`_</span>
 
 <span class="sd">    Args:</span>
@@ -340,7 +337,7 @@
 
 
 <div class="viewcode-block" id="densenet161"><a class="viewcode-back" href="../../../dilated.html#encoding.dilated.densenet161">[docs]</a><span class="k">def</span> <span class="nf">densenet161</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Densenet-161 model from</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Densenet-161 model from</span>
 <span class="sd">    `&quot;Densely Connected Convolutional Networks&quot; &lt;https://arxiv.org/pdf/1608.06993.pdf&gt;`_</span>
 
 <span class="sd">    Args:</span>
@@ -356,7 +353,7 @@
 <span class="k">class</span> <span class="nc">_DenseLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">):</span>
     <span class="c1"># pylint: disable=expression-not-assigned</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_input_features</span><span class="p">,</span> <span class="n">growth_rate</span><span class="p">,</span> <span class="n">bn_size</span><span class="p">,</span> <span class="n">drop_rate</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_DenseLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_DenseLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;norm.1&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">num_input_features</span><span class="p">)),</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;relu.1&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;conv.1&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span>
@@ -378,7 +375,7 @@
 
 <span class="k">class</span> <span class="nc">_DenseBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">num_input_features</span><span class="p">,</span> <span class="n">bn_size</span><span class="p">,</span> <span class="n">growth_rate</span><span class="p">,</span> <span class="n">drop_rate</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_DenseBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_DenseBlock</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="p">):</span>
             <span class="n">layer</span> <span class="o">=</span> <span class="n">_DenseLayer</span><span class="p">(</span><span class="n">num_input_features</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">growth_rate</span><span class="p">,</span> <span class="n">growth_rate</span><span class="p">,</span> <span class="n">bn_size</span><span class="p">,</span> <span class="n">drop_rate</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="n">dilation</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;denselayer</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">layer</span><span class="p">)</span>
@@ -386,7 +383,7 @@
 
 <span class="k">class</span> <span class="nc">_Transition</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_input_features</span><span class="p">,</span> <span class="n">num_output_features</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_Transition</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_Transition</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">num_input_features</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">num_input_features</span><span class="p">,</span> <span class="n">num_output_features</span><span class="p">,</span>
@@ -396,7 +393,7 @@
 
 
 <div class="viewcode-block" id="DenseNet"><a class="viewcode-back" href="../../../dilated.html#encoding.dilated.DenseNet">[docs]</a><span class="k">class</span> <span class="nc">DenseNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Dilated DenseNet.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dilated DenseNet.</span>
 
 <span class="sd">    For correctly dilation of transition layer fo DenseNet, we implement the :class:`encoding.nn.DilatedAvgPool2d`.</span>
 
@@ -415,7 +412,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">growth_rate</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">block_config</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
                  <span class="n">num_init_features</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">bn_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">drop_rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
 
-        <span class="nb">super</span><span class="p">(</span><span class="n">DenseNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DenseNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="c1"># First convolution</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
@@ -489,6 +486,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -498,7 +496,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

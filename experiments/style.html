@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -162,9 +162,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
@@ -198,8 +198,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnorm"><span class="hidden-section">batchnorm</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -207,7 +208,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">encoding.utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
@@ -301,7 +302,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <h2>MSG-Net<a class="headerlink" href="#msg-net" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Hang Zhang, and Kristin Dana. &#8220;Multi-style Generative Network for Real-time Transfer.&#8221;:</p>
+<p>Hang Zhang, and Kristin Dana. “Multi-style Generative Network for Real-time Transfer.”:</p>
 <div class="last highlight-default"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">zhang2017multistyle</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Multi</span><span class="o">-</span><span class="n">style</span> <span class="n">Generative</span> <span class="n">Network</span> <span class="k">for</span> <span class="n">Real</span><span class="o">-</span><span class="n">time</span> <span class="n">Transfer</span><span class="p">},</span>
     <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
@@ -334,7 +335,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="nb">eval</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">size</span> <span class="mi">1024</span>
 </pre></div>
 </div>
-<p>If you don&#8217;t have a GPU, simply set <code class="docutils literal"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
+<p>If you don’t have a GPU, simply set <code class="docutils literal"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
 <p>If you would to stylize your own photo, change the <code class="docutils literal"><span class="pre">--content-image</span> <span class="pre">path/to/your/photo</span></code>. More options:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">--content-image</span></code>: path to content image you want to stylize.</li>
@@ -445,6 +446,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -454,7 +456,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

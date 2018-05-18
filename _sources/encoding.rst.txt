@@ -1,10 +1,12 @@
 .. role:: hidden
     :class: hidden-section
 
-NN Layers
-=========
+My NN Layers
+============
 
-Customized NN modules in Encoding Package. For Synchronized Cross-GPU Batch Normalization, please visit :class:`encoding.nn.BatchNorm2d`.
+
+Modules
+-------
 
 .. currentmodule:: encoding.nn
 
@@ -32,8 +34,17 @@ Customized NN modules in Encoding Package. For Synchronized Cross-GPU Batch Norm
 .. autoclass:: DilatedAvgPool2d
     :members:
 
-:hidden:`GramMatrix`
-~~~~~~~~~~~~~~~~~~~~
+Functions
+---------
 
-.. autoclass:: GramMatrix
-    :members:
+.. currentmodule:: encoding.functions
+
+:hidden:`aggregate`
+~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: aggregate
+
+:hidden:`dilatedavgpool2d`
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: dilatedavgpool2d

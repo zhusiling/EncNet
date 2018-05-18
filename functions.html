@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -162,9 +162,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
@@ -200,7 +200,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -208,7 +207,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
@@ -311,17 +310,6 @@ mini-batch.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="id1">
-<h2><span class="hidden-section">batchnormeval</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt>
-<code class="descclassname">encoding.functions.</code><code class="descname">batchnormeval</code><span class="sig-paren">(</span><em>input</em>, <em>gamma</em>, <em>beta</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormeval"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Applies Batch Normalization over a 3d input that is seen as a
-mini-batch.</p>
-<p>Please see <a class="reference internal" href="#encoding-batchnormtrain">encoding.batchnormtrain</a></p>
-</dd></dl>
-
-</div>
 <div class="section" id="dilatedavgpool2d">
 <h2><span class="hidden-section">dilatedavgpool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -341,14 +329,14 @@ input planes.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>input</strong> &#8211; input tensor (minibatch x in_channels x iH x iW)</li>
-<li><strong>kernel_size</strong> &#8211; size of the pooling region, a single number or a
+<li><strong>input</strong> – input tensor (minibatch x in_channels x iH x iW)</li>
+<li><strong>kernel_size</strong> – size of the pooling region, a single number or a
 tuple (kh x kw)</li>
-<li><strong>stride</strong> &#8211; stride of the pooling operation, a single number or a
+<li><strong>stride</strong> – stride of the pooling operation, a single number or a
 tuple (sh x sw). Default is equal to kernel size</li>
-<li><strong>padding</strong> &#8211; implicit zero padding on the input, a single number or
+<li><strong>padding</strong> – implicit zero padding on the input, a single number or
 a tuple (padh x padw), Default: 0</li>
-<li><strong>dilation</strong> &#8211; the dilation parameter similar to Conv2d</li>
+<li><strong>dilation</strong> – the dilation parameter similar to Conv2d</li>
 </ul>
 </td>
 </tr>
@@ -467,6 +455,7 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -476,7 +465,7 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

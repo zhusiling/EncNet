@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -264,8 +263,6 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
-        
       </li>
     
   </ul>
@@ -299,7 +296,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Encoding&#39;</span><span class="p">,</span> <span class="s1">&#39;EncodingDrop&#39;</span><span class="p">,</span> <span class="s1">&#39;Inspiration&#39;</span><span class="p">,</span> <span class="s1">&#39;DilatedAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;UpsampleConv2d&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Encoding"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Encoding">[docs]</a><span class="k">class</span> <span class="nc">Encoding</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encoding Layer: a learnable residual encoder.</span>
 
 <span class="sd">    .. image:: _static/img/cvpr17.svg</span>
@@ -354,7 +351,7 @@
 <span class="sd">        &gt;&gt;&gt; E = layer(X)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Encoding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Encoding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1"># init codewords and smoothing factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">D</span><span class="p">,</span> <span class="n">K</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">codewords</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -386,15 +383,15 @@
         <span class="k">return</span> <span class="n">E</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
             <span class="o">+</span> <span class="s1">&#39;N x &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;=&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;x&#39;</span> \
             <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
 
 <span class="k">class</span> <span class="nc">EncodingDrop</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Dropout regularized Encoding Layer.</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dropout regularized Encoding Layer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">EncodingDrop</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">EncodingDrop</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1"># init codewords and smoothing factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">D</span><span class="p">,</span> <span class="n">K</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">codewords</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -434,13 +431,13 @@
         <span class="k">return</span> <span class="n">E</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
             <span class="o">+</span> <span class="s1">&#39;N x &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;=&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;x&#39;</span> \
             <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
 
 
 <div class="viewcode-block" id="Inspiration"><a class="viewcode-back" href="../../../nn.html#encoding.nn.Inspiration">[docs]</a><span class="k">class</span> <span class="nc">Inspiration</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inspiration Layer (CoMatch Layer) enables the multi-style transfer in feed-forward</span>
 <span class="sd">    network, which learns to match the target feature statistics during the training.</span>
 <span class="sd">    This module is differentialble and can be inserted in standard feed-forward network</span>
@@ -457,7 +454,7 @@
 <span class="sd">        *arXiv preprint arXiv:1703.06953 (2017)*</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Inspiration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Inspiration</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="c1"># B is equal to 1 or input mini_batch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">C</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># non-parameter buffer</span>
@@ -478,12 +475,12 @@
                          <span class="n">X</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">view_as</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
             <span class="o">+</span> <span class="s1">&#39;N x &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
 
 
 <div class="viewcode-block" id="DilatedAvgPool2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.DilatedAvgPool2d">[docs]</a><span class="k">class</span> <span class="nc">DilatedAvgPool2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;We provide Dilated Average Pooling for the dilation of Densenet as</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;We provide Dilated Average Pooling for the dilation of Densenet as</span>
 <span class="sd">    in :class:`encoding.dilated.DenseNet`.</span>
 
 <span class="sd">    Reference:</span>
@@ -540,7 +537,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">DilatedAvgPool2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DilatedAvgPool2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span> <span class="ow">or</span> <span class="n">kernel_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="n">padding</span>
@@ -551,7 +548,7 @@
                                 <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> \
             <span class="o">+</span> <span class="s1">&#39;size=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">)</span> \
             <span class="o">+</span> <span class="s1">&#39;, stride=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">)</span> \
             <span class="o">+</span> <span class="s1">&#39;, padding=&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">)</span> \
@@ -559,7 +556,7 @@
 
 
 <div class="viewcode-block" id="UpsampleConv2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.UpsampleConv2d">[docs]</a><span class="k">class</span> <span class="nc">UpsampleConv2d</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    To avoid the checkerboard artifacts of standard Fractionally-strided Convolution,</span>
 <span class="sd">    we adapt an integer stride convolution but producing a :math:`2\times 2` outputs for</span>
 <span class="sd">    each convolutional window.</span>
@@ -619,7 +616,7 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dilation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                  <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">UpsampleConv2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">UpsampleConv2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">kernel_size</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">kernel_size</span><span class="p">)</span>
         <span class="n">stride</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">stride</span><span class="p">)</span>
         <span class="n">padding</span> <span class="o">=</span> <span class="n">_pair</span><span class="p">(</span><span class="n">padding</span><span class="p">)</span>
@@ -696,6 +693,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -705,7 +703,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

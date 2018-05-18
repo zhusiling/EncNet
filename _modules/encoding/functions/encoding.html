@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -263,8 +262,6 @@
     
     
       <li class="wy-breadcrumbs-aside">
-        
-            
         
       </li>
     
@@ -335,7 +332,7 @@
         <span class="k">return</span> <span class="n">gradA</span><span class="p">,</span> <span class="n">gradX</span><span class="p">,</span> <span class="n">gradC</span>
 
 <div class="viewcode-block" id="aggregate"><a class="viewcode-back" href="../../../functions.html#encoding.functions.aggregate">[docs]</a><span class="k">def</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Aggregate operation, aggregate the residuals of inputs (:math:`X`) with repect</span>
 <span class="sd">    to the codewords (:math:`C`) with assignment weights (:math:`A`).</span>
 
@@ -401,7 +398,7 @@
 
 
 <div class="viewcode-block" id="scaledL2"><a class="viewcode-back" href="../../../functions.html#encoding.functions.scaledL2">[docs]</a><span class="k">def</span> <span class="nf">scaledL2</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    scaledL2 distance</span>
 
 <span class="sd">    .. math::</span>
@@ -453,6 +450,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -462,7 +460,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

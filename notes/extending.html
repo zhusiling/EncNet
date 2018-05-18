@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -162,9 +162,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm2d"><span class="hidden-section">SyncBatchNorm2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm1d"><span class="hidden-section">SyncBatchNorm1d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm3d"><span class="hidden-section">SyncBatchNorm3d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
@@ -198,8 +198,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnorm"><span class="hidden-section">batchnorm</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -207,7 +208,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">encoding.utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
@@ -278,7 +279,7 @@
             
   <div class="section" id="extending-pytorch-encoding">
 <h1>Extending PyTorch-Encoding<a class="headerlink" href="#extending-pytorch-encoding" title="Permalink to this headline">¶</a></h1>
-<p>In this note we&#8217;ll discuss extending PyTorch-Encoding package,
+<p>In this note we’ll discuss extending PyTorch-Encoding package,
 which is extending <code class="xref py py-mod docutils literal"><span class="pre">torch.nn</span></code> and
 <code class="xref py py-mod docutils literal"><span class="pre">torch.autograd</span></code> with custom CUDA backend.</p>
 <div class="section" id="torch-c-and-cuda-backend">
@@ -435,6 +436,7 @@ which is extending <code class="xref py py-mod docutils literal"><span class="pr
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -444,7 +446,7 @@ which is extending <code class="xref py py-mod docutils literal"><span class="pr
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -83,7 +83,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -199,7 +199,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
@@ -264,8 +263,6 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
-        
       </li>
     
   </ul>
@@ -300,26 +297,27 @@
 
 <span class="kn">from</span> <span class="nn">..functions</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">..parallel</span> <span class="k">import</span> <span class="n">allreduce</span>
+<span class="kn">from</span> <span class="nn">.comm</span> <span class="k">import</span> <span class="n">SyncMaster</span>
+
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BatchNorm1d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm2d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm3d&#39;</span><span class="p">,</span> <span class="s1">&#39;Module&#39;</span><span class="p">,</span> <span class="s1">&#39;Sequential&#39;</span><span class="p">,</span> <span class="s1">&#39;Conv1d&#39;</span><span class="p">,</span>
            <span class="s1">&#39;Conv2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ConvTranspose2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ReLU&#39;</span><span class="p">,</span> <span class="s1">&#39;Sigmoid&#39;</span><span class="p">,</span> <span class="s1">&#39;MaxPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;AvgPool2d&#39;</span><span class="p">,</span>
            <span class="s1">&#39;AdaptiveAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Dropout2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear&#39;</span><span class="p">]</span>
 
-<span class="c1"># Adapt from https://github.com/vacancy/Synchronized-BatchNorm-PyTorch</span>
-<span class="n">_ChildMessage</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;ssum&#39;</span><span class="p">,</span> <span class="s1">&#39;sum_size&#39;</span><span class="p">])</span>
-<span class="n">_MasterMessage</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;_MasterMessage&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_std&#39;</span><span class="p">])</span>
-
 <span class="k">class</span> <span class="nc">_SyncBatchNorm</span><span class="p">(</span><span class="n">_BatchNorm</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sharedT</span> <span class="o">=</span> <span class="n">SharedTensor</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">())</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_master</span> <span class="o">=</span> <span class="n">SyncMaster</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_parallel_master</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parallel_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_slave_pipe</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">batch_norm</span><span class="p">(</span>
                 <span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
+
         <span class="c1"># Resize the input to (B, C, -1).</span>
         <span class="n">input_shape</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
         <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -383,8 +381,13 @@
         <span class="k">return</span> <span class="n">mean</span><span class="p">,</span> <span class="n">bias_var</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.5</span>
 
 
+<span class="c1"># API adapted from https://github.com/vacancy/Synchronized-BatchNorm-PyTorch</span>
+<span class="n">_ChildMessage</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;ssum&#39;</span><span class="p">,</span> <span class="s1">&#39;sum_size&#39;</span><span class="p">])</span>
+<span class="n">_MasterMessage</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;_MasterMessage&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_std&#39;</span><span class="p">])</span>
+
+
 <div class="viewcode-block" id="BatchNorm1d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm1d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 2D or 3D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
@@ -393,7 +396,7 @@
 
 
 <div class="viewcode-block" id="BatchNorm2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm2d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Cross-GPU Synchronized Batch normalization (SyncBN)</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Cross-GPU Synchronized Batch normalization (SyncBN)</span>
 
 <span class="sd">    Standard BN [1]_ implementation only normalize the data within each device (GPU).</span>
 <span class="sd">    SyncBN normalizes the input within the whole mini-batch.</span>
@@ -453,7 +456,7 @@
 
 
 <div class="viewcode-block" id="BatchNorm3d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm3d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm3d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
-    <span class="sd">r&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 5D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
@@ -553,6 +556,7 @@
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -562,7 +566,7 @@
       <script type="text/javascript" src="../../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

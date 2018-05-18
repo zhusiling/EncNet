@@ -84,7 +84,7 @@
             
             
               <div class="version">
-                master (0.3.0+c3b44eb)
+                master (0.3.0+2b17a3c)
               </div>
             
           
@@ -208,7 +208,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#get-optimizer"><span class="hidden-section">get_optimizer</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#lr-scheduler"><span class="hidden-section">LR_Scheduler</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#save-checkpoint"><span class="hidden-section">save_checkpoint</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#batch-pix-accuracy"><span class="hidden-section">batch_pix_accuracy</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html#batch-intersection-union"><span class="hidden-section">batch_intersection_union</span></a></li>
@@ -304,8 +304,8 @@ of features given by <span class="math">\(H\times W\)</span>, which learns an in
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>D</strong> &#8211; dimention of the features or feature channels</li>
-<li><strong>K</strong> &#8211; number of codeswords</li>
+<li><strong>D</strong> – dimention of the features or feature channels</li>
+<li><strong>K</strong> – number of codeswords</li>
 </ul>
 </td>
 </tr>
@@ -326,8 +326,8 @@ of features given by <span class="math">\(H\times W\)</span>, which learns an in
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>codewords</strong> (<em>Tensor</em>) &#8211; the learnable codewords of shape (<span class="math">\(K\times D\)</span>)</li>
-<li><strong>scale</strong> (<em>Tensor</em>) &#8211; the learnable scale factor of visual centers</li>
+<li><strong>codewords</strong> (<em>Tensor</em>) – the learnable codewords of shape (<span class="math">\(K\times D\)</span>)</li>
+<li><strong>scale</strong> (<em>Tensor</em>) – the learnable scale factor of visual centers</li>
 </ul>
 </td>
 </tr>
@@ -338,7 +338,7 @@ of features given by <span class="math">\(H\times W\)</span>, which learns an in
 <dd><p class="first">Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi,
 Amit Agrawal. “Context Encoding for Semantic Segmentation.
 <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em></p>
-<p class="last">Hang Zhang, Jia Xue, and Kristin Dana. &#8220;Deep TEN: Texture Encoding Network.&#8221;
+<p class="last">Hang Zhang, Jia Xue, and Kristin Dana. “Deep TEN: Texture Encoding Network.”
 <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017</em></p>
 </dd>
 </dl>
@@ -380,19 +380,19 @@ of size C (where C is the input size).</p>
 and variance. The running sum is kept with a default momentum of 0.1.</p>
 <p>During evaluation, this running mean/variance is used for normalization.</p>
 <p>Because the BatchNorm is done over the <cite>C</cite> dimension, computing statistics
-on <cite>(N, H, W)</cite> slices, it&#8217;s common terminology to call this Spatial BatchNorm</p>
+on <cite>(N, H, W)</cite> slices, it’s common terminology to call this Spatial BatchNorm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>num_features</strong> &#8211; num_features from an expected input of
+<li><strong>num_features</strong> – num_features from an expected input of
 size batch_size x num_features x height x width</li>
-<li><strong>eps</strong> &#8211; a value added to the denominator for numerical stability.
+<li><strong>eps</strong> – a value added to the denominator for numerical stability.
 Default: 1e-5</li>
-<li><strong>momentum</strong> &#8211; the value used for the running_mean and running_var
+<li><strong>momentum</strong> – the value used for the running_mean and running_var
 computation. Default: 0.1</li>
-<li><strong>affine</strong> &#8211; a boolean value that when set to <code class="docutils literal"><span class="pre">True</span></code>, gives the layer learnable
+<li><strong>affine</strong> – a boolean value that when set to <code class="docutils literal"><span class="pre">True</span></code>, gives the layer learnable
 affine parameters. Default: <code class="docutils literal"><span class="pre">True</span></code></li>
 </ul>
 </td>
@@ -410,13 +410,13 @@ affine parameters. Default: <code class="docutils literal"><span class="pre">Tru
 <dd><table class="first docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Ioffe, Sergey, and Christian Szegedy. &#8220;Batch normalization: Accelerating deep network training by reducing internal covariate shift.&#8221; <em>ICML 2015</em></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Ioffe, Sergey, and Christian Szegedy. “Batch normalization: Accelerating deep network training by reducing internal covariate shift.” <em>ICML 2015</em></td></tr>
 </tbody>
 </table>
 <table class="last docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, and Amit Agrawal. &#8220;Context Encoding for Semantic Segmentation.&#8221; <em>CVPR 2018</em></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, and Amit Agrawal. “Context Encoding for Semantic Segmentation.” <em>CVPR 2018</em></td></tr>
 </tbody>
 </table>
 </dd>
@@ -464,7 +464,7 @@ to be learned directly from the loss function without additional supervision.</p
 training multi-style generative network for real-time transfer.</p>
 <dl class="docutils">
 <dt>Reference:</dt>
-<dd>Hang Zhang and Kristin Dana. &#8220;Multi-style Generative Network for Real-time Transfer.&#8221;
+<dd>Hang Zhang and Kristin Dana. “Multi-style Generative Network for Real-time Transfer.”
 <em>arXiv preprint arXiv:1703.06953 (2017)</em></dd>
 </dl>
 </dd></dl>
@@ -481,7 +481,7 @@ each convolutional window.</p>
 <a class="reference internal image-reference" href="_images/upconv.png"><img alt="_images/upconv.png" class="align-center" src="_images/upconv.png" style="width: 50%;" /></a>
 <dl class="docutils">
 <dt>Reference:</dt>
-<dd>Hang Zhang and Kristin Dana. &#8220;Multi-style Generative Network for Real-time Transfer.&#8221;
+<dd>Hang Zhang and Kristin Dana. “Multi-style Generative Network for Real-time Transfer.”
 <em>arXiv preprint arXiv:1703.06953 (2017)</em></dd>
 </dl>
 <table class="docutils field-list" frame="void" rules="none">
@@ -489,18 +489,18 @@ each convolutional window.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; Number of channels in the input image</li>
-<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; Number of channels produced by the convolution</li>
-<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a>) &#8211; Size of the convolving kernel</li>
-<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Stride of the convolution. Default: 1</li>
-<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to both sides of the input. Default: 0</li>
-<li><strong>output_padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Zero-padding added to one side of the output.
+<li><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Number of channels in the input image</li>
+<li><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – Number of channels produced by the convolution</li>
+<li><strong>kernel_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a>) – Size of the convolving kernel</li>
+<li><strong>stride</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) – Stride of the convolution. Default: 1</li>
+<li><strong>padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to both sides of the input. Default: 0</li>
+<li><strong>output_padding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) – Zero-padding added to one side of the output.
 Default: 0</li>
-<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; Number of blocked connections from input channels to output
+<li><strong>groups</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>optional</em>) – Number of blocked connections from input channels to output
 channels. Default: 1</li>
-<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; If True, adds a learnable bias to the output. Default: True</li>
-<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) &#8211; Spacing between kernel elements. Default: 1</li>
-<li><strong>scale_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) &#8211; scaling factor for upsampling convolution. Default: 1</li>
+<li><strong>bias</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, adds a learnable bias to the output. Default: True</li>
+<li><strong>dilation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.6)"><em>tuple</em></a><em>, </em><em>optional</em>) – Spacing between kernel elements. Default: 1</li>
+<li><strong>scale_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – scaling factor for upsampling convolution. Default: 1</li>
 </ul>
 </td>
 </tr>
@@ -521,9 +521,9 @@ channels. Default: 1</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>weight</strong> (<em>Tensor</em>) &#8211; the learnable weights of the module of shape
+<li><strong>weight</strong> (<em>Tensor</em>) – the learnable weights of the module of shape
 (in_channels, scale * scale * out_channels, kernel_size[0], kernel_size[1])</li>
-<li><strong>bias</strong> (<em>Tensor</em>) &#8211; the learnable bias of the module of shape (scale * scale * out_channels)</li>
+<li><strong>bias</strong> (<em>Tensor</em>) – the learnable bias of the module of shape (scale * scale * out_channels)</li>
 </ul>
 </td>
 </tr>
@@ -584,9 +584,9 @@ for <code class="xref py py-attr docutils literal"><span class="pre">padding</sp
 </div>
 <blockquote>
 <div><ul class="simple">
-<li>a single <code class="docutils literal"><span class="pre">int</span></code> &#8211; in which case the same value is used for the height
+<li>a single <code class="docutils literal"><span class="pre">int</span></code> – in which case the same value is used for the height
 and width dimension</li>
-<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints &#8211; in which case, the first <cite>int</cite> is used for
+<li>a <code class="docutils literal"><span class="pre">tuple</span></code> of two ints – in which case, the first <cite>int</cite> is used for
 the height dimension, and the second <cite>int</cite> for the width dimension</li>
 </ul>
 </div></blockquote>
@@ -595,10 +595,10 @@ the height dimension, and the second <cite>int</cite> for the width dimension</l
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>kernel_size</strong> &#8211; the size of the window</li>
-<li><strong>stride</strong> &#8211; the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
-<li><strong>padding</strong> &#8211; implicit zero padding to be added on both sides</li>
-<li><strong>dilation</strong> &#8211; the dilation parameter similar to Conv2d</li>
+<li><strong>kernel_size</strong> – the size of the window</li>
+<li><strong>stride</strong> – the stride of the window. Default value is <code class="xref py py-attr docutils literal"><span class="pre">kernel_size</span></code></li>
+<li><strong>padding</strong> – implicit zero padding to be added on both sides</li>
+<li><strong>dilation</strong> – the dilation parameter similar to Conv2d</li>
 </ul>
 </td>
 </tr>
@@ -683,6 +683,7 @@ For <code class="xref py py-attr docutils literal"><span class="pre">stride=1</s
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'master',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -692,7 +693,7 @@ For <code class="xref py py-attr docutils literal"><span class="pre">stride=1</s
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

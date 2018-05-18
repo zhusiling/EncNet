@@ -19,10 +19,6 @@ encoding.functions
 
 .. autofunction:: batchnormeval
 
-:hidden:`batchnormeval`
-~~~~~~~~~~~~~~~~~~~~~~~
-
-.. autofunction:: batchnormeval
 :hidden:`dilatedavgpool2d`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

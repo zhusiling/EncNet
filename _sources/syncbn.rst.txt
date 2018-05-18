@@ -4,8 +4,21 @@
 Synchronized BatchNorm
 ======================
 
+The current BN is implementated insynchronized accross the gpus, which is a big problem for memory consuming tasks such as Semantic Segmenation, since the mini-batch is very small. 
+To synchronize the batchnorm accross multiple gpus is not easy to implment within the current Dataparallel framework. We address this difficulty by making each layer 'self-parallel' :class:`encoding.parallel.SelfDataParallel`, that is accepting the inputs from multi-gpus. Therefore, we can handle the synchronizing across gpus.
+
 .. note::
-    The original ``Self-Parallel`` version of ``BatchNorm`` has been deprecated in favor of PyTorch Compatible :class:`encoding.nn.BatchNorm2d`.
+    This code is provided together with the paper
+
+    * Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. "Context Encoding for Semantic Segmentation"  *The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018*::
+
+        @InProceedings{Zhang_2018_CVPR,
+        author = {Zhang, Hang and Dana, Kristin and Shi, Jianping and Zhang, Zhongyue and Wang, Xiaogang and Tyagi, Ambrish and Agrawal, Amit},
+        title = {Context Encoding for Semantic Segmentation},
+        booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+        month = {June},
+        year = {2018}
+        }
 
 .. currentmodule:: encoding.nn
 
@@ -43,3 +56,9 @@ Functions
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 .. autofunction:: batchnormeval
+
+:hidden:`sum_square`
+~~~~~~~~~~~~~~~~~~~~
+
+.. autofunction:: sum_square
+
