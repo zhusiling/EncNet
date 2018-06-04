@@ -36,30 +36,25 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="encoding.utils" href="utils.html" />
+    <link rel="prev" title="encoding.dilated" href="dilated.html" /> 
 
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
-  
-    <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
-  
 
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Encoding master documentation" href="index.html"/>
-        <link rel="next" title="encoding.utils" href="utils.html"/>
-        <link rel="prev" title="encoding.dilated" href="dilated.html"/> 
+  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -76,7 +71,7 @@
 
           
             
-            <img src="_static/icon.png" class="logo" />
+            <img src="_static/icon.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -84,7 +79,7 @@
             
             
               <div class="version">
-                master (0.3.0+2b17a3c)
+                master (0.4.2+43ca3f3)
               </div>
             
           
@@ -139,7 +134,6 @@
 <li class="toctree-l1"><a class="reference internal" href="experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -167,7 +161,6 @@
 <li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
@@ -187,20 +180,10 @@
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="dilated.html#densenet">DenseNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sum-square"><span class="hidden-section">sum_square</span></a></li>
@@ -224,7 +207,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Encoding</a>
@@ -232,9 +215,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -283,7 +267,7 @@
 <h2><span class="hidden-section">batchnormtrain</span><a class="headerlink" href="#batchnormtrain" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="encoding.functions.batchnormtrain">
-<code class="descclassname">encoding.functions.</code><code class="descname">batchnormtrain</code><span class="sig-paren">(</span><em>input</em>, <em>gamma</em>, <em>beta</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormtrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.batchnormtrain" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">encoding.functions.</code><code class="descname">batchnormtrain</code><span class="sig-paren">(</span><em>input</em>, <em>mean</em>, <em>std</em>, <em>gamma</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormtrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.batchnormtrain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies Batch Normalization over a 3d input that is seen as a
 mini-batch.</p>
 <div class="math" id="encoding-batchnormtrain">
@@ -296,52 +280,6 @@ mini-batch.</p>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-</div>
-<div class="section" id="batchnormeval">
-<h2><span class="hidden-section">batchnormeval</span><a class="headerlink" href="#batchnormeval" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="encoding.functions.batchnormeval">
-<code class="descclassname">encoding.functions.</code><code class="descname">batchnormeval</code><span class="sig-paren">(</span><em>input</em>, <em>gamma</em>, <em>beta</em>, <em>mean</em>, <em>std</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormeval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.batchnormeval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Applies Batch Normalization over a 3d input that is seen as a
-mini-batch.</p>
-<p>Please see <a class="reference internal" href="#encoding-batchnormtrain">encoding.batchnormtrain</a></p>
-</dd></dl>
-
-</div>
-<div class="section" id="dilatedavgpool2d">
-<h2><span class="hidden-section">dilatedavgpool2d</span><a class="headerlink" href="#dilatedavgpool2d" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="encoding.functions.dilatedavgpool2d">
-<code class="descclassname">encoding.functions.</code><code class="descname">dilatedavgpool2d</code><span class="sig-paren">(</span><em>input</em>, <em>kernel_size</em>, <em>stride=None</em>, <em>padding=0</em>, <em>dilation=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/customize.html#dilatedavgpool2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.dilatedavgpool2d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dilated Average Pool 2d, for dilation of DenseNet.</p>
-<p>Reference:</p>
-<blockquote>
-<div>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang,
-Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation. CVPR 2018</div></blockquote>
-<p>Applies 2D average-pooling operation in kh x kw regions by step size
-dh x dw steps. The number of output features is equal to the number of
-input planes.</p>
-<p>See <a class="reference internal" href="nn.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">DilatedAvgPool2d</span></code></a> for details and output shape.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>input</strong> – input tensor (minibatch x in_channels x iH x iW)</li>
-<li><strong>kernel_size</strong> – size of the pooling region, a single number or a
-tuple (kh x kw)</li>
-<li><strong>stride</strong> – stride of the pooling operation, a single number or a
-tuple (sh x sw). Default is equal to kernel size</li>
-<li><strong>padding</strong> – implicit zero padding on the input, a single number or
-a tuple (padh x padw), Default: 0</li>
-<li><strong>dilation</strong> – the dilation parameter similar to Conv2d</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </div>
@@ -412,9 +350,7 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -436,7 +372,7 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -474,14 +410,11 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

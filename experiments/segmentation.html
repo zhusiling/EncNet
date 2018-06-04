@@ -36,30 +36,25 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/encoding.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MSG-Net Style Transfer Example" href="style.html" />
+    <link rel="prev" title="EncNet on CIFAR-10" href="cifar.html" /> 
 
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
-  
-    <link rel="stylesheet" href="../_static/css/encoding.css" type="text/css" />
-  
 
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Encoding master documentation" href="../index.html"/>
-        <link rel="next" title="MSG-Net Style Transfer Example" href="style.html"/>
-        <link rel="prev" title="EncNet on CIFAR-10" href="cifar.html"/> 
+  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -76,7 +71,7 @@
 
           
             
-            <img src="../_static/icon.png" class="logo" />
+            <img src="../_static/icon.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -84,7 +79,7 @@
             
             
               <div class="version">
-                master (0.3.0+2b17a3c)
+                master (0.4.2+43ca3f3)
               </div>
             
           
@@ -137,9 +132,13 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-package">Install Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-pre-trained-model">Test Pre-trained Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-demo">Quick Demo</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#citation">Citation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="style.html">MSG-Net Style Transfer Example</a><ul>
@@ -167,7 +166,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
@@ -187,21 +185,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../dilated.html#densenet">DenseNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
@@ -225,7 +212,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Encoding</a>
@@ -233,9 +220,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -279,8 +267,8 @@
             
   <div class="section" id="context-encoding-for-semantic-segmentation-encnet">
 <h1>Context Encoding for Semantic Segmentation (EncNet)<a class="headerlink" href="#context-encoding-for-semantic-segmentation-encnet" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="test-pre-trained-model">
-<h2>Test Pre-trained Model<a class="headerlink" href="#test-pre-trained-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-package">
+<h2>Install Package<a class="headerlink" href="#install-package" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Clone the GitHub repo:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">.</span><span class="n">git</span>
@@ -289,110 +277,136 @@
 </li>
 <li><p class="first">Install PyTorch Encoding (if not yet). Please follow the installation guide <a class="reference external" href="../notes/compile.html">Installing PyTorch Encoding</a>.</p>
 </li>
-<li><p class="first">Table of pre-trained models and its performance:</p>
-<blockquote>
-<div><table border="1" class="docutils">
+</ul>
+</div>
+<div class="section" id="test-pre-trained-model">
+<h2>Test Pre-trained Model<a class="headerlink" href="#test-pre-trained-model" title="Permalink to this headline">¶</a></h2>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<dl class="docutils">
+<dt>The model names contain the training information. For instance <code class="docutils literal"><span class="pre">FCN_ResNet50_PContext</span></code>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">FCN</span></code> indicate the algorithm is “Fully Convolutional Network for Semantic Segmentation”</li>
+<li><code class="docutils literal"><span class="pre">ResNet50</span></code> is the name of backbone network.</li>
+<li><code class="docutils literal"><span class="pre">PContext</span></code> means the PASCAL in Context dataset.</li>
+</ul>
+</dd>
+</dl>
+<p>How to get pretrained model, for example <code class="docutils literal"><span class="pre">FCN_ResNet50_PContext</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;FCN_ResNet50_PContext&#39;</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The test script is in the <code class="docutils literal"><span class="pre">experiments/segmentation/</span></code> folder. For evaluating the model (using MS),
+for example <code class="docutils literal"><span class="pre">Encnet_ResNet50_PContext</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">PContext</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">zoo</span> <span class="n">Encnet_ResNet50_PContext</span> <span class="o">--</span><span class="nb">eval</span>
+<span class="c1"># pixAcc: 0.7862, mIoU: 0.4946: 100%|████████████████████████| 319/319 [09:44&lt;00:00,  1.83s/it]</span>
+</pre></div>
+</div>
+<p class="last">The command for training the model can be found by clicking <code class="docutils literal"><span class="pre">cmd</span></code> in the table.</p>
+</div>
+<table border="1" class="docutils">
 <colgroup>
-<col width="18%" />
-<col width="18%" />
-<col width="16%" />
-<col width="16%" />
-<col width="16%" />
-<col width="16%" />
+<col width="23%" />
+<col width="7%" />
+<col width="7%" />
+<col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Backbone</th>
-<th class="head">Dataset</th>
+<tr class="row-odd"><th class="head">Model</th>
 <th class="head">pixAcc</th>
 <th class="head">mIoU</th>
-<th class="head">Notes</th>
+<th class="head">Command</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>FCN</td>
-<td>ResNet50</td>
-<td>PASCAL12</td>
-<td>N/A</td>
-<td>&#160;</td>
-<td>w/o COCO</td>
+<tr class="row-even"><td>FCN_ResNet50_PContext</td>
+<td>76.0%</td>
+<td>45.7</td>
+<td><span class="raw-html"><a href="javascript:toggleblock('cmd_fcn50_pcont')" class="toggleblock">cmd</a></span></td>
+</tr>
+<tr class="row-odd"><td>Encnet_ResNet50_PContext</td>
+<td>78.6%</td>
+<td>49.5</td>
+<td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc50_pcont')" class="toggleblock">cmd</a></span></td>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
-</li>
-</ul>
+<code xml:space="preserve" id="cmd_fcn50_pcont" style="display: none; text-align: left; white-space: pre-wrap">
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset PContext --model FCN
+</code>
+
+<code xml:space="preserve" id="cmd_enc50_pcont" style="display: none; text-align: left; white-space: pre-wrap">
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset PContext --model EncNet --aux --se-loss
+</code><div class="section" id="quick-demo">
+<h3>Quick Demo<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">encoding</span>
+
+<span class="c1"># Get the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;Encnet_ResNet50_PContext&#39;</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="c1"># Prepare the image</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/zhanghang1989/image-data/blob/master/&#39;</span> <span class="o">+</span> \
+      <span class="s1">&#39;encoding/segmentation/pcontext/2010_001829_org.jpg?raw=true&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;example.jpg&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span>
+    <span class="n">encoding</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Make prediction</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">predict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Get color pallete for visualization</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_mask_pallete</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="s1">&#39;pcontext&#39;</span><span class="p">)</span>
+<span class="n">mask</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;output.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/zhanghang1989/image-data/master/encoding/segmentation/pcontext/2010_001829_org.jpg"><img alt="https://raw.githubusercontent.com/zhanghang1989/image-data/master/encoding/segmentation/pcontext/2010_001829_org.jpg" src="https://raw.githubusercontent.com/zhanghang1989/image-data/master/encoding/segmentation/pcontext/2010_001829_org.jpg" style="width: 45%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/zhanghang1989/image-data/master/encoding/segmentation/pcontext/2010_001829.png"><img alt="https://raw.githubusercontent.com/zhanghang1989/image-data/master/encoding/segmentation/pcontext/2010_001829.png" src="https://raw.githubusercontent.com/zhanghang1989/image-data/master/encoding/segmentation/pcontext/2010_001829.png" style="width: 45%;" /></a>
+</div>
 </div>
 <div class="section" id="train-your-own-model">
 <h2>Train Your Own Model<a class="headerlink" href="#train-your-own-model" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Prepare PASCAL VOC Dataset and Augmented Dataset:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">experiments</span><span class="o">/</span><span class="n">segmentation</span><span class="o">/</span>
-<span class="n">bash</span> <span class="n">datasets</span><span class="o">/</span><span class="n">download_datasets</span><span class="o">.</span><span class="n">sh</span>
+<li><p class="first">Prepare the datasets by runing the scripts in the <code class="docutils literal"><span class="pre">scripts/</span></code> folder, for example preparing <code class="docutils literal"><span class="pre">PASCAL</span> <span class="pre">Context</span></code> dataset:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">prepare_pcontext</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Example training command for reproducing the experimensal results:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># First training on augmented set</span>
-<span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pascal_aug</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.001</span> <span class="o">--</span><span class="n">checkname</span> <span class="n">mycheckpoint</span>
-<span class="c1"># Finetuning on original set</span>
-<span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pascal_voc</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.0001</span> <span class="o">--</span><span class="n">checkname</span> <span class="n">mycheckpoint</span> <span class="o">--</span><span class="n">resume</span> <span class="n">runs</span><span class="o">/</span><span class="n">pascal_aug</span><span class="o">/</span><span class="n">encnet</span><span class="o">/</span><span class="n">mycheckpoint</span><span class="o">/</span><span class="n">checkpoint</span><span class="o">.</span><span class="n">pth</span><span class="o">.</span><span class="n">tar</span> <span class="o">--</span><span class="n">ft</span>
+<li><p class="first">The training script is in the <code class="docutils literal"><span class="pre">experiments/segmentation/</span></code> folder, example training command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pcontext</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">aux</span> <span class="o">--</span><span class="n">se</span><span class="o">-</span><span class="n">loss</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Detail training options:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>-h, --help            show this help message and exit
---model MODEL         model name (default: encnet)
---backbone BACKBONE   backbone name (default: resnet50)
---dataset DATASET     dataset name (default: pascal12)
---data-folder         training dataset folder (default: $(HOME)/data)
---workers N           dataloader threads
---se-loss             Semantic Encoding Loss SE-loss
---se-loss2            Semantic Encoding Loss SE-loss 2
---epochs N            number of epochs to train (default:100)
---start_epoch N       start epochs (default:0)
---batch-size N        input batch size for training (default: 16)
---test-batch-size N   input batch size for testing (default: 32)
---lr LR               learning rate (default: 0.01)
---lr-scheduler        learning rate scheduler (default: poly)
---momentum M          momentum (default: 0.9)
---weight-decay M      weight decay (default: 1e-4)
---no-cuda             disables CUDA training
---seed S              random seed (default: 1)
---resume RESUME       put the path to resuming file if needed
---checkname CHECKNAME set the checkpoint name
---ft                  finetuning on a different dataset
---pre-class PRE_CLASS num of pre-trained classes (default: None)
---eval                evaluating mIoU
---fast-eval           fast evaluating
---test                test a set of images and save the prediction
---test-folder         path to test image folder
-</pre></div>
-</div>
+<li><p class="first">Detail training options, please run <code class="docutils literal"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">-h</span></code>.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="extending-the-software">
-<h2>Extending the Software<a class="headerlink" href="#extending-the-software" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Write your own Dataloader <code class="docutils literal"><span class="pre">mydataset.py</span></code> to <code class="docutils literal"><span class="pre">datasets/</span></code> folder</p>
-</li>
-<li><p class="first">Write your own Model <code class="docutils literal"><span class="pre">mymodel.py</span></code> to <code class="docutils literal"><span class="pre">models/</span></code> folder</p>
-</li>
-<li><p class="first">Run the program:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">mydataset</span> <span class="o">--</span><span class="n">model</span> <span class="n">mymodel</span> <span class="o">...</span>
+<div class="section" id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation”  <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2018_CVPR</span><span class="p">,</span>
+<span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span> <span class="ow">and</span> <span class="n">Shi</span><span class="p">,</span> <span class="n">Jianping</span> <span class="ow">and</span> <span class="n">Zhang</span><span class="p">,</span> <span class="n">Zhongyue</span> <span class="ow">and</span> <span class="n">Wang</span><span class="p">,</span> <span class="n">Xiaogang</span> <span class="ow">and</span> <span class="n">Tyagi</span><span class="p">,</span> <span class="n">Ambrish</span> <span class="ow">and</span> <span class="n">Agrawal</span><span class="p">,</span> <span class="n">Amit</span><span class="p">},</span>
+<span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Context</span> <span class="n">Encoding</span> <span class="k">for</span> <span class="n">Semantic</span> <span class="n">Segmentation</span><span class="p">},</span>
+<span class="n">booktitle</span> <span class="o">=</span> <span class="p">{</span><span class="n">The</span> <span class="n">IEEE</span> <span class="n">Conference</span> <span class="n">on</span> <span class="n">Computer</span> <span class="n">Vision</span> <span class="ow">and</span> <span class="n">Pattern</span> <span class="n">Recognition</span> <span class="p">(</span><span class="n">CVPR</span><span class="p">)},</span>
+<span class="n">month</span> <span class="o">=</span> <span class="p">{</span><span class="n">June</span><span class="p">},</span>
+<span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2018</span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
 </div>
+</div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -414,7 +428,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -452,14 +466,11 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

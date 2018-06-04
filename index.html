@@ -36,29 +36,24 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Install and Citations" href="notes/compile.html" /> 
 
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
-  
-    <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
-  
 
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Encoding master documentation" href="#"/>
-        <link rel="next" title="Install and Citations" href="notes/compile.html"/> 
+  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -75,7 +70,7 @@
 
           
             
-            <img src="_static/icon.png" class="logo" />
+            <img src="_static/icon.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -83,7 +78,7 @@
             
             
               <div class="version">
-                master (0.3.0+2b17a3c)
+                master (0.4.2+43ca3f3)
               </div>
             
           
@@ -136,9 +131,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#install-package">Install Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="experiments/segmentation.html#quick-demo">Quick Demo</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#citation">Citation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -166,7 +165,6 @@
 <li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
@@ -186,20 +184,10 @@
 <li class="toctree-l3"><a class="reference internal" href="dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="dilated.html#densenet">DenseNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
@@ -223,7 +211,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">Encoding</a>
@@ -231,9 +219,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -322,9 +311,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -344,7 +331,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -382,14 +369,11 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

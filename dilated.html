@@ -36,30 +36,25 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="encoding.functions" href="functions.html" />
+    <link rel="prev" title="encoding.parallel" href="parallel.html" /> 
 
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
-  
-    <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
-  
 
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Encoding master documentation" href="index.html"/>
-        <link rel="next" title="encoding.functions" href="functions.html"/>
-        <link rel="prev" title="encoding.parallel" href="parallel.html"/> 
+  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -76,7 +71,7 @@
 
           
             
-            <img src="_static/icon.png" class="logo" />
+            <img src="_static/icon.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -84,7 +79,7 @@
             
             
               <div class="version">
-                master (0.3.0+2b17a3c)
+                master (0.4.2+43ca3f3)
               </div>
             
           
@@ -139,7 +134,6 @@
 <li class="toctree-l1"><a class="reference internal" href="experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -167,7 +161,6 @@
 <li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
@@ -187,21 +180,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#densenet">DenseNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2"><span class="hidden-section">DenseNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#densenet161"><span class="hidden-section">densenet161</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#densenet121"><span class="hidden-section">densenet121</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#densenet169"><span class="hidden-section">densenet169</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#densenet201"><span class="hidden-section">densenet201</span></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#id1"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
@@ -225,7 +207,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Encoding</a>
@@ -233,9 +215,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -280,7 +263,7 @@
   <div class="section" id="encoding-dilated">
 <h1>encoding.dilated<a class="headerlink" href="#encoding-dilated" title="Permalink to this headline">¶</a></h1>
 <p>We provide correct dilated pre-trained ResNet and DenseNet (stride of 8) for semantic segmentation.
-For dilation of DenseNet, we provide <a class="reference internal" href="nn.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.
+For dilation of DenseNet, we provide <code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code>.
 All provided models have been verified.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -296,15 +279,30 @@ All provided models have been verified.</p>
 <h3><span class="hidden-section">ResNet</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.dilated.ResNet">
-<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>norm_layer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>dilated=True</em>, <em>norm_layer=&lt;class 'torch.nn.modules.batchnorm.BatchNorm2d'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dilated Pre-trained ResNet Model, which preduces the stride of 8 featuremaps at conv5.</p>
-<p>Reference:</p>
-<blockquote>
-<div><ul class="simple">
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>block</strong> (<em>Block</em>) – Class for the residual block. Options are BasicBlockV1, BottleneckV1.</li>
+<li><strong>layers</strong> (<em>list of python:int</em>) – Numbers of layers in each block</li>
+<li><strong>classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default 1000</em>) – Number of classification classes.</li>
+<li><strong>dilated</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default False</em>) – Applying dilation strategy to pretrained ResNet yielding a stride-8 model,
+typically used in Semantic Segmentation.</li>
+<li><strong>norm_layer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><em>object</em></a>) – Normalization layer used in backbone network (default: <code class="xref py py-class docutils literal"><span class="pre">mxnet.gluon.nn.BatchNorm</span></code>;
+for Synchronized Cross-GPU BachNormalization).</li>
+<li><strong>Reference</strong> – <ul>
 <li>He, Kaiming, et al. “Deep residual learning for image recognition.” Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.</li>
 <li>Yu, Fisher, and Vladlen Koltun. “Multi-scale context aggregation by dilated convolutions.”</li>
 </ul>
-</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -394,118 +392,11 @@ All provided models have been verified.</p>
 
 </div>
 </div>
-<div class="section" id="densenet">
-<h2>DenseNet<a class="headerlink" href="#densenet" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id2">
-<h3><span class="hidden-section">DenseNet</span><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<dl class="class">
-<dt id="encoding.dilated.DenseNet">
-<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">DenseNet</code><span class="sig-paren">(</span><em>growth_rate=32</em>, <em>block_config=(6</em>, <em>12</em>, <em>24</em>, <em>16)</em>, <em>num_init_features=64</em>, <em>bn_size=4</em>, <em>drop_rate=0</em>, <em>num_classes=1000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#DenseNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.DenseNet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dilated DenseNet.</p>
-<p>For correctly dilation of transition layer fo DenseNet, we implement the <a class="reference internal" href="nn.html#encoding.nn.DilatedAvgPool2d" title="encoding.nn.DilatedAvgPool2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>growth_rate</strong> (int) - how many filters to add each layer (<cite>k</cite> in paper) – </li>
-<li><strong>block_config</strong> (<em>list of 4 python:ints</em>) – </li>
-<li><strong>num_init_features</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – </li>
-<li><strong>bn_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – (i.e. bn_size * k features in the bottleneck layer)</li>
-<li><strong>drop_rate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – </li>
-<li><strong>num_classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="docutils">
-<dt>Reference:</dt>
-<dd>Huang, Gao, et al. “Densely Connected Convolutional Networks” <em>CVPR 2017</em></dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="densenet161">
-<h3><span class="hidden-section">densenet161</span><a class="headerlink" href="#densenet161" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="encoding.dilated.densenet161">
-<code class="descclassname">encoding.dilated.</code><code class="descname">densenet161</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet161"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet161" title="Permalink to this definition">¶</a></dt>
-<dd><p>Densenet-161 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="densenet121">
-<h3><span class="hidden-section">densenet121</span><a class="headerlink" href="#densenet121" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="encoding.dilated.densenet121">
-<code class="descclassname">encoding.dilated.</code><code class="descname">densenet121</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet121"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet121" title="Permalink to this definition">¶</a></dt>
-<dd><p>Densenet-121 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="densenet169">
-<h3><span class="hidden-section">densenet169</span><a class="headerlink" href="#densenet169" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="encoding.dilated.densenet169">
-<code class="descclassname">encoding.dilated.</code><code class="descname">densenet169</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet169"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet169" title="Permalink to this definition">¶</a></dt>
-<dd><p>Densenet-169 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="densenet201">
-<h3><span class="hidden-section">densenet201</span><a class="headerlink" href="#densenet201" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="encoding.dilated.densenet201">
-<code class="descclassname">encoding.dilated.</code><code class="descname">densenet201</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/densenet.html#densenet201"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.densenet201" title="Permalink to this definition">¶</a></dt>
-<dd><p>Densenet-201 model from
-<a class="reference external" href="https://arxiv.org/pdf/1608.06993.pdf">“Densely Connected Convolutional Networks”</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-</div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -527,7 +418,7 @@ All provided models have been verified.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -565,14 +456,11 @@ All provided models have been verified.</p>
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

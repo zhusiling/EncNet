@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>encoding.functions.syncbn &mdash; Encoding master documentation</title>
+  <title>encoding.utils.metrics &mdash; Encoding master documentation</title>
   
 
   
@@ -246,7 +246,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>encoding.functions.syncbn</li>
+      <li>encoding.utils.metrics</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -261,86 +261,90 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for encoding.functions.syncbn</h1><div class="highlight"><pre>
+  <h1>Source code for encoding.utils.metrics</h1><div class="highlight"><pre>
 <span></span><span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
 <span class="c1">## Created by: Hang Zhang</span>
-<span class="c1">## Email: zhanghang0704@gmail.com</span>
-<span class="c1">## Copyright (c) 2018</span>
+<span class="c1">## ECE Department, Rutgers University</span>
+<span class="c1">## Email: zhang.hang@rutgers.edu</span>
+<span class="c1">## Copyright (c) 2017</span>
 <span class="c1">##</span>
 <span class="c1">## This source code is licensed under the MIT-style license found in the</span>
 <span class="c1">## LICENSE file in the root directory of this source tree</span>
 <span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
 
-<span class="sd">&quot;&quot;&quot;Synchronized Cross-GPU Batch Normalization functions&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span><span class="p">,</span> <span class="n">Function</span>
-<span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">lib</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sum_square&#39;</span><span class="p">,</span> <span class="s1">&#39;batchnormtrain&#39;</span><span class="p">]</span>
-
-<div class="viewcode-block" id="sum_square"><a class="viewcode-back" href="../../../functions.html#encoding.functions.sum_square">[docs]</a><span class="k">def</span> <span class="nf">sum_square</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate sum of elements and sum of squares for Batch Normalization&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_sum_square</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
-
-
-<span class="k">class</span> <span class="nc">_sum_square</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">is_cuda</span><span class="p">:</span>
-            <span class="n">xsum</span><span class="p">,</span> <span class="n">xsqusum</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">gpu</span><span class="o">.</span><span class="n">sumsquare_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="bp">NotImplemented</span>
-        <span class="k">return</span> <span class="n">xsum</span><span class="p">,</span> <span class="n">xsqusum</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">gradSum</span><span class="p">,</span> <span class="n">gradSquare</span><span class="p">):</span>
-        <span class="nb">input</span><span class="p">,</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">saved_variables</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">is_cuda</span><span class="p">:</span>
-            <span class="n">gradInput</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">gpu</span><span class="o">.</span><span class="n">sumsquare_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">gradSum</span><span class="p">,</span> <span class="n">gradSquare</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="bp">NotImplemented</span>
-        <span class="k">return</span> <span class="n">gradInput</span>
-
-
-<span class="k">class</span> <span class="nc">_batchnormtrain</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
-        <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">is_cuda</span><span class="p">:</span>
-            <span class="n">output</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">gpu</span><span class="o">.</span><span class="n">batchnorm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="bp">NotImplemented</span>
-        <span class="k">return</span> <span class="n">output</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">gradOutput</span><span class="p">):</span>
-        <span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">saved_variables</span>
-        <span class="k">if</span> <span class="n">gradOutput</span><span class="o">.</span><span class="n">is_cuda</span><span class="p">:</span>
-            <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span> <span class="o">=</span> \
-                <span class="n">lib</span><span class="o">.</span><span class="n">gpu</span><span class="o">.</span><span class="n">batchnorm_backward</span><span class="p">(</span><span class="n">gradOutput</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span>
-                                           <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="bp">NotImplemented</span>
-        <span class="k">return</span> <span class="n">gradInput</span><span class="p">,</span> <span class="n">gradMean</span><span class="p">,</span> <span class="n">gradStd</span><span class="p">,</span> <span class="n">gradGamma</span><span class="p">,</span> <span class="n">gradBeta</span>
-
-
-<div class="viewcode-block" id="batchnormtrain"><a class="viewcode-back" href="../../../functions.html#encoding.functions.batchnormtrain">[docs]</a><span class="k">def</span> <span class="nf">batchnormtrain</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Applies Batch Normalization over a 3d input that is seen as a</span>
-<span class="sd">    mini-batch.</span>
-
-<span class="sd">    .. _encoding.batchnormtrain:</span>
-
-<span class="sd">    .. math::</span>
-
-<span class="sd">        y = \frac{x - \mu[x]}{ \sqrt{var[x] + \epsilon}} * \gamma + \beta</span>
-
-<span class="sd">    Shape:</span>
-<span class="sd">        - Input: :math:`(N, C)` or :math:`(N, C, L)`</span>
-<span class="sd">        - Output: :math:`(N, C)` or :math:`(N, C, L)` (same shape as input)</span>
-
+<div class="viewcode-block" id="batch_pix_accuracy"><a class="viewcode-back" href="../../../utils.html#encoding.utils.batch_pix_accuracy">[docs]</a><span class="k">def</span> <span class="nf">batch_pix_accuracy</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Batch Pixel Accuracy</span>
+<span class="sd">    Args:</span>
+<span class="sd">        predict: input 4D tensor</span>
+<span class="sd">        target: label 3D tensor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_batchnormtrain</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span></div>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">predict</span> <span class="o">=</span> <span class="n">predict</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">pixel_labeled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">target</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pixel_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">predict</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">target</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="n">pixel_correct</span> <span class="o">&lt;=</span> <span class="n">pixel_labeled</span><span class="p">,</span> <span class="s2">&quot;Correct area should be smaller than Labeled&quot;</span>
+    <span class="k">return</span> <span class="n">pixel_correct</span><span class="p">,</span> <span class="n">pixel_labeled</span></div>
+
+
+<div class="viewcode-block" id="batch_intersection_union"><a class="viewcode-back" href="../../../utils.html#encoding.utils.batch_intersection_union">[docs]</a><span class="k">def</span> <span class="nf">batch_intersection_union</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">nclass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Batch Intersection of Union</span>
+<span class="sd">    Args:</span>
+<span class="sd">        predict: input 4D tensor</span>
+<span class="sd">        target: label 3D tensor</span>
+<span class="sd">        nclass: number of categories (int)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">mini</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">maxi</span> <span class="o">=</span> <span class="n">nclass</span>
+    <span class="n">nbins</span> <span class="o">=</span> <span class="n">nclass</span>
+    <span class="n">predict</span> <span class="o">=</span> <span class="n">predict</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">predict</span> <span class="o">=</span> <span class="n">predict</span> <span class="o">*</span> <span class="p">(</span><span class="n">target</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">predict</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">intersection</span> <span class="o">=</span> <span class="n">predict</span> <span class="o">*</span> <span class="p">(</span><span class="n">predict</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
+    <span class="c1"># areas of intersection and union</span>
+    <span class="n">area_inter</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">intersection</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="n">mini</span><span class="p">,</span> <span class="n">maxi</span><span class="p">))</span>
+    <span class="n">area_pred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="n">mini</span><span class="p">,</span> <span class="n">maxi</span><span class="p">))</span>
+    <span class="n">area_lab</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="n">mini</span><span class="p">,</span> <span class="n">maxi</span><span class="p">))</span>
+    <span class="n">area_union</span> <span class="o">=</span> <span class="n">area_pred</span> <span class="o">+</span> <span class="n">area_lab</span> <span class="o">-</span> <span class="n">area_inter</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">area_inter</span> <span class="o">&lt;=</span> <span class="n">area_union</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> \
+        <span class="s2">&quot;Intersection area should be smaller than Union area&quot;</span>
+    <span class="k">return</span> <span class="n">area_inter</span><span class="p">,</span> <span class="n">area_union</span></div>
+
+
+<span class="c1"># ref https://github.com/CSAILVision/sceneparsing/blob/master/evaluationCode/utils_eval.py</span>
+<span class="k">def</span> <span class="nf">pixel_accuracy</span><span class="p">(</span><span class="n">im_pred</span><span class="p">,</span> <span class="n">im_lab</span><span class="p">):</span>
+    <span class="n">im_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">im_pred</span><span class="p">)</span>
+    <span class="n">im_lab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">im_lab</span><span class="p">)</span>
+
+    <span class="c1"># Remove classes from unlabeled pixels in gt image. </span>
+    <span class="c1"># We should not penalize detections in unlabeled portions of the image.</span>
+    <span class="n">pixel_labeled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">im_lab</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">pixel_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">im_pred</span> <span class="o">==</span> <span class="n">im_lab</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">im_lab</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="c1">#pixel_accuracy = 1.0 * pixel_correct / pixel_labeled</span>
+    <span class="k">return</span> <span class="n">pixel_correct</span><span class="p">,</span> <span class="n">pixel_labeled</span>
+
+
+<span class="k">def</span> <span class="nf">intersection_and_union</span><span class="p">(</span><span class="n">im_pred</span><span class="p">,</span> <span class="n">im_lab</span><span class="p">,</span> <span class="n">num_class</span><span class="p">):</span>
+    <span class="n">im_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">im_pred</span><span class="p">)</span>
+    <span class="n">im_lab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">im_lab</span><span class="p">)</span>
+    <span class="c1"># Remove classes from unlabeled pixels in gt image. </span>
+    <span class="n">im_pred</span> <span class="o">=</span> <span class="n">im_pred</span> <span class="o">*</span> <span class="p">(</span><span class="n">im_lab</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Compute area intersection:</span>
+    <span class="n">intersection</span> <span class="o">=</span> <span class="n">im_pred</span> <span class="o">*</span> <span class="p">(</span><span class="n">im_pred</span> <span class="o">==</span> <span class="n">im_lab</span><span class="p">)</span>
+    <span class="n">area_inter</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">intersection</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_class</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                                        <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_class</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># Compute area union: </span>
+    <span class="n">area_pred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">im_pred</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_class</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                                <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_class</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">area_lab</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">im_lab</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">num_class</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_class</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">area_union</span> <span class="o">=</span> <span class="n">area_pred</span> <span class="o">+</span> <span class="n">area_lab</span> <span class="o">-</span> <span class="n">area_inter</span>
+    <span class="k">return</span> <span class="n">area_inter</span><span class="p">,</span> <span class="n">area_union</span>
 </pre></div>
 
            </div>

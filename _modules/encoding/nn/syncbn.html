@@ -36,29 +36,23 @@
   
 
   
-  
     <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/encoding.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
-  
-    <link rel="stylesheet" href="../../../_static/css/encoding.css" type="text/css" />
-  
 
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="Encoding master documentation" href="../../../index.html"/>
-        <link rel="up" title="Module code" href="../../index.html"/> 
+  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -75,7 +69,7 @@
 
           
             
-            <img src="../../../_static/icon.png" class="logo" />
+            <img src="../../../_static/icon.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -83,7 +77,7 @@
             
             
               <div class="version">
-                master (0.3.0+2b17a3c)
+                master (0.4.2+43ca3f3)
               </div>
             
           
@@ -136,9 +130,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/segmentation.html">Context Encoding for Semantic Segmentation (EncNet)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#install-package">Install Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#test-pre-trained-model">Test Pre-trained Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../experiments/segmentation.html#quick-demo">Quick Demo</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#extending-the-software">Extending the Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../experiments/segmentation.html#citation">Citation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/style.html">MSG-Net Style Transfer Example</a><ul>
@@ -166,7 +164,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#dilatedavgpool2d"><span class="hidden-section">DilatedAvgPool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#grammatrix"><span class="hidden-section">GramMatrix</span></a></li>
 </ul>
 </li>
@@ -186,20 +183,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#densenet">DenseNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id2"><span class="hidden-section">DenseNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet161"><span class="hidden-section">densenet161</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet121"><span class="hidden-section">densenet121</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet169"><span class="hidden-section">densenet169</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#densenet201"><span class="hidden-section">densenet201</span></a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormeval"><span class="hidden-section">batchnormeval</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#dilatedavgpool2d"><span class="hidden-section">dilatedavgpool2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
@@ -223,7 +210,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">Encoding</a>
@@ -231,9 +218,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -305,7 +293,7 @@
            <span class="s1">&#39;AdaptiveAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Dropout2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear&#39;</span><span class="p">]</span>
 
 <span class="k">class</span> <span class="nc">_SyncBatchNorm</span><span class="p">(</span><span class="n">_BatchNorm</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_sync_master</span> <span class="o">=</span> <span class="n">SyncMaster</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_parallel_master</span><span class="p">)</span>
@@ -332,7 +320,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">mean</span><span class="p">,</span> <span class="n">inv_std</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slave_pipe</span><span class="o">.</span><span class="n">run_slave</span><span class="p">(</span><span class="n">_ChildMessage</span><span class="p">(</span><span class="n">xsum</span><span class="p">,</span> <span class="n">xsqsum</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
         <span class="c1"># forward</span>
-        <span class="k">return</span> <span class="n">batchnormtrain</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">inv_std</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">batchnormtrain</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">inv_std</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__data_parallel_replicate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">copy_id</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parallel_id</span> <span class="o">=</span> <span class="n">copy_id</span>
@@ -378,7 +366,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">mean</span><span class="o">.</span><span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">unbias_var</span><span class="o">.</span><span class="n">data</span>
 
-        <span class="k">return</span> <span class="n">mean</span><span class="p">,</span> <span class="n">bias_var</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="k">return</span> <span class="n">mean</span><span class="p">,</span> <span class="p">(</span><span class="n">bias_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.5</span>
 
 
 <span class="c1"># API adapted from https://github.com/vacancy/Synchronized-BatchNorm-PyTorch</span>
@@ -522,9 +510,7 @@
 </pre></div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -537,7 +523,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -575,14 +561,11 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

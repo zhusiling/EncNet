@@ -14,16 +14,6 @@ encoding.functions
 
 .. autofunction:: batchnormtrain
 
-:hidden:`batchnormeval`
-~~~~~~~~~~~~~~~~~~~~~~~
-
-.. autofunction:: batchnormeval
-
-:hidden:`dilatedavgpool2d`
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. autofunction:: dilatedavgpool2d
-
 :hidden:`aggregate`
 ~~~~~~~~~~~~~~~~~~~
 
