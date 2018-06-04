@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                master (0.4.2+43ca3f3)
+                master (0.4.2+17fe8d3)
               </div>
             
           
@@ -309,7 +309,7 @@ for example <code class="docutils literal"><span class="pre">Encnet_ResNet50_PCo
 <col width="23%" />
 <col width="7%" />
 <col width="7%" />
-<col width="62%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Model</th>
@@ -329,6 +329,11 @@ for example <code class="docutils literal"><span class="pre">Encnet_ResNet50_PCo
 <td>49.5</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc50_pcont')" class="toggleblock">cmd</a></span></td>
 </tr>
+<tr class="row-even"><td>Encnet_ResNet101_PContext</td>
+<td>80.0%</td>
+<td>52.1</td>
+<td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc101_pcont')" class="toggleblock">cmd</a></span></td>
+</tr>
 </tbody>
 </table>
 <code xml:space="preserve" id="cmd_fcn50_pcont" style="display: none; text-align: left; white-space: pre-wrap">
@@ -337,6 +342,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset PContext --model FCN
 
 <code xml:space="preserve" id="cmd_enc50_pcont" style="display: none; text-align: left; white-space: pre-wrap">
 CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset PContext --model EncNet --aux --se-loss
+</code>
+
+<code xml:space="preserve" id="cmd_enc101_pcont" style="display: none; text-align: left; white-space: pre-wrap">
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset PContext --model EncNet --aux --se-loss --backbone resnet101
 </code><div class="section" id="quick-demo">
 <h3>Quick Demo<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
