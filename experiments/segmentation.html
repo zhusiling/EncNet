@@ -390,6 +390,12 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset PContext --model EncNet -
 </li>
 <li><p class="first">Detail training options, please run <code class="docutils literal"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">-h</span></code>.</p>
 </li>
+<li><p class="first">The validation metrics during the training only using center-crop is just for monitoring the
+training correctness purpose. For evaluating the trained model, please use the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pcontext</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">aux</span> <span class="o">--</span><span class="n">se</span><span class="o">-</span><span class="n">loss</span> <span class="o">--</span><span class="n">resume</span> <span class="n">mycheckpoint</span>
+</pre></div>
+</div>
+</li>
 </ul>
 </div>
 <div class="section" id="citation">

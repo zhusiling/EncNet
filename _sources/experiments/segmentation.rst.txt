@@ -105,6 +105,11 @@ Train Your Own Model
 
 - Detail training options, please run ``python train.py -h``.
 
+- The validation metrics during the training only using center-crop is just for monitoring the
+  training correctness purpose. For evaluating the trained model, please use the command::
+
+    CUDA_VISIBLE_DEVICES=0,1,2,3 python test.py --dataset pcontext --model encnet --aux --se-loss --resume mycheckpoint
+
 Citation
 --------
 
