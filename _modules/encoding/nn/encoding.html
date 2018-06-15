@@ -35,8 +35,7 @@
 
   
 
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/encoding.css" type="text/css" />
@@ -77,7 +76,7 @@
             
             
               <div class="version">
-                master (0.4.2+17fe8d3)
+                master (0.4.3+d40adbc)
               </div>
             
           
@@ -279,7 +278,7 @@
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 <span class="kn">from</span> <span class="nn">torch.nn.modules.utils</span> <span class="k">import</span> <span class="n">_pair</span>
 
-<span class="kn">from</span> <span class="nn">..functions</span> <span class="k">import</span> <span class="n">scaledL2</span><span class="p">,</span> <span class="n">aggregate</span>
+<span class="kn">from</span> <span class="nn">..functions</span> <span class="k">import</span> <span class="n">scaledL2</span><span class="p">,</span> <span class="n">aggregate</span><span class="p">,</span> <span class="n">pairwise_cosine</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Encoding&#39;</span><span class="p">,</span> <span class="s1">&#39;EncodingDrop&#39;</span><span class="p">,</span> <span class="s1">&#39;Inspiration&#39;</span><span class="p">,</span> <span class="s1">&#39;UpsampleConv2d&#39;</span><span class="p">]</span>
 
@@ -374,6 +373,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> \
             <span class="o">+</span> <span class="s1">&#39;N x &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;=&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;x&#39;</span> \
             <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span></div>
+
 
 <span class="k">class</span> <span class="nc">EncodingDrop</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Dropout regularized Encoding Layer.</span>
@@ -617,10 +617,7 @@
 
   
 
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {

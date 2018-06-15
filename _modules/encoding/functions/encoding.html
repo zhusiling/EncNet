@@ -35,8 +35,7 @@
 
   
 
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="../../../_static/css/encoding.css" type="text/css" />
@@ -77,7 +76,7 @@
             
             
               <div class="version">
-                master (0.4.2+17fe8d3)
+                master (0.4.3+d40adbc)
               </div>
             
           
@@ -274,9 +273,10 @@
 <span class="sd">&quot;&quot;&quot;Functions for Encoding Layer&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Function</span><span class="p">,</span> <span class="n">Variable</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="k">import</span> <span class="n">lib</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aggregate&#39;</span><span class="p">,</span> <span class="s1">&#39;scaledL2&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aggregate&#39;</span><span class="p">,</span> <span class="s1">&#39;scaledL2&#39;</span><span class="p">,</span> <span class="s1">&#39;pairwise_cosine&#39;</span><span class="p">]</span>
 
 <span class="k">class</span> <span class="nc">_aggregate</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="nd">@staticmethod</span>
@@ -357,6 +357,21 @@
 <span class="sd">        - Output: :math:`E\in\mathcal{R}^{B\times N\times K}`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_scaledL2</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span></div>
+
+<span class="c1"># Experimental</span>
+<span class="k">def</span> <span class="nf">pairwise_cosine</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Pairwise Cosine Similarity or Dot-product Similarity</span>
+<span class="sd">    Shape:</span>
+<span class="sd">        - Input: :math:`X\in\mathcal{R}^{B\times N\times D}`</span>
+<span class="sd">          :math:`C\in\mathcal{R}^{K\times D}` :math:`S\in \mathcal{R}^K`</span>
+<span class="sd">          (where :math:`B` is batch, :math:`N` is total number of features,</span>
+<span class="sd">          :math:`K` is number is codewords, :math:`D` is feature dimensions.)</span>
+<span class="sd">        - Output: :math:`E\in\mathcal{R}^{B\times N\times K}`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">t</span><span class="p">())</span>
 </pre></div>
 
            </div>
@@ -406,10 +421,7 @@
 
   
 
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {

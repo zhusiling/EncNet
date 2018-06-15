@@ -35,8 +35,7 @@
 
   
 
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
@@ -78,7 +77,7 @@
             
             
               <div class="version">
-                master (0.4.2+17fe8d3)
+                master (0.4.3+d40adbc)
               </div>
             
           
@@ -107,10 +106,6 @@
 <li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install and Citations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#citations">Citations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
@@ -272,7 +267,7 @@
 <h2><span class="hidden-section">LR_Scheduler</span><a class="headerlink" href="#lr-scheduler" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="encoding.utils.LR_Scheduler">
-<em class="property">class </em><code class="descclassname">encoding.utils.</code><code class="descname">LR_Scheduler</code><span class="sig-paren">(</span><em>args</em>, <em>niters=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils/lr_scheduler.html#LR_Scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.LR_Scheduler" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">encoding.utils.</code><code class="descname">LR_Scheduler</code><span class="sig-paren">(</span><em>mode</em>, <em>base_lr</em>, <em>num_epochs</em>, <em>iters_per_epoch=0</em>, <em>lr_step=0</em>, <em>warmup_epochs=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/utils/lr_scheduler.html#LR_Scheduler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.utils.LR_Scheduler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Learning Rate Scheduler</p>
 <p>Step mode: <code class="docutils literal"><span class="pre">lr</span> <span class="pre">=</span> <span class="pre">baselr</span> <span class="pre">*</span> <span class="pre">0.1</span> <span class="pre">^</span> <span class="pre">{floor(epoch-1</span> <span class="pre">/</span> <span class="pre">lr_step)}</span></code></p>
 <p>Cosine mode: <code class="docutils literal"><span class="pre">lr</span> <span class="pre">=</span> <span class="pre">baselr</span> <span class="pre">*</span> <span class="pre">0.5</span> <span class="pre">*</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">cos(iter/maxiter))</span></code></p>
@@ -285,7 +280,7 @@
 <li><strong>args</strong> – <code class="xref py py-attr docutils literal"><span class="pre">args.lr_scheduler</span></code> lr scheduler mode (<cite>cos</cite>, <cite>poly</cite>),
 <code class="xref py py-attr docutils literal"><span class="pre">args.lr</span></code> base learning rate, <code class="xref py py-attr docutils literal"><span class="pre">args.epochs</span></code> number of epochs,
 <code class="xref py py-attr docutils literal"><span class="pre">args.lr_step</span></code></li>
-<li><strong>niters</strong> – number of iterations per epoch</li>
+<li><strong>iters_per_epoch</strong> – number of iterations per epoch</li>
 </ul>
 </td>
 </tr>
@@ -383,10 +378,7 @@
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {

@@ -35,8 +35,7 @@
 
   
 
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
   <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
@@ -79,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.2+17fe8d3)
+                master (0.4.3+d40adbc)
               </div>
             
           
@@ -108,10 +107,6 @@
 <li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install and Citations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#citations">Citations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="notes/extending.html">Extending PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
@@ -349,7 +344,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <h3><span class="hidden-section">resnet50</span><a class="headerlink" href="#resnet50" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="encoding.dilated.resnet50">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet50</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet50"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet50" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">encoding.dilated.</code><code class="descname">resnet50</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet50"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet50" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-50 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -366,7 +361,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <h3><span class="hidden-section">resnet101</span><a class="headerlink" href="#resnet101" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="encoding.dilated.resnet101">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet101</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet101"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet101" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">encoding.dilated.</code><code class="descname">resnet101</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet101"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet101" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-101 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -383,7 +378,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <h3><span class="hidden-section">resnet152</span><a class="headerlink" href="#resnet152" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="encoding.dilated.resnet152">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet152</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet152" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">encoding.dilated.</code><code class="descname">resnet152</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet152" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-152 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -456,10 +451,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
   <script type="text/javascript">
       jQuery(function () {
