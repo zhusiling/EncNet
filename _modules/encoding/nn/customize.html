@@ -107,10 +107,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#citations">Citations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../notes/extending.html">Extending PyTorch-Encoding</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../notes/extending.html#torch-c-and-cuda-backend">Torch C and CUDA Backend</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../notes/syncbn.html">Implementing Synchronized Multi-GPU Batch Normalization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#how-bn-works">How BN works?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/syncbn.html#why-synchronize-bn">Why Synchronize BN?</a></li>
@@ -439,13 +435,6 @@
                                 <span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
         <span class="c1"># bilinear upsample options</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span> <span class="o">=</span> <span class="n">up_kwargs</span>
-
-    <span class="k">def</span> <span class="nf">_cat_each</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">feat1</span><span class="p">,</span> <span class="n">feat2</span><span class="p">,</span> <span class="n">feat3</span><span class="p">,</span> <span class="n">feat4</span><span class="p">):</span>
-        <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">feat1</span><span class="p">))</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
-            <span class="n">z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feat1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feat2</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feat3</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feat4</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">z</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
