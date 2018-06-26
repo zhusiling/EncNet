@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.3+d40adbc)
+                master (0.4.5)
               </div>
             
           
@@ -266,7 +266,7 @@
 <h2>Install Package<a class="headerlink" href="#install-package" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Clone the GitHub repo:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span>
 </pre></div>
 </div>
 </li>
@@ -294,7 +294,7 @@
 <p>The test script is in the <code class="docutils literal"><span class="pre">experiments/segmentation/</span></code> folder. For evaluating the model (using MS),
 for example <code class="docutils literal"><span class="pre">Encnet_ResNet50_PContext</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">PContext</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">zoo</span> <span class="n">Encnet_ResNet50_PContext</span> <span class="o">--</span><span class="nb">eval</span>
-<span class="c1"># pixAcc: 0.7838, mIoU: 0.4958: 100%|████████████████████████| 1276/1276 [46:31&lt;00:00,  2.19s/it]</span>
+<span class="c1"># pixAcc: 0.7888, mIoU: 0.5056: 100%|████████████████████████| 1276/1276 [46:31&lt;00:00,  2.19s/it]</span>
 </pre></div>
 </div>
 <p class="last">The command for training the model can be found by clicking <code class="docutils literal"><span class="pre">cmd</span></code> in the table.</p>
@@ -319,22 +319,22 @@ for example <code class="docutils literal"><span class="pre">Encnet_ResNet50_PCo
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Encnet_ResNet50_PContext</td>
-<td>78.4%</td>
-<td>49.6%</td>
+<td>78.9%</td>
+<td>50.6%</td>
 <td>&#160;</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc50_pcont')" class="toggleblock">cmd</a></span></td>
 <td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet50_pcontext.log?raw=true">ENC50PC</a></td>
 </tr>
 <tr class="row-odd"><td>EncNet_ResNet101_PContext</td>
-<td>79.9%</td>
-<td>51.8%</td>
+<td>80.3%</td>
+<td>53.2%</td>
 <td>&#160;</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc101_pcont')" class="toggleblock">cmd</a></span></td>
 <td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet101_pcontext.log?raw=true">ENC101PC</a></td>
 </tr>
 <tr class="row-even"><td>EncNet_ResNet50_ADE</td>
-<td>79.8%</td>
-<td>41.3%</td>
+<td>79.9%</td>
+<td>41.2%</td>
 <td>&#160;</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc50_ade')" class="toggleblock">cmd</a></span></td>
 <td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet50_ade.log?raw=true">ENC50ADE</a></td>
@@ -358,7 +358,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ADE20K --model PSP --aux
 </code>
 
 <code xml:space="preserve" id="cmd_enc50_ade" style="display: none; text-align: left; white-space: pre-wrap">
-CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ADE20K --model EncNet --aux --se-loss
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ade20k --model encnetv2 --aux --se-loss
 </code><div class="section" id="quick-demo">
 <h3>Quick Demo<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>

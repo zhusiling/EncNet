@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                master (0.4.3+d40adbc)
+                master (0.4.5)
               </div>
             
           
@@ -281,7 +281,8 @@
     <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">pixel_labeled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">target</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">pixel_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">predict</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">target</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="k">assert</span> <span class="n">pixel_correct</span> <span class="o">&lt;=</span> <span class="n">pixel_labeled</span><span class="p">,</span> <span class="s2">&quot;Correct area should be smaller than Labeled&quot;</span>
+    <span class="k">assert</span> <span class="n">pixel_correct</span> <span class="o">&lt;=</span> <span class="n">pixel_labeled</span><span class="p">,</span> \
+        <span class="s2">&quot;Correct area should be smaller than Labeled&quot;</span>
     <span class="k">return</span> <span class="n">pixel_correct</span><span class="p">,</span> <span class="n">pixel_labeled</span></div>
 
 
