@@ -269,25 +269,22 @@
 <h2>Test Pre-trained Model<a class="headerlink" href="#test-pre-trained-model" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Clone the GitHub repo:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Install PyTorch Encoding (if not yet). Please follow the installation guide <a class="reference external" href="../notes/compile.html">Installing PyTorch Encoding</a>.</p>
 </li>
-<li><p class="first">Download the <a class="reference external" href="http://opensurfaces.cs.cornell.edu/publications/minc/">MINC-2500</a> dataset to <code class="docutils literal"><span class="pre">$HOME/data/minc-2500/</span></code> folder. Download pre-trained model (training <a class="reference internal" href="#curve">curve</a> as bellow, pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math">\(19.98\%\)</span> using single crop on test-1 set):</p>
+<li><p class="first">Download the <a class="reference external" href="http://opensurfaces.cs.cornell.edu/publications/minc/">MINC-2500</a> dataset to <code class="docutils literal"><span class="pre">$HOME/data/minc-2500/</span></code> folder. Download pre-trained model (pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math">\(19.70\%\)</span> using single crop on test-1 set):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span><span class="o">/</span><span class="n">experiments</span><span class="o">/</span><span class="n">recognition</span>
-<span class="n">bash</span> <span class="n">model</span><span class="o">/</span><span class="n">download_models</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">python</span> <span class="n">model</span><span class="o">/</span><span class="n">download_models</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </li>
-</ul>
-<a class="reference internal image-reference" href="../_images/deep_ten_curve.svg" id="curve"><img alt="../_images/deep_ten_curve.svg" id="curve" src="../_images/deep_ten_curve.svg" width="70%" /></a>
-<ul>
 <li><p class="first">Test pre-trained model on MINC-2500:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">resume</span> <span class="n">model</span><span class="o">/</span><span class="n">minc</span><span class="o">.</span><span class="n">pth</span><span class="o">.</span><span class="n">tar</span> <span class="o">--</span><span class="nb">eval</span>
-<span class="go"># Teriminal Output:</span>
-<span class="go">#[======================================== 23/23 ===================================&gt;...]    Step: 104ms | Tot: 3s256ms | Loss: 0.719 | Err: 19.983% (1149/5750)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">resume</span> <span class="n">deepten_minc</span><span class="o">.</span><span class="n">pth</span> <span class="o">--</span><span class="nb">eval</span>
+<span class="c1"># Teriminal Output:</span>
+<span class="c1"># Loss: 1.005 | Err: 19.704% (1133/5750): 100%|████████████████████| 23/23 [00:18&lt;00:00,  1.26it/s]</span>
 </pre></div>
 </div>
 </li>
@@ -297,7 +294,7 @@
 <h2>Train Your Own Model<a class="headerlink" href="#train-your-own-model" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Example training command for training above model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">64</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.01</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">60</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">512</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.004</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">80</span> <span class="o">--</span><span class="n">lr</span><span class="o">-</span><span class="n">step</span> <span class="mi">60</span>
 </pre></div>
 </div>
 </li>
