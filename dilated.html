@@ -45,7 +45,7 @@
     <link rel="prev" title="encoding.parallel" href="parallel.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -185,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -263,7 +263,7 @@
   <div class="section" id="encoding-dilated">
 <h1>encoding.dilated<a class="headerlink" href="#encoding-dilated" title="Permalink to this headline">¶</a></h1>
 <p>We provide correct dilated pre-trained ResNet and DenseNet (stride of 8) for semantic segmentation.
-For dilation of DenseNet, we provide <code class="xref py py-class docutils literal"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code>.
+For dilation of DenseNet, we provide <code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code>.
 All provided models have been verified.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -279,7 +279,7 @@ All provided models have been verified.</p>
 <h3><span class="hidden-section">ResNet</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="encoding.dilated.ResNet">
-<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>dilated=True</em>, <em>norm_layer=&lt;class 'torch.nn.modules.batchnorm.BatchNorm2d'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>dilated=True</em>, <em>deep_base=True</em>, <em>norm_layer=&lt;class 'torch.nn.modules.batchnorm.BatchNorm2d'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dilated Pre-trained ResNet Model, which preduces the stride of 8 featuremaps at conv5.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -288,10 +288,10 @@ All provided models have been verified.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>block</strong> (<em>Block</em>) – Class for the residual block. Options are BasicBlockV1, BottleneckV1.</li>
 <li><strong>layers</strong> (<em>list of python:int</em>) – Numbers of layers in each block</li>
-<li><strong>classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default 1000</em>) – Number of classification classes.</li>
-<li><strong>dilated</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default False</em>) – Applying dilation strategy to pretrained ResNet yielding a stride-8 model,
+<li><strong>classes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default 1000</em>) – Number of classification classes.</li>
+<li><strong>dilated</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default False</em>) – Applying dilation strategy to pretrained ResNet yielding a stride-8 model,
 typically used in Semantic Segmentation.</li>
-<li><strong>norm_layer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><em>object</em></a>) – Normalization layer used in backbone network (default: <code class="xref py py-class docutils literal"><span class="pre">mxnet.gluon.nn.BatchNorm</span></code>;
+<li><strong>norm_layer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><em>object</em></a>) – Normalization layer used in backbone network (default: <code class="xref py py-class docutils literal notranslate"><span class="pre">mxnet.gluon.nn.BatchNorm</span></code>;
 for Synchronized Cross-GPU BachNormalization).</li>
 <li><strong>Reference</strong> – <ul>
 <li>He, Kaiming, et al. “Deep residual learning for image recognition.” Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.</li>
@@ -303,6 +303,20 @@ for Synchronized Cross-GPU BachNormalization).</li>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="encoding.dilated.ResNet.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -316,7 +330,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -333,7 +347,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -350,7 +364,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -367,7 +381,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>
@@ -384,7 +398,7 @@ for Synchronized Cross-GPU BachNormalization).</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pretrained</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – If True, returns a model pre-trained on ImageNet</td>
 </tr>
 </tbody>
 </table>

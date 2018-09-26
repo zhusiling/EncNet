@@ -43,7 +43,7 @@
     <link rel="search" title="Search" href="../../search.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -183,7 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -381,7 +381,7 @@
 <span class="sd">        &gt;&gt;&gt; y = net(x)</span>
 <span class="sd">        &gt;&gt;&gt; loss = criterion(y, target)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="DataParallelCriterion.forward"><a class="viewcode-back" href="../../parallel.html#encoding.parallel.DataParallelCriterion.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># input should be already scatterd</span>
         <span class="c1"># scattering the targets instead</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">:</span>
@@ -391,7 +391,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">targets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">replicas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)])</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">_criterion_parallel_apply</span><span class="p">(</span><span class="n">replicas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">Reduce</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">outputs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Reduce</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">outputs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span></div></div>
         <span class="c1">#return self.gather(outputs, self.output_device).mean()</span>
 
 

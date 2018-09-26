@@ -45,7 +45,7 @@
     <link rel="prev" title="Context Encoding for Semantic Segmentation (EncNet)" href="segmentation.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -185,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -286,7 +286,7 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Hang Zhang, and Kristin Dana. “Multi-style Generative Network for Real-time Transfer.”:</p>
-<div class="last highlight-default"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">zhang2017multistyle</span><span class="p">,</span>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@article</span><span class="p">{</span><span class="n">zhang2017multistyle</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">Multi</span><span class="o">-</span><span class="n">style</span> <span class="n">Generative</span> <span class="n">Network</span> <span class="k">for</span> <span class="n">Real</span><span class="o">-</span><span class="n">time</span> <span class="n">Transfer</span><span class="p">},</span>
     <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span><span class="p">},</span>
     <span class="n">journal</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span> <span class="n">preprint</span> <span class="n">arXiv</span><span class="p">:</span><span class="mf">1703.06953</span><span class="p">},</span>
@@ -300,14 +300,14 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <h2>Stylize Images Using Pre-trained Model<a class="headerlink" href="#stylize-images-using-pre-trained-model" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Clone the repo and download the pre-trained model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Style</span><span class="o">-</span><span class="n">Transfer</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Style</span><span class="o">-</span><span class="n">Transfer</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">PyTorch</span><span class="o">-</span><span class="n">Style</span><span class="o">-</span><span class="n">Transfer</span><span class="o">/</span><span class="n">experiments</span>
 <span class="n">bash</span> <span class="n">models</span><span class="o">/</span><span class="n">download_model</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Camera Demo:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">camera_demo</span><span class="o">.</span><span class="n">py</span> <span class="n">demo</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">camera_demo</span><span class="o">.</span><span class="n">py</span> <span class="n">demo</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span>
 </pre></div>
 </div>
 </li>
@@ -315,18 +315,18 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <img alt="../_images/myimage.gif" src="../_images/myimage.gif" />
 <ul>
 <li><p class="first">Test the model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="nb">eval</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">size</span> <span class="mi">1024</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="nb">eval</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">model</span> <span class="n">models</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">.</span><span class="n">model</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">size</span> <span class="mi">1024</span>
 </pre></div>
 </div>
-<p>If you don’t have a GPU, simply set <code class="docutils literal"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
-<p>If you would to stylize your own photo, change the <code class="docutils literal"><span class="pre">--content-image</span> <span class="pre">path/to/your/photo</span></code>. More options:</p>
+<p>If you don’t have a GPU, simply set <code class="docutils literal notranslate"><span class="pre">--cuda=0</span></code>. For a different style, set <code class="docutils literal notranslate"><span class="pre">--style-image</span> <span class="pre">path/to/style</span></code>.</p>
+<p>If you would to stylize your own photo, change the <code class="docutils literal notranslate"><span class="pre">--content-image</span> <span class="pre">path/to/your/photo</span></code>. More options:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">--content-image</span></code>: path to content image you want to stylize.</li>
-<li><code class="docutils literal"><span class="pre">--style-image</span></code>: path to style image (typically covered during the training).</li>
-<li><code class="docutils literal"><span class="pre">--model</span></code>: path to the pre-trained model to be used for stylizing the image.</li>
-<li><code class="docutils literal"><span class="pre">--output-image</span></code>: path for saving the output image.</li>
-<li><code class="docutils literal"><span class="pre">--content-size</span></code>: the content image size to test on.</li>
-<li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--content-image</span></code>: path to content image you want to stylize.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--style-image</span></code>: path to style image (typically covered during the training).</li>
+<li><code class="docutils literal notranslate"><span class="pre">--model</span></code>: path to the pre-trained model to be used for stylizing the image.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--output-image</span></code>: path for saving the output image.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--content-size</span></code>: the content image size to test on.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
 </ul>
 </li>
 </ul>
@@ -342,20 +342,20 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <h2>Train Your Own MSG-Net Model<a class="headerlink" href="#train-your-own-msg-net-model" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Download the dataset:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">dataset</span><span class="o">/</span><span class="n">download_dataset</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">dataset</span><span class="o">/</span><span class="n">download_dataset</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Train the model:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">train</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">train</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">4</span>
 </pre></div>
 </div>
-<p>If you would like to customize styles, set <code class="docutils literal"><span class="pre">--style-folder</span> <span class="pre">path/to/your/styles</span></code>. More options:</p>
+<p>If you would like to customize styles, set <code class="docutils literal notranslate"><span class="pre">--style-folder</span> <span class="pre">path/to/your/styles</span></code>. More options:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">--style-folder</span></code>: path to the folder style images.</li>
-<li><code class="docutils literal"><span class="pre">--vgg-model-dir</span></code>: path to folder where the vgg model will be downloaded.</li>
-<li><code class="docutils literal"><span class="pre">--save-model-dir</span></code>: path to folder where trained model will be saved.</li>
-<li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--style-folder</span></code>: path to the folder style images.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--vgg-model-dir</span></code>: path to folder where the vgg model will be downloaded.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--save-model-dir</span></code>: path to folder where trained model will be saved.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
 </ul>
 </li>
 </ul>
@@ -363,16 +363,16 @@ We also provide <a class="reference external" href="https://github.com/zhanghang
 <div class="section" id="neural-style">
 <h2>Neural Style<a class="headerlink" href="#neural-style" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Gatys_Image_Style_Transfer_CVPR_2016_paper.pdf">Image Style Transfer Using Convolutional Neural Networks</a> by Leon A. Gatys, Alexander S. Ecker, and Matthias Bethge:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">optim</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">optim</span> <span class="o">--</span><span class="n">content</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="n">venice</span><span class="o">-</span><span class="n">boat</span><span class="o">.</span><span class="n">jpg</span> <span class="o">--</span><span class="n">style</span><span class="o">-</span><span class="n">image</span> <span class="n">images</span><span class="o">/</span><span class="mi">9</span><span class="n">styles</span><span class="o">/</span><span class="n">candy</span><span class="o">.</span><span class="n">jpg</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">--content-image</span></code>: path to content image.</li>
-<li><code class="docutils literal"><span class="pre">--style-image</span></code>: path to style image.</li>
-<li><code class="docutils literal"><span class="pre">--output-image</span></code>: path for saving the output image.</li>
-<li><code class="docutils literal"><span class="pre">--content-size</span></code>: the content image size to test on.</li>
-<li><code class="docutils literal"><span class="pre">--style-size</span></code>: the style image size to test on.</li>
-<li><code class="docutils literal"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--content-image</span></code>: path to content image.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--style-image</span></code>: path to style image.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--output-image</span></code>: path for saving the output image.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--content-size</span></code>: the content image size to test on.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--style-size</span></code>: the style image size to test on.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--cuda</span></code>: set it to 1 for running on GPU, 0 for CPU.</li>
 </ul>
 <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g1.jpg" width="220px" /> <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g2.jpg" width="220px" />
 <img src ="https://raw.githubusercontent.com/zhanghang1989/PyTorch-Style-Transfer/master/images/g3.jpg" width="220px" />

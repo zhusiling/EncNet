@@ -45,7 +45,7 @@
     <link rel="prev" title="EncNet on CIFAR-10" href="cifar.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -185,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -266,7 +266,7 @@
 <h2>Install Package<a class="headerlink" href="#install-package" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Clone the GitHub repo:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">zhanghang1989</span><span class="o">/</span><span class="n">PyTorch</span><span class="o">-</span><span class="n">Encoding</span>
 </pre></div>
 </div>
 </li>
@@ -279,65 +279,76 @@
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <dl class="docutils">
-<dt>The model names contain the training information. For instance <code class="docutils literal"><span class="pre">FCN_ResNet50_PContext</span></code>:</dt>
+<dt>The model names contain the training information. For instance <code class="docutils literal notranslate"><span class="pre">FCN_ResNet50_PContext</span></code>:</dt>
 <dd><ul class="first last simple">
-<li><code class="docutils literal"><span class="pre">FCN</span></code> indicate the algorithm is “Fully Convolutional Network for Semantic Segmentation”</li>
-<li><code class="docutils literal"><span class="pre">ResNet50</span></code> is the name of backbone network.</li>
-<li><code class="docutils literal"><span class="pre">PContext</span></code> means the PASCAL in Context dataset.</li>
+<li><code class="docutils literal notranslate"><span class="pre">FCN</span></code> indicate the algorithm is “Fully Convolutional Network for Semantic Segmentation”</li>
+<li><code class="docutils literal notranslate"><span class="pre">ResNet50</span></code> is the name of backbone network.</li>
+<li><code class="docutils literal notranslate"><span class="pre">PContext</span></code> means the PASCAL in Context dataset.</li>
 </ul>
 </dd>
 </dl>
-<p>How to get pretrained model, for example <code class="docutils literal"><span class="pre">FCN_ResNet50_PContext</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;FCN_ResNet50_PContext&#39;</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p>How to get pretrained model, for example <code class="docutils literal notranslate"><span class="pre">FCN_ResNet50_PContext</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;FCN_ResNet50_PContext&#39;</span><span class="p">,</span> <span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The test script is in the <code class="docutils literal"><span class="pre">experiments/segmentation/</span></code> folder. For evaluating the model (using MS),
-for example <code class="docutils literal"><span class="pre">Encnet_ResNet50_PContext</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">PContext</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">zoo</span> <span class="n">Encnet_ResNet50_PContext</span> <span class="o">--</span><span class="nb">eval</span>
-<span class="c1"># pixAcc: 0.7888, mIoU: 0.5056: 100%|████████████████████████| 1276/1276 [46:31&lt;00:00,  2.19s/it]</span>
+<p>Prepare the datasets by runing the scripts in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> folder, for example preparing <code class="docutils literal notranslate"><span class="pre">PASCAL</span> <span class="pre">Context</span></code> dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">prepare_pcontext</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p class="last">The command for training the model can be found by clicking <code class="docutils literal"><span class="pre">cmd</span></code> in the table.</p>
+<p>The test script is in the <code class="docutils literal notranslate"><span class="pre">experiments/segmentation/</span></code> folder. For evaluating the model (using MS),
+for example <code class="docutils literal notranslate"><span class="pre">Encnet_ResNet50_PContext</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">PContext</span> <span class="o">--</span><span class="n">model</span><span class="o">-</span><span class="n">zoo</span> <span class="n">Encnet_ResNet50_PContext</span> <span class="o">--</span><span class="nb">eval</span>
+<span class="c1"># pixAcc: 0.792, mIoU: 0.510: 100%|████████████████████████| 1276/1276 [46:31&lt;00:00,  2.19s/it]</span>
+</pre></div>
+</div>
+<p class="last">The command for training the model can be found by clicking <code class="docutils literal notranslate"><span class="pre">cmd</span></code> in the table.</p>
 </div>
 <table border="1" class="docutils">
 <colgroup>
-<col width="20%" />
-<col width="6%" />
-<col width="6%" />
-<col width="6%" />
-<col width="54%" />
+<col width="21%" />
+<col width="7%" />
+<col width="7%" />
+<col width="58%" />
 <col width="7%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Model</th>
 <th class="head">pixAcc</th>
 <th class="head">mIoU</th>
-<th class="head">Note</th>
 <th class="head">Command</th>
 <th class="head">Logs</th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Encnet_ResNet50_PContext</td>
-<td>78.9%</td>
-<td>50.6%</td>
-<td>&#160;</td>
+<td>79.2%</td>
+<td>51.0%</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc50_pcont')" class="toggleblock">cmd</a></span></td>
 <td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet50_pcontext.log?raw=true">ENC50PC</a></td>
 </tr>
 <tr class="row-odd"><td>EncNet_ResNet101_PContext</td>
-<td>80.3%</td>
-<td>53.2%</td>
-<td>&#160;</td>
+<td>80.7%</td>
+<td>54.1%</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc101_pcont')" class="toggleblock">cmd</a></span></td>
 <td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet101_pcontext.log?raw=true">ENC101PC</a></td>
 </tr>
 <tr class="row-even"><td>EncNet_ResNet50_ADE</td>
-<td>79.9%</td>
-<td>41.2%</td>
-<td>&#160;</td>
+<td>80.1%</td>
+<td>41.5%</td>
 <td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc50_ade')" class="toggleblock">cmd</a></span></td>
 <td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet50_ade.log?raw=true">ENC50ADE</a></td>
+</tr>
+<tr class="row-odd"><td>EncNet_ResNet101_ADE</td>
+<td>81.3%</td>
+<td>44.4%</td>
+<td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc101_ade')" class="toggleblock">cmd</a></span></td>
+<td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet101_ade.log?raw=true">ENC101ADE</a></td>
+</tr>
+<tr class="row-even"><td>EncNet_ResNet101_VOC</td>
+<td>N/A</td>
+<td>85.9%</td>
+<td><span class="raw-html"><a href="javascript:toggleblock('cmd_enc101_voc')" class="toggleblock">cmd</a></span></td>
+<td><a class="reference external" href="https://github.com/zhanghang1989/image-data/blob/master/encoding/segmentation/logs/encnet_resnet101_voc.log?raw=true">ENC101VOC</a></td>
 </tr>
 </tbody>
 </table>
@@ -359,9 +370,22 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ADE20K --model PSP --aux
 
 <code xml:space="preserve" id="cmd_enc50_ade" style="display: none; text-align: left; white-space: pre-wrap">
 CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ADE20K --model EncNet --aux --se-loss
+</code>
+
+
+<code xml:space="preserve" id="cmd_enc101_ade" style="display: none; text-align: left; white-space: pre-wrap">
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ADE20K --model EncNet --aux --se-loss --backbone resnet101
+</code>
+
+<code xml:space="preserve" id="cmd_enc101_voc" style="display: none; text-align: left; white-space: pre-wrap">
+# First finetuning COCO dataset pretrained model on augmented set
+# You can also train from scratch on COCO by yourself
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset Pascal_aug --model-zoo EncNet_Resnet101_COCO --aux --se-loss --lr 0.001 --syncbn --ngpus 4 --checkname res101
+# Finetuning on original set
+CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset Pascal_voc --model encnet --aux  --se-loss --backbone resnet101 --lr 0.0001 --syncbn --ngpus 4 --checkname res101 --resume runs/Pascal_aug/encnet/res101/checkpoint.params
 </code><div class="section" id="quick-demo">
 <h3>Quick Demo<a class="headerlink" href="#quick-demo" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">encoding</span>
 
 <span class="c1"># Get the model</span>
@@ -391,26 +415,28 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --dataset ADE20K --model EncNet --a
 <div class="section" id="train-your-own-model">
 <h2>Train Your Own Model<a class="headerlink" href="#train-your-own-model" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Prepare the datasets by runing the scripts in the <code class="docutils literal"><span class="pre">scripts/</span></code> folder, for example preparing <code class="docutils literal"><span class="pre">PASCAL</span> <span class="pre">Context</span></code> dataset:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">prepare_pcontext</span><span class="o">.</span><span class="n">py</span>
+<li><p class="first">Prepare the datasets by runing the scripts in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> folder, for example preparing <code class="docutils literal notranslate"><span class="pre">PASCAL</span> <span class="pre">Context</span></code> dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">prepare_pcontext</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">The training script is in the <code class="docutils literal"><span class="pre">experiments/segmentation/</span></code> folder, example training command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pcontext</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">aux</span> <span class="o">--</span><span class="n">se</span><span class="o">-</span><span class="n">loss</span>
+<li><p class="first">The training script is in the <code class="docutils literal notranslate"><span class="pre">experiments/segmentation/</span></code> folder, example training command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">train</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pcontext</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">aux</span> <span class="o">--</span><span class="n">se</span><span class="o">-</span><span class="n">loss</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Detail training options, please run <code class="docutils literal"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">-h</span></code>.</p>
-</li>
-<li><p class="first">The validation metrics during the training only using center-crop is just for monitoring the
-training correctness purpose. For evaluating the pretrained model on validation set using MS,
-please use the command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pcontext</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">aux</span> <span class="o">--</span><span class="n">se</span><span class="o">-</span><span class="n">loss</span> <span class="o">--</span><span class="n">resume</span> <span class="n">mycheckpoint</span> <span class="o">--</span><span class="nb">eval</span>
-</pre></div>
-</div>
+<li><p class="first">Detail training options, please run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span> <span class="pre">-h</span></code>. Commands for reproducing pre-trained models can be found in the table.</p>
 </li>
 </ul>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>The validation metrics during the training only using center-crop is just for monitoring the
+training correctness purpose. For evaluating the pretrained model on validation set using MS,
+please use the command:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">pcontext</span> <span class="o">--</span><span class="n">model</span> <span class="n">encnet</span> <span class="o">--</span><span class="n">aux</span> <span class="o">--</span><span class="n">se</span><span class="o">-</span><span class="n">loss</span> <span class="o">--</span><span class="n">resume</span> <span class="n">mycheckpoint</span> <span class="o">--</span><span class="nb">eval</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline">¶</a></h2>
@@ -418,7 +444,7 @@ please use the command:</p>
 <p class="first admonition-title">Note</p>
 <ul class="last">
 <li><p class="first">Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation”  <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2018_CVPR</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2018_CVPR</span><span class="p">,</span>
 <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span> <span class="ow">and</span> <span class="n">Shi</span><span class="p">,</span> <span class="n">Jianping</span> <span class="ow">and</span> <span class="n">Zhang</span><span class="p">,</span> <span class="n">Zhongyue</span> <span class="ow">and</span> <span class="n">Wang</span><span class="p">,</span> <span class="n">Xiaogang</span> <span class="ow">and</span> <span class="n">Tyagi</span><span class="p">,</span> <span class="n">Ambrish</span> <span class="ow">and</span> <span class="n">Agrawal</span><span class="p">,</span> <span class="n">Amit</span><span class="p">},</span>
 <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Context</span> <span class="n">Encoding</span> <span class="k">for</span> <span class="n">Semantic</span> <span class="n">Segmentation</span><span class="p">},</span>
 <span class="n">booktitle</span> <span class="o">=</span> <span class="p">{</span><span class="n">The</span> <span class="n">IEEE</span> <span class="n">Conference</span> <span class="n">on</span> <span class="n">Computer</span> <span class="n">Vision</span> <span class="ow">and</span> <span class="n">Pattern</span> <span class="n">Recognition</span> <span class="p">(</span><span class="n">CVPR</span><span class="p">)},</span>

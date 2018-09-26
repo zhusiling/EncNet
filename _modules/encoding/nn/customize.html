@@ -43,7 +43,7 @@
     <link rel="search" title="Search" href="../../../search.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -183,7 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -285,12 +285,12 @@
 <span class="sd">    .. math::</span>
 <span class="sd">        \mathcal{G} = \sum_{h=1}^{H_i}\sum_{w=1}^{W_i} \mathcal{F}_{h,w}\mathcal{F}_{h,w}^T</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="viewcode-block" id="GramMatrix.forward"><a class="viewcode-back" href="../../../nn.html#encoding.nn.GramMatrix.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
         <span class="n">features</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">ch</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
         <span class="n">features_t</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">gram</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">features_t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ch</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">gram</span></div>
+        <span class="k">return</span> <span class="n">gram</span></div></div>
 
 <span class="k">def</span> <span class="nf">softmax_crossentropy</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">nll_loss</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span>
@@ -299,7 +299,7 @@
 <span class="k">class</span> <span class="nc">SegmentationLosses</span><span class="p">(</span><span class="n">CrossEntropyLoss</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;2D Cross Entropy Loss with Auxilary Loss&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">se_loss</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">se_weight</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">nclass</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">aux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">aux_weight</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">aux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">aux_weight</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">size_average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">se_loss</span> <span class="o">=</span> <span class="n">se_loss</span>
@@ -321,14 +321,14 @@
             <span class="n">pred</span><span class="p">,</span> <span class="n">se_pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
             <span class="n">se_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_batch_label_vector</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">nclass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nclass</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
             <span class="n">loss1</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="n">loss2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">se_pred</span><span class="p">),</span> <span class="n">se_target</span><span class="p">)</span>
+            <span class="n">loss2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">se_pred</span><span class="p">),</span> <span class="n">se_target</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">loss1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">se_weight</span> <span class="o">*</span> <span class="n">loss2</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">pred1</span><span class="p">,</span> <span class="n">se_pred</span><span class="p">,</span> <span class="n">pred2</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
             <span class="n">se_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_batch_label_vector</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">nclass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nclass</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">pred1</span><span class="p">)</span>
             <span class="n">loss1</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
             <span class="n">loss2</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred2</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="n">loss3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">se_pred</span><span class="p">),</span> <span class="n">se_target</span><span class="p">)</span>
+            <span class="n">loss3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">se_pred</span><span class="p">),</span> <span class="n">se_target</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">loss1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux_weight</span> <span class="o">*</span> <span class="n">loss2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">se_weight</span> <span class="o">*</span> <span class="n">loss3</span>
 
     <span class="nd">@staticmethod</span>

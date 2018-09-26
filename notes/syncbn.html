@@ -45,7 +45,7 @@
     <link rel="prev" title="Install and Citations" href="compile.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -185,7 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -262,7 +262,7 @@
             
   <div class="section" id="implementing-synchronized-multi-gpu-batch-normalization">
 <h1>Implementing Synchronized Multi-GPU Batch Normalization<a class="headerlink" href="#implementing-synchronized-multi-gpu-batch-normalization" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial, we discuss the implementation detail of Multi-GPU Batch Normalization (BN) (classic implementation: <a class="reference internal" href="../nn.html#encoding.nn.BatchNorm2d" title="encoding.nn.BatchNorm2d"><code class="xref py py-class docutils literal"><span class="pre">encoding.nn.BatchNorm2d</span></code></a>. We will provide the training example in a later version.</p>
+<p>In this tutorial, we discuss the implementation detail of Multi-GPU Batch Normalization (BN) (classic implementation: <a class="reference internal" href="../nn.html#encoding.nn.BatchNorm2d" title="encoding.nn.BatchNorm2d"><code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.nn.BatchNorm2d</span></code></a>. We will provide the training example in a later version.</p>
 <div class="section" id="how-bn-works">
 <h2>How BN works?<a class="headerlink" href="#how-bn-works" title="Permalink to this headline">¶</a></h2>
 <p>BN layer was introduced in the paper <a class="reference external" href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a>, which dramatically speed up the training process of the network (enables larger learning rate) and makes the network less sensitive to the weight initialization.</p>
@@ -270,19 +270,19 @@
 <ul>
 <li><dl class="first docutils">
 <dt>Forward Pass:</dt>
-<dd><p class="first">For the input data <span class="math">\(X={x_1, ...x_N}\)</span>, the data are normalized to be zero-mean and unit-variance, then scale and shit:</p>
-<div class="math">
+<dd><p class="first">For the input data <span class="math notranslate nohighlight">\(X={x_1, ...x_N}\)</span>, the data are normalized to be zero-mean and unit-variance, then scale and shit:</p>
+<div class="math notranslate nohighlight">
 \[y_i = \gamma\cdot\frac{x_i-\mu}{\sigma} + \beta ,\]</div>
-<p class="last">where <span class="math">\(\mu=\frac{\sum_i^N x_i}{N} , \sigma = \sqrt{\frac{\sum_i^N (x_i-\mu)^2}{N}+\epsilon}\)</span> and <span class="math">\(\gamma, \beta\)</span> are the learnable parameters.</p>
+<p class="last">where <span class="math notranslate nohighlight">\(\mu=\frac{\sum_i^N x_i}{N} , \sigma = \sqrt{\frac{\sum_i^N (x_i-\mu)^2}{N}+\epsilon}\)</span> and <span class="math notranslate nohighlight">\(\gamma, \beta\)</span> are the learnable parameters.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Backward Pass:</dt>
-<dd><p class="first">For calculating the gradient <span class="math">\(\frac{d_\ell}{d_{x_i}}\)</span>, we need to consider the partial gradient from <span class="math">\(\frac{d_\ell}{d_y}\)</span> and the gradients from <span class="math">\(\frac{d_\ell}{d_\mu}\)</span> and <span class="math">\(\frac{d_\ell}{d_\sigma}\)</span>, since the <span class="math">\(\mu \text{ and } \sigma\)</span> are the function of the input <span class="math">\(x_i\)</span>. We use patial direvative in the notations:</p>
-<div class="math">
+<dd><p class="first">For calculating the gradient <span class="math notranslate nohighlight">\(\frac{d_\ell}{d_{x_i}}\)</span>, we need to consider the partial gradient from <span class="math notranslate nohighlight">\(\frac{d_\ell}{d_y}\)</span> and the gradients from <span class="math notranslate nohighlight">\(\frac{d_\ell}{d_\mu}\)</span> and <span class="math notranslate nohighlight">\(\frac{d_\ell}{d_\sigma}\)</span>, since the <span class="math notranslate nohighlight">\(\mu \text{ and } \sigma\)</span> are the function of the input <span class="math notranslate nohighlight">\(x_i\)</span>. We use patial direvative in the notations:</p>
+<div class="math notranslate nohighlight">
 \[\frac{d_\ell}{d_{x_i}} = \frac{d_\ell}{d_{y_i}}\cdot\frac{\partial_{y_i}}{\partial_{x_i}} + \frac{d_\ell}{d_\mu}\cdot\frac{d_\mu}{d_{x_i}} + \frac{d_\ell}{d_\sigma}\cdot\frac{d_\sigma}{d_{x_i}}\]</div>
-<p class="last">where <span class="math">\(\frac{\partial_{y_i}}{\partial_{x_i}}=\frac{\gamma}{\sigma}, \frac{d_\ell}{d_\mu}=-\frac{\gamma}{\sigma}\sum_i^N\frac{d_\ell}{d_{y_i}}
+<p class="last">where <span class="math notranslate nohighlight">\(\frac{\partial_{y_i}}{\partial_{x_i}}=\frac{\gamma}{\sigma}, \frac{d_\ell}{d_\mu}=-\frac{\gamma}{\sigma}\sum_i^N\frac{d_\ell}{d_{y_i}}
 \text{ and } \frac{d_\sigma}{d_{x_i}}=-\frac{1}{\sigma}(\frac{x_i-\mu}{N})\)</span>.</p>
 </dd>
 </dl>
@@ -297,24 +297,24 @@
 <img alt="http://hangzh.com/blog/images/bn2.png" class="align-center" src="http://hangzh.com/blog/images/bn2.png" />
 <ul class="simple">
 <li>Since the <cite>working batch-size</cite> is typically large enough for standard vision tasks, such as classification and detection, there is no need to synchronize BN layer during the training. The synchronization will slow down the training.</li>
-<li>However, for the Semantic Segmentation task, the state-of-the-art approaches typically adopt dilated convoluton, which is very memory consuming. The <cite>working bath-size</cite> can be too small for BN layers (2 or 4 in each GPU) when using larger/deeper pre-trained networks, such as <a class="reference internal" href="../dilated.html#encoding.dilated.ResNet" title="encoding.dilated.ResNet"><code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.ResNet</span></code></a> or <code class="xref py py-class docutils literal"><span class="pre">encoding.dilated.DenseNet</span></code>.</li>
+<li>However, for the Semantic Segmentation task, the state-of-the-art approaches typically adopt dilated convoluton, which is very memory consuming. The <cite>working bath-size</cite> can be too small for BN layers (2 or 4 in each GPU) when using larger/deeper pre-trained networks, such as <a class="reference internal" href="../dilated.html#encoding.dilated.ResNet" title="encoding.dilated.ResNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.dilated.ResNet</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.dilated.DenseNet</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="how-to-synchronize">
 <h2>How to Synchronize?<a class="headerlink" href="#how-to-synchronize" title="Permalink to this headline">¶</a></h2>
-<p>Suppose we have <span class="math">\(K\)</span> number of GPUs, <span class="math">\(sum(x)_k\)</span> and <span class="math">\(sum(x^2)_k\)</span> denotes the sum of elements and sum of element squares in <span class="math">\(k^{th}\)</span> GPU.</p>
+<p>Suppose we have <span class="math notranslate nohighlight">\(K\)</span> number of GPUs, <span class="math notranslate nohighlight">\(sum(x)_k\)</span> and <span class="math notranslate nohighlight">\(sum(x^2)_k\)</span> denotes the sum of elements and sum of element squares in <span class="math notranslate nohighlight">\(k^{th}\)</span> GPU.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>Forward Pass:</dt>
-<dd>We can calculate the sum of elements <span class="math">\(sum(x)=\sum x_i \text{ and sum of squares } sum(x^2)=\sum x_i^2\)</span> in each GPU, then apply <a class="reference internal" href="../parallel.html#encoding.parallel.allreduce" title="encoding.parallel.allreduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.allreduce</span></code></a> operation to sum accross GPUs. Then calculate the global mean <span class="math">\(\mu=\frac{sum(x)}{N} \text{ and global variance } \sigma=\sqrt{\frac{sum(x^2)}{N}-\mu^2+\epsilon}\)</span>.</dd>
+<dd>We can calculate the sum of elements <span class="math notranslate nohighlight">\(sum(x)=\sum x_i \text{ and sum of squares } sum(x^2)=\sum x_i^2\)</span> in each GPU, then apply <a class="reference internal" href="../parallel.html#encoding.parallel.allreduce" title="encoding.parallel.allreduce"><code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.parallel.allreduce</span></code></a> operation to sum accross GPUs. Then calculate the global mean <span class="math notranslate nohighlight">\(\mu=\frac{sum(x)}{N} \text{ and global variance } \sigma=\sqrt{\frac{sum(x^2)}{N}-\mu^2+\epsilon}\)</span>.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Backward Pass:</dt>
 <dd><ul class="first last">
-<li><span class="math">\(\frac{d_\ell}{d_{x_i}}=\frac{d_\ell}{d_{y_i}}\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
-<li>Calculate the gradient of <span class="math">\(sum(x)\)</span> and <span class="math">\(sum(x^2)\)</span> individually in each GPU <span class="math">\(\frac{d_\ell}{d_{sum(x)_k}}\)</span> and <span class="math">\(\frac{d_\ell}{d_{sum(x^2)_k}}\)</span>.</li>
-<li>Then Sync the gradient (automatically handled by <a class="reference internal" href="../parallel.html#encoding.parallel.allreduce" title="encoding.parallel.allreduce"><code class="xref py py-class docutils literal"><span class="pre">encoding.parallel.allreduce</span></code></a>) and continue the backward.</li>
+<li><span class="math notranslate nohighlight">\(\frac{d_\ell}{d_{x_i}}=\frac{d_\ell}{d_{y_i}}\frac{\gamma}{\sigma}\)</span> can be calculated locally in each GPU.</li>
+<li>Calculate the gradient of <span class="math notranslate nohighlight">\(sum(x)\)</span> and <span class="math notranslate nohighlight">\(sum(x^2)\)</span> individually in each GPU <span class="math notranslate nohighlight">\(\frac{d_\ell}{d_{sum(x)_k}}\)</span> and <span class="math notranslate nohighlight">\(\frac{d_\ell}{d_{sum(x^2)_k}}\)</span>.</li>
+<li>Then Sync the gradient (automatically handled by <a class="reference internal" href="../parallel.html#encoding.parallel.allreduce" title="encoding.parallel.allreduce"><code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.parallel.allreduce</span></code></a>) and continue the backward.</li>
 </ul>
 </dd>
 </dl>
@@ -330,7 +330,7 @@
 <blockquote class="last">
 <div><ul>
 <li><p class="first">Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation”  <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2018_CVPR</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@InProceedings</span><span class="p">{</span><span class="n">Zhang_2018_CVPR</span><span class="p">,</span>
 <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Zhang</span><span class="p">,</span> <span class="n">Hang</span> <span class="ow">and</span> <span class="n">Dana</span><span class="p">,</span> <span class="n">Kristin</span> <span class="ow">and</span> <span class="n">Shi</span><span class="p">,</span> <span class="n">Jianping</span> <span class="ow">and</span> <span class="n">Zhang</span><span class="p">,</span> <span class="n">Zhongyue</span> <span class="ow">and</span> <span class="n">Wang</span><span class="p">,</span> <span class="n">Xiaogang</span> <span class="ow">and</span> <span class="n">Tyagi</span><span class="p">,</span> <span class="n">Ambrish</span> <span class="ow">and</span> <span class="n">Agrawal</span><span class="p">,</span> <span class="n">Amit</span><span class="p">},</span>
 <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Context</span> <span class="n">Encoding</span> <span class="k">for</span> <span class="n">Semantic</span> <span class="n">Segmentation</span><span class="p">},</span>
 <span class="n">booktitle</span> <span class="o">=</span> <span class="p">{</span><span class="n">The</span> <span class="n">IEEE</span> <span class="n">Conference</span> <span class="n">on</span> <span class="n">Computer</span> <span class="n">Vision</span> <span class="ow">and</span> <span class="n">Pattern</span> <span class="n">Recognition</span> <span class="p">(</span><span class="n">CVPR</span><span class="p">)},</span>

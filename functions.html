@@ -45,7 +45,7 @@
     <link rel="prev" title="encoding.dilated" href="dilated.html" /> 
 
 
-  <script type="text/javascript" src="http://zhanghang1989.github.io/files/hidebib.js"></script>    
+  <script type="text/javascript" src="../_static/js/hidebib.js"></script>    
 
 
   
@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.4.5)
+                master (0.4.5+e9f967a)
               </div>
             
           
@@ -185,7 +185,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#scaledl2"><span class="hidden-section">scaledL2</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
@@ -270,13 +270,13 @@
 <code class="descclassname">encoding.functions.</code><code class="descname">batchnormtrain</code><span class="sig-paren">(</span><em>input</em>, <em>mean</em>, <em>std</em>, <em>gamma</em>, <em>beta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/syncbn.html#batchnormtrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.batchnormtrain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applies Batch Normalization over a 3d input that is seen as a
 mini-batch.</p>
-<div class="math" id="encoding-batchnormtrain">
+<div class="math notranslate nohighlight" id="encoding-batchnormtrain">
 \[y = \frac{x - \mu[x]}{ \sqrt{var[x] + \epsilon}} * \gamma + \beta\]</div>
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
-<li>Input: <span class="math">\((N, C)\)</span> or <span class="math">\((N, C, L)\)</span></li>
-<li>Output: <span class="math">\((N, C)\)</span> or <span class="math">\((N, C, L)\)</span> (same shape as input)</li>
+<li>Input: <span class="math notranslate nohighlight">\((N, C)\)</span> or <span class="math notranslate nohighlight">\((N, C, L)\)</span></li>
+<li>Output: <span class="math notranslate nohighlight">\((N, C)\)</span> or <span class="math notranslate nohighlight">\((N, C, L)\)</span> (same shape as input)</li>
 </ul>
 </dd>
 </dl>
@@ -288,23 +288,23 @@ mini-batch.</p>
 <dl class="function">
 <dt id="encoding.functions.aggregate">
 <code class="descclassname">encoding.functions.</code><code class="descname">aggregate</code><span class="sig-paren">(</span><em>A</em>, <em>X</em>, <em>C</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.aggregate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Aggregate operation, aggregate the residuals of inputs (<span class="math">\(X\)</span>) with repect
-to the codewords (<span class="math">\(C\)</span>) with assignment weights (<span class="math">\(A\)</span>).</p>
-<div class="math">
+<dd><p>Aggregate operation, aggregate the residuals of inputs (<span class="math notranslate nohighlight">\(X\)</span>) with repect
+to the codewords (<span class="math notranslate nohighlight">\(C\)</span>) with assignment weights (<span class="math notranslate nohighlight">\(A\)</span>).</p>
+<div class="math notranslate nohighlight">
 \[e_{k} = \sum_{i=1}^{N} a_{ik} (x_i - d_k)\]</div>
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
-<li>Input: <span class="math">\(A\in\mathcal{R}^{B\times N\times K}\)</span>
-<span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math">\(C\in\mathcal{R}^{K\times D}\)</span>
-(where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features,
-<span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
-<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
+<li>Input: <span class="math notranslate nohighlight">\(A\in\mathcal{R}^{B\times N\times K}\)</span>
+<span class="math notranslate nohighlight">\(X\in\mathcal{R}^{B\times N\times D}\)</span> <span class="math notranslate nohighlight">\(C\in\mathcal{R}^{K\times D}\)</span>
+(where <span class="math notranslate nohighlight">\(B\)</span> is batch, <span class="math notranslate nohighlight">\(N\)</span> is total number of features,
+<span class="math notranslate nohighlight">\(K\)</span> is number is codewords, <span class="math notranslate nohighlight">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math notranslate nohighlight">\(E\in\mathcal{R}^{B\times K\times D}\)</span></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">D</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">DoubleTensor</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">uniform_</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -315,22 +315,22 @@ to the codewords (<span class="math">\(C\)</span>) with assignment weights (<spa
 </dd></dl>
 
 </div>
-<div class="section" id="scaledl2">
-<h2><span class="hidden-section">scaledL2</span><a class="headerlink" href="#scaledl2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scaled-l2">
+<h2><span class="hidden-section">scaled_l2</span><a class="headerlink" href="#scaled-l2" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="encoding.functions.scaledL2">
-<code class="descclassname">encoding.functions.</code><code class="descname">scaledL2</code><span class="sig-paren">(</span><em>X</em>, <em>C</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#scaledL2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.scaledL2" title="Permalink to this definition">¶</a></dt>
-<dd><p>scaledL2 distance</p>
-<div class="math">
+<dt id="encoding.functions.scaled_l2">
+<code class="descclassname">encoding.functions.</code><code class="descname">scaled_l2</code><span class="sig-paren">(</span><em>X</em>, <em>C</em>, <em>S</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/functions/encoding.html#scaled_l2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.functions.scaled_l2" title="Permalink to this definition">¶</a></dt>
+<dd><p>scaled_l2 distance</p>
+<div class="math notranslate nohighlight">
 \[sl_{ik} = s_k \|x_i-c_k\|^2\]</div>
 <dl class="docutils">
 <dt>Shape:</dt>
 <dd><ul class="first last simple">
-<li>Input: <span class="math">\(X\in\mathcal{R}^{B\times N\times D}\)</span>
-<span class="math">\(C\in\mathcal{R}^{K\times D}\)</span> <span class="math">\(S\in \mathcal{R}^K\)</span>
-(where <span class="math">\(B\)</span> is batch, <span class="math">\(N\)</span> is total number of features,
-<span class="math">\(K\)</span> is number is codewords, <span class="math">\(D\)</span> is feature dimensions.)</li>
-<li>Output: <span class="math">\(E\in\mathcal{R}^{B\times N\times K}\)</span></li>
+<li>Input: <span class="math notranslate nohighlight">\(X\in\mathcal{R}^{B\times N\times D}\)</span>
+<span class="math notranslate nohighlight">\(C\in\mathcal{R}^{K\times D}\)</span> <span class="math notranslate nohighlight">\(S\in \mathcal{R}^K\)</span>
+(where <span class="math notranslate nohighlight">\(B\)</span> is batch, <span class="math notranslate nohighlight">\(N\)</span> is total number of features,
+<span class="math notranslate nohighlight">\(K\)</span> is number is codewords, <span class="math notranslate nohighlight">\(D\)</span> is feature dimensions.)</li>
+<li>Output: <span class="math notranslate nohighlight">\(E\in\mathcal{R}^{B\times N\times K}\)</span></li>
 </ul>
 </dd>
 </dl>
