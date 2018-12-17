@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                master (0.5.1)
+                master (1.0.1)
               </div>
             
           
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../notes/compile.html">Install and Citations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#citations">Citations</a></li>
 </ul>
 </li>
@@ -120,7 +120,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -145,7 +144,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -154,8 +152,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#syncbatchnorm"><span class="hidden-section">SyncBatchNorm</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
@@ -168,23 +167,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dilated.html">encoding.dilated</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#resnet">ResNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">encoding.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utils.html">encoding.utils</a><ul>
@@ -269,17 +261,27 @@
 
 <span class="sd">&quot;&quot;&quot;Encoding Custermized NN Module&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Conv2d</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">,</span> \
-    <span class="n">NLLLoss</span><span class="p">,</span> <span class="n">BCELoss</span><span class="p">,</span> <span class="n">CrossEntropyLoss</span><span class="p">,</span> <span class="n">AvgPool2d</span><span class="p">,</span> <span class="n">MaxPool2d</span><span class="p">,</span> <span class="n">Parameter</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
 <span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="k">import</span> <span class="n">Variable</span>
 
 <span class="n">torch_ver</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GramMatrix&#39;</span><span class="p">,</span> <span class="s1">&#39;SegmentationLosses&#39;</span><span class="p">,</span> <span class="s1">&#39;View&#39;</span><span class="p">,</span> <span class="s1">&#39;Sum&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;Normalize&#39;</span><span class="p">,</span> <span class="s1">&#39;PyramidPooling&#39;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GlobalAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;GramMatrix&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;View&#39;</span><span class="p">,</span> <span class="s1">&#39;Sum&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Normalize&#39;</span><span class="p">,</span> <span class="s1">&#39;ConcurrentModule&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;PyramidPooling&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="GramMatrix"><a class="viewcode-back" href="../../../nn.html#encoding.nn.GramMatrix">[docs]</a><span class="k">class</span> <span class="nc">GramMatrix</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">GlobalAvgPool2d</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Global average pooling over the input&#39;s spatial dimensions&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GlobalAvgPool2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">adaptive_avg_pool2d</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+
+<div class="viewcode-block" id="GramMatrix"><a class="viewcode-back" href="../../../nn.html#encoding.nn.GramMatrix">[docs]</a><span class="k">class</span> <span class="nc">GramMatrix</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot; Gram Matrix for a 4D convolutional featuremaps as a mini-batch</span>
 
 <span class="sd">    .. math::</span>
@@ -292,60 +294,7 @@
         <span class="n">gram</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">features_t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ch</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">gram</span></div></div>
 
-<span class="k">def</span> <span class="nf">softmax_crossentropy</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">nll_loss</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">target</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span>
-                      <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">,</span> <span class="n">reduce</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">SegmentationLosses</span><span class="p">(</span><span class="n">CrossEntropyLoss</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;2D Cross Entropy Loss with Auxilary Loss&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">se_loss</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">se_weight</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">nclass</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">aux</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">aux_weight</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">size_average</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">se_loss</span> <span class="o">=</span> <span class="n">se_loss</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nclass</span> <span class="o">=</span> <span class="n">nclass</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">se_weight</span> <span class="o">=</span> <span class="n">se_weight</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">aux_weight</span> <span class="o">=</span> <span class="n">aux_weight</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span> <span class="o">=</span> <span class="n">BCELoss</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">size_average</span><span class="p">)</span> 
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">se_loss</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">se_loss</span><span class="p">:</span>
-            <span class="n">pred1</span><span class="p">,</span> <span class="n">pred2</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-            <span class="n">loss1</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="n">loss2</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred2</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">loss1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux_weight</span> <span class="o">*</span> <span class="n">loss2</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux</span><span class="p">:</span>
-            <span class="n">pred</span><span class="p">,</span> <span class="n">se_pred</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-            <span class="n">se_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_batch_label_vector</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">nclass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nclass</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
-            <span class="n">loss1</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="n">loss2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">se_pred</span><span class="p">),</span> <span class="n">se_target</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">loss1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">se_weight</span> <span class="o">*</span> <span class="n">loss2</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">pred1</span><span class="p">,</span> <span class="n">se_pred</span><span class="p">,</span> <span class="n">pred2</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-            <span class="n">se_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_batch_label_vector</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">nclass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">nclass</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">pred1</span><span class="p">)</span>
-            <span class="n">loss1</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="n">loss2</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SegmentationLosses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">pred2</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-            <span class="n">loss3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bceloss</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">se_pred</span><span class="p">),</span> <span class="n">se_target</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">loss1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">aux_weight</span> <span class="o">*</span> <span class="n">loss2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">se_weight</span> <span class="o">*</span> <span class="n">loss3</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_get_batch_label_vector</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">nclass</span><span class="p">):</span>
-        <span class="c1"># target is a 3D Variable BxHxW, output is 2D BxnClass</span>
-        <span class="n">batch</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">tvect</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">nclass</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
-            <span class="n">hist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">histc</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> 
-                               <span class="n">bins</span><span class="o">=</span><span class="n">nclass</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                               <span class="nb">max</span><span class="o">=</span><span class="n">nclass</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">vect</span> <span class="o">=</span> <span class="n">hist</span><span class="o">&gt;</span><span class="mi">0</span>
-            <span class="n">tvect</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">vect</span>
-        <span class="k">return</span> <span class="n">tvect</span>
-
-
-<span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Reshape the input into different size, an inplace operator, support</span>
 <span class="sd">    SelfParallel mode.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -360,7 +309,7 @@
         <span class="k">return</span> <span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Sum</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Sum</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">keep_dim</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Sum</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
@@ -370,7 +319,7 @@
         <span class="k">return</span> <span class="nb">input</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_dim</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Mean</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Mean</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">keep_dim</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Mean</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
@@ -380,7 +329,7 @@
         <span class="k">return</span> <span class="nb">input</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_dim</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Normalize</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Normalize</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Performs :math:`L_p` normalization of inputs over specified dimension.</span>
 
 <span class="sd">    Does:</span>
@@ -407,41 +356,56 @@
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
 
+<span class="k">class</span> <span class="nc">ConcurrentModule</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Feed to a list of modules concurrently. </span>
+<span class="sd">    The outputs of the layers are concatenated at channel dimension.</span>
 
-<span class="k">class</span> <span class="nc">PyramidPooling</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+<span class="sd">    Args:</span>
+<span class="sd">        modules (iterable, optional): an iterable of modules to add</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ConcurrentModule</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PyramidPooling</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Reference:</span>
 <span class="sd">        Zhao, Hengshuang, et al. *&quot;Pyramid scene parsing network.&quot;*</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">norm_layer</span><span class="p">,</span> <span class="n">up_kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PyramidPooling</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span> <span class="o">=</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool3</span> <span class="o">=</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pool4</span> <span class="o">=</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
 
         <span class="n">out_channels</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">in_channels</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
                                 <span class="n">norm_layer</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-                                <span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
                                 <span class="n">norm_layer</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-                                <span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
                                 <span class="n">norm_layer</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-                                <span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">(</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
                                 <span class="n">norm_layer</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
-                                <span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
-        <span class="c1"># bilinear upsample options</span>
+                                <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+        <span class="c1"># bilinear interpolate options</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span> <span class="o">=</span> <span class="n">up_kwargs</span>
 
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-        <span class="n">feat1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">upsample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
-        <span class="n">feat2</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">upsample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
-        <span class="n">feat3</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">upsample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool3</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
-        <span class="n">feat4</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">upsample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv4</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool4</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
+        <span class="n">feat1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool1</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
+        <span class="n">feat2</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool2</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
+        <span class="n">feat3</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool3</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
+        <span class="n">feat4</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv4</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool4</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_up_kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">feat1</span><span class="p">,</span> <span class="n">feat2</span><span class="p">,</span> <span class="n">feat3</span><span class="p">,</span> <span class="n">feat4</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
@@ -455,7 +419,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang
 
     </p>
   </div>
@@ -474,21 +438,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'master',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'master',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

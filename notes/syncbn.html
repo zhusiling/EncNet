@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.5.1)
+                master (1.0.1)
               </div>
             
           
@@ -105,7 +105,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="compile.html">Install and Citations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compile.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="compile.html#citations">Citations</a></li>
 </ul>
 </li>
@@ -122,7 +122,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/cifar.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -147,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../experiments/texture.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -156,8 +154,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm"><span class="hidden-section">SyncBatchNorm</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
@@ -170,23 +169,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../dilated.html">encoding.dilated</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dilated.html#resnet">ResNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">encoding.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">encoding.utils</a><ul>
@@ -297,7 +289,7 @@
 <img alt="http://hangzh.com/blog/images/bn2.png" class="align-center" src="http://hangzh.com/blog/images/bn2.png" />
 <ul class="simple">
 <li>Since the <cite>working batch-size</cite> is typically large enough for standard vision tasks, such as classification and detection, there is no need to synchronize BN layer during the training. The synchronization will slow down the training.</li>
-<li>However, for the Semantic Segmentation task, the state-of-the-art approaches typically adopt dilated convoluton, which is very memory consuming. The <cite>working bath-size</cite> can be too small for BN layers (2 or 4 in each GPU) when using larger/deeper pre-trained networks, such as <a class="reference internal" href="../dilated.html#encoding.dilated.ResNet" title="encoding.dilated.ResNet"><code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.dilated.ResNet</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.dilated.DenseNet</span></code>.</li>
+<li>However, for the Semantic Segmentation task, the state-of-the-art approaches typically adopt dilated convoluton, which is very memory consuming. The <cite>working bath-size</cite> can be too small for BN layers (2 or 4 in each GPU) when using larger/deeper pre-trained networks, such as <code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.dilated.ResNet</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.dilated.DenseNet</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="how-to-synchronize">
@@ -366,7 +358,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang
 
     </p>
   </div>
@@ -385,21 +377,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'master',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'master',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                master (0.5.1)
+                master (1.0.1)
               </div>
             
           
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../notes/compile.html">Install and Citations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../notes/compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notes/compile.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notes/compile.html#citations">Citations</a></li>
 </ul>
 </li>
@@ -120,7 +120,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/cifar.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -145,7 +144,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../experiments/texture.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -154,8 +152,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#syncbatchnorm"><span class="hidden-section">SyncBatchNorm</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
@@ -168,23 +167,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../dilated.html">encoding.dilated</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../dilated.html#resnet">ResNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../models.html">encoding.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../models.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../utils.html">encoding.utils</a><ul>
@@ -310,7 +302,6 @@
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">broadcast_coalesced</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">target_gpus</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">Variable</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">tensors</span> <span class="ow">in</span> <span class="n">outputs</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tensors</span><span class="p">])</span>
 
-
 <span class="k">class</span> <span class="nc">Reduce</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
@@ -357,7 +348,6 @@
 
     <span class="k">def</span> <span class="nf">replicate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
         <span class="n">modules</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DataParallelModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">)</span>
-        <span class="n">execute_replication_callbacks</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">modules</span></div>
 
 
@@ -392,7 +382,6 @@
         <span class="n">replicas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">replicate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_ids</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)])</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">_criterion_parallel_apply</span><span class="p">(</span><span class="n">replicas</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Reduce</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="o">*</span><span class="n">outputs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span></div></div>
-        <span class="c1">#return self.gather(outputs, self.output_device).mean()</span>
 
 
 <span class="k">def</span> <span class="nf">_criterion_parallel_apply</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">kwargs_tup</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">devices</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -447,65 +436,6 @@
             <span class="k">raise</span> <span class="n">output</span>
         <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">outputs</span>
-
-
-<span class="c1">###########################################################################</span>
-<span class="c1"># Adapted from Synchronized-BatchNorm-PyTorch.</span>
-<span class="c1"># https://github.com/vacancy/Synchronized-BatchNorm-PyTorch</span>
-<span class="c1">#</span>
-<span class="k">class</span> <span class="nc">CallbackContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">pass</span>
-
-
-<span class="k">def</span> <span class="nf">execute_replication_callbacks</span><span class="p">(</span><span class="n">modules</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Execute an replication callback `__data_parallel_replicate__` on each module created</span>
-<span class="sd">    by original replication.</span>
-
-<span class="sd">    The callback will be invoked with arguments `__data_parallel_replicate__(ctx, copy_id)`</span>
-
-<span class="sd">    Note that, as all modules are isomorphism, we assign each sub-module with a context</span>
-<span class="sd">    (shared among multiple copies of this module on different devices).</span>
-<span class="sd">    Through this context, different copies can share some information.</span>
-
-<span class="sd">    We guarantee that the callback on the master copy (the first copy) will be called ahead</span>
-<span class="sd">    of calling the callback of any slave copies.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">master_copy</span> <span class="o">=</span> <span class="n">modules</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">nr_modules</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">master_copy</span><span class="o">.</span><span class="n">modules</span><span class="p">()))</span>
-    <span class="n">ctxs</span> <span class="o">=</span> <span class="p">[</span><span class="n">CallbackContext</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr_modules</span><span class="p">)]</span>
-
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">modules</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">modules</span><span class="p">()):</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;__data_parallel_replicate__&#39;</span><span class="p">):</span>
-                <span class="n">m</span><span class="o">.</span><span class="n">__data_parallel_replicate__</span><span class="p">(</span><span class="n">ctxs</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">patch_replication_callback</span><span class="p">(</span><span class="n">data_parallel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Monkey-patch an existing `DataParallel` object. Add the replication callback.</span>
-<span class="sd">    Useful when you have customized `DataParallel` implementation.</span>
-
-<span class="sd">    Examples:</span>
-<span class="sd">        &gt; sync_bn = SynchronizedBatchNorm1d(10, eps=1e-5, affine=False)</span>
-<span class="sd">        &gt; sync_bn = DataParallel(sync_bn, device_ids=[0, 1])</span>
-<span class="sd">        &gt; patch_replication_callback(sync_bn)</span>
-<span class="sd">        # this is equivalent to</span>
-<span class="sd">        &gt; sync_bn = SynchronizedBatchNorm1d(10, eps=1e-5, affine=False)</span>
-<span class="sd">        &gt; sync_bn = DataParallelWithCallback(sync_bn, device_ids=[0, 1])</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_parallel</span><span class="p">,</span> <span class="n">DataParallel</span><span class="p">)</span>
-
-    <span class="n">old_replicate</span> <span class="o">=</span> <span class="n">data_parallel</span><span class="o">.</span><span class="n">replicate</span>
-
-    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">old_replicate</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">new_replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">):</span>
-        <span class="n">modules</span> <span class="o">=</span> <span class="n">old_replicate</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">device_ids</span><span class="p">)</span>
-        <span class="n">execute_replication_callbacks</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">modules</span>
-
-    <span class="n">data_parallel</span><span class="o">.</span><span class="n">replicate</span> <span class="o">=</span> <span class="n">new_replicate</span>
 </pre></div>
 
            </div>
@@ -518,7 +448,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang
 
     </p>
   </div>
@@ -537,21 +467,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'master',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'master',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

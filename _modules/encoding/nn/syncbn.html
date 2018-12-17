@@ -76,7 +76,7 @@
             
             
               <div class="version">
-                master (0.5.1)
+                master (1.0.1)
               </div>
             
           
@@ -103,7 +103,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../notes/compile.html">Install and Citations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notes/compile.html#citations">Citations</a></li>
 </ul>
 </li>
@@ -120,7 +120,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/cifar.html">EncNet on CIFAR-10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/cifar.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -145,7 +144,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -154,8 +152,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#syncbatchnorm"><span class="hidden-section">SyncBatchNorm</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
@@ -168,23 +167,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dilated.html">encoding.dilated</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../dilated.html#resnet">ResNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">encoding.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../models.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../models.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../utils.html">encoding.utils</a><ul>
@@ -268,128 +260,29 @@
 <span class="c1">##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
 
 <span class="sd">&quot;&quot;&quot;Synchronized Cross-GPU Batch Normalization Module&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">collections</span>
-<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">queue</span> <span class="k">import</span> <span class="n">Queue</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">Queue</span> <span class="k">import</span> <span class="n">Queue</span>
+
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch.nn</span> <span class="k">import</span> <span class="n">Module</span><span class="p">,</span> <span class="n">Sequential</span><span class="p">,</span> <span class="n">Conv1d</span><span class="p">,</span> <span class="n">Conv2d</span><span class="p">,</span> <span class="n">ConvTranspose2d</span><span class="p">,</span> \
-    <span class="n">ReLU</span><span class="p">,</span> <span class="n">Sigmoid</span><span class="p">,</span> <span class="n">MaxPool2d</span><span class="p">,</span> <span class="n">AvgPool2d</span><span class="p">,</span> <span class="n">AdaptiveAvgPool2d</span><span class="p">,</span> <span class="n">Dropout2d</span><span class="p">,</span> <span class="n">Linear</span><span class="p">,</span> \
-    <span class="n">DataParallel</span>
 <span class="kn">from</span> <span class="nn">torch.nn.modules.batchnorm</span> <span class="k">import</span> <span class="n">_BatchNorm</span>
-<span class="kn">from</span> <span class="nn">torch.nn.functional</span> <span class="k">import</span> <span class="n">batch_norm</span>
-<span class="kn">from</span> <span class="nn">torch.nn.parallel._functions</span> <span class="k">import</span> <span class="n">ReduceAddCoalesced</span><span class="p">,</span> <span class="n">Broadcast</span>
 
+<span class="kn">from</span> <span class="nn">..utils.misc</span> <span class="k">import</span> <span class="n">EncodingDeprecationWarning</span>
 <span class="kn">from</span> <span class="nn">..functions</span> <span class="k">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">..parallel</span> <span class="k">import</span> <span class="n">allreduce</span>
-<span class="kn">from</span> <span class="nn">.comm</span> <span class="k">import</span> <span class="n">SyncMaster</span>
 
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BatchNorm1d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm2d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm3d&#39;</span><span class="p">,</span> <span class="s1">&#39;Module&#39;</span><span class="p">,</span> <span class="s1">&#39;Sequential&#39;</span><span class="p">,</span> <span class="s1">&#39;Conv1d&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;Conv2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ConvTranspose2d&#39;</span><span class="p">,</span> <span class="s1">&#39;ReLU&#39;</span><span class="p">,</span> <span class="s1">&#39;Sigmoid&#39;</span><span class="p">,</span> <span class="s1">&#39;MaxPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;AvgPool2d&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;AdaptiveAvgPool2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Dropout2d&#39;</span><span class="p">,</span> <span class="s1">&#39;Linear&#39;</span><span class="p">]</span>
-
-<span class="k">class</span> <span class="nc">_SyncBatchNorm</span><span class="p">(</span><span class="n">_BatchNorm</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sync_master</span> <span class="o">=</span> <span class="n">SyncMaster</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_parallel_master</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_parallel_id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_slave_pipe</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">batch_norm</span><span class="p">(</span>
-                <span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
-
-        <span class="c1"># Resize the input to (B, C, -1).</span>
-        <span class="n">input_shape</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-        <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-        <span class="c1"># sum(x) and sum(x^2)</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="nb">input</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">xsum</span><span class="p">,</span> <span class="n">xsqsum</span> <span class="o">=</span> <span class="n">sum_square</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-
-        <span class="c1"># all-reduce for global sum(x) and sum(x^2)</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parallel_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">mean</span><span class="p">,</span> <span class="n">inv_std</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sync_master</span><span class="o">.</span><span class="n">run_master</span><span class="p">(</span><span class="n">_ChildMessage</span><span class="p">(</span><span class="n">xsum</span><span class="p">,</span> <span class="n">xsqsum</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">mean</span><span class="p">,</span> <span class="n">inv_std</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slave_pipe</span><span class="o">.</span><span class="n">run_slave</span><span class="p">(</span><span class="n">_ChildMessage</span><span class="p">(</span><span class="n">xsum</span><span class="p">,</span> <span class="n">xsqsum</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
-        <span class="c1"># forward</span>
-        <span class="k">return</span> <span class="n">batchnormtrain</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">inv_std</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__data_parallel_replicate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">copy_id</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_parallel_id</span> <span class="o">=</span> <span class="n">copy_id</span>
-
-        <span class="c1"># parallel_id == 0 means master device.</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parallel_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">ctx</span><span class="o">.</span><span class="n">sync_master</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sync_master</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_slave_pipe</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">sync_master</span><span class="o">.</span><span class="n">register_slave</span><span class="p">(</span><span class="n">copy_id</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_data_parallel_master</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intermediates</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Reduce the sum and square-sum, compute the statistics, and broadcast it.&quot;&quot;&quot;</span>
-
-        <span class="c1"># Always using same &quot;device order&quot; makes the ReduceAdd operation faster.</span>
-        <span class="c1"># Thanks to:: Tete Xiao (http://tetexiao.com/)</span>
-        <span class="n">intermediates</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">intermediates</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="o">.</span><span class="n">get_device</span><span class="p">())</span>
-
-        <span class="n">to_reduce</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">intermediates</span><span class="p">]</span>
-        <span class="n">to_reduce</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">to_reduce</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">]</span>  <span class="c1"># flatten</span>
-        <span class="n">target_gpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">intermediates</span><span class="p">]</span>
-
-        <span class="n">sum_size</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum_size</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">intermediates</span><span class="p">])</span>
-        <span class="n">sum_</span><span class="p">,</span> <span class="n">ssum</span> <span class="o">=</span> <span class="n">ReduceAddCoalesced</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">target_gpus</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="o">*</span><span class="n">to_reduce</span><span class="p">)</span>
-        <span class="n">mean</span><span class="p">,</span> <span class="n">inv_std</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_mean_std</span><span class="p">(</span><span class="n">sum_</span><span class="p">,</span> <span class="n">ssum</span><span class="p">,</span> <span class="n">sum_size</span><span class="p">)</span>
-
-        <span class="n">broadcasted</span> <span class="o">=</span> <span class="n">Broadcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">target_gpus</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">inv_std</span><span class="p">)</span>
-
-        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rec</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">intermediates</span><span class="p">):</span>
-            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_MasterMessage</span><span class="p">(</span><span class="o">*</span><span class="n">broadcasted</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">])))</span>
-
-        <span class="k">return</span> <span class="n">outputs</span>
-
-    <span class="k">def</span> <span class="nf">_compute_mean_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sum_</span><span class="p">,</span> <span class="n">ssum</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Compute the mean and standard-deviation with sum and square-sum. This method</span>
-<span class="sd">        also maintains the moving average on the master device.&quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;BatchNorm computes unbiased standard-deviation, which requires size &gt; 1.&#39;</span>
-        <span class="n">mean</span> <span class="o">=</span> <span class="n">sum_</span> <span class="o">/</span> <span class="n">size</span>
-        <span class="n">sumvar</span> <span class="o">=</span> <span class="n">ssum</span> <span class="o">-</span> <span class="n">sum_</span> <span class="o">*</span> <span class="n">mean</span>
-        <span class="n">unbias_var</span> <span class="o">=</span> <span class="n">sumvar</span> <span class="o">/</span> <span class="p">(</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">bias_var</span> <span class="o">=</span> <span class="n">sumvar</span> <span class="o">/</span> <span class="n">size</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">mean</span><span class="o">.</span><span class="n">data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span> <span class="o">*</span> <span class="n">unbias_var</span><span class="o">.</span><span class="n">data</span>
-
-        <span class="k">return</span> <span class="n">mean</span><span class="p">,</span> <span class="p">(</span><span class="n">bias_var</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span> <span class="o">**</span> <span class="o">-</span><span class="mf">0.5</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SyncBatchNorm&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm1d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm2d&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchNorm3d&#39;</span><span class="p">]</span>
 
 
-<span class="c1"># API adapted from https://github.com/vacancy/Synchronized-BatchNorm-PyTorch</span>
-<span class="n">_ChildMessage</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Message&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;ssum&#39;</span><span class="p">,</span> <span class="s1">&#39;sum_size&#39;</span><span class="p">])</span>
-<span class="n">_MasterMessage</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;_MasterMessage&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;inv_std&#39;</span><span class="p">])</span>
-
-
-<div class="viewcode-block" id="BatchNorm1d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm1d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 2D or 3D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
-                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_check_input_dim</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="BatchNorm2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm2d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
+<div class="viewcode-block" id="SyncBatchNorm"><a class="viewcode-back" href="../../../nn.html#encoding.nn.SyncBatchNorm">[docs]</a><span class="k">class</span> <span class="nc">SyncBatchNorm</span><span class="p">(</span><span class="n">_BatchNorm</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Cross-GPU Synchronized Batch normalization (SyncBN)</span>
 
 <span class="sd">    Standard BN [1]_ implementation only normalize the data within each device (GPU).</span>
 <span class="sd">    SyncBN normalizes the input within the whole mini-batch.</span>
 <span class="sd">    We follow the sync-onece implmentation described in the paper [2]_ .</span>
 <span class="sd">    Please see the design idea in the `notes &lt;./notes/syncbn.html&gt;`_.</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        We adapt the awesome python API from another `PyTorch SyncBN Implementation</span>
-<span class="sd">        &lt;https://github.com/vacancy/Synchronized-BatchNorm-PyTorch&gt;`_ and provide</span>
-<span class="sd">        efficient CUDA backend.</span>
 
 <span class="sd">    .. math::</span>
 
@@ -414,8 +307,12 @@
 <span class="sd">            Default: 1e-5</span>
 <span class="sd">        momentum: the value used for the running_mean and running_var</span>
 <span class="sd">            computation. Default: 0.1</span>
-<span class="sd">        affine: a boolean value that when set to ``True``, gives the layer learnable</span>
-<span class="sd">            affine parameters. Default: ``True``</span>
+<span class="sd">        sync: a boolean value that when set to ``True``, synchronize across</span>
+<span class="sd">            different gpus. Default: ``True``</span>
+<span class="sd">        activation : str</span>
+<span class="sd">            Name of the activation functions, one of: `leaky_relu` or `none`.</span>
+<span class="sd">        slope : float</span>
+<span class="sd">            Negative slope for the `leaky_relu` activation.</span>
 
 <span class="sd">    Shape:</span>
 <span class="sd">        - Input: :math:`(N, C, H, W)`</span>
@@ -426,82 +323,92 @@
 <span class="sd">        .. [2] Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, and Amit Agrawal. &quot;Context Encoding for Semantic Segmentation.&quot; *CVPR 2018*</span>
 
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; m = BatchNorm2d(100)</span>
+<span class="sd">        &gt;&gt;&gt; m = SyncBatchNorm(100)</span>
 <span class="sd">        &gt;&gt;&gt; net = torch.nn.DataParallel(m)</span>
-<span class="sd">        &gt;&gt;&gt; encoding.parallel.patch_replication_callback(net)</span>
 <span class="sd">        &gt;&gt;&gt; output = net(input)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 4D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
-                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_check_input_dim</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
 
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sync</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+                 <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SyncBatchNorm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_features</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="n">momentum</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">activation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">False</span> <span class="k">if</span> <span class="n">activation</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span> <span class="k">else</span> <span class="n">inplace</span>
+        <span class="c1">#self.inplace = inplace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slope</span> <span class="o">=</span> <span class="n">slope</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">devices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sync</span> <span class="o">=</span> <span class="n">sync</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">False</span>
+        <span class="c1"># Initialize queues</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">worker_ids</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">worker_queues</span> <span class="o">=</span> <span class="p">[</span><span class="n">Queue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_ids</span><span class="p">]</span>
+        <span class="c1"># running_exs</span>
+        <span class="c1">#self.register_buffer(&#39;running_exs&#39;, torch.ones(num_features))</span>
 
-<div class="viewcode-block" id="BatchNorm3d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm3d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm3d</span><span class="p">(</span><span class="n">_SyncBatchNorm</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Please see the docs in :class:`encoding.nn.BatchNorm2d`&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">_check_input_dim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">5</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;expected 5D input (got </span><span class="si">{}</span><span class="s1">D input)&#39;</span>
-                             <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dim</span><span class="p">()))</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm3d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_check_input_dim</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
+<div class="viewcode-block" id="SyncBatchNorm.forward"><a class="viewcode-back" href="../../../nn.html#encoding.nn.SyncBatchNorm.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># Resize the input to (B, C, -1).</span>
+        <span class="n">input_shape</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_features</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">get_device</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="c1"># Master mode</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;is_master&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;master_queue&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_queue</span><span class="p">,</span>
+                <span class="s2">&quot;worker_queues&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_queues</span><span class="p">,</span>
+                <span class="s2">&quot;worker_ids&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_ids</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Worker mode</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;is_master&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">&quot;master_queue&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_queue</span><span class="p">,</span>
+                <span class="s2">&quot;worker_queue&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">worker_queues</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">worker_ids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">get_device</span><span class="p">())]</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">inp_syncbatchnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span><span class="p">,</span>
+                                     <span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sync</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slope</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">syncbatchnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_var</span><span class="p">,</span>
+                                 <span class="n">extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sync</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">momentum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slope</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="SyncBatchNorm.extra_repr"><a class="viewcode-back" href="../../../nn.html#encoding.nn.SyncBatchNorm.extra_repr">[docs]</a>    <span class="k">def</span> <span class="nf">extra_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;sync=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sync</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;sync=</span><span class="si">{}</span><span class="s1">, act=</span><span class="si">{}</span><span class="s1">, slope=</span><span class="si">{}</span><span class="s1">, inplace=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sync</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">slope</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inplace</span>
+            <span class="p">)</span></div></div>
 
-<span class="k">class</span> <span class="nc">SharedTensor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Shared Tensor for cross GPU all reduce operation&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nGPUs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span> <span class="o">=</span> <span class="n">nGPUs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
+<div class="viewcode-block" id="BatchNorm1d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm1d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm1d</span><span class="p">(</span><span class="n">SyncBatchNorm</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. warning::</span>
+<span class="sd">        BatchNorm1d is deprecated in favor of :class:`encoding.nn.SyncBatchNorm`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;encoding.nn.</span><span class="si">{}</span><span class="s2"> is now deprecated in favor of encoding.nn.</span><span class="si">{}</span><span class="s2">.&quot;</span>
+                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;BatchNorm1d&#39;</span><span class="p">,</span> <span class="n">SyncBatchNorm</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">EncodingDeprecationWarning</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm1d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span>
+<div class="viewcode-block" id="BatchNorm2d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm2d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">SyncBatchNorm</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. warning::</span>
+<span class="sd">        BatchNorm2d is deprecated in favor of :class:`encoding.nn.SyncBatchNorm`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;encoding.nn.</span><span class="si">{}</span><span class="s2"> is now deprecated in favor of encoding.nn.</span><span class="si">{}</span><span class="s2">.&quot;</span>
+                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;BatchNorm2d&#39;</span><span class="p">,</span> <span class="n">SyncBatchNorm</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">EncodingDeprecationWarning</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm2d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">):</span>
-        <span class="c1"># push from device</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">+=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">igpu</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">igpu</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
-            <span class="c1">#idx = self.nGPUs - self.push_tasks</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>
-            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">push_tasks</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">pull</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">igpu</span><span class="p">):</span>
-        <span class="c1"># pull from device</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutex</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">igpu</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span><span class="p">)</span>
-                <span class="c1"># flatten the tensors</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">))</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">outlist</span> <span class="o">=</span> <span class="n">allreduce</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>
-            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">reduce_tasks</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">all_tasks_done</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-        <span class="c1"># all reduce done</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">outlist</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">igpu</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">outlist</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">igpu</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nGPUs</span>
-
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;SharedTensor&#39;</span><span class="p">)</span>
-
+<div class="viewcode-block" id="BatchNorm3d"><a class="viewcode-back" href="../../../nn.html#encoding.nn.BatchNorm3d">[docs]</a><span class="k">class</span> <span class="nc">BatchNorm3d</span><span class="p">(</span><span class="n">SyncBatchNorm</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    .. warning::</span>
+<span class="sd">        BatchNorm3d is deprecated in favor of :class:`encoding.nn.SyncBatchNorm`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;encoding.nn.</span><span class="si">{}</span><span class="s2"> is now deprecated in favor of encoding.nn.</span><span class="si">{}</span><span class="s2">.&quot;</span>
+                      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;BatchNorm3d&#39;</span><span class="p">,</span> <span class="n">SyncBatchNorm</span><span class="o">.</span><span class="vm">__name__</span><span class="p">),</span> <span class="n">EncodingDeprecationWarning</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BatchNorm3d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
@@ -514,7 +421,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang
 
     </p>
   </div>
@@ -533,21 +440,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'master',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'master',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

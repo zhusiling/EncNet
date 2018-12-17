@@ -19,7 +19,7 @@
     </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>encoding.dilated &mdash; Encoding master documentation</title>
+  <title>encoding.models &mdash; Encoding master documentation</title>
   
 
   
@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="_static/css/encoding.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="encoding.functions" href="functions.html" />
+    <link rel="next" title="encoding.utils" href="utils.html" />
     <link rel="prev" title="encoding.parallel" href="parallel.html" /> 
 
 
@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.5.1)
+                master (1.0.1)
               </div>
             
           
@@ -105,7 +105,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notes/compile.html">Install and Citations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/compile.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notes/compile.html#citations">Citations</a></li>
 </ul>
 </li>
@@ -122,7 +122,6 @@
 <li class="toctree-l1"><a class="reference internal" href="experiments/cifar.html">EncNet on CIFAR-10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/cifar.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -147,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="experiments/texture.html">Deep TEN: Deep Texture Encoding Network Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experiments/texture.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -156,8 +154,9 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#syncbatchnorm"><span class="hidden-section">SyncBatchNorm</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
@@ -170,7 +169,7 @@
 <li class="toctree-l2"><a class="reference internal" href="parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.dilated</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">encoding.models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#resnet">ResNet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1"><span class="hidden-section">ResNet</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resnet18"><span class="hidden-section">resnet18</span></a></li>
@@ -180,13 +179,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">encoding.utils</a><ul>
@@ -241,13 +233,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>encoding.dilated</li>
+      <li>encoding.models</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/dilated.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/models.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -260,8 +252,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="encoding-dilated">
-<h1>encoding.dilated<a class="headerlink" href="#encoding-dilated" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-encoding.models.resnet">
+<span id="encoding-models"></span><h1>encoding.models<a class="headerlink" href="#module-encoding.models.resnet" title="Permalink to this headline">¶</a></h1>
+<p>Dilated ResNet</p>
+<div class="section" id="resnet">
+<h2>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">¶</a></h2>
 <p>We provide correct dilated pre-trained ResNet and DenseNet (stride of 8) for semantic segmentation.
 For dilation of DenseNet, we provide <code class="xref py py-class docutils literal notranslate"><span class="pre">encoding.nn.DilatedAvgPool2d</span></code>.
 All provided models have been verified.</p>
@@ -272,14 +267,11 @@ All provided models have been verified.</p>
 <li>Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang, Xiaogang Wang, Ambrish Tyagi, Amit Agrawal. “Context Encoding for Semantic Segmentation”  <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2018</em></li>
 </ul>
 </div>
-<span class="target" id="module-encoding.dilated"></span><p>Dilated ResNet and DenseNet</p>
-<div class="section" id="resnet">
-<h2>ResNet<a class="headerlink" href="#resnet" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3><span class="hidden-section">ResNet</span><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="encoding.dilated.ResNet">
-<em class="property">class </em><code class="descclassname">encoding.dilated.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>dilated=True</em>, <em>deep_base=True</em>, <em>norm_layer=&lt;class 'torch.nn.modules.batchnorm.BatchNorm2d'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.ResNet">
+<em class="property">class </em><code class="descclassname">encoding.models.resnet.</code><code class="descname">ResNet</code><span class="sig-paren">(</span><em>block</em>, <em>layers</em>, <em>num_classes=1000</em>, <em>dilated=False</em>, <em>multi_grid=False</em>, <em>deep_base=True</em>, <em>norm_layer=&lt;class 'torch.nn.modules.batchnorm.BatchNorm2d'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#ResNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.ResNet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dilated Pre-trained ResNet Model, which preduces the stride of 8 featuremaps at conv5.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -304,8 +296,8 @@ for Synchronized Cross-GPU BachNormalization).</li>
 </tbody>
 </table>
 <dl class="method">
-<dt id="encoding.dilated.ResNet.forward">
-<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#ResNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.ResNet.forward" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.ResNet.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#ResNet.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.ResNet.forward" title="Permalink to this definition">¶</a></dt>
 <dd><p>Defines the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
@@ -323,8 +315,8 @@ registered hooks while the latter silently ignores them.</p>
 <div class="section" id="resnet18">
 <h3><span class="hidden-section">resnet18</span><a class="headerlink" href="#resnet18" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="encoding.dilated.resnet18">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet18</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet18"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet18" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.resnet18">
+<code class="descclassname">encoding.models.resnet.</code><code class="descname">resnet18</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#resnet18"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.resnet18" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-18 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -340,8 +332,8 @@ registered hooks while the latter silently ignores them.</p>
 <div class="section" id="resnet34">
 <h3><span class="hidden-section">resnet34</span><a class="headerlink" href="#resnet34" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="encoding.dilated.resnet34">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet34</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet34" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.resnet34">
+<code class="descclassname">encoding.models.resnet.</code><code class="descname">resnet34</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#resnet34"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.resnet34" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-34 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -357,8 +349,8 @@ registered hooks while the latter silently ignores them.</p>
 <div class="section" id="resnet50">
 <h3><span class="hidden-section">resnet50</span><a class="headerlink" href="#resnet50" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="encoding.dilated.resnet50">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet50</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet50"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet50" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.resnet50">
+<code class="descclassname">encoding.models.resnet.</code><code class="descname">resnet50</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#resnet50"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.resnet50" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-50 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -374,8 +366,8 @@ registered hooks while the latter silently ignores them.</p>
 <div class="section" id="resnet101">
 <h3><span class="hidden-section">resnet101</span><a class="headerlink" href="#resnet101" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="encoding.dilated.resnet101">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet101</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet101"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet101" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.resnet101">
+<code class="descclassname">encoding.models.resnet.</code><code class="descname">resnet101</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#resnet101"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.resnet101" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-101 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -391,8 +383,8 @@ registered hooks while the latter silently ignores them.</p>
 <div class="section" id="resnet152">
 <h3><span class="hidden-section">resnet152</span><a class="headerlink" href="#resnet152" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="encoding.dilated.resnet152">
-<code class="descclassname">encoding.dilated.</code><code class="descname">resnet152</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/dilated/resnet.html#resnet152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.dilated.resnet152" title="Permalink to this definition">¶</a></dt>
+<dt id="encoding.models.resnet.resnet152">
+<code class="descclassname">encoding.models.resnet.</code><code class="descname">resnet152</code><span class="sig-paren">(</span><em>pretrained=False</em>, <em>root='~/.encoding/models'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/encoding/models/resnet.html#resnet152"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#encoding.models.resnet.resnet152" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructs a ResNet-152 model.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -416,7 +408,7 @@ registered hooks while the latter silently ignores them.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="functions.html" class="btn btn-neutral float-right" title="encoding.functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="encoding.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="parallel.html" class="btn btn-neutral" title="encoding.parallel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -428,7 +420,7 @@ registered hooks while the latter silently ignores them.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang
 
     </p>
   </div>
@@ -447,21 +439,24 @@ registered hooks while the latter silently ignores them.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'master',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'master',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

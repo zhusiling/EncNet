@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                master (0.5.1)
+                master (1.0.1)
               </div>
             
           
@@ -105,7 +105,7 @@
               <p class="caption"><span class="caption-text">Notes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../notes/compile.html">Install and Citations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/compile.html#citations">Citations</a></li>
 </ul>
 </li>
@@ -122,7 +122,6 @@
 <li class="toctree-l1"><a class="reference internal" href="cifar.html">EncNet on CIFAR-10</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cifar.html#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cifar.html#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cifar.html#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cifar.html#citation">Citation</a></li>
 </ul>
 </li>
@@ -147,7 +146,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Deep TEN: Deep Texture Encoding Network Example</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#test-pre-trained-model">Test Pre-trained Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#train-your-own-model">Train Your Own Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#extending-the-software">Extending the Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#citation">Citation</a></li>
 </ul>
 </li>
@@ -156,8 +154,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../nn.html">encoding.nn</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#encoding"><span class="hidden-section">Encoding</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#syncbatchnorm"><span class="hidden-section">SyncBatchNorm</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm1d"><span class="hidden-section">BatchNorm1d</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm2d"><span class="hidden-section">BatchNorm2d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#batchnorm3d"><span class="hidden-section">BatchNorm3d</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#inspiration"><span class="hidden-section">Inspiration</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../nn.html#upsampleconv2d"><span class="hidden-section">UpsampleConv2d</span></a></li>
@@ -170,23 +169,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../parallel.html#allreduce"><span class="hidden-section">allreduce</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../dilated.html">encoding.dilated</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../dilated.html#resnet">ResNet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#id1"><span class="hidden-section">ResNet</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../dilated.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">encoding.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../models.html#resnet">ResNet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#id1"><span class="hidden-section">ResNet</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet18"><span class="hidden-section">resnet18</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet34"><span class="hidden-section">resnet34</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet50"><span class="hidden-section">resnet50</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet101"><span class="hidden-section">resnet101</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../models.html#resnet152"><span class="hidden-section">resnet152</span></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../functions.html">encoding.functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#batchnormtrain"><span class="hidden-section">batchnormtrain</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#aggregate"><span class="hidden-section">aggregate</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#scaled-l2"><span class="hidden-section">scaled_l2</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../functions.html#sum-square"><span class="hidden-section">sum_square</span></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">encoding.utils</a><ul>
@@ -281,16 +273,10 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Download pre-trained model (pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math notranslate nohighlight">\(18.96\%\)</span> using single crop on test-1 set):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">experiments</span><span class="o">/</span><span class="n">recognition</span>
-<span class="n">python</span> <span class="n">model</span><span class="o">/</span><span class="n">download_models</span><span class="o">.</span><span class="n">py</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Test pre-trained model on MINC-2500:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">resume</span> <span class="n">deepten_minc</span><span class="o">.</span><span class="n">pth</span> <span class="o">--</span><span class="nb">eval</span>
+<li><p class="first">Test pre-trained model on MINC-2500. The pre-trained weight will be automatic downloaded (pre-trained on train-1 split using single training size of 224, with an error rate of <span class="math notranslate nohighlight">\(18.96\%\)</span> using single crop on test-1 set):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten_resnet50_minc</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span>  <span class="o">--</span><span class="n">pretrained</span> <span class="o">--</span><span class="nb">eval</span>
 <span class="c1"># Teriminal Output:</span>
-<span class="c1"># Loss: 1.005 | Err: 18.96% (1090/5750): 100%|████████████████████| 23/23 [00:18&lt;00:00,  1.26it/s]</span>
+<span class="c1"># Loss: 0.995 | Err: 18.957% (1090/5750): 100%|████████████████████| 23/23 [00:18&lt;00:00,  1.26it/s]</span>
 </pre></div>
 </div>
 </li>
@@ -300,7 +286,7 @@
 <h2>Train Your Own Model<a class="headerlink" href="#train-your-own-model" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p class="first">Example training command for training above model:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">nclass</span> <span class="mi">23</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">512</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.004</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">80</span> <span class="o">--</span><span class="n">lr</span><span class="o">-</span><span class="n">step</span> <span class="mi">60</span> <span class="o">--</span><span class="n">lr</span><span class="o">-</span><span class="n">scheduler</span> <span class="n">step</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">minc</span> <span class="o">--</span><span class="n">model</span> <span class="n">deepten_resnet50_minc</span> <span class="o">--</span><span class="n">batch</span><span class="o">-</span><span class="n">size</span> <span class="mi">512</span> <span class="o">--</span><span class="n">lr</span> <span class="mf">0.004</span> <span class="o">--</span><span class="n">epochs</span> <span class="mi">80</span> <span class="o">--</span><span class="n">lr</span><span class="o">-</span><span class="n">step</span> <span class="mi">60</span> <span class="o">--</span><span class="n">lr</span><span class="o">-</span><span class="n">scheduler</span> <span class="n">step</span> <span class="o">--</span><span class="n">weight</span><span class="o">-</span><span class="n">decay</span> <span class="mf">5e-4</span>
 </pre></div>
 </div>
 </li>
@@ -322,21 +308,6 @@
 <span class="o">--</span><span class="n">resume</span> <span class="n">RESUME</span>       <span class="n">put</span> <span class="n">the</span> <span class="n">path</span> <span class="n">to</span> <span class="n">resuming</span> <span class="n">file</span> <span class="k">if</span> <span class="n">needed</span>
 <span class="o">--</span><span class="n">checkname</span>           <span class="nb">set</span> <span class="n">the</span> <span class="n">checkpoint</span> <span class="n">name</span>
 <span class="o">--</span><span class="nb">eval</span>                <span class="n">evaluating</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-<div class="section" id="extending-the-software">
-<h2>Extending the Software<a class="headerlink" href="#extending-the-software" title="Permalink to this headline">¶</a></h2>
-<p>This code is well written, easy to use and extendable for your own models or datasets:</p>
-<ul>
-<li><p class="first">Write your own Dataloader <code class="docutils literal notranslate"><span class="pre">mydataset.py</span></code> to <code class="docutils literal notranslate"><span class="pre">dataset/</span></code> folder</p>
-</li>
-<li><p class="first">Write your own Model <code class="docutils literal notranslate"><span class="pre">mymodel.py</span></code> to <code class="docutils literal notranslate"><span class="pre">model/</span></code> folder</p>
-</li>
-<li><p class="first">Run the program:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dataset</span> <span class="n">mydataset</span> <span class="o">--</span><span class="n">model</span> <span class="n">mymodel</span>
 </pre></div>
 </div>
 </li>
@@ -383,7 +354,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Hang Zhang.
+        &copy; Copyright 2018, Hang Zhang
 
     </p>
   </div>
@@ -402,21 +373,24 @@
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'master',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'master',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
